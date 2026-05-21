@@ -1,0 +1,511 @@
+/*******************************************************************************
+ * INTEL CONFIDENTIAL
+ *
+ * Copyright (c) 2021 Intel Corporation
+ * All Rights Reserved.
+ *
+ * This software and the related documents are Intel copyrighted materials,
+ * and your use of them is governed by the express license under which they
+ * were provided to you ("License"). Unless the License provides otherwise,
+ * you may not use, modify, copy, publish, distribute, disclose or transmit
+ * this software or the related documents without Intel's prior written
+ * permission.
+ *
+ * This software and the related documents are provided as is, with no express
+ * or implied warranties, other than those that are expressly stated in the
+ * License.
+ ******************************************************************************/
+//##############################################
+// Include block specs
+//##############################################
+#include "templates_rspec.csr"
+
+//##############################################
+// Define Global Parameters
+//##############################################
+property word_size = 4 bytes;
+
+//##############################################
+// Define Registers
+//##############################################
+
+addressmap {
+
+register eth_soft_reset {
+	 property title = "Enable to perform Software reset to different portion of the Ethernet block";
+	 property description = "Each bit defines a soft reset functionality which need to be asserted high  "
+                                "to generate a software reset of the block. ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Software reset";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Reset Comira PCS \n"
+                                      " -[1]     : Reset Serdes IO Tile ";
+                property output_port = true;
+	 } [1:0] ethpcs_swrst;
+};
+
+register eth_clkobs_ctrl {
+	 property title = "Clock observation daisy chaining control register";
+	 property description = "Control whether the selected is sent through the daisy chain to the Clock Observation pad  ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Select obervation clock source for clock observation 0";
+	       property description = "Select observation clock source : \n"
+                                      " -[2:0]   : Select Serdes lane number \n"
+                                      " -[4:3]   : Serdes Mux: rx_clk (00b), tx_clk (01b), MAC clock (10b), Core clock (11b)  ";
+               property output_port = true;
+	 } [4:0] sel_clkobs0;
+	 field {
+	       property title = "Select clock divider for clock observation 0";
+	       property description = "Select divider of observation clock source : \n"
+                                      " - 00b : divide-by-2 \n"
+                                      " - 01b : divide-by-4 \n"
+                                      " - 10b : divide-by-8 \n"
+                                      " - 11b : divide-by-16 \n";
+               property output_port = true;
+	 } [9:8] sel_clkdiv0;
+	 field {
+	       property title = "Enable divider for clock observation 0";
+	       property description = "Enable divider for observation clock 0";
+               property output_port = true;
+	 } [12] sel_clkena0;
+	 field {
+	       property title = "Select obervation clock source for clock observation 1";
+	       property description = "Select obervation clock source  \n"
+                                      " -[2:0]   : Select Serdes lane number \n"
+                                      " -[4:3]   : Serdes Mux: rx_clk (00b), tx_clk (01b), MAC clock (10b), Core clock (11b)  ";
+               property output_port = true;
+	 } [20:16] sel_clkobs1;
+	 field {
+	       property title = "Select obervation clock source for clock observation 1";
+	       property description = "Select divider of observation clock source : \n"
+                                      " - 00b : divide-by-2 \n"
+                                      " - 01b : divide-by-4 \n"
+                                      " - 10b : divide-by-8 \n"
+                                      " - 11b : divide-by-16 \n";
+               property output_port = true;
+	 } [26:24] sel_clkdiv1;
+	 field {
+	       property title = "Enable divider for clock observation 1";
+	       property description = "Enable divider for observation clock 1";
+               property output_port = true;
+	 } [28] sel_clkena1;
+};
+
+register eth_rxsigok_ctrl {
+	 property title = "Control the generation of RxSigOK from Ethernet Serdes";
+	 property description = "Have control registers enabling to debounce the rx_idle_det output "
+                                "of the Serdes and generate rxsigok for the MAC layer. Can also force"
+                                "RxSigOK high or low. ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "rxSigOk Debounce counter";
+	       property description = "Defines the number of consecutive clock cycle that the Rx_idle_det need to"
+                                      "be asserted high or low to report rxSigOK to the MAC layer. Set to zero to prevent any debouncing ";
+               property output_port = true;
+	 } [15:0] sigok_debounce_count;
+	 field {
+	       property title = "Force rxSigOk high";
+	       property description = "Ignore Signal OK from Serdes and forces RxSigOK high (per lane) ";
+               property output_port = true;
+	 } [23:16] force_rxsigok_high;
+	 field {
+	       property title = "Force rxSigOk low";
+	       property description = "Ignore Signal OK from Serdes and forces RxSigOK low (per lane)";
+               property output_port = true;
+	 } [31:24] force_rxsigok_low;
+};
+
+register eth_mdioci_ctrl {
+	 property title = "Control the register access to Serdes tile";
+	 property description = "Serdes tile has the MDIOCI interface to Serdes Tile to perform register read/write. "
+                                "This register control how the Serdes tile get accessed";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "MDIOCI interface enable";
+	       property description = "Enables access to MDIOCI interface";
+               property output_port = true;
+	 } [0] mdioci_en;
+	 field {
+	       property title = "MDIOCI reset command";
+	       property description = "Generate a reset command to MDIOCI interface";
+               property output_port = true;
+	 } [1] mdioci_reset;
+	 field {
+	       property title = "MDIOCI clock divider";
+	       property description = "Define the clock speed of the MDIOCI interface clock"
+                                      " 0001b : Core clock divider by 2 \n"
+                                      " 0011b : Core clock divider by 4 \n"
+                                      " 0111b : Core clock divider by 8 \n"
+                                      " 1111b : Core clock divider by 16 \n"
+                                      "The MDC clock output is generated when the 4-bit counter reaches it max value.";
+               property output_port = true;
+	 } [7:4] mdioci_clkdiv;
+};
+
+register eth_mdioci_poll_ctrl {
+	 property title = "Serdes tile Polling Control";
+	 property description = "Controls the automatic polling of Serdes Tile RxSignalOK vector. ";
+ 	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Rx signal OK address";
+	       property description = "Define the address of the global Rx signal OK register of the tile";
+              property output_port = true;
+	 } [23:0] poll_addr;
+};
+
+register eth_mdioci_poll_time {
+	 property title = "Serdes tile Polling Time Period";
+	 property description = "Defines the interval between two polling request.";
+ 	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Polling time interval in clock bps";
+	       property description = "Define the time interval between consecutive polling of RxSignalOK register of the tile";
+              property output_port = true;
+	 } [15:0] poll_time;
+	 field {
+	       property title = "Polling enable";
+	       property description = "enables polling of RxSignalOK";
+               property output_port = true;
+	 } [16] poll_ena;
+};
+
+register eth_rxsigok_bitsel {
+	 property title = "Serdes tile Interrupt Vector Mask";
+	 property description = "Defines which bit from the polling 32bit register is the rxsigok signal for a specific lane";
+ 	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Lane 0 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [3:0] rxsigok_sel0;
+	 field {
+	       property title = "Lane 1 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [7:4] rxsigok_sel1;
+	 field {
+	       property title = "Lane 2 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [11:8] rxsigok_sel2;
+	 field {
+	       property title = "Lane 3 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [15:12] rxsigok_sel3;
+	 field {
+	       property title = "Lane 4 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [19:16] rxsigok_sel4;
+	 field {
+	       property title = "Lane 5 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [23:20] rxsigok_sel5;
+	 field {
+	       property title = "Lane 6 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [27:24] rxsigok_sel6;
+	 field {
+	       property title = "Lane 7 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [31:28] rxsigok_sel7;
+};
+
+
+register mdioci_intr_stat {
+	 property title = "MDIOCI (Serdes Tile) Interrupt Status";
+	 property description = "Serdes Tile interrupt status which has been pulled by the MDIOCI interface";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Serdes (tile) Interrupt Status";
+	       property description = "Report which interrupt register is asserted";
+	       property field_type = "status";
+               property input_value = true;
+	 } [0] intr_stat;
+};
+
+register txsds_mode {
+	 property title = "Defines the mode of the Tx Serdes layer which convert 32 to 64b";
+	 property description = "Each Tx Serdes [0-7] has a dedicated 4 bit field to control this muxing";
+	 property register_reset_value = 0x76543210;
+         property register_output_port = true;
+	 field {
+	       property title = "For that lane control the Tx Serdes conversion logic";
+	       property description = "4 bit per lane: \n"
+                                      " - bit [2:0]: physical Tx lane mapping \n"
+                                      " - bit [3]  : PAM4 mode (enable divide-by-2 clock and double internal datapath) \n";
+	 } [31:0] mode;
+};
+
+register rxsds_mode {
+	 property title = "Defines the mode of the Rx Serdes layer which convert 32 to 64b";
+	 property description = "Each Rx Serdes [0-7] has a dedicated 4 bit field to control this muxing";
+	 property register_reset_value = 0x76543210;
+         property register_output_port = true;
+	 field {
+	       property title = "For that lane control the Tx Serdes conversion logic";
+	       property description = "4 bit per lane: \n"
+                                      " - bit [2:0]: physical Tx lane mapping \n"
+                                      " - bit [3]  : PAM4 mode (enable divide-by-2 clock and double internal datapath) \n";
+	 } [31:0] mode;
+};
+
+register sds_112g {
+	 property title = "Define whether Serdes is operating in 112G mode";
+	 property description = "For each group of 2 consecutive logical lane (0/1, 2/3, 4/5, 6/7), defines whether the Serdes is working in 112G mode or not";
+	 property register_reset_value = 0x00000000;
+         property register_output_port = true;
+	 field {
+	       property title = "Define whether Serdes is operating in 112G mode";
+	       property description = ". When set to 1, defines that Serdes is working in 112G mode. There is 1 bit per group of 2 logical lane: \n"
+                                      " - bit [0]: When set, configure logical lane 0/1 in 112G mode\n"
+                                      " - bit [1]: When set, configure logical lane 2/3 in 112G mode\n"
+                                      " - bit [2]: When set, configure logical lane 4/5 in 112G mode\n"
+                                      " - bit [3]: When set, configure logical lane 6/7 in 112G mode\n";
+	 } [3:0] mode;
+};
+
+register eth_ppm_sel {
+	 property title = "PPM comparator clock source select";
+	 property description = "Select Rx and Tx clock going to the PPM comparator  ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Select Rx clock source";
+	       property description = "Select Rx clock source for PPM comparator.";
+               property output_port = true;
+	 } [2:0] sel_rxclk;
+	 field {
+	       property title = "Select Tx clock source";
+	       property description = "Select Tx clock source for PPM comparator.";
+               property output_port = true;
+	 } [6:4] sel_txclk;
+};
+
+
+register eth_ppm_ctrl {
+	 property title = "PPM comparator control register";
+	 property description = "PPM comparator control register ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "PPM maximum count value";
+	       property description = "Defines the number of clock cycles for the PPM comparator to run before reporting valid PPM differences. ";
+               property output_port = true;
+	 } [30:0] max_count;
+	 field {
+	       property title = "Enables the PPM comparator logic ";
+	       property description = "When set to 1, the PPM comparator logic is enabled. It is required to have valid clock source before enabling the PPM comparator. The PPM comparator runs continuously as long as enabled.";
+               property output_port = true;
+	 } [31] ppm_ena;
+};
+
+register eth_ppm_stat {
+	 property title = "PPM comparator status register";
+	 property description = "PPM comparator status register  ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "PPM differences seen";
+	       property description = "Represent a signed number of PPM seen between Tx and Rx clock. The logic add 1 clock uncertainty and thus to get an accuracy of 1 PPM, \n"
+                                      " it is recommended to run the PPM comparator for at least 10 M cycles. New value get reported automatically after each iteration as long as enabled. ";
+	       property field_type = "status";
+               property input_value = true;
+	 } [30:0] ppm_seen;
+	 field {
+	       property title = "PPM difference valid ";
+	       property description = "When a result is available after been enabled, report 1 when the PPM comparator has a valid value to report.";
+	       property field_type = "status";
+               property input_value = true;
+	 } [31] ppm_val;
+};
+
+//##############################################
+// Define Register Address Space
+//##############################################
+
+    property title = "Ethernet Block  Registers";
+    property description = "Registers controlling the Ethernet Application layer";
+
+    property addressmap_ready_port = true;
+    property addressmap_clock_port = "clk";
+
+    property addressmap_undefined_value = 0x0bad0bad;
+
+    property addressmap_bus_input_pipeline_stage  = true;
+    property addressmap_bus_output_pipeline_stage = true;
+
+    scratch_r                                   scratch [4];
+    dft_csr_memctrl_r                           dft_csr;
+    eth_soft_reset                              eth_soft_reset;
+    eth_clkobs_ctrl                             eth_clkobs_ctrl;
+    eth_rxsigok_ctrl                            eth_rxsigok_ctrl;
+    eth_mdioci_ctrl                             eth_mdioci_ctrl;
+    eth_mdioci_poll_ctrl                        eth_mdioci_poll_ctrl;
+    eth_mdioci_poll_time                        eth_mdioci_poll_time;
+
+    eth_rxsigok_bitsel                          eth_rxsigok_bitsel;
+    interrupt_register_g                        mem_intr (
+                                                    interrupts  = [
+                                                                   "deskew_sbe",
+                                                                   "deskew_mbe",
+                                                                   "rsfec_sbe",
+                                                                   "rsfec_mbe"
+                                                                  ],
+                                                    titles      = [
+                                                                   "Deskew memory Single Bit Error",
+                                                                   "Deskew memory  Multi Bit Error",
+                                                                   "RS-FEC memory Single Bit Error",
+                                                                   "RS-FEC memory  Multi Bit Error"
+                                                                   ],
+                                                    descriptions= [
+                                                                   "Asserted when Deskew memory gets correctable error.",
+                                                                   "Asserted when Deskew memory gets uncorrectable error.",
+                                                                   "Asserted when RS-FEC memory gets correctable error.",
+                                                                   "Asserted when RS-FEC memory gets uncorrectable error."
+                                                                  ],
+                                                    types       = [
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge"
+                                                                  ],
+                                                    actives     = [
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high"
+                                                                  ]
+                                                );
+
+
+    ecc_control_r                               deskew_ecc (
+                                                    names = ["mem0",
+                                                             "mem1",
+                                                             "mem2",
+                                                             "mem3",
+                                                             "mem4",
+                                                             "mem5",
+                                                             "mem6",
+                                                             "mem7"
+                                                            ],
+                                                    types = ["gen_chk",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only"
+                                                            ]
+                                                );
+
+    ecc_control_r                               rsfec01_ecc (
+                                                    names = ["mem0_sram0",
+                                                             "mem0_sram1",
+                                                             "mem0_sram2",
+                                                             "mem0_sram3",
+                                                             "mem1_sram0",
+                                                             "mem1_sram1",
+                                                             "mem1_sram2",
+                                                             "mem1_sram3"
+                                                            ],
+                                                    types = ["gen_chk",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only"
+                                                            ]
+                                                );
+
+    ecc_control_r                               rsfec23_ecc (
+                                                    names = ["mem2_sram0",
+                                                             "mem2_sram1",
+                                                             "mem2_sram2",
+                                                             "mem2_sram3",
+                                                             "mem3_sram0",
+                                                             "mem3_sram1",
+                                                             "mem3_sram2",
+                                                             "mem3_sram3"
+                                                            ],
+                                                    types = ["gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only",
+                                                             "gen_only"
+                                                            ]
+                                                );
+
+    interrupt_log_r                             deskew_sbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Deskew Memory Single Bit Error",
+                                                        intrfield   = field(mem_intr.stat.deskew_sbe),
+                                                        field_names = ["addr","laneid"],
+                                                        field_widths= [8,3]
+                                                       );
+
+    interrupt_log_r                             deskew_mbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Deskew Memory Dual Bit Error",
+                                                        intrfield   = field(mem_intr.stat.deskew_mbe),
+                                                        field_names = ["addr","laneid"],
+                                                        field_widths= [8,3]
+                                                       );
+
+    interrupt_log_r                             rsfec_sbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Deskew Memory Single Bit Error",
+                                                        intrfield   = field(mem_intr.stat.rsfec_sbe),
+                                                        field_names = ["addr","instid","memid"],
+                                                        field_widths= [7,2,2]
+                                                       );
+
+    interrupt_log_r                             rsfec_mbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Deskew Memory multiple Bit Error",
+                                                        intrfield   = field(mem_intr.stat.rsfec_mbe),
+                                                        field_names = ["addr","instid","memid"],
+                                                        field_widths= [7,2,2]
+                                                       );
+
+
+   mdioci_intr_stat             mdioci_intr_stat;
+   interrupt_enable_r           mdioci_en0 (
+                                          interrupts = ["intr" 
+                                                        ],
+                                          types = ["rising_edge"
+                                                  ],
+                                          priority = 0,
+                                          reset_value = 0x0
+                                        );
+   interrupt_enable_r           mdioci_en1 (
+                                          interrupts = ["intr" 
+                                                        ],
+                                          types = ["rising_edge"
+                                                  ],
+                                          priority = 1,
+                                          reset_value = 0x0
+                                        );
+   interrupt_freeze_enable_r    mdioci_freeze_enable (interrupts = ["intr" 
+                                                        ],
+                                          types = ["rising_edge"
+                                                  ]);
+   txsds_mode    txsds_mode;
+   rxsds_mode    rxsds_mode;
+   sds_112g      sds_112g;
+   eth_ppm_sel   eth_ppm_sel;
+   eth_ppm_ctrl  eth_ppm_ctrl;
+   eth_ppm_stat  eth_ppm_stat;
+   
+} eth400g_pcs_rspec;
+
+

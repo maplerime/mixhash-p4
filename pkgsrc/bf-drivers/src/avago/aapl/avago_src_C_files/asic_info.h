@@ -1,0 +1,255 @@
+/* **************************************************************** */
+/*                                                                  */
+/* ASIC and ASSP Programming Layer (AAPL)                           */
+/* Copyright (c) 2014-2017 Avago Technologies. All rights reserved. */
+/*                                                                  */
+/* **************************************************************** */
+/* AAPL Revision: 2.5.0                                        */
+/** @file
+ ** @brief Declarations of ASIC-specific values used in AAPL.
+ */
+
+#ifndef AVAGO_ASIC_INFO_H_
+#define AVAGO_ASIC_INFO_H_
+
+typedef struct
+{
+        uint jtag_idcode;
+        const char *name;
+        const char *rev;
+        Avago_process_id_t process_id;
+        uint sbus_rings;
+        uint sbus_ring_start;
+} Avago_chip_id_t;
+
+/* Only one compilation unit defines this global variable; others just get the
+ * definition:
+ */
+
+Avago_chip_id_t avago_chip_id[] =
+{
+    /* NOTE: Add new entries near beginning of list, not at end. */
+
+    {0x1000057f, "\x41\x41\x50\x4c\x5f\x31\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x2000057f, "\x41\x41\x50\x4c\x5f\x32\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 2, 0},
+    {0x3000057f, "\x41\x41\x50\x4c\x5f\x33\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 3, 0},
+    {0x4000057f, "\x41\x41\x50\x4c\x5f\x34\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 4, 0},
+    {0x5000057f, "\x41\x41\x50\x4c\x5f\x35\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 5, 0},
+    {0x6000057f, "\x41\x41\x50\x4c\x5f\x36\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 6, 0},
+    {0x7000057f, "\x41\x41\x50\x4c\x5f\x37\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 7, 0},
+    {0x8000057f, "\x41\x41\x50\x4c\x5f\x38\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 8, 0},
+    {0x9000057f, "\x41\x41\x50\x4c\x5f\x39\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 9, 0},
+    {0xa000057f, "\x41\x41\x50\x4c\x5f\x31\x30\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 10, 0},
+    {0xb000057f, "\x41\x41\x50\x4c\x5f\x31\x31\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 11, 0},
+    {0xc000057f, "\x41\x41\x50\x4c\x5f\x31\x32\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 12, 0},
+    {0xd000057f, "\x41\x41\x50\x4c\x5f\x31\x33\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 13, 0},
+    {0xe000057f, "\x41\x41\x50\x4c\x5f\x31\x34\x5f\x53\x42\x55\x53\x5f\x52\x49\x4e\x47","1", AVAGO_UNKNOWN_PROCESS, 14, 0},
+
+    {0x0912457f, "\x41\x56\x53\x50\x2d\x31\x31\x30\x34",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0912657f, "\x41\x56\x53\x50\x2d\x31\x31\x30\x34",                     "2",    AVAGO_TSMC_28, 1, 0},
+    {0x0912657f, "\x41\x56\x53\x50\x2d\x31\x31\x30\x34",                     "2",    AVAGO_TSMC_28, 1, 0},
+    {0x0954657f, "\x41\x56\x53\x50\x2d\x34\x34\x31\x32\x2f\x38\x38\x30\x31", "1",    AVAGO_TSMC_28, 1, 0},
+    {0x1954657f, "\x41\x56\x53\x50\x2d\x34\x34\x31\x32\x2f\x38\x38\x30\x31", "2",    AVAGO_TSMC_28, 1, 0},
+    {0x096d157f, "\x41\x56\x53\x50\x2d\x34\x34\x31\x32\x2f\x38\x38\x30\x31", "3",    AVAGO_TSMC_28, 1, 0},
+    {0x0968257f, "\x41\x56\x53\x50\x2d\x34\x34\x31\x32\x2f\x38\x38\x30\x31", "4",    AVAGO_TSMC_28, 1, 0},
+    {0x090b957f, "\x41\x56\x53\x50\x2d\x35\x32\x31",                         "1",    AVAGO_TSMC_28, 1, 0},
+    {0x1911357f, "\x41\x56\x53\x50\x2d\x35\x32\x31",                         "1.1",  AVAGO_TSMC_28, 1, 0},
+    {0x0911457f, "\x41\x56\x53\x50\x2d\x35\x32\x31",                         "x",    AVAGO_TSMC_28, 1, 0},
+    {0x099a557f, "\x41\x56\x53\x50\x2d\x35\x34\x31\x30",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x199a557f, "\x41\x56\x53\x50\x2d\x35\x34\x31\x30",                     "2",    AVAGO_TSMC_28, 1, 0},
+    {0x0990357f, "\x41\x56\x53\x50\x2d\x37\x34\x30\x31",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0973957f, "\x41\x56\x53\x50\x2d\x37\x34\x31\x32",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x1973957f, "\x41\x56\x53\x50\x2d\x37\x34\x31\x32",                     "2",    AVAGO_TSMC_28, 1, 0},
+    {0x0973157f, "\x41\x56\x53\x50\x2d\x38\x38\x31\x32",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x1973157f, "\x41\x56\x53\x50\x2d\x38\x38\x31\x32",                     "2",    AVAGO_TSMC_28, 1, 0},
+    {0x0964257f, "\x41\x56\x53\x50\x2d\x39\x31\x30\x34",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x1964257f, "\x41\x56\x53\x50\x2d\x39\x31\x30\x34",                     "2",    AVAGO_TSMC_28, 1, 0},
+    {0x2964257f, "\x41\x56\x53\x50\x2d\x39\x31\x30\x34",                     "3",    AVAGO_TSMC_28, 1, 0},
+
+
+    {0x09d6357f, "\x41\x70\x70\x6c\x65                                       River", "1", AVAGO_TSMC_16, 1, 0},
+    {0x19c2757f, "\x42\x69\x67\x53\x6b\x79",                                 "1",    AVAGO_TSMC_16, 1, 0},
+    {0x19c3657f, "\x42\x6c\x61\x63\x6b\x73\x74\x6f\x6e\x65                   River","1", AVAGO_TSMC_16, 1, 0},
+    {0x19a8457f, "\x42\x72\x61\x67\x69                                       Next    Gen", "1", AVAGO_TSMC_16, 1, 0},
+    {0x1040a57f, "\x44\x61\x76\x6f\x73",                                     "1",    AVAGO_TSMC_16, 4, 0},
+    {0x2040a57f, "\x44\x61\x76\x6f\x73",                                     "2",    AVAGO_TSMC_16, 4, 0},
+    {0x19b6857f, "\x44\x65\x6c\x74\x61",                                     "1",    AVAGO_TSMC_16, 1, 0},
+    {0x09c2857f, "\x48\x6f\x6d\x65\x77\x6f\x6f\x64",                         "1",    AVAGO_TSMC_16, 1, 0},
+    {0x1040957f, "\x4c\x61\x63\x72\x6f\x73\x73\x65",                         "1",    AVAGO_TSMC_16, 8, 0},
+    {0x2040957f, "\x4c\x61\x63\x72\x6f\x73\x73\x65",                         "2",    AVAGO_TSMC_16, 8, 0},
+    {0x09d6557f, "\x4d\x61\x6e\x6f\x72                                       Hill",  "1", AVAGO_TSMC_16, 1, 0},
+    {0x1995657f, "\x4d\x61\x75\x6e\x61\x4c\x6f\x61",                         "1",    AVAGO_TSMC_16, 1, 0},
+    {0x19c8757f, "\x4f\x4c\x54                                               (ZX279220)", "1", AVAGO_TSMC_16, 1, 0},
+    {0x19ba557f, "\x50\x53\x49\x46\x4e\x47",                                 "1",    AVAGO_TSMC_16, 1, 0},
+    {0x19a7257f, "\x50\x61\x72\x61\x6c\x6c\x61\x78",                         "1",    AVAGO_TSMC_16, 1, 0},
+    {0x09b4957f, "\x52\x65\x64\x73\x74\x6f\x6e\x65",                         "1",    AVAGO_TSMC_16, 2, 0},
+    {0x09b5557f, "\x52\x65\x64\x73\x74\x6f\x6e\x65\x54\x43",                 "1",    AVAGO_TSMC_16, 2, 0},
+    {0x19ba157f, "\x52\x69\x63\x68\x61\x72\x64\x73",                         "1",    AVAGO_TSMC_16, 1, 0},
+    {0x19b0257f, "\x53\x6b\x79\x62\x6f\x6c\x74\x54\x43",                     "1",    AVAGO_TSMC_16, 1, 0},
+    {0x1040b57f, "\x53\x75\x67\x61\x72\x62\x6f\x77\x6c",                     "1",    AVAGO_TSMC_16, 4, 0},
+    {0x2040b57f, "\x53\x75\x67\x61\x72\x62\x6f\x77\x6c",                     "2",    AVAGO_TSMC_16, 4, 0},
+    {0x3040b57f, "\x53\x75\x67\x61\x72\x62\x6f\x77\x6c",                     "3",    AVAGO_TSMC_16, 4, 0},
+    {0x0995357f, "\x54\x6f\x66\x69\x6e\x6f",                                 "1",    AVAGO_TSMC_16, 2, 0},
+    {0x1988457f, "\x5a\x46",                                                 "1",    AVAGO_TSMC_16, 1, 0},
+    {0x1060157f, "\x5a\x48",                                                 "1",    AVAGO_TSMC_16, 1, 0},
+    {0x1994557f, "\x5a\x54",                                                 "1",    AVAGO_TSMC_16, 1, 0},
+    {0x1997757f, "\x5a\x58",                                                 "1",    AVAGO_TSMC_16, 1, 0},
+    {0x14a4657f, "\x50\x61\x72\x61\x6c\x6c\x61\x78",                         "1",    AVAGO_TSMC_16, 6, 0},
+
+    {0x09c8957F, "\x4c\x75\x74\x65\x74\x69\x61\x2d\x32",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0968157f, "\x57\x46\x52",                                             "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0967957f, "\x50\x52\x52",                                             "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0997857f, "\x52\x52\x43",                                             "2",    AVAGO_TSMC_28, 2, 0},
+    {0x0095757f, "\x58\x50\x38\x30",                                         "1",    AVAGO_TSMC_28, 1, 0},
+    {0x1917257F, "\x4c\x75\x74\x65\x74\x69\x61",                             "1",    AVAGO_TSMC_28, 1, 0},
+    {0x1917357f, "\x44\x69\x76\x69\x6f",                                     "1",    AVAGO_TSMC_28, 2, 0},
+    {0x00d8257f, "\x43\x75\x62",                                             "1",    AVAGO_TSMC_28, 6, 0},
+    {0x00d7057f, "\x56\x65\x6e\x74\x75\x72\x61",                             "1",    AVAGO_TSMC_28, 3, 0},
+    {0x00d8157f, "\x54\x69\x67\x65\x72",                                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x4986457f, "\x50\x61\x63\x75\x61\x72\x65",                             "1",    AVAGO_TSMC_28, 2, 0},
+    {0x194d957f, "\x52\x52\x43",                                             "1",    AVAGO_TSMC_28, 2, 0},
+    {0x103d357f, "\x41\x6c\x70\x69\x6e\x65",                                 "1",    AVAGO_TSMC_28, 2, 0},
+    {0x0043057f, "\x42\x6f\x64\x65\x67\x61",                                 "1",    AVAGO_TSMC_28, 2, 0},
+    {0x103cb57f, "\x42\x69\x67\x53\x75\x72\x2d\x43\x52",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0987357f, "\x43\x4d\x34\x45\x53",                                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0911857f, "\x4b\x6f\x68\x61\x6c\x61",                                 "1",    AVAGO_TSMC_28, 1, 0},
+    {0x08fa857f, "\x4b\x6f\x68\x61\x6c\x61\x44",                             "1",    AVAGO_TSMC_28, 1, 0},
+    {0x5800057f, "\x4e\x65\x6f",                                             "1.1",  AVAGO_TSMC_28, 2, 0},
+    {0x4800057f, "\x4e\x65\x6f",                                             "1",    AVAGO_TSMC_28, 2, 0},
+    {0x88fa557f, "\x4e\x65\x6f",                                             "2",    AVAGO_TSMC_28, 2, 0},
+    {0x103d457f, "\x4e\x6f\x72\x74\x68\x73\x74\x61\x72",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0975457f, "\x50\x61\x6e\x64\x6f\x72\x61",                             "P1",   AVAGO_TSMC_28, 1, 0},
+    {0x0972357f, "\x50\x61\x6e\x64\x6f\x72\x61",                             "M4",   AVAGO_TSMC_28, 1, 0},
+    {0x103dc57f, "\x53\x74\x61\x72\x6c\x69\x66\x74\x65\x72",                 "1",    AVAGO_TSMC_28, 1, 0},
+    {0x203d257f, "\x53\x4d\x31\x35",                                         "2",    AVAGO_TSMC_28, 3, 0},
+    {0x103d257f, "\x53\x4d\x31\x35",                                         "1",    AVAGO_TSMC_28, 3, 0},
+    {0x103c157f, "\x53\x4d\x31\x35\x54\x43",                                 "1",    AVAGO_TSMC_28, 1, 0},
+    {0x203c657f, "\x54\x69\x67\x65\x72\x73\x68\x61\x72\x6b",                 "2",    AVAGO_TSMC_28, 2, 0},
+    {0x103c657f, "\x54\x69\x67\x65\x72\x73\x68\x61\x72\x6b",                 "1",    AVAGO_TSMC_28, 2, 0},
+    {0x19ba957f, "\x5a\x58\x32\x37\x39\x31\x32\x31",                         "1",    AVAGO_TSMC_28, 1, 0},
+
+    {0x2039657f, "\x42\x69\x67\x53\x75\x72",                                 "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1039657f, "\x42\x69\x67\x53\x75\x72",                                 "1",    AVAGO_TSMC_40, 1, 0},
+    {0x1915757f, "\x48\x49\x31\x35\x30\x32",                                 "1",    AVAGO_TSMC_40, 3, 0},
+    {0x1111157f, "\x48\x61\x72\x70",                                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x1039557f, "\x50\x61\x63\x69\x66\x69\x63\x61",                         "1",    AVAGO_TSMC_40, 4, 0},
+    {0x000232f3, "\x55\x54\x53\x58",                                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x1834d57f, "\x56\x61\x6a\x72\x61",                                     "1",    AVAGO_TSMC_40, 1, 0},
+    {0x215f457f, "\x58\x4d",                                                 "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1378057f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1378257f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1378457f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1378657f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1378857f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1378a57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1378c57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1378e57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1379057f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1379257f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1379457f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1379657f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1379857f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1379a57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1379c57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x1379e57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "2",    AVAGO_TSMC_40, 1, 0},
+    {0x0378057f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0378257f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0378457f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0378657f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0378857f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0378a57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0378c57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0378e57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0379057f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0379257f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0379457f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0379657f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0379857f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0379a57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0379c57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+    {0x0379e57f, "\x59\x6f\x73\x65\x6d\x69\x74\x65",                         "1",    AVAGO_TSMC_40, 1, 0},
+
+    {0x388b457f, "\x41\x6c\x6b\x69\x6e\x64\x69",                             "2",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x18cb257f, "\x41\x72\x69\x65\x73",                                     "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1035657f, "\x41\x74\x68\x65\x72\x74\x6f\x6e",                         "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1908957f, "\x42\x43\x53\x32",                                         "1",    AVAGO_UNKNOWN_PROCESS, 3, 0},
+    {0x08b1857f, "\x43\x41\x31",                                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x18a7157f, "\x43\x61\x6d\x61\x72\x6f\x2d\x52",                         "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x3036057f, "\x43\x61\x72\x6d\x65\x6c",                                 "2",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1036057f, "\x43\x61\x72\x6d\x65\x6c",                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1033157f, "\x45\x6c\x65\x63\x74\x72\x61",                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x102ee291, "\x47\x61\x6e\x69\x74\x61",                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1031957f, "\x48\x61\x77\x6b\x65\x79\x65",                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1834b57f, "\x4a\x61\x64\x65\x62\x61\x6e\x64",                         "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1042957f, "\x4c\x55",                                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x0493557f, "\x4c\x65\x6f",                                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x18ad457f, "\x4c\x79\x72\x61",                                         "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1043157f, "\x4d\x51",                                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x48e2257f, "\x4d\x6f\x66\x61\x62",                                     "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x103ad57f, "\x4d\x6f\x6e\x74\x69\x63\x65\x6c\x6c\x6f",                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1896357f, "\x4e\x43\x31",                                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x08a3157f, "\x4e\x43\x32",                                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1038957f, "\x50\x72\x69\x6e\x63\x65\x74\x6f\x6e",                     "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x48b1957f, "\x52\x34\x43",                                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x2033e57f, "\x52\x65\x64\x77\x6f\x6f\x64",                             "2",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1033e57f, "\x52\x65\x64\x77\x6f\x6f\x64",                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x5893257f, "\x52\x69\x76\x65\x6e\x64\x65\x6c\x6c",                     "1.1",  AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x4893257f, "\x52\x69\x76\x65\x6e\x64\x65\x6c\x6c",                     "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x48b9157f, "\x52\x6f\x68\x61\x6e",                                     "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x0ffff291, "\x53\x61\x66\x66\x72\x6f\x6e",                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x4893457f, "\x53\x68\x69\x72\x65",                                     "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1032957f, "\x53\x6b\x69\x6d\x6d\x65\x72",                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x18e5757f, "\x53\x75\x70\x65\x72\x69\x6f\x72",                         "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1450157f, "\x54\x46",                                                 "1.1",  AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1050157f, "\x54\x46",                                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1835557f, "\x54\x68\x75\x6e\x64\x65\x72\x62\x69\x72\x64",             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x188a557f, "\x55\x56\x2d\x48\x75\x62",                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+
+
+    {0x0000157f, "\x30\x37\x6e\x6d\x54\x65\x73\x74",                         "1",    AVAGO_TSMC_07, 1, 0},
+    {0x09b5957f, "\x41\x73\x70\x65\x6e",                                     "1",    AVAGO_TSMC_10, 1, 0},
+
+    {0x09d4957f, "\x42\x72\x6f\x61\x64\x6d\x6f\x6f\x72",                     "1",    AVAGO_TSMC_16, 1, 0},
+    {0x09b1657f, "\x46\x65\x72\x6d\x69",                                     "1",    AVAGO_TSMC_16, 1, 0},
+    {0x09c2557f, "\x46\x65\x72\x6d\x69\x42",                                 "1.1",  AVAGO_TSMC_16, 1, 0},
+    {0x09ce657f, "\x46\x72\x61\x6e\x6b\x6c\x69\x6e",                         "1",    AVAGO_TSMC_16, 1, 0},
+    {0x14211001, "\x48\x65\x72\x74\x7a",                                     "1",    AVAGO_TSMC_16, 1, 0},
+    {0x09b93001, "\x48\x69\x67\x68\x6c\x61\x6e\x64",                         "1",    AVAGO_TSMC_16, 2, 0},
+    {0x19827001, "\x4c\x6f\x72\x65\x6e\x74\x7a",                             "1",    AVAGO_TSMC_16, 1, 0},
+    {0x0000057f, "\x4d\x61\x78\x77\x65\x6c\x6c",                             "1",    AVAGO_TSMC_16, 1, 0},
+    {0x0992957f, "\x53\x69\x6d\x62\x61",                                     "1",    AVAGO_TSMC_16, 1, 0},
+    {0x1992957f, "\x53\x69\x6d\x62\x61",                                     "2",    AVAGO_TSMC_16, 1, 0},
+    {0x0995957f, "\x54\x65\x73\x6c\x61",                                     "1",    AVAGO_TSMC_16, 1, 0},
+
+    {0x09a1757f, "\x41\x63\x61\x64\x65\x6d\x79",                             "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0985357f, "\x42\x6f\x72\x61\x68\x2d\x50\x65\x61\x6b",                 "1",    AVAGO_TSMC_28, 1, 0},
+    {0x099a757f, "\x42\x75\x63\x6b\x2d\x48\x69\x6c\x6c",                     "1",    AVAGO_TSMC_28, 1, 0},
+    {0x199a757f, "\x42\x75\x63\x6b\x2d\x48\x69\x6c\x6c",                     "2",    AVAGO_TSMC_28, 1, 0},
+    {0x0911657f, "\x44\x65\x6e\x61\x6c\x69",                                 "Bx",   AVAGO_TSMC_28, 1, 0},
+    {0x090b857f, "\x44\x65\x6e\x61\x6c\x69",                                 "B25",  AVAGO_TSMC_28, 1, 0},
+    {0x0912257f, "\x44\x65\x6e\x61\x6c\x69",                                 "B15",  AVAGO_TSMC_28, 1, 0},
+    {0x0901457f, "\x44\x65\x6e\x61\x6c\x69",                                 "1",    AVAGO_TSMC_28, 1, 0},
+    {0x0954957f, "\x4d\x63\x4b\x69\x6e\x6c\x65\x79",                         "XTAL", AVAGO_TSMC_28, 1, 0},
+    {0x0954857f, "\x4d\x63\x4b\x69\x6e\x6c\x65\x79",                         "25",   AVAGO_TSMC_28, 1, 0},
+    {0x0912557f, "\x4d\x63\x4b\x69\x6e\x6c\x65\x79",                         "15",   AVAGO_TSMC_28, 1, 0},
+    {0x0991757f, "\x50\x69\x6b\x65\x73",                                     "1",    AVAGO_TSMC_28, 1, 0},
+
+    {0x18e5657f, "\x41\x73\x77\x61\x6e",                                     "1",    AVAGO_TSMC_40, 1, 0},
+    {0x18ca657f, "\x43\x61\x6e\x6f\x70\x75\x73",                             "1",    AVAGO_TSMC_40, 2, 1},
+    {0x0000057f, "\x56\x65\x67\x61",                                         "1",    AVAGO_TSMC_40, 1, 0},
+
+    {0x18a9557f, "\x57\x68\x69\x74\x65",                                     "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x08ca357f, "\x47\x6f\x64\x64\x61\x72\x64",                             "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x1891357f, "\x48\x61\x62\x61\x6e\x65\x72\x6f",                         "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x10000291, "\x54\x61\x62\x61\x73\x63\x6f",                             "90",   AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x086e2291, "\x52\x69\x62\x65\x79\x65",                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x186e2291, "\x52\x69\x62\x65\x79\x65",                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x08d2457f, "\x41\x74\x62\x61\x72\x61",                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x18b3957f, "\x41\x6d\x61\x7a\x6f\x6e",                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x08a7157f, "\x43\x61\x6d\x61\x72\x6f",                                 "1",    AVAGO_UNKNOWN_PROCESS, 1, 0},
+    {0x18ca457f, "\x42\x6c\x75\x65",                                         "1",    AVAGO_UNKNOWN_PROCESS, 1, 0}
+
+    /* NOTE: Add new entries at the front of this list, NOT here. */
+};
+
+#endif /* AVAGO_ASIC_INFO_H_ */

@@ -1,0 +1,12 @@
+bf-drivers : 9.13.3
+bf-utils : 9.13.3
+p4-compilers : 9.13.3
+target-utils : 9.13.3
+target-syslibs : 9.13.3
+tofino-model : 9.13.3
+p4-examples : 9.13.3
+ptf-modules : 9.13.3
+bf-diags : 9.13.3
+switch-p4-16 : 9.13.3
+p4i : 9.13.3
+p4o : 1.0

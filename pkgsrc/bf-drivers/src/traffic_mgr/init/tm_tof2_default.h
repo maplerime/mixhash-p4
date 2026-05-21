@@ -1,0 +1,125 @@
+/*******************************************************************************
+ *  INTEL CONFIDENTIAL
+ *
+ *  Copyright (c) 2021 Intel Corporation
+ *  All Rights Reserved.
+ *
+ *  This software and the related documents are Intel copyrighted materials,
+ *  and your use of them is governed by the express license under which they
+ *  were provided to you ("License"). Unless the License provides otherwise,
+ *  you may not use, modify, copy, publish, distribute, disclose or transmit
+ *  this software or the related documents without Intel's prior written
+ *  permission.
+ *
+ *  This software and the related documents are provided as is, with no express
+ *  or implied warranties, other than those that are expressly stated in the
+ *  License.
+ ******************************************************************************/
+
+#ifndef __TM_TOF2_DEFAULT_H__
+#define __TM_TOF2_DEFAULT_H__
+
+#include <stddef.h>
+#include <unistd.h>
+
+#include "traffic_mgr/common/tm_error.h"
+#include "traffic_mgr/common/tm_ctx.h"
+#include "traffic_mgr/hw_intf/tm_tof2_hw_intf.h"
+#include "traffic_mgr/common/tm_hw_access.h"
+
+#include <tof2_regs/tof2_reg_drv.h>
+#include <tof2_regs/tof2_mem_drv.h>
+#include <lld/lld_dr_if.h>
+
+/*
+ *  This file implements initializing TM with default setting.
+ *  Defaults are set at the device init time (device-add)
+ */
+
+#include "tm_tof2.h"
+
+#define BF_TM_PKT_SIZE_FOR_DEFAULT_CARVING \
+  (1600) * (2)  // 2 pkts worth of default carving
+#define BF_TM_MAX_ICOS_PER_PPG (8)
+#define BF_TM_CELLS_FOR_2_PKT \
+  (BF_TM_PKT_SIZE_FOR_DEFAULT_CARVING / BF_TM_TOF2_CELL_SIZE)
+
+#define BF_TM_PPG_ICOS_RATIO (BF_TM_MAX_ICOS_PER_PPG / (2))
+
+/* Ingress TM Carving */
+#define BF_TM_SKID_POOL_SIZE (0)
+
+/* Gmin size of default PPG */
+#define BF_TM_DEFAULT_PPG_LMT (BF_TM_CELLS_FOR_2_PKT * BF_TM_PPG_ICOS_RATIO)
+
+/* Assign 2 pkt worth of cells for PPG 0 - 255 / non-default PPGs */
+#define BF_TM_PPG_LMT (BF_TM_DEFAULT_PPG_LMT) / (BF_TM_PPG_ICOS_RATIO)
+
+// size = 1600B worth of cells for all ports
+#define BF_TM_NEG_MIRROR_POOL_SIZE (20) * (BF_TM_TOF2_PORTS_PER_PIPE)
+
+#define BF_TM_EG_PRE_FIFO_LIMIT 0xC0
+
+#define BF_TM_IG_GLB_MIN_LIMIT 0x6000
+
+/* Gmin pool size */
+#define BF_TM_IG_GMIN_POOL_SIZE                                              \
+  ((BF_TM_DEFAULT_PPG_LMT + BF_TM_PPG_LMT) * BF_TM_TOF2_TOTAL_PPG_PER_PIPE * \
+   BF_TM_TOF2_MAU_PIPES)
+/* Ingress TM App pool size */
+#define BF_TM_IG_APP_POOL_0_SIZE                                               \
+  (BF_TM_TOF2_BUFFER_CELLS - (BF_TM_IG_GMIN_POOL_SIZE + BF_TM_SKID_POOL_SIZE - \
+                              BF_TM_NEG_MIRROR_POOL_SIZE)) /                   \
+      (BF_TM_TOF2_MAU_PIPES)
+/* PPG base limit in APP pool 0 */
+#define BF_TM_APP_POOL_0_PPG_BASE_LIMIT \
+  (BF_TM_IG_APP_POOL_0_SIZE) / (BF_TM_TOF2_DEFAULT_PPG_PER_PIPE)
+
+#define BF_TM_UC_CT_POOL_SIZE (0x200)  // Power on default value
+#define BF_TM_MC_CT_POOL_SIZE \
+  (0x6000)  // Power on default value. 0x1FFF
+            // cells needed at minimum for MC
+            // performance. jira TOFLAB-36
+
+/* Egress TM Carving */
+#define BF_TM_Q_GMIN_LMT ((2) * (BF_TM_CELLS_FOR_2_PKT))
+
+/* Gmin pool size on egress TM */
+#define BF_TM_EG_GMIN_POOL_SIZE \
+  ((BF_TM_Q_GMIN_LMT)*BF_TM_TOF2_TOTAL_QUEUES_PER_PIPE * BF_TM_TOF2_MAU_PIPES)
+/* Egress TM App pool size */
+#define BF_TM_EG_APP_POOL_0_SIZE                        \
+  ((BF_TM_TOF2_BUFFER_CELLS - BF_TM_EG_GMIN_POOL_SIZE - \
+    BF_TM_UC_CT_POOL_SIZE - BF_TM_MC_CT_POOL_SIZE -     \
+    BF_TM_NEG_MIRROR_POOL_SIZE) /                       \
+   (BF_TM_TOF2_MAU_PIPES))
+/* Q base limit in APP pool 0 */
+#define BF_TM_APP_POOL_0_Q_BASE_LIMIT \
+  (BF_TM_EG_APP_POOL_0_SIZE) / (BF_TM_TOF2_TOTAL_QUEUES_PER_PIPE)
+
+#define BF_TM_EG_APP_POOL_3_MC_SIZE (0x3000)
+
+#define BF_TM_Q_SCH_BURST_SIZE (16384)
+#define BF_TM_PORT_SCH_BURST_SIZE (9216)
+
+#define BF_TM_L1_SCH_BURST_SIZE (32640)
+#define BF_TM_L1_SCH_DEFAULT_RATE (0x18687958)
+
+/* Define this when testing TM hitless HA with model.
+ * When testing TM hitless HA case with chip, the macro needs to be undefined.
+ * For now work with model as default case.
+ */
+
+// Special build/compile time macro to unit test TM hitless cfg verification
+// using MODEL. With chip/asic, unit can be done without rebuilding after
+// enabling following macro.
+// To trigger TM config restore and verification (unit-test), use CLI command
+//  ***  module traffic_mgr ut_hitless_cfg ***
+
+//#define BF_TM_HITLESS_HA_TESTING_WITH_MODEL
+
+#define BF_TM_IFG_COMPENSATION (20)
+
+#define BF_TM_IG_GLB_CELL_LIMIT 0x3E800
+
+#endif

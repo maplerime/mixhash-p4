@@ -1,0 +1,3 @@
+UMAC4_RS_FEC_CTR(RSFEC_Correctable_CodeWords)
+UMAC4_RS_FEC_CTR(RSFEC_Uncorrectable_CodeWords)
+UMAC4_RS_FEC_CTR(RSFEC_CH_Symbol_Error_Counter)

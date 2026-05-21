@@ -1,0 +1,2489 @@
+Reg Addr (and Bits),Blue-Jay 1.0 Reg Name,Field Name,Access,Default (Hex),Default (Binary),# of Bits,Description,,
+----------,,,,,,,,,
+007A.15:13,TBD REGNAME FOR 007A,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+007A.12,TBD REGNAME FOR 007A,LOCK_PH_FLIP,RW,0h,1'b0,1,TRF output polarity. Set to 1b. ,,
+007A.11:10,TBD REGNAME FOR 007A,SPD_SEL2,RW,0h,2'b00,2,"TRF speed selection MSB:
+    Set to 01b if RX baud rate is 25.78G and TX baud rate is 26.56G.
+    Otherwise, set to 00b.",,
+007A.09:08,TBD REGNAME FOR 007A,SPD_SEL1,RW,0h,2'b00,2,"TRF speed selection LSB:
+    Set to 01b if RX baud rate is 26.56G and TX baud rate is 25.78G.
+    Otherwise, set to 00b.",,
+007A.07:05,TBD REGNAME FOR 007A,FREQ_MUP,RW,5h,3'b101,3,TRF control bit. Always set to 010b.,,
+007A.04:03,TBD REGNAME FOR 007A,FREQ_MULTIPLIER,RW,0h,2'b00,2,"TRF control bit:
+    Set to 01b if RX baud rate is 25.78G, and TX baud rate is 26.56G.
+    Set to 10b if RX baud rate is 26.56G and TX baud rate is 25.78G.
+    Otherwise, set to 00b.",,
+007A.02:00,TBD REGNAME FOR 007A,FREQ_SHIFT_SEL,RW,4h,3'b100,3,TRF control bit. Always set to 100b.,,
+----------,,,,,,,,,
+080000.15,TBD REGNAME FOR 080000,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080000.14:12,TBD REGNAME FOR 080000,TX_L_0_SEL,RW,0h,3'b000,3,Which physical lane is used for logical lane 0 for TX,,
+080000.11,TBD REGNAME FOR 080000,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080000.10:08,TBD REGNAME FOR 080000,TX_L_1_SEL,RW,1h,3'b001,3,Which physical lane is used for logical lane 1 for TX,,
+080000.07,TBD REGNAME FOR 080000,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080000.06:04,TBD REGNAME FOR 080000,TX_L_2_SEL,RW,2h,3'b010,3,Which physical lane is used for logical lane 2 for TX,,
+080000.03,TBD REGNAME FOR 080000,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080000.02:00,TBD REGNAME FOR 080000,TX_L_3_SEL,RW,3h,3'b011,3,Which physical lane is used for logical lane 3 for TX,,
+----------,,,,,,,,,
+080001.15,TBD REGNAME FOR 080001,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080001.14:12,TBD REGNAME FOR 080001,TX_L_4_SEL,RW,4h,3'b100,3,Which physical lane is used for logical lane 4 for TX,,
+080001.11,TBD REGNAME FOR 080001,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080001.10:08,TBD REGNAME FOR 080001,TX_L_5_SEL,RW,5h,3'b101,3,Which physical lane is used for logical lane 5 for TX,,
+080001.07,TBD REGNAME FOR 080001,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080001.06:04,TBD REGNAME FOR 080001,TX_L_6_SEL,RW,6h,3'b110,3,Which physical lane is used for logical lane 6 for TX,,
+080001.03,TBD REGNAME FOR 080001,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080001.02:00,TBD REGNAME FOR 080001,TX_L_7_SEL,RW,7h,3'b111,3,Which physical lane is used for logical lane 7 for TX,,
+----------,,,,,,,,,
+080002.15,TBD REGNAME FOR 080002,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080002.14:12,TBD REGNAME FOR 080002,RX_L_0_SEL,RW,0h,3'b000,3,Which physical lane is used for logical lane 0 for Rx,,
+080002.11,TBD REGNAME FOR 080002,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080002.10:08,TBD REGNAME FOR 080002,RX_L_1_SEL,RW,1h,3'b001,3,Which physical lane is used for logical lane 1 for Rx,,
+080002.07,TBD REGNAME FOR 080002,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080002.06:04,TBD REGNAME FOR 080002,RX_L_2_SEL,RW,2h,3'b010,3,Which physical lane is used for logical lane 2 for Rx,,
+080002.03,TBD REGNAME FOR 080002,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080002.02:00,TBD REGNAME FOR 080002,RX_L_3_SEL,RW,3h,3'b011,3,Which physical lane is used for logical lane 3 for Rx,,
+----------,,,,,,,,,
+080003.15,TBD REGNAME FOR 080003,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080003.14:12,TBD REGNAME FOR 080003,RX_L_4_SEL,RW,4h,3'b100,3,Which physical lane is used for logical lane 4 for Rx,,
+080003.11,TBD REGNAME FOR 080003,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080003.10:08,TBD REGNAME FOR 080003,RX_L_5_SEL,RW,5h,3'b101,3,Which physical lane is used for logical lane 5 for Rx,,
+080003.07,TBD REGNAME FOR 080003,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080003.06:04,TBD REGNAME FOR 080003,RX_L_6_SEL,RW,6h,3'b110,3,Which physical lane is used for logical lane 6 for Rx,,
+080003.03,TBD REGNAME FOR 080003,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+080003.02:00,TBD REGNAME FOR 080003,RX_L_7_SEL,RW,7h,3'b111,3,Which physical lane is used for logical lane 7 for Rx,,
+----------,,,,,,,,,
+08000A.15:08,TBD REGNAME FOR 08000A,TX_L_RESET_SLICE,RW,00h,8'b00000000,8,"TX logic reset for single logical Lane SerDes.
+For eight-lane groups, bits 15:8 control lanes 0 through 7, where bit 8 is lane 0 and bit 15 is lane 7.
+For four-lane groups, bits 11:8 control lanes 0 through 3, whre bit 8 is lane and bit 11 is lane 3.",,
+08000A.07:00,TBD REGNAME FOR 08000A,RX_L_RESET_SLICE,RW,00h,8'b00000000,8,"RX logic reset for single logical Lane SerDes.
+For eight-lane groups, bits 7:0 control lanes 0 through 7, where bit is lane 0 and bit 7 is lane 7.
+For four-lane groups, bits 0 to control lanes 0 through 3, where bit 0 is lane 0 and bit 3 is lane 3.",,
+----------,,,,,,,,,
+08000B.15:08,TBD REGNAME FOR 08000B,L_RESET_SLICE,RW,00h,8'b00000000,8,Single physical lane ANLT register reset in each group.,,
+08000B.07:00,TBD REGNAME FOR 08000B,L_RESET,RW,00h,8'b00000000,8,Single lane register reset in each group.,,
+----------,,,,,,,,,
+08000C.15:14,TBD REGNAME FOR 08000C,TX_MODE0,RW,1h,2'b01,2,"TX mode of logical lane 0
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000C.13:12,TBD REGNAME FOR 08000C,TX_MODE1,RW,1h,2'b01,2,"TX mode of logical lane 0
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000C.11:10,TBD REGNAME FOR 08000C,TX_MODE2,RW,1h,2'b01,2,"TX mode of logical lane 0
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000C.09:08,TBD REGNAME FOR 08000C,TX_MODE3,RW,1h,2'b01,2,"TX mode of logical lane 0
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000C.07:06,TBD REGNAME FOR 08000C,TX_MODE4,RW,1h,2'b01,2,"TX mode of logical lane 0
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000C.05:04,TBD REGNAME FOR 08000C,TX_MODE5,RW,1h,2'b01,2,"TX mode of logical lane 0
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000C.03:02,TBD REGNAME FOR 08000C,TX_MODE6,RW,1h,2'b01,2,"TX mode of logical lane 0
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000C.01:00,TBD REGNAME FOR 08000C,TX_MODE7,RW,1h,2'b01,2,"TX mode of logical lane 0
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+----------,,,,,,,,,
+08000D.15:14,TBD REGNAME FOR 08000D,RX_MODE0,RW,1h,2'b01,2,"Rx mode of logical lane 0:
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000D.13:12,TBD REGNAME FOR 08000D,RX_MODE1,RW,1h,2'b01,2,"Rx mode of logical lane 0:
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000D.11:10,TBD REGNAME FOR 08000D,RX_MODE2,RW,1h,2'b01,2,"Rx mode of logical lane:
+    00b:    NRZ
+    01b:    PAM4
+    10b:    1G
+    11b:    10G",,
+08000D.09:08,TBD REGNAME FOR 08000D,RX_MODE3,RW,1h,2'b01,2,"Rx mode of logical lane 0:
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000D.07:06,TBD REGNAME FOR 08000D,RX_MODE4,RW,1h,2'b01,2,"Rx mode of logical lane 0:
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000D.05:04,TBD REGNAME FOR 08000D,RX_MODE5,RW,1h,2'b01,2,"Rx mode of logical lane 0:
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000D.03:02,TBD REGNAME FOR 08000D,RX_MODE6,RW,1h,2'b01,2,"Rx mode of logical lane 0:
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+08000D.01:00,TBD REGNAME FOR 08000D,RX_MODE7,RW,1h,2'b01,2,"Rx mode of logical lane 0:
+    00b:    NRZ
+    01b:    PAM-4
+    10b:    1G
+    11b:    10G",,
+----------,,,,,,,,,
+080013.15:14,TBD REGNAME FOR 080013,CPUC_DIV,RW,0h,2'b00,2,"2'b00=reg_clk is used as CPU's clock
+2'b01=reg_clk divided by 2 is used as CPU's clock
+2'b10=reg_clk divided by 4 is used as CPU's clock
+2'b11=reg_clk divided by 8 is used as CPU's clock",,
+080013.13:12,TBD REGNAME FOR 080013,REGC_DIV,RW,0h,2'b00,2,"2'b00=original reg_clk is used as reg_clk,
+2'b01=original reg_clk is divided by 2 as reg_clk
+2'b10=original reg_clk is divided by 4 as reg_clk
+2'b11=original reg_clk is divided by 8 as reg_clk",,
+080013.11:00,TBD REGNAME FOR 080013,SW_RSTB_MAGIC,RW,000h,12'b000000000000,12,"12'h777=logic reset (that is, FIFO, PHY)
+12'h888=all reset (that is, FIFO, PHY, register map, CPU)
+12'h999=register map reset
+12'haaa=cpu reset",,
+----------,,,,,,,,,
+08002F.15,TBD REGNAME FOR 08002F,SRAM_BIST_EN,RW,0h,1'b0,1,SRAM BIST select: 1'b1 select SRAM BIST mode,,
+08002F.14,TBD REGNAME FOR 08002F,SRAM_TEST_EN,RW,0h,1'b0,1,MCU SRAM BIST enable: 1'b1 STAM BIST start,,
+08002F.13,TBD REGNAME FOR 08002F,ROM_BIST_EN,RW,0h,1'b0,1,ROM BIST select: 1'b1 select ROM BIST mode,,
+08002F.12,TBD REGNAME FOR 08002F,ROM_TEST_EN,RW,0h,1'b0,1,MCU ROM BIST enable: 1'b1 ROM BIST start,,
+08002F.11:00,TBD REGNAME FOR 08002F,RSVD,RW,000h,12'b000000000000,12,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+080030.15,TBD REGNAME FOR 080030,SRAM_BIST_DONE,RO,xh,1'bx,1,MCU SRAM BIST done status: 1'b1 SRAM BIST finish,,
+080030.14,TBD REGNAME FOR 080030,SRAM_BIST_PASS,RO,xh,1'bx,1,"MCU SRAM BIST pass status: 1'b1 SRAM BIST success, 1'b0 SRAM BIST fail",,
+080030.13,TBD REGNAME FOR 080030,ROM_TEST_DONE,RO,xh,1'bx,1,MCU ROM BIST done status: 1'b1 ROM BIST finish,,
+080030.12:00,TBD REGNAME FOR 080030,RSVD,RO,xxxxh,13'bxxxxxxxxxxxxx,13,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+080031.15:00,TBD REGNAME FOR 080031,ROM_TEST_RESULT[31:16],RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,ROM BIST check sum value.,,
+----------,,,,,,,,,
+080032.15:00,TBD REGNAME FOR 080032,ROM_TEST_RESULT[15:0],RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,ROM BIST check sum value.,,
+----------,,,,,,,,,
+080040.15:00,TBD REGNAME FOR 080040,FEEDBACK_READ_0,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_0[15:0],,
+----------,,,,,,,,,
+080041.15:00,TBD REGNAME FOR 080041,FEEDBACK_READ_1,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_1[15:0],,
+----------,,,,,,,,,
+080042.15:00,TBD REGNAME FOR 080042,FEEDBACK_READ_2,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_2[15:0],,
+----------,,,,,,,,,
+080043.15:00,TBD REGNAME FOR 080043,FEEDBACK_READ_3,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_3[15:0],,
+----------,,,,,,,,,
+080044.15:00,TBD REGNAME FOR 080044,FEEDBACK_READ_4,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_4[15:0],,
+----------,,,,,,,,,
+080045.15:00,TBD REGNAME FOR 080045,FEEDBACK_READ_5,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_5[15:0],,
+----------,,,,,,,,,
+080046.15:00,TBD REGNAME FOR 080046,FEEDBACK_READ_6,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_6[15:0],,
+----------,,,,,,,,,
+080047.15:00,TBD REGNAME FOR 080047,FEEDBACK_READ_7,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_7[15:0],,
+----------,,,,,,,,,
+080048.15:00,TBD REGNAME FOR 080048,FEEDBACK_READ_8,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_8[15:0],,
+----------,,,,,,,,,
+080049.15:00,TBD REGNAME FOR 080049,FEEDBACK_READ_9,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_9[15:0],,
+----------,,,,,,,,,
+08004A.15:00,TBD REGNAME FOR 08004A,FEEDBACK_READ_10,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_10[15:0],,
+----------,,,,,,,,,
+08004B.15:00,TBD REGNAME FOR 08004B,FEEDBACK_READ_11,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_11[15:0],,
+----------,,,,,,,,,
+08004C.15:00,TBD REGNAME FOR 08004C,FEEDBACK_READ_12,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_12[15:0],,
+----------,,,,,,,,,
+08004D.15:00,TBD REGNAME FOR 08004D,FEEDBACK_READ_13,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_13[15:0],,
+----------,,,,,,,,,
+08004E.15:00,TBD REGNAME FOR 08004E,FEEDBACK_READ_14,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_14[15:0],,
+----------,,,,,,,,,
+08004F.15:00,TBD REGNAME FOR 08004F,FEEDBACK_READ_15,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,feedback_read_15[15:0],,
+----------,,,,,,,,,
+080050.15:00,TBD REGNAME FOR 080050,INT_0_RE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for rise edge of the signal set 0.,,
+----------,,,,,,,,,
+080051.15:00,TBD REGNAME FOR 080051,INT_1_RE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for rise edge of the signal set 1.,,
+----------,,,,,,,,,
+080052.15:00,TBD REGNAME FOR 080052,INT_2_RE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for rise edge of the signal set 2.,,
+----------,,,,,,,,,
+080053.15:00,TBD REGNAME FOR 080053,INT_3_RE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for rise edge of the signal set 3.,,
+----------,,,,,,,,,
+080054.15:00,TBD REGNAME FOR 080054,INT_4_RE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for rise edge of the signal set 4.,,
+----------,,,,,,,,,
+080055.15:00,TBD REGNAME FOR 080055,INT_5_RE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for rise edge of the signal set 5.,,
+----------,,,,,,,,,
+080056.15:00,TBD REGNAME FOR 080056,INT_6_RE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for rise edge of the signal set 6.,,
+----------,,,,,,,,,
+080057.15:00,TBD REGNAME FOR 080057,INT_7_RE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for rise edge of the signal set 7.,,
+----------,,,,,,,,,
+080058.15:00,TBD REGNAME FOR 080058,INT_0_FE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for fall edge of the signal set 0.,,
+----------,,,,,,,,,
+080059.15:00,TBD REGNAME FOR 080059,INT_1_FE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for fall edge of the signal set 1.,,
+----------,,,,,,,,,
+08005A.15:00,TBD REGNAME FOR 08005A,INT_2_FE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for fall edge of the signal set 2.,,
+----------,,,,,,,,,
+08005B.15:00,TBD REGNAME FOR 08005B,INT_3_FE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for fall edge of the signal set 3,,
+----------,,,,,,,,,
+08005C.15:00,TBD REGNAME FOR 08005C,INT_4_FE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for fall edge of the signal set 4,,
+----------,,,,,,,,,
+08005D.15:00,TBD REGNAME FOR 08005D,INT_5_FE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for fall edge of the signal set 5,,
+----------,,,,,,,,,
+08005E.15:00,TBD REGNAME FOR 08005E,INT_6_FE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for fall edge of the signal set 6,,
+----------,,,,,,,,,
+08005F.15:00,TBD REGNAME FOR 08005F,INT_7_FE_EN,RW,0000h,16'b0000000000000000,16,Interrupt enable for fall edge of the signal set 7,,
+----------,,,,,,,,,
+080060.15:00,TBD REGNAME FOR 080060,STATUS_0,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Raw status bits set 0.
+    Bit 7:0: L_SIG_DETEST[7:0]
+    Bit 15:8: L_R_PHY_READY[7:0]",,
+----------,,,,,,,,,
+080061.15:00,TBD REGNAME FOR 080061,STATUS_1,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Raw status bits set 1.
+    Bit 7:0: aa_hcd_resolved[7:0]
+    Bit 15:8: link_training_done[7:0]",,
+----------,,,,,,,,,
+080062.15:00,TBD REGNAME FOR 080062,STATUS_2,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Raw status bits set 2.
+    Bit 0: ecc_err
+    Bit 15:1: Reserved",,
+----------,,,,,,,,,
+080063.15:00,TBD REGNAME FOR 080063,STATUS_3,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Raw status bits set 3. Reserved.,,
+----------,,,,,,,,,
+080064.15:00,TBD REGNAME FOR 080064,STATUS_4,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Raw status bits set 4. Reserved.,,
+----------,,,,,,,,,
+080065.15:00,TBD REGNAME FOR 080065,STATUS_5,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Raw status bits set 5. Reserved.,,
+----------,,,,,,,,,
+080066.15:00,TBD REGNAME FOR 080066,STATUS_6,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Software Interrupt status from register 72[15:0],,
+----------,,,,,,,,,
+080067.15:00,TBD REGNAME FOR 080067,STATUS_7,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,REG_OUT[15:0],,
+----------,,,,,,,,,
+080068.15:00,TBD REGNAME FOR 080068,INT_STATUS_0,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Interrupt Event set 0: enabled rise/fall edge event of raw status,,
+----------,,,,,,,,,
+080069.15:00,TBD REGNAME FOR 080069,INT_STATUS_1,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Interrupt Event set 1: enabled rise/fall edge event of raw status,,
+----------,,,,,,,,,
+08006A.15:00,TBD REGNAME FOR 08006A,INT_STATUS_2,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Interrupt Event set 2: enabled rise/fall edge event of raw status,,
+----------,,,,,,,,,
+08006B.15:00,TBD REGNAME FOR 08006B,INT_STATUS_3,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Interrupt Event set 3: enabled rise/fall edge event of raw status,,
+----------,,,,,,,,,
+08006C.15:00,TBD REGNAME FOR 08006C,INT_STATUS_4,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Interrupt Event set 4: enabled rise/fall edge event of raw status,,
+----------,,,,,,,,,
+08006D.15:00,TBD REGNAME FOR 08006D,INT_STATUS_5,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Interrupt Event set 5: enabled rise/fall edge event of raw status,,
+----------,,,,,,,,,
+08006E.15:00,TBD REGNAME FOR 08006E,INT_STATUS_6,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Interrupt Event set 6: enabled rise/fall edge event of raw status,,
+----------,,,,,,,,,
+08006F.15:00,TBD REGNAME FOR 08006F,INT_STATUS_7,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Interrupt Event set 7: enabled rise/fall edge event of raw status,,
+----------,,,,,,,,,
+080070.15:00,TBD REGNAME FOR 080070,INT_SUMMARY,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Interrupt Summary
+[7:0]: which lane or lanes have an interrupt event or events.
+[15:8]: which status set or sets have an interrupt event or events",,
+----------,,,,,,,,,
+080071.15:00,TBD REGNAME FOR 080071,INT_CTRL,RW,0000h,16'b0000000000000000,16,"[15:4]: Reserved
+[3]: interrupt polarity, 0=active high, 1=active low
+[2]: interrupt status internal reset
+[1]: force interrupt low
+[0]: force interrupt high, has higher priority over bit [1]",,
+----------,,,,,,,,,
+080072.15:00,TBD REGNAME FOR 080072,SW_INT,RW,0000h,16'b0000000000000000,16,Software Interrupts[15:0],,
+----------,,,,,,,,,
+080073.15:01,TBD REGNAME FOR 080073,RSVD,RO,xxxxh,15'bxxxxxxxxxxxxxxx,15,Reserved. Do not change the default value.,,
+080073.00,TBD REGNAME FOR 080073,INTERRUPT,RO,xh,1'bx,1,Final Interrupt Status,,
+----------,,,,,,,,,
+08008B.15,TBD REGNAME FOR 08008B,RX_ADDRPAIR_0_EN,RW,1h,1'b1,1,SERDES RX register range 0 enable ,,
+08008B.14,TBD REGNAME FOR 08008B,RX_ADDRPAIR_1_EN,RW,1h,1'b1,1,SERDES RX register range 1 enable ,,
+08008B.13,TBD REGNAME FOR 08008B,RX_ADDRPAIR_2_EN,RW,0h,1'b0,1,SERDES RX register range 2 enable ,,
+08008B.12,TBD REGNAME FOR 08008B,RX_ADDRPAIR_3_EN,RW,0h,1'b0,1,SERDES RX register range 3 enable ,,
+08008B.11:09,TBD REGNAME FOR 08008B,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+08008B.08:00,TBD REGNAME FOR 08008B,RX_ADDR_START0,RW,100h,9'b100000000,9,SERDES Rx register range 0 start,,
+----------,,,,,,,,,
+0800C0.15:00,TBD REGNAME FOR 0800C0,FIRMWARE_0,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800C1.15:00,TBD REGNAME FOR 0800C1,FIRMWARE_1,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800C2.15:00,TBD REGNAME FOR 0800C2,FIRMWARE_2,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800C3.15:00,TBD REGNAME FOR 0800C3,FIRMWARE_3,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800C4.15:00,TBD REGNAME FOR 0800C4,FIRMWARE_4,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800C5.15:00,TBD REGNAME FOR 0800C5,FIRMWARE_5,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800C8.15:00,TBD REGNAME FOR 0800C8,FIRMWARE_8,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800C9.15:00,TBD REGNAME FOR 0800C9,FIRMWARE_9,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800CA.15:00,TBD REGNAME FOR 0800CA,FIRMWARE_10,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800CB.15:00,TBD REGNAME FOR 0800CB,FIRMWARE_11,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800CC.15:00,TBD REGNAME FOR 0800CC,FIRMWARE_12,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800CD.15:00,TBD REGNAME FOR 0800CD,FIRMWARE_13,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800CE.15:00,TBD REGNAME FOR 0800CE,FIRMWARE_14,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800CF.15:00,TBD REGNAME FOR 0800CF,FIRMWARE_15,RW,0000h,16'b0000000000000000,16,Firmware general access register,,
+----------,,,,,,,,,
+0800D0.15:00,TBD REGNAME FOR 0800D0,CPU_OUT,RW,0000h,16'b0000000000000000,16,,,
+----------,,,,,,,,,
+0801m0.15:02,TBD REGNAME FOR 0801m0,RSVD,RO,xxxh,14'bxxxxxxxxxxxxxx,14,Reserved. Do not change the default value.,,
+0801m0.01:00,TBD REGNAME FOR 0801m0,PRBS_ETHX_RD_RESULT[33:32],RO,xh,2'bxx,2,PRBS checker result. Connection failed if bit[x] = 1'b1.,,
+----------,,,,,,,,,
+0801m1.15:00,TBD REGNAME FOR 0801m1,PRBS_ETHX_RD_RESULT_31_16,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,PRBS checker result. Connection failed if bit[x] = 1'b1,,
+----------,,,,,,,,,
+0801m2.15:00,TBD REGNAME FOR 0801m2,PRBS_ETHX_RD_RESULT[15:0],RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,PRBS checker result. Connection failed if bit[x] = 1'b1,,
+----------,,,,,,,,,
+0801m3.15:00,TBD REGNAME FOR 0801m3,ETHX_ERR_CYCLE_31_16,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Cycle number of last error. For debug use only.,,
+----------,,,,,,,,,
+0801m4.15:00,TBD REGNAME FOR 0801m4,ETHX_ERR_CYCLE_15_0,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Cycle number of last error. For debug use only.,,
+----------,,,,,,,,,
+0801m5.15:05,TBD REGNAME FOR 0801m5,RSVD,RO,xxxh,11'bxxxxxxxxxxx,11,Reserved. Do not change the default value.,,
+0801m5.04:02,TBD REGNAME FOR 0801m5,TX_PRBS_ETHX_STATE,RO,xh,3'bxxx,3,STM state in PRBS generator. For debug use only ,,
+0801m5.01:00,TBD REGNAME FOR 0801m5,RX_PRBS_ETHX_STATE,RO,xh,2'bxx,2,STM state in PRBS checker. Debug use only ,,
+----------,,,,,,,,,
+0801m6.15:01,TBD REGNAME FOR 0801m6,RSVD,RW,000h,15'b000000000000000,15,Reserved. Do not change the default value.,,
+0801m6.00,TBD REGNAME FOR 0801m6,TX_TO_RX_LPBK,RW,0h,1'b0,1,Control of TX-to-RX data loopback.,,
+----------,,,,,,,,,
+0801n0.15:03,TBD REGNAME FOR 0801n0,RSVD,RW,000h,13'b0000000000000,13,Reserved. Do not change the default value.,,
+0801n0.02,TBD REGNAME FOR 0801n0,GLOB_TX_TO_RX_LPBK,RW,0h,1'b0,1,Global control of TX-to-RX data loopback.,,
+0801n0.01:00,TBD REGNAME FOR 0801n0,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0801n1.15,TBD REGNAME FOR 0801n1,LOC_REPAIRABLE_STATUS_CLR,RW,0h,1'b0,1,Local repairable test status clear.,,
+0801n1.14:00,TBD REGNAME FOR 0801n1,RSVD,RW,0000h,15'b000000000000000,15,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0801n2.15,TBD REGNAME FOR 0801n2,REPAIRABLE_TEST_DONE,RO,xh,1'bx,1,34 bit PRBS test done signal.,,
+0801n2.14:12,TBD REGNAME FOR 0801n2,RSVD,RO,xxxh,3'bxxx,3,Reserved. Do not change the default value.,,
+0801n2.11,TBD REGNAME FOR 0801n2,UPPER_REPAIRABLE_STATUS,RO,xh,1'bx,1,Bit [33:17] repairable status bit.,,
+0801n2.10:06,TBD REGNAME FOR 0801n2,UPPER_REPAIR_CODE,RO,xxh,5'bxxxxx,5,Bit [33:17] repair bits encode status.,,
+0801n2.05,TBD REGNAME FOR 0801n2,LOWER_REPAIRABLE_STATUS,RO,xh,1'bx,1,Bit [16: 0] repairable status bit.,,
+0801n2.04:00,TBD REGNAME FOR 0801n2,LOWER_REPAIR_CODE,RO,xxh,5'bxxxxx,5,Bit [16:0] repair bits encode status.,,
+----------,,,,,,,,,
+0801n6.15:11,TBD REGNAME FOR 0801n6,ETHX_RXCLK_PH_MASK,RW,00h,5'b00000,5,The eth(x)_txclk phase mask.,,
+0801n6.10:06,TBD REGNAME FOR 0801n6,RSVD,RW,00h,5'b00000,5,Reserved. Do not change the default value.,,
+0801n6.05:00,TBD REGNAME FOR 0801n6,ETHX_RXCLK_PH,RW,00h,6'b000000,6,The eth(x)_rxclk phase shift configuration.,,
+----------,,,,,,,,,
+0801n7.15,TBD REGNAME FOR 0801n7,PRBS_ETHX_MODE,RW,0h,1'b0,1,"PRBS mode select:
+    1:    PRBS 32-bits mode
+    0:    PRBS 34-bits mode",,
+0801n7.14:13,TBD REGNAME FOR 0801n7,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0801n7.12,TBD REGNAME FOR 0801n7,PRBS_ETHX_FORCE0,RW,0h,1'b0,1,Force all 0 on tx_data when this field is 1'b1.,,
+0801n7.11,TBD REGNAME FOR 0801n7,PRBS_ETHX_GEN_EN,RW,1h,1'b1,1,PRBS generator clock gate. Disable when this field is 1'b0,,
+0801n7.10,TBD REGNAME FOR 0801n7,PRBS_ETHX_EN,RW,0h,1'b0,1,PRBS generator turn on when this field is 1'b1.,,
+0801n7.09:08,TBD REGNAME FOR 0801n7,PRBS_ETHX_GEN_MODE,RW,2h,2'b10,2,"PRBS generator mode select:
+    00:    prbs9
+    01:    prbs15
+    10:    prbs23
+    11:    prbs31 ",,
+0801n7.07:02,TBD REGNAME FOR 0801n7,RSVD,RW,00h,6'b000000,6,Reserved. Do not change the default value.,,
+0801n7.01:00,TBD REGNAME FOR 0801n7,PRBS_ETHX_ERR_GEN_33_32,RW,0h,2'b00,2,"PRBS error generator. When bit(x) = 1'b1, this will generate one error in tx_data[x]. For debug use only.",,
+----------,,,,,,,,,
+0801n8.15:00,TBD REGNAME FOR 0801n8,PRBS_ETHX_ERR_GEN_31_16,RW,0000h,16'b0000000000000000,16,"PRBS error generator. When bit(x) = 1'b1, this will generate one error in tx_data[x]. For debug use only.",,
+----------,,,,,,,,,
+0801n9.15:00,TBD REGNAME FOR 0801n9,PRBS_ETHX_ERR_GEN_15_0,RW,0000h,16'b0000000000000000,16,"PRBS error generator. When bit(x) = 1'b1, this will generate one error in tx_data[x]. For debug use only.",,
+----------,,,,,,,,,
+0801nA.15,TBD REGNAME FOR 0801nA,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0801nA.14:00,TBD REGNAME FOR 0801nA,ETHX_GEN_SEED_30_16,RW,5555h,15'b101010101010101,15,"PRBS generator seed, use bit[30, 31-x] for PRBSx.",,
+----------,,,,,,,,,
+0801nB.15:00,TBD REGNAME FOR 0801nB,ETHX_GEN_SEED_15_0,RW,5555h,16'b0101010101010101,16,"PRBS generator seed, use bit[30, 31-x] for PRBSx.",,
+----------,,,,,,,,,
+0801nC.15:14,TBD REGNAME FOR 0801nC,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0801nC.13,TBD REGNAME FOR 0801nC,PRBS_ETHX_CHK_EN,RW,1h,1'b1,1,PRBS checker clock gate. Disabled when this field is 1'b0.,,
+0801nC.12:11,TBD REGNAME FOR 0801nC,PRBS_ETHX_CHK_MODE,RW,2h,2'b10,2,"PRBS checker mode select:
+    00b:    prbs9
+    01b:    prbs15
+    10b:    prbs23
+    11b:    prbs31 ",,
+0801nC.10,TBD REGNAME FOR 0801nC,PRBS_ETHX_CNTR_RESET,RW,0h,1'b0,1,"PRBS checker counter reset signal: 
+    1:    Keep resetting counter to 0
+    0:    Normal accumulation",,
+0801nC.09,TBD REGNAME FOR 0801nC,RX_PRBS_ETHX_EN,RW,0h,1'b0,1,PRBS checker is turned on when this field is 1'b1.,,
+0801nC.08,TBD REGNAME FOR 0801nC,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0801nC.07:00,TBD REGNAME FOR 0801nC,ETHX_ERR_TH,RW,01h,8'b00000001,8,Threshold for PRBS checker error detection.,,
+----------,,,,,,,,,
+0801nD.15,TBD REGNAME FOR 0801nD,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0801nD.14:00,TBD REGNAME FOR 0801nD,ETHX_CHK_SEED_30_16,RW,5555h,15'b101010101010101,15,"PRBS checker seed. Use bit[30, 31-x] for PRBSx.",,
+----------,,,,,,,,,
+0801nE.15:00,TBD REGNAME FOR 0801nE,ETHX_CHK_SEED_15_0,RW,5555h,16'b0101010101010101,16,"PRBS checker seed. Use bit[30, 31-x] for PRBSx.",,
+----------,,,,,,,,,
+0801nF.15:06,TBD REGNAME FOR 0801nF,RSVD,RW,000h,10'b0000000000,10,Reserved. Do not change the default value.,,
+0801nF.05:00,TBD REGNAME FOR 0801nF,PRBS_ETHX_START_TH,RW,20h,6'b100000,6,Threshold for PRBS checker start signal detection.,,
+----------,,,,,,,,,
+090004.15:08,TBD REGNAME FOR 090004,RD_WAIT,RW,20h,8'b00100000,8,"For the MAC register interface, the number of wait cycles before DUT responds to read transaction on MDO.",,
+090004.07:00,TBD REGNAME FOR 090004,WR_WAIT,RW,18h,8'b00011000,8,"For the MAC register interface, the number of wait cycles before DUT responds to write transaction on MDO.",,
+----------,,,,,,,,,
+090005.15:08,TBD REGNAME FOR 090005,RSVD,RW,2Ah,8'b00101010,8,Reserved. Do not change the default value.,,
+090005.07:00,TBD REGNAME FOR 090005,RST_CNT,RW,3Eh,8'b00111110,8,"For the MAC register interface, the number of wait cycles before DUT responds to reset transaction on MDO.",,
+----------,,,,,,,,,
+090013.15:14,TBD REGNAME FOR 090013,CPUC_DIV,RW,0h,2'b00,2,"00b: reg_clk is used as CPU's clock
+01b: reg_clk divided by 2 is used as CPU's clock
+10b: reg_clk divided by 4 is used as CPU's clock
+11b: reg_clk divided by 8 is used as CPU's clock",,
+090013.13:12,TBD REGNAME FOR 090013,REGC_DIV,RW,0h,2'b00,2,"00b: Original reg_clk is used as reg_clk
+01b: Original reg_clk is divided by 2 as reg_clk
+10b: Original reg_clk is divided by 4 as reg_clk
+11b: Original reg_clk is divided by 8 as reg_clk",,
+090013.11:00,TBD REGNAME FOR 090013,SW_RSTB_MAGIC,RW,0h,12'b000000000000,12,"777h: Logic reset (that is, FIFO, PHY)
+888h: All reset (that is, FIFO, PHY, register map, CPU)
+999h: Register map reset
+AAAh: CPU reset",,
+----------,,,,,,,,,
+090015.15,TBD REGNAME FOR 090015,REPAIRABLE_STATUS_S,RO,xh,1'bx,1,"1: Indicate all macro bump lanes are repairable.
+0: At least one lane's macro bump is not repairable",,
+090015.14,TBD REGNAME FOR 090015,REPAIRABLE_TEST_DONE_S,RO,xh,1'bx,1,"1: Indicate all macro bump lanes tests are done.
+0: At least one lane's macro bump test is not done.",,
+090015.13:00,TBD REGNAME FOR 090015,RSVD,RO,xxxxh,14'bxxxxxxxxxxxxxx,14,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+090016.15,TBD REGNAME FOR 090016,REPAIRABLE_STATUS_CLR_S,RW,0h,1'b0,1,"Clear repairable status (repairable_status_s, repairable_test_done_s)",,
+090016.14:00,TBD REGNAME FOR 090016,RSVD,RW,0h,15'b000000000000000,15,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+090050.15:00,TBD REGNAME FOR 090050,SENSOR_0,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Voltage sensor 0 result:
+    15:13    Always 000b
+    12    1 = Voltage sensor ready
+        0 = Voltage sensor not ready
+    11:0     Voltage sensor result",,
+----------,,,,,,,,,
+090051.15:00,TBD REGNAME FOR 090051,SENSOR_1,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Voltage sensor 1 result:
+    15:13    Always 000b
+    12    1 = Voltage sensor ready        0 = Voltage sensor not ready
+    11:0    Voltage sensor result",,
+----------,,,,,,,,,
+090052.15:00,TBD REGNAME FOR 090052,SENSOR_2,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Voltage sensor 2 result:
+    15:13    Always 3'b000,
+    12    1 = Voltage sensor ready
+        0 = Voltage sensor not ready
+11:0         Voltage sensor result",,
+----------,,,,,,,,,
+090053.15:00,TBD REGNAME FOR 090053,SENSOR_3,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Voltage sensor 3 result:
+    15:13    Always 000b
+    12    1 = Voltage sensor ready        0 = Voltage sensor not ready
+    11:0    Voltage sensor result",,
+----------,,,,,,,,,
+090054.15:00,TBD REGNAME FOR 090054,SENSOR_4,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Voltage sensor 4 result:
+    15:13    Always 000b
+    12    1 = Voltage sensor ready        0 = Voltage sensor not ready
+    11:0    Voltage sensor result",,
+----------,,,,,,,,,
+090055.15:00,TBD REGNAME FOR 090055,SENSOR_5,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Voltage sensor 5 result:
+    15:13    Always 000b
+    12    1 = Voltage sensor ready        0 = Voltage sensor not ready
+    11:0    Voltage sensor result",,
+----------,,,,,,,,,
+090056.15:00,TBD REGNAME FOR 090056,SENSOR_6,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Voltage sensor 6 result:
+    15:13    Always 000b
+    12    1 = Voltage sensor ready        0 = Voltage sensor not ready
+    11:0    Voltage sensor result",,
+----------,,,,,,,,,
+090057.15:00,TBD REGNAME FOR 090057,SENSOR_7,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Voltage sensor 7 result:
+    15:13    Always 000b
+    12    1 = Voltage sensor ready        0 = Voltage sensor not ready
+    11:0    Voltage sensor result",,
+----------,,,,,,,,,
+090058.15:00,TBD REGNAME FOR 090058,SENSOR_8,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Voltage sensor 8 result:
+    15:13    Always 000b
+    12    1 = Voltage sensor ready        0 = Voltage sensor not ready
+    11:0    Voltage sensor result",,
+----------,,,,,,,,,
+090059.15:00,TBD REGNAME FOR 090059,SENSOR_9,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Temperature sensor result:
+    15:13    Always 000b
+    12    1 = Sensor ready        0 = Sensor not ready
+    11:0    Sensor result",,
+----------,,,,,,,,,
+090337.15:04,TEMPERATURE SENSOR ENABLE,RSVD,RW,000h,12'b000000000000,12,Reserved. Do not change the default value.,,
+090337.03,TEMPERATURE SENSOR ENABLE,TSENSOR_RUN,RW,1h,1'b1,1,Enable temperature sensor.,,
+090337.02,TEMPERATURE SENSOR ENABLE,TSENSOR_RSTN,RW,1h,1'b1,1,Temperature sensor reset. 0h = Reset.,,
+090337.01:00,TEMPERATURE SENSOR ENABLE,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+090338.15:12,TEMPERATURE SENSOR READY,RSVD,RO,xh,4'bxxxx,4,Reserved. Do not change the default value.,,
+090338.11:08,TEMPERATURE SENSOR READY,TSENSOR_READY,RO,xh,4'bxxxx,4,Temperature sensor data is ready.,,
+090338.07:04,TEMPERATURE SENSOR READY,TSENSOR_DIGO,RO,xh,4'bxxxx,4,Multiplexed digital test output.,,
+090338.03:00,TEMPERATURE SENSOR READY,RSVD,RO,xh,4'bxxxx,4,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+090339.15:12,TEMPERATURE SENSOR1 DATA,RSVD,RO,xh,4'bxxxx,4,Reserved. Do not change the default value.,,
+090339.11:00,TEMPERATURE SENSOR1 DATA,TSENSOR_DOUT1,RO,xxxh,12'bxxxxxxxxxxxx,12,Temperature sensor data.,,
+----------,,,,,,,,,
+09033A.15:06,TEMPERATURE SENSOR2 DATA,RSVD,RW,000h,10'b0000000000,10,Reserved. Do not change the default value.,,
+09033A.05,TEMPERATURE SENSOR2 DATA,AUTO_TS,RW,1h,1'b1,1,Enable temperature sensor auto-read.,,
+09033A.04,TEMPERATURE SENSOR2 DATA,AUTO_VS,RW,1h,1'b1,1,Enable voltage sensor auto read.,,
+09033A.03,TEMPERATURE SENSOR2 DATA,AUTO_VS1,RW,1h,1'b1,1,Enable voltage sensor1 auto read.,,
+09033A.02,TEMPERATURE SENSOR2 DATA,TS_RSTB,RW,1h,1'b1,1,Reset temperature sensor,,
+09033A.01,TEMPERATURE SENSOR2 DATA,VS_RTSB,RW,1h,1'b1,1,,,
+09033A.00,TEMPERATURE SENSOR2 DATA,VS1_RSTB,RW,1h,1'b1,1,,,
+----------,,,,,,,,,
+09033E.15,TEMPERATURE SENSOR CLOCK,TSENSOR_CLK_SEL,RW,0h,1'b0,1,Source selection for the temperature sensor clock.,,
+09033E.14:00,TEMPERATURE SENSOR CLOCK,TSENSOR_CLK_CNTR,RW,0034h,15'b000000000110100,15,Temperature sensor counter.,,
+----------,,,,,,,,,
+09033F.15,VOLTAGE SENSOR CLOCK,VSENSOR_CLK_SEL,RW,0h,1'b0,1,Source selection for the voltage sensor clock.,,
+09033F.14:00,VOLTAGE SENSOR CLOCK,VSENSOR_CLK_CNTR,RW,0034h,15'b000000000110100,15,Voltage sensor counter.,,
+----------,,,,,,,,,
+090420.15,GPIO DEFINITION BITS,GPIO0_DEF2,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.14,GPIO DEFINITION BITS,GPIO0_DEF1,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.13,GPIO DEFINITION BITS,GPIO0_DEF0,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.12,GPIO DEFINITION BITS,GPIO1_DEF2,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.11,GPIO DEFINITION BITS,GPIO1_DEF1,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.10,GPIO DEFINITION BITS,GPIO1_DEF0,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.09,GPIO DEFINITION BITS,GPIO2_DEF2,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.08,GPIO DEFINITION BITS,GPIO2_DEF1,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.07,GPIO DEFINITION BITS,GPIO2_DEF0,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.06,GPIO DEFINITION BITS,GPIO3_DEF2,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.05,GPIO DEFINITION BITS,GPIO3_DEF1,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.04,GPIO DEFINITION BITS,GPIO3_DEF0,RW,0h,1'b0,1,GPIO input/output mode setting,,
+090420.03:00,GPIO DEFINITION BITS,RSVD,RW,0h,4'b0000,4,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+090424.15:04,TBD REGNAME FOR 090424,RSVD,RW,000h,12'b000000000000,12,Reserved. Do not change the default value.,,
+090424.03,TBD REGNAME FOR 090424,PU3_GPIO,RW,0h,1'b0,1,GPIO pull up.,,
+090424.02,TBD REGNAME FOR 090424,PU2_GPIO,RW,0h,1'b0,1,GPIO pull up.,,
+090424.01,TBD REGNAME FOR 090424,PU1_GPIO,RW,0h,1'b0,1,GPIO pull up.,,
+090424.00,TBD REGNAME FOR 090424,PU0_GPIO,RW,0h,1'b0,1,GPIO pull up.,,
+----------,,,,,,,,,
+090425.15:04,TBD REGNAME FOR 090425,RSVD,RW,000h,12'b000000000000,12,Reserved. Do not change the default value.,,
+090425.03,TBD REGNAME FOR 090425,PD3_GPIO,RW,0h,1'b0,1,GPIO pull down.,,
+090425.02,TBD REGNAME FOR 090425,PD2_GPIO,RW,0h,1'b0,1,GPIO pull down.,,
+090425.01,TBD REGNAME FOR 090425,PD1_GPIO,RW,0h,1'b0,1,GPIO pull down.,,
+090425.00,TBD REGNAME FOR 090425,PD0_GPIO,RW,0h,1'b0,1,GPIO pull down.,,
+----------,,,,,,,,,
+090426.15,TBD REGNAME FOR 090426,PRG_ALARM_1,RW,0h,1'b0,1,,,
+090426.14:04,TBD REGNAME FOR 090426,RSVD,RW,000h,11'b00000000000,11,Reserved. Do not change the default value.,,
+090426.03,TBD REGNAME FOR 090426,GPIO_OUT3,RW,0h,1'b0,1,GPIO output.,,
+090426.02,TBD REGNAME FOR 090426,GPIO_OUT2,RW,0h,1'b0,1,GPIO output.,,
+090426.01,TBD REGNAME FOR 090426,GPIO_OUT1,RW,0h,1'b0,1,GPIO output.,,
+090426.00,TBD REGNAME FOR 090426,GPIO_OUT0,RW,0h,1'b0,1,GPIO output.,,
+----------,,,,,,,,,
+090427.15:04,TBD REGNAME FOR 090427,RSVD,RW,0h,12'b000000000000,12,Reserved. Do not change the default value.,,
+090427.03,TBD REGNAME FOR 090427,GPIO_STS3,RO,0h,1'b0,1,GPIO input.,,
+090427.02,TBD REGNAME FOR 090427,GPIO_STS2,RO,0h,1'b0,1,GPIO input.,,
+090427.01,TBD REGNAME FOR 090427,GPIO_STS1,RO,0h,1'b0,1,GPIO input.,,
+090427.00,TBD REGNAME FOR 090427,GPIO_STS0,RO,0h,1'b0,1,GPIO input.,,
+----------,,,,,,,,,
+090500.15,TBD REGNAME FOR 090500,PD_CAL_FCAL,RW,1h,1'b1,1,,,
+090500.14,TBD REGNAME FOR 090500,PU_REFCLK,RW,1h,1'b1,1,,,
+090500.13:12,TBD REGNAME FOR 090500,CHPMPCLK_SEL,RW,1h,2'b01,2,,,
+090500.11,TBD REGNAME FOR 090500,PU_CLKDSC,RW,1h,1'b1,1,,,
+090500.10,TBD REGNAME FOR 090500,REFCLK_SRC_SEL,RW,1h,1'b1,1,,,
+090500.09:07,TBD REGNAME FOR 090500,VREF1P3CLKDSC,RW,3h,3'b011,3,,,
+090500.06,TBD REGNAME FOR 090500,BYPASS_1P3REG_CLKBUF,RW,0h,1'b0,1,,,
+090500.05:01,TBD REGNAME FOR 090500,VTSTGROUP,RW,00h,5'b00000,5,,,
+090500.00,TBD REGNAME FOR 090500,REFCLK_OUT_EN,RW,1h,1'b1,1,,,
+----------,,,,,,,,,
+090501.15:13,TBD REGNAME FOR 090501,VREF1P3CLKBUF,RW,3h,3'b011,3,,,
+090501.12,TBD REGNAME FOR 090501,PU_RVDD,RW,1h,1'b1,1,,,
+090501.11,TBD REGNAME FOR 090501,PU_RVDDLOOP,RW,1h,1'b1,1,,,
+090501.10,TBD REGNAME FOR 090501,RVDDVCO_EN,RW,1h,1'b1,1,,,
+090501.09:07,TBD REGNAME FOR 090501,VREFCLKBUF,RW,3h,3'b011,3,,,
+090501.06:04,TBD REGNAME FOR 090501,TESTMODE,RW,0h,3'b000,3,,,
+090501.03:01,TBD REGNAME FOR 090501,VBG_C,RW,4h,3'b100,3,,,
+090501.00,TBD REGNAME FOR 090501,TOPREFCLK_R1,RW,1h,1'b1,1,,,
+----------,,,,,,,,,
+090502.15:13,TBD REGNAME FOR 090502,VREFVDDR2CLKDSC,RW,5h,3'b101,3,,,
+090502.12,TBD REGNAME FOR 090502,REFCLK_DIV4_EN,RW,0h,1'b0,1,,,
+090502.11:09,TBD REGNAME FOR 090502,VREFCLKDSC,RW,3h,3'b011,3,,,
+090502.08:06,TBD REGNAME FOR 090502,VRVDD,RW,3h,3'b011,3,,,
+090502.05,TBD REGNAME FOR 090502,PU_BG,RW,1h,1'b1,1,,,
+090502.04,TBD REGNAME FOR 090502,BYPASS_1P3REG_CLKDSC,RW,0h,1'b0,1,,,
+090502.03,TBD REGNAME FOR 090502,TEST_EN,RW,0h,1'b0,1,,,
+090502.02:00,TBD REGNAME FOR 090502,TOPREFCLK_R2,RW,0h,3'b000,3,,,
+----------,,,,,,,,,
+090503.15:00,TBD REGNAME FOR 090503,RESV_REFCLK,RW,0000h,16'b0000000000000000,16,,,
+----------,,,,,,,,,
+0A0000.15:00,FIRMWARE DATA 0,FIRMWARE_DATA_0,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_0[15:0] = Firmware binary frame word 0.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_0[15:0] = Eye diagram data frame word 0. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A0001.15:00,FIRMWARE DATA 1,FIRMWARE_DATA_1,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_1[15:0] = Firmware binary frame word 1.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_1[15:0] = Eye diagram data frame word 1. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A0002.15:00,FIRMWARE DATA 2,FIRMWARE_DATA_2,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_2[15:0] = Firmware binary frame word 2.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_2[15:0] = Eye diagram data frame word 2. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A0003.15:00,FIRMWARE DATA 3,FIRMWARE_DATA_3,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_3[15:0] = Firmware binary frame word 3.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_3[15:0] = Eye diagram data frame word 3. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A0004.15:00,FIRMWARE DATA 4,FIRMWARE_DATA_4,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_4[15:0] = Firmware binary frame word 4.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_4[15:0] = Eye diagram data frame word 4. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A0005.15:00,FIRMWARE DATA 5,FIRMWARE_DATA_5,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_5[15:0] = Firmware binary frame word 5.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_5[15:0] = Eye diagram data frame word 5. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A0006.15:00,FIRMWARE DATA 6,FIRMWARE_DATA_6,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_6[15:0] = Firmware binary frame word 6.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_6[15:0] = Eye diagram data frame word 6. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A0007.15:00,FIRMWARE DATA 7,FIRMWARE_DATA_7,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_7[15:0] = Firmware binary frame word 7.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_7[15:0] = Eye diagram data frame word 7. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A0008.15:00,FIRMWARE DATA 8,FIRMWARE_DATA_8,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_8[15:0] = Firmware binary frame word 8.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_8[15:0] = Eye diagram data frame word 8. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A0009.15:00,FIRMWARE DATA 9,FIRMWARE_DATA_9,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_9[15:0] = Firmware binary frame word 9.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_9[15:0] = Eye diagram data frame word 9. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A000A.15:00,FIRMWARE DATA A,FIRMWARE_DATA_A,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_A[15:0] = Firmware binary frame word A.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_A[15:0] = Eye diagram data frame word A. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A000B.15:00,FIRMWARE DATA B,FIRMWARE_DATA_B,RW,0000h,16'b0000000000000000,16,"Firmware Download
+DOWNLOAD_FRAME_B[15:0] = Firmware binary frame word B.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_B[15:0] = Eye diagram data frame word B. In this mode the register is read-only access.",,
+----------,,,,,,,,,
+0A000C.15:00,FIRMWARE DATA C,FIRMWARE_DATA_C,RW,0000h,16'b0000000000000000,16,"Firmware Download
+RAM_ADDRESS[31:16] = During firmware download, defines the starting RAM address of where the current frame will be loaded to. After firmware download is complete, defines the starting RAM address for MCU execution. The mode is controlled by settings in the control word.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_12[15:0] = Eye diagram data frame word 12. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A000D.15:00,FIRMWARE DATA D,FIRMWARE_DATA_D,RW,0000h,16'b0000000000000000,16,"Firmware Download
+RAM_ADDRESS[15:0] = During firmware download, defines the starting RAM address of where the current frame will be loaded to. After firmware download is complete, defines the starting RAM address for MCU execution. The mode is controlled by settings in the control word.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_13[15:0] = Eye diagram data frame word 13. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A000E.15:00,FIRMWARE DATA E,FIRMWARE_DATA_E,RW,0000h,16'b0000000000000000,16,"Firmware Download
+FRAME_CHECKSUM[15:0] = Checksum for the entire 16-word frame.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_14[15:0] = Eye diagram data frame word 14. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0A000F.15:00,FIRMWARE DATA F,FIRMWARE_DATA_F,RW,0000h,16'b0000000000000000,16,"Firmware Download
+WRITE_FRAME[15] = AHB sets this bit to '1' to initiate a frame write. This bit will be cleared by the MCU after the write is complete.
+START_EXECUTION[14] = AHB sets this bit to '1' to tell MCU to start execution.
+CHECK_SUM_ERR[13] = MCU sets this bit to '1' to indicate a checksum error has occurred. Value is read-only.
+RSVD[12:4] = Reserved for future use. Do not change the default value of 000h.
+FRAME_SIZE[3:0] = AHB sets the number of valid firmware words in the current frame. Max value is 0Ch.
+Eye Diagram Data
+EYE_DIAGRAM_DATA_15[15:0] = Eye diagram data frame word 15. In this mode, the register is read-only access.",,
+----------,,,,,,,,,
+0g0200.15,SRAM ECC CONTROL,SRAM_ECC_EN,RW,1h,1'b1,1,"When set, enables SRAM ECC generation and checking",,
+0g0200.14:13,SRAM ECC CONTROL,SRAM_ECC_FORCE_ERR,RW,0h,2'b00,2,"For debug, complement data bits to force errors in ECC generation:
+    00: No error
+    01: Complement bit 0 of SRAM input data (after ECC)
+    10: Complement bit 1 of SRAM input data (after ECC)
+    11: Complement bits 0 and 1 of SRAM input data (after ECC)",,
+0g0200.12:00,SRAM ECC CONTROL,RSVD,RW,1000h,13'b1000000000000,13,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0000.15,TBD REGNAME FOR 0n0000,PAM4_SM_RESET,RW,0h,1'b0,1,State machine reset level triggered: 1=reset,,
+0n0000.14:08,TBD REGNAME FOR 0n0000,DATA_THR_INIT,RW,10h,7'b0010000,7,Data threshold init value in S7.6 format,,
+0n0000.07,TBD REGNAME FOR 0n0000,DFE_MODE,RW,0h,1'b0,1,"Select if the state machine is for 3 comp or 4 comp
+    1    3 comp mode
+    0    4 comp mode",,
+0n0000.06:00,TBD REGNAME FOR 0n0000,RSVD,RW,6Bh,7'b1101011,7,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0001.15:00,TBD REGNAME FOR 0n0001,CNTR_TARGET_INIT,RW,0800h,16'b0000100000000000,16,CNTR_TARGET_INIT for initial convergence error rate target.,,
+----------,,,,,,,,,
+0n0002.15:00,TBD REGNAME FOR 0n0002,CNTR_TARGET_FINAL,RW,0020h,16'b0000000000100000,16,Cntr_target_final for final adaptation error rate target.,,
+----------,,,,,,,,,
+0n0003.15:11,PAM4 RX SIGNAL DETECTION THRESHOLD,RSVD,RW,0Fh,5'b01111,5,Reserved. Do not change the default value.,,
+0n0003.10:00,PAM4 RX SIGNAL DETECTION THRESHOLD,RX_PAM4_SD_THR,RW,333h,11'b01100110011,11,Signal detect threshold level. This is an unsigned number and each bit is equivalent to 0.4mV.,,
+----------,,,,,,,,,
+0n0004.15:12,SD PERIOD AND INITIAL DFE VALUE,SD_PERIOD,RW,7h,4'b0111,4,4b'{0000 0001 0010... 1111} maps to {0 2^0 2^1... 2^14} SM CLK cycles.,,
+0n0004.11:05,SD PERIOD AND INITIAL DFE VALUE,DFE_INIT_VAL,RW,03h,7'b0000011,7,Initial DFE value. ,,
+0n0004.04:00,SD PERIOD AND INITIAL DFE VALUE,RSVD,RW,08h,5'b01000,5,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0005.15:11,TBD REGNAME FOR 0n0005,RSVD,RW,17h,5'b10111,5,Reserved. Do not change the default value.,,
+0n0005.10:08,TBD REGNAME FOR 0n0005,KP_S4,RW,5h,3'b101,3,3b'{000 001 010 011 100 101 110 111} maps to {0 2^-12 2^-11 2^-10 2^-9 2^-8 2^-7 2^-6},,
+0n0005.07:00,TBD REGNAME FOR 0n0005,RSVD,RW,5Dh,8'b01011101,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0006.15:12,TBD REGNAME FOR 0n0006,ITERATION_COUNT_S4,RW,7h,4'b0111,4,4b'{0000 0001 0010... 1111} maps to {0 2^0 2^1... 2^14} SM CLK cycles,,
+0n0006.11:10,TBD REGNAME FOR 0n0006,RSVD,RW,1h,2'b01,2,Reserved. Do not change the default value.,,
+0n0006.09:07,TBD REGNAME FOR 0n0006,KP_S5,RW,4h,3'b100,3,3b'{000 001 010 011 100 101 110 111} maps to {0 2^-12 2^-11 2^-10 2^-9 2^-8 2^-7 2^-6},,
+0n0006.06:03,TBD REGNAME FOR 0n0006,RSVD,RW,5h,4'b0101,4,Reserved. Do not change the default value.,,
+0n0006.02:00,TBD REGNAME FOR 0n0006,KP_S6,RW,3h,3'b011,3,3b'{000 001 010 011 100 101 110 111} maps to {0 2^-12 2^-11 2^-10 2^-9 2^-8 2^-7 2^-6},,
+----------,,,,,,,,,
+0n0007.15,TBD REGNAME FOR 0n0007,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n0007.14:11,TBD REGNAME FOR 0n0007,TIMER_MEAS_S5,RW,Ch,4'b1100,4,5b'{00000 00001 00010... 11111} maps to {0 2^0 2^1... 2^30} SM CLK cycles,,
+0n0007.10:07,TBD REGNAME FOR 0n0007,RSVD,RW,5h,4'b0101,4,Reserved. Do not change the default value.,,
+0n0007.06:03,TBD REGNAME FOR 0n0007,TIMER_MEAS_S6,RW,9h,4'b1001,4,4b'{0000 0001 0010... 1111} maps to {0 2^0 2^2... 2^28} SM CLK cycles,,
+0n0007.02:00,TBD REGNAME FOR 0n0007,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0008.15:12,TBD REGNAME FOR 0n0008,RSVD,RW,Ch,4'b1100,4,Reserved. Do not change the default value.,,
+0n0008.11:01,TBD REGNAME FOR 0n0008,FREQ_INIT,RW,000h,11'b00000000000,11,FREQ_INIT controls the initial frequency offset used for locking timing.,,
+0n0008.00,TBD REGNAME FOR 0n0008,RSVD,RW,1h,1'b1,1,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0009.15:12,TBD REGNAME FOR 0n0009,ITERATION_COUNT_S5,RW,7h,4'b0111,4,4b'{0000 0001 0010... 1111} maps to {0 2^0 2^1... 2^14} SM clk cycles,,
+0n0009.11:08,TBD REGNAME FOR 0n0009,DAC_SETTLING_PERIOD,RW,6h,4'b0110,4,4b'{0000 0001 0010... 1111} maps to {0 2^0 2^1... 2^14} SM clk cycles,,
+0n0009.07:00,TBD REGNAME FOR 0n0009,RSVD,RW,67h,8'b01100111,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n000A.15:14,TBD REGNAME FOR 0n000A,MU_MARGIN_S6,RW,1h,2'b01,2,2b'{00 01 10 11} maps to {0 2^-11 2^-9 2^-7},,
+0n000A.13:10,TBD REGNAME FOR 0n000A,TIMER_MEAS_S7,RW,9h,4'b1001,4,4b'{0000 0001 0010... 1111} maps to {0 2^0 2^1... 2^14} SM clk cycles,,
+0n000A.09:05,TBD REGNAME FOR 0n000A,OVERFLOW_PERIOD,RW,11h,5'b10001,5,5b'{00000 00001 00010... 11111} maps to {0 2^0 2^1... 2^30} SM clk cycles,,
+0n000A.04:00,TBD REGNAME FOR 0n000A,HF_PERIOD,RW,11h,5'b10001,5,5b'{00000 00001 00010... 11111} maps to {0 2^0 2^1... 2^30} SM clk cycles,,
+----------,,,,,,,,,
+0n000B.15,TBD REGNAME FOR 0n000B,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n000B.14:08,TBD REGNAME FOR 0n000B,OVERFLOW_THR,RW,3Dh,7'b0111101,7,Overflow threshold,,
+0n000B.07,TBD REGNAME FOR 0n000B,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n000B.06:00,TBD REGNAME FOR 0n000B,HF_THR,RW,15h,7'b0010101,7,High frequency pattern test threshold,,
+----------,,,,,,,,,
+0n000C.15:00,TBD REGNAME FOR 0n000C,OVERFLOW_CNTR_UPPER_LIMIT,RW,0080h,16'b0000000010000000,16,Overflow counter upper limit of format U16.0,,
+----------,,,,,,,,,
+0n000D.15:00,TBD REGNAME FOR 0n000D,OVERFLOW_CNTR_LOWER_LIMIT,RW,0002h,16'b0000000000000010,16,Overflow counter lower limit of format U16.0,,
+----------,,,,,,,,,
+0n000E.15:00,TBD REGNAME FOR 0n000E,HF_CNTR_TARGET,RW,0080h,16'b0000000010000000,16,High frequency counter target of format U16.0,,
+----------,,,,,,,,,
+0n000F.15,TBD REGNAME FOR 0n000F,DFE_FREEZE_EN,RW,0h,1'b0,1,"Controls eye monitor function
+    0h:     Eye Monitor disabled
+    1h:     Eye Monitor enabled",,
+0n000F.14,TBD REGNAME FOR 0n000F,EM_CNTR_RESET,RW,0h,1'b0,1,"    0h:     Eye Monitor counter normal
+    1h:     Eye Monitor counter reset and hold to 0",,
+0n000F.13:00,TBD REGNAME FOR 0n000F,RSVD,RW,0000h,14'b00000000000000,14,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0011.15,BREAKPOINTS 1 AND 2,PAM4_BP1_EN,RW,0h,1'b0,1,"Enable signal for Breakpoint 1
+    1b: Breakpoint function enabled
+    0b: Breakpoint function disabled",,
+0n0011.14,BREAKPOINTS 1 AND 2,PAM4_BP2_EN,RW,0h,1'b0,1,"Enable signal for Breakpoint 2
+    1b: Breakpoint function enabled
+    0b: Breakpoint function disabled",,
+0n0011.13,BREAKPOINTS 1 AND 2,PAM4_SM_CONT,RW,0h,1'b0,1,Resume the state machine flow from the trapped state: rising edge trigger,,
+0n0011.12:08,BREAKPOINTS 1 AND 2,PAM4_BP1_STATE,RW,00h,5'b00000,5,Breakpoint 1 for the state machine,,
+0n0011.07:05,BREAKPOINTS 1 AND 2,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n0011.04:00,BREAKPOINTS 1 AND 2,PAM4_BP2_STATE,RW,00h,5'b00000,5,Breakpoint 2 for the state machine,,
+----------,,,,,,,,,
+0n0012.15,TBD REGNAME FOR 0n0012,THS_OWEN,RW,0h,1'b0,1,Overwrite enable signal for THS_OW,,
+0n0012.14,TBD REGNAME FOR 0n0012,CTH_OWEN,RW,0h,1'b0,1,Overwrite enable signal for CTH_OW,,
+0n0012.13,TBD REGNAME FOR 0n0012,DELTA_OWEN,RW,0h,1'b0,1,Overwrite enable signal for DELTA_OW,,
+0n0012.12:06,TBD REGNAME FOR 0n0012,DELTA_OW,RW,00h,7'b0000000,7,Overwrite value for DELTA. ,,
+0n0012.05,TBD REGNAME FOR 0n0012,FORCE_SM_VAL_EN,RW,0h,1'b0,1,"Enable signal for the force value of the state machine.
+    1b: Force enable
+    0b: Force disable",,
+0n0012.04:00,TBD REGNAME FOR 0n0012,FORCE_SM_VAL,RW,00h,5'b00000,5,Force value for the state machine,,
+----------,,,,,,,,,
+0n0013.15:04,TBD REGNAME FOR 0n0013,THS0_OW,RW,000h,12'b000000000000,12,Overwrite value for THS element 0.,,
+0n0013.03:00,TBD REGNAME FOR 0n0013,THS1_MSB_OW,RW,0h,4'b0000,4,"Overwrite value for THS element 1, 4 MSBs. ",,
+----------,,,,,,,,,
+0n0014.15:08,TBD REGNAME FOR 0n0014,THS1_LSB_OW,RW,00h,8'b00000000,8,"Overwrite value for THS element 1, 8 LSBs.",,
+0n0014.07:00,TBD REGNAME FOR 0n0014,THS2_MSB_OW,RW,00h,8'b00000000,8,"Overwrite value for THS element 2, 8 MSBs.",,
+----------,,,,,,,,,
+0n0015.15:12,TBD REGNAME FOR 0n0015,THS2_OW,RW,0h,4'b0000,4,Overwrite value for THS element 2. 4 LSBs.,,
+0n0015.11:00,TBD REGNAME FOR 0n0015,CTH_OW,RW,000h,12'b000000000000,12,Overwrite value for CTH. ,,
+----------,,,,,,,,,
+0n0016.15:08,TBD REGNAME FOR 0n0016,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+0n0016.07,TBD REGNAME FOR 0n0016,HF_CNTR_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_HF_CNTR,,
+0n0016.06:00,TBD REGNAME FOR 0n0016,RSVD,RW,00h,7'b0000000,7,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0020.15,TBD REGNAME FOR 0n0020,MU_MARGIN_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_MU_MARGIN,,
+0n0020.14:13,TBD REGNAME FOR 0n0020,MU_MARGIN_OW,RW,0h,2'b00,2,Overwrite value for MU_MARGIN. Format U2.0,,
+0n0020.12,TBD REGNAME FOR 0n0020,KF_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_KF,,
+0n0020.11:10,TBD REGNAME FOR 0n0020,KF_OW,RW,0h,2'b00,2,Overwrite value for KF. Format U2.0,,
+0n0020.09,TBD REGNAME FOR 0n0020,KP_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_KP,,
+0n0020.08:06,TBD REGNAME FOR 0n0020,KP_OW,RW,0h,3'b000,3,Overwrite value for KP. Format U3.0,,
+0n0020.05,TBD REGNAME FOR 0n0020,KTHETA2_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_KTHETA2,,
+0n0020.04:03,TBD REGNAME FOR 0n0020,KTHETA2_OW,RW,0h,2'b00,2,Overwrite value for KTHETA2. Format U2.0,,
+0n0020.02,TBD REGNAME FOR 0n0020,KTHETA3_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_KTHETA3,,
+0n0020.01:00,TBD REGNAME FOR 0n0020,KTHETA3_OW,RW,0h,2'b00,2,Overwrite value for KTHETA3. Format U2.0,,
+----------,,,,,,,,,
+0n0021.15,RX PAM4 CTLE OVERRIDE,KTHETA4_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_KTHETA4,,
+0n0021.14:13,RX PAM4 CTLE OVERRIDE,KTHETA4_OW,RW,0h,2'b00,2,Overwrite value for KTHETA4. Format U2.0,,
+0n0021.12,RX PAM4 CTLE OVERRIDE,DAC_OWEN_SEL,RW,0h,1'b0,1,Overwrite enable signal for OW_DAC_SEL,,
+0n0021.11:08,RX PAM4 CTLE OVERRIDE,DAC_OW_SEL,RW,0h,4'b0000,4,Overwrite value for DAC_SEL. Format U4.0,,
+0n0021.07,RX PAM4 CTLE OVERRIDE,RX_PAM4_CTLE_OVER_EN,RW,0h,1'b0,1,"When enabled, the CTLE setting is programmed with the override values and no adaptation occurs. For use in testing only.
+    0h:     Override disabled
+    1h:     Override enabled",,
+0n0021.06:04,RX PAM4 CTLE OVERRIDE,RX_PAM4_CTLE_OVER_VAL,RW,0h,3'b000,3,"CTLE value written when CTLE override is enabled.
+    0h:         22.9 dB
+    1h:         20.4 dB
+    2h:         17.4 dB
+    3h:         15.1 dB
+    4h:         13.0 dB
+    5h:         10.6 dB
+    6h:         7.5 dB
+    7h:         2.5 dB",,
+0n0021.03:00,RX PAM4 CTLE OVERRIDE,RSVD,RW,0h,4'b0000,4,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0024.15:02,TBD REGNAME FOR 0n0024,RSVD,RW,0000h,14'b00000000000000,14,Reserved. Do not change the default value.,,
+0n0024.01,TBD REGNAME FOR 0n0024,PAM4_SIG_DET_OWEN,RW,0h,1'b0,1,Enable overwrite of signal detect output.,,
+0n0024.00,TBD REGNAME FOR 0n0024,PAM4_SIG_DET_OW,RW,0h,1'b0,1,"Overwrite signal detect level.
+    0:    Drive low
+    1:     Drive high",,
+----------,,,,,,,,,
+0n0028.15,TBD REGNAME FOR 0n0028,PAM4_BP1_REACHED,RO,xh,1'bx,1,"Readout of breakpoint 1 reached indicator signal: 
+    1h:     breakpoint reached
+    0h:     breakpoint not reached",,
+0n0028.14,TBD REGNAME FOR 0n0028,PAM4_BP2_REACHED,RO,xh,1'bx,1,"Readout of breakpoint 2 reached indicator signal: 
+    1h:     breakpoint reached
+    0h:     breakpoint not reached",,
+0n0028.13:09,TBD REGNAME FOR 0n0028,PAM4_CURRENT_STATE,RO,xxh,5'bxxxxx,5,"Read back of current state number of the state machine. Note: due to crossing clock domains, this field should be firmware debounced.",,
+0n0028.08:05,TBD REGNAME FOR 0n0028,READ_DAC_SEL,RO,xh,4'bxxxx,4,Readout of the DAC_SEL of format U4.0,,
+0n0028.04:00,TBD REGNAME FOR 0n0028,RSVD,RO,xxh,5'bxxxxx,5,Reserved. Do not change the default value. ,,
+----------,,,,,,,,,
+0n0038.15,READ EYE MARGIN,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n0038.14:00,READ EYE MARGIN,READ_EM,RO,xxxxh,15'bxxxxxxxxxxxxxxx,15,Readout of the eye margin. ,,
+----------,,,,,,,,,
+0n0041.15,TBD REGNAME FOR 0n0041,PAM4_EN,RW,0h,1'b0,1,"Enable SerDes PAM-4 mode: 0=disable, 1=enable",,
+0n0041.14:13,TBD REGNAME FOR 0n0041,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0041.12,TBD REGNAME FOR 0n0041,THETA2_UPDATE_MODE,RW,0h,1'b0,1,"Select the UPDN mode for theta2 loop: 0=clock comp, 1=data",,
+0n0041.11,TBD REGNAME FOR 0n0041,THETA3_UPDATE_MODE,RW,0h,1'b0,1,"Select the UPDN mode for theta3 loop: 0=clock comp, 1=data",,
+0n0041.10,TBD REGNAME FOR 0n0041,THETA4_UPDATE_MODE,RW,0h,1'b0,1,"Select the UPDN mode for theta4 loop: 0=clock comp, 1=data",,
+0n0041.09:05,TBD REGNAME FOR 0n0041,RSVD,RW,1Eh,5'b11110,5,Reserved. Do not change the default value.,,
+0n0041.04,TBD REGNAME FOR 0n0041,THETA2_UPDATE_FLIP,RW,1h,1'b1,1,"Flip theta2 loop polarity: 1=flip, 0=no flip",,
+0n0041.03,TBD REGNAME FOR 0n0041,THETA3_UPDATE_FLIP,RW,1h,1'b1,1,"Flip theta3 loop polarity: 1=flip, 0=no flip",,
+0n0041.02,TBD REGNAME FOR 0n0041,THETA4_UPDATE_FLIP,RW,1h,1'b1,1,"Flip theta4 loop polarity: 1=flip, 0=no flip",,
+0n0041.01:00,TBD REGNAME FOR 0n0041,RSVD,RW,3h,2'b11,2,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0042.15:10,TBD REGNAME FOR 0n0042,RSVD,RW,2Ch,6'b101100,6,Reserved. Do not change the default value.,,
+0n0042.09,TBD REGNAME FOR 0n0042,CNTR1_EN,RW,1h,1'b1,1,"Counter on phase1
+    0b:    Disable
+    1b:    Enable",,
+0n0042.08,TBD REGNAME FOR 0n0042,CNTR2_EN,RW,1h,1'b1,1,"Counter on phase2
+    0b:    Disable
+    1b:    Enable",,
+0n0042.07,TBD REGNAME FOR 0n0042,CNTR3_EN,RW,1h,1'b1,1,"Counter on phase3
+    0b:    Disable
+    1b:    Enable",,
+0n0042.06,TBD REGNAME FOR 0n0042,CNTR4_EN,RW,1h,1'b1,1,"Counter on phase4
+    0b:    Disable
+    1b:    Enable",,
+0n0042.05,TBD REGNAME FOR 0n0042,CNTR5_EN,RW,1h,1'b1,1,"Counter on phase5
+    0b:    Disable
+    1b:    Enable",,
+0n0042.04,TBD REGNAME FOR 0n0042,CNTR6_EN,RW,1h,1'b1,1,"Counter on phase6
+    0b:    Disable
+    1b:    Enable",,
+0n0042.03,TBD REGNAME FOR 0n0042,CNTR7_EN,RW,1h,1'b1,1,"Counter on phase7
+    0b:    Disable
+    1b:    Enable",,
+0n0042.02,TBD REGNAME FOR 0n0042,CNTR8_EN,RW,1h,1'b1,1,"Counter on phase8
+    0b:    Disable
+    1b:    Enable",,
+0n0042.01,TBD REGNAME FOR 0n0042,RX_PRECODE_EN,RW,0h,1'b0,1,"RX Precode Enable bit
+    0b:    Disable
+    1b:    Enable",,
+0n0042.00,TBD REGNAME FOR 0n0042,RX_GRAYCODE_EN,RW,0h,1'b0,1,"RX Gray code Enable bit
+    0b:    Disable
+    1b:    Enable",,
+----------,,,,,,,,,
+0n0043.15,TBD REGNAME FOR 0n0043,RX_SWAP_MSB_LSB,RW,1h,1'b1,1,"Select if the MSB and LSB of the PAM-4 symbol is swapped in the RX:
+    0b:    Not swapped
+    1b:    Swapped",,
+0n0043.14:10,TBD REGNAME FOR 0n0043,RSVD,RW,03h,5'b00011,5,Reserved. Do not change the default value.,,
+0n0043.09,TBD REGNAME FOR 0n0043,PRBS_CHECK_CNTR_RESET,RW,0h,1'b0,1,"PRBS checker counter reset signal: 
+    0b:    Normal accumulation
+    1b:    Keep resetting counter to 0",,
+0n0043.08,TBD REGNAME FOR 0n0043,RX_DATA_FW_FLIP,RW,0h,1'b0,1,"XOR with RX_DATA_FLIP to generate overall rx data flip: 
+    0b:    No flip
+    1b:    Flip polarity",,
+0n0043.07,TBD REGNAME FOR 0n0043,RX_DATA_FLIP,RW,0h,1'b0,1,"XOR with rx_data_firmware_flip to generate overall rx data flip: 
+    0b:    No flip
+    1b:    Flip polarity",,
+0n0043.06:05,TBD REGNAME FOR 0n0043,PRBS_MODE_SEL,RW,0h,2'b00,2,"PRBS checker and mode sel: 
+    00b:    PRBS9
+    01b:    PRBS13
+    10b:    PRBS15
+    11b:    PRBS31",,
+0n0043.04,TBD REGNAME FOR 0n0043,PU_PRBS_CHKR,RW,0h,1'b0,1,"PRBS checker power up: 
+    0b:    Power down
+    1b:    Power up",,
+0n0043.03,TBD REGNAME FOR 0n0043,PU_PRBS_SYNC_CHKR,RW,0h,1'b0,1,"PRBS sync checker power up: 
+    0b:    Power down
+    1b:    Power up",,
+0n0043.02,TBD REGNAME FOR 0n0043,RX_PRBS_FORCE_RELOAD,RW,0h,1'b0,1,Forces to reload the PRBS sync checker's shift registers: edge triggered,,
+0n0043.01,TBD REGNAME FOR 0n0043,RX_PRBS_AUTO_SYNC_EN,RW,1h,1'b1,1,"Enables the auto re-sync function: 
+    0b:    Disable
+    1b:    Enable",,
+0n0043.00,TBD REGNAME FOR 0n0043,PRBS_SYNC_CNTR_RESET,RW,0h,1'b0,1,"PRBS sync error cntr reset signal: 
+    0b:    Normal accumulation
+    1b:    Keep resetting counter to 0",,
+----------,,,,,,,,,
+0n0044.15:08,TBD REGNAME FOR 0n0044,PRBS_MISMATCH_THR,RW,00h,8'b00000000,8,PRBS mismatch threshold for the sync checker of format U8.0,,
+0n0044.07:02,TBD REGNAME FOR 0n0044,PRBS_SYNC_LOSS_THR,RW,05h,6'b000101,6,PRBS sync loss threshold for the sync checker of format U6.0,,
+0n0044.01:00,TBD REGNAME FOR 0n0044,RSVD,RW,1h,2'b01,2,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0045.15:11,TBD REGNAME FOR 0n0045,PRBS_SYNC_THR,RW,02h,5'b00010,5,PRBS sync threshold for the sync checker of format U5.0,,
+0n0045.10,TBD REGNAME FOR 0n0045,PRBS_PAT_CNTR_RESET,RW,0h,1'b0,1,"PRBS pattern cntr reset signal: 
+    1 = Keep resetting counter to 0
+    0 = Normal accumulation",,
+0n0045.09:01,TBD REGNAME FOR 0n0045,RSVD,RW,008h,9'b000001000,9,Reserved. Do not change the default value.,,
+0n0045.00,TBD REGNAME FOR 0n0045,RX_ASIC_FLIP,RW,0h,1'b0,1,Digital Inversion of RX data.,,
+----------,,,,,,,,,
+0n0046.15,TBD REGNAME FOR 0n0046,PH1_ACC_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_PH1_ACC. 1=enable,,
+0n0046.14:08,TBD REGNAME FOR 0n0046,PH1_ACC_OW,RW,00h,7'b0000000,7,Overwrite value for PH1_ACC 7 MSBs,,
+0n0046.07,TBD REGNAME FOR 0n0046,THETA2_ACC_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_THETA2_ACC. 1=enable,,
+0n0046.06:00,TBD REGNAME FOR 0n0046,THETA2_ACC_OW,RW,00h,7'b0000000,7,Overwrite value for THETA2_ACC 7 MSBs,,
+----------,,,,,,,,,
+0n0047.15,TBD REGNAME FOR 0n0047,THETA3_ACC_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_THETA3_ACC. 1=enable,,
+0n0047.14:08,TBD REGNAME FOR 0n0047,THETA3_ACC_OW,RW,00h,7'b0000000,7,Overwrite value for THETA3_ACC 7 MSBs,,
+0n0047.07,TBD REGNAME FOR 0n0047,THETA4_ACC_OWEN,RW,0h,1'b0,1,Overwrite enable signal for OW_THETA4_ACC. 1=enable,,
+0n0047.06:00,TBD REGNAME FOR 0n0047,THETA4_ACC_OW,RW,00h,7'b0000000,7,Overwrite value for THETA4_ACC 7 MSBs,,
+----------,,,,,,,,,
+0n0048.15:10,TBD REGNAME FOR 0n0048,AGC_SETTING0,RW,00h,6'b000000,6,The AGC setting for the highest peaking.,,
+0n0048.09:04,TBD REGNAME FOR 0n0048,AGC_SETTING1,RW,09h,6'b001001,6,The AGC setting for the second highest peaking.,,
+0n0048.03:00,TBD REGNAME FOR 0n0048,AGC_SETTING2_MSB,RW,4h,4'b0100,4,4 MSBs of the AGC setting for the third highest peaking.,,
+----------,,,,,,,,,
+0n0049.15:14,TBD REGNAME FOR 0n0049,AGC_SETTING2_LSB,RW,2h,2'b10,2,2 LSBs of the AGC setting for the third highest peaking.,,
+0n0049.13:08,TBD REGNAME FOR 0n0049,AGC_SETTING3,RW,1Bh,6'b011011,6,The AGC setting for the fourth highest peaking.,,
+0n0049.07:02,TBD REGNAME FOR 0n0049,AGC_SETTING4,RW,24h,6'b100100,6,The AGC setting for the fifth highest peaking.,,
+0n0049.01:00,TBD REGNAME FOR 0n0049,AGC_SETTING5_MSB,RW,2h,2'b10,2,2 MSBs of the AGC setting for the sixth highest peaking.,,
+----------,,,,,,,,,
+0n004A.15:12,TBD REGNAME FOR 0n004A,AGC_SETTING5_LSB,RW,Dh,4'b1101,4,4 LSBs of the AGC setting for the sixth highest peaking,,
+0n004A.11:06,TBD REGNAME FOR 0n004A,AGC_SETTING6,RW,36h,6'b110110,6,The AGC setting for the seventh highest peaking,,
+0n004A.05:00,TBD REGNAME FOR 0n004A,AGC_SETTING7,RW,3Fh,6'b111111,6,The AGC setting for the lowest peaking,,
+----------,,,,,,,,,
+0n004B.15:14,FREQUENCY ACCUMULATOR CONTROL,RSVD,RW,3h,2'b11,2,Reserved. Do not change the default value.,,
+0n004B.13,FREQUENCY ACCUMULATOR CONTROL,DTL_LOST_LOCK_MODE,RW,1h,1'b1,1,"Select which frequency sets alarm mode: 
+    0h    Wander detect
+    1h    Local frequency accumulator",,
+0n004B.12,FREQUENCY ACCUMULATOR CONTROL,TOP_ROTR_EN,RW,1h,1'b1,1,"Enables the frequency accumulator to top/PLL rotator
+    0h    Disables PLL interpolator
+    1h    Enables PLL interpolator (Default)",,
+0n004B.11,FREQUENCY ACCUMULATOR CONTROL,RX_FREQ_EN,RW,0h,1'b0,1,"Enables RX DTL interpolator
+    0h    Disables the DTL interpolator (Default)
+    1h    Enables the DTL interpolator",,
+0n004B.10:00,FREQUENCY ACCUMULATOR CONTROL,SD_CNTR_LIMIT_MSB,RW,002h,11'b00000000010,11,SD_CNTR_LIMIT for signal detection counter limit. 11 MSB of 20 bits.,,
+----------,,,,,,,,,
+0n004C.15:07,SIGNAL DETECTION COUNTER LIMIT,SD_CNTR_LIMIT_LSB,RW,000h,9'b000000000,9,SD_CNTR_LIMIT for signal detection counter limit. 9 LSB of 20 bits. ,,
+0n004C.06:00,SIGNAL DETECTION COUNTER LIMIT,RSVD,RW,00h,7'b0000000,7,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n004E.15:00,RX PAM4 PRBS ERROR CHECKER COUNT MSB,RX_PAM4_PRBS_ERR_CHKR_MSB,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Read only, variable value of the upper word (16 MSB) of the RX PRBS 32-bit error checker count.
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n004F.15:00,RX PAM4 PRBS ERROR CHECKER COUNT LSB,RX_PAM4_PRBS_ERR_CHKR_LSB,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Read only, variable value of the lower word of the RX PRBS 32-bit error checker count.
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n0050.15:00,PRBS BIT ERROR COUNTER MSB,PRBS_READ_SYNC_ERR_CNTR_MSB,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Readout of the PRBS bit error counter (16 MSBs)
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n0051.15:00,PRBS BIT ERROR COUNTER LSB,PRBS_READ_SYNC_ERR_CNTR_LSB,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Readout of the PRBS bit error counter (16 LSBs)
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n006A.15,TBD REGNAME FOR 0n006A,RX_READ_PHY_READY,RO,xh,1'bx,1,Readout of the PHY_READY signal from state machine,,
+0n006A.14:08,TBD REGNAME FOR 0n006A,RSVD,RO,xxh,7'bxxxxxxx,7,Reserved. Do not change the default value.,,
+0n006A.07,TBD REGNAME FOR 0n006A,READ_SIG_DET,RO,xh,1'bx,1,Readout of the signal detect indicator from SD_PAT counter block,,
+0n006A.06:00,TBD REGNAME FOR 0n006A,RSVD,RO,xxh,7'bxxxxxxx,7,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n006C.15,TBD REGNAME FOR 0n006C,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n006C.14:08,TBD REGNAME FOR 0n006C,READ_PH1,RO,xxh,7'bxxxxxxx,7,Readout of DTL's phase1,,
+0n006C.07,TBD REGNAME FOR 0n006C,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n006C.06:00,TBD REGNAME FOR 0n006C,READ_THETA2,RO,xxh,7'bxxxxxxx,7,Readout of DTL's theta2,,
+----------,,,,,,,,,
+0n006D.15,TBD REGNAME FOR 0n006D,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n006D.14:08,TBD REGNAME FOR 0n006D,READ_THETA3,RO,xxh,7'bxxxxxxx,7,Readout of DTL's theta3.,,
+0n006D.07,TBD REGNAME FOR 0n006D,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n006D.06:00,TBD REGNAME FOR 0n006D,READ_THETA4,RO,xxh,7'bxxxxxxx,7,Readout of DTL's theta4.,,
+----------,,,,,,,,,
+0n006E.15:10,TBD REGNAME FOR 0n006E,RSVD,RW,00h,6'b000000,6,Reserved. Do not change the default value.,,
+0n006E.09,TBD REGNAME FOR 0n006E,READOUT_SYNC_EN,RW,0h,1'b0,1,Enable bit for atomic readout of PRBS errors.,,
+0n006E.08,TBD REGNAME FOR 0n006E,READOUT_CAPTURE,RW,0h,1'b0,1,Latch the PRBS errors to read out register rising edge trigger.,,
+0n006E.07:00,TBD REGNAME FOR 0n006E,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0073.15:11,FREQUENCY ACCUMULATOR,RSVD,RO,xxh,5'bxxxxx,5,Reserved. Do not change the default value.,,
+0n0073.10:00,FREQUENCY ACCUMULATOR,READ_FREQ_ACC,RO,xxxh,11'bxxxxxxxxxxx,11,Readout of frequency accumulator 16 MSBs from DTL.,,
+----------,,,,,,,,,
+0n0074.15,READ PHASE WANDER,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n0074.14:00,READ PHASE WANDER,READ_PH_WANDER,RO,xxxxh,15'bxxxxxxxxxxxxxxx,15,"Readout of the absolute value of phase wander in U15.14 format
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n0079.15:13,TBD REGNAME FOR 0n00799,RSVD,RW,2h,3'b010,3,Reserved. Do not change the default value.,,
+0n0079.12,TBD REGNAME FOR 0n00799,LOCK_PH_FLIP,RW,0h,1'b0,1,TRF output polarity. Set to 1b. ,,
+0n0079.11:10,TBD REGNAME FOR 0n00799,SPD_SEL2,RW,0h,2'b00,2,"TRF speed selection MSB:
+    Set to 01b if RX baud rate is 25.78G and TX baud rate is 26.56G.
+    Otherwise, set to 00b.",,
+0n0079.09:08,TBD REGNAME FOR 0n00799,SPD_SEL1,RW,0h,2'b00,2,"TRF speed selection LSB:
+    Set to 01b if RX baud rate is 26.56G and TX baud rate is 25.78G.
+    Otherwise, set to 00b.",,
+0n0079.07:05,TBD REGNAME FOR 0n00799,FREQ_MUP,RW,5h,3'b101,3,TRF control bit. Always set to 010b.,,
+0n0079.04:03,TBD REGNAME FOR 0n00799,FREQ_MULTIPLIER,RW,0h,2'b00,2,"TRF control bit:
+    Set to 01b if RX baud rate is 25.78G, and TX baud rate is 26.56G.
+    Set to 10b if RX baud rate is 26.56G and TX baud rate is 25.78G.
+    Otherwise, set to 00b.",,
+0n0079.02:00,TBD REGNAME FOR 0n00799,FREQ_SHIFT_SEL,RW,4h,3'b100,3,TRF control bit. Always set to 100b.,,
+----------,,,,,,,,,
+0n0080.15,TBD REGNAME FOR 0n0080,BP5_EN,RW,0h,1'b0,1,"Enable signal for breakpoint 5:
+    1h:     breakpoint function enabled
+    0h:     function disabled",,
+0n0080.14:13,TBD REGNAME FOR 0n0080,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value. ,,
+0n0080.12:08,TBD REGNAME FOR 0n0080,BP5_STATE,RW,00h,5'b00000,5,Breakpoint 5 for the state machine ,,
+0n0080.07,TBD REGNAME FOR 0n0080,BP6_EN,RW,0h,1'b0,1,"Enable signal for breakpoint 6:
+    1h:     breakpoint function enabled
+    0h:     function disabled",,
+0n0080.06:05,TBD REGNAME FOR 0n0080,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value. ,,
+0n0080.04:00,TBD REGNAME FOR 0n0080,BP6_STATE,RW,00h,5'b00000,5,Breakpoint 6 for the state machine ,,
+----------,,,,,,,,,
+0n0087.15:12,TBD REGNAME FOR 0n0087,COMPARATOR_OFFSETS_ACCU_DATA_OW,RW,0h,4'b0000,4,,,
+0n0087.11,TBD REGNAME FOR 0n0087,MU_OFFSET_OWEN,RW,0h,1'b0,1,,,
+0n0087.10:09,TBD REGNAME FOR 0n0087,MU_OFFSET_OW,RW,0h,2'b00,2,,,
+0n0087.08:00,TBD REGNAME FOR 0n0087,RSVD,RW,000h,9'b000000000,9,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0088.15:12,TBD REGNAME FOR 0n0088,PLUS_MARGIN_SEL,RW,0h,4'b0000,4,Plus margin readout address select.,,
+0n0088.11:08,TBD REGNAME FOR 0n0088,MINUS_MARGIN_SEL,RW,0h,4'b0000,4,Minus margin readout address select.,,
+0n0088.07:04,TBD REGNAME FOR 0n0088,THS_SEL,RW,0h,4'b0000,4,Threshold 0-11 readout select.,,
+0n0088.03:00,TBD REGNAME FOR 0n0088,RSVD,RW,0h,4'b0000,4,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n008F.15,TBD REGNAME FOR 0n008F,PAM4_BP3_EN,RW,0h,1'b0,1,"Enable signal for breakpoint 3:
+    1h:     breakpoint function enabled
+    0h:     function disabled",,
+0n008F.14:13,TBD REGNAME FOR 0n008F,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value. ,,
+0n008F.12:08,TBD REGNAME FOR 0n008F,PAM4_BP3_STATE,RW,00h,5'b00000,5,Breakpoint 3 for the state machine ,,
+0n008F.07,TBD REGNAME FOR 0n008F,PAM4_BP4_EN,RW,0h,1'b0,1,"Enable signal for breakpoint 4:
+    1h:     breakpoint function enabled
+    0h:     function disabled",,
+0n008F.06:05,TBD REGNAME FOR 0n008F,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value. ,,
+0n008F.04:00,TBD REGNAME FOR 0n008F,PAM4_BP4_STATE,RW,00h,5'b00000,5,Breakpoint 4 for the state machine ,,
+----------,,,,,,,,,
+0n0090.15,TBD REGNAME FOR 0n0090,XCORR_C_QUA_POL,RW,1h,1'b1,1,Polarity for decision symbol in qualify U1.0 ,,
+0n0090.14:12,TBD REGNAME FOR 0n0090,XCORR_CORR_SHIFT_TAP,RW,0h,3'b000,3,Chunk index U3.0,,
+0n0090.11:08,TBD REGNAME FOR 0n0090,XCORR_TIMER_SET_TAP,RW,0h,4'b0000,4,Counter timer U4.0,,
+0n0090.07:04,TBD REGNAME FOR 0n0090,XCORR_FIXED_PAT_XCORR,RW,0h,4'b0000,4,"Qualify pattern [b0, bm1] U4.0",,
+0n0090.03:00,TBD REGNAME FOR 0n0090,XCORR_CNTR_READ_MUX,RW,0h,4'b0000,4,Read XCORR counter mux U4.0,,
+----------,,,,,,,,,
+0n0091.15:09,TBD REGNAME FOR 0n0091,RSVD,RW,00h,7'b0000000,7,Reserved. Do not change the default value.,,
+0n0091.08,TBD REGNAME FOR 0n0091,XCORR_GATE,RW,1h,1'b1,1,Disable bit for XCORR U1.0,,
+0n0091.07:05,TBD REGNAME FOR 0n0091,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n0091.04,TBD REGNAME FOR 0n0091,XCORR_CNTR_FREEZE_DC,RW,0h,1'b0,1,Counter freeze for Error counter U1.0,,
+0n0091.03,TBD REGNAME FOR 0n0091,XCORR_CNTR_FREEZE_TAP,RW,0h,1'b0,1,Counter freeze for tap counter U1.0,,
+0n0091.02,TBD REGNAME FOR 0n0091,XCORR_RESULT_CLR_DC,RW,0h,1'b0,1,Counter clear for Error counter U1.0,,
+0n0091.01,TBD REGNAME FOR 0n0091,XCORR_RESULT_CLR_TAP,RW,0h,1'b0,1,Counter clear for tap counter U1.0,,
+0n0091.00,TBD REGNAME FOR 0n0091,XCORR_TIMER_START_CLR_TAP,RW,0h,1'b0,1,Timer start/clear control U1.0,,
+----------,,,,,,,,,
+0n0092.15:00,TBD REGNAME FOR 0n0092,XCORR_READOUT,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,XCORR tap counter readout S16.0,,
+----------,,,,,,,,,
+0n0093.15:00,TBD REGNAME FOR 0n0093,XCORR_ERR_READOUT,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Error counter readout S16.0,,
+----------,,,,,,,,,
+0n0094.15,TBD REGNAME FOR 0n0094,MM_DTL_EN,RW,0h,1'b0,1,"DTL mode. 
+    0b:     BB
+    1b:     MM",,
+0n0094.14,TBD REGNAME FOR 0n0094,MM_QUALI_MODE,RW,0h,1'b0,1,"MM UPDN Qualification mode.
+    1b: MSB transition
+    0b: no qualifier",,
+0n0094.13:08,TBD REGNAME FOR 0n0094,MM_F0_FGT,RW,00h,6'b000000,6,F0 target value.,,
+0n0094.07,TBD REGNAME FOR 0n0094,MM_POL,RW,0h,1'b0,1,MM UPDN polarity flip.,,
+0n0094.06,TBD REGNAME FOR 0n0094,MM_LEV_UPDATE,RW,0h,1'b0,1,"Update all the settings, rising edge sensitive.",,
+0n0094.05:00,TBD REGNAME FOR 0n0094,MM_F1_FGT,RW,00h,6'b000000,6,F1 target value.,,
+----------,,,,,,,,,
+0n0095.15:14,TBD REGNAME FOR 0n0095,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0095.13:08,TBD REGNAME FOR 0n0095,MM_QUANT_LEV0,RW,00h,6'b000000,6,Quanti level 0. S6.7,,
+0n0095.07:06,TBD REGNAME FOR 0n0095,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0095.05:00,TBD REGNAME FOR 0n0095,MM_QUANT_LEV1,RW,00h,6'b000000,6,Quanti level 1. S6.7,,
+----------,,,,,,,,,
+0n0096.15:14,TBD REGNAME FOR 0n0096,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0096.13:08,TBD REGNAME FOR 0n0096,MM_QUANT_LEV2,RW,00h,6'b000000,6,Quanti level 2. S6.7,,
+0n0096.07:06,TBD REGNAME FOR 0n0096,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0096.05:00,TBD REGNAME FOR 0n0096,MM_QUANT_LEV3,RW,00h,6'b000000,6,Quanti level 3. S6.7,,
+----------,,,,,,,,,
+0n0097.15:14,TBD REGNAME FOR 0n0097,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0097.13:08,TBD REGNAME FOR 0n0097,MM_QUANT_LEV4,RW,00h,6'b000000,6,Quanti level 4. S6.7,,
+0n0097.07:06,TBD REGNAME FOR 0n0097,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0097.05:00,TBD REGNAME FOR 0n0097,MM_QUANT_LEV5,RW,00h,6'b000000,6,Quanti level 5. S6.7,,
+----------,,,,,,,,,
+0n0098.15:14,TBD REGNAME FOR 0n0098,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0098.13:08,TBD REGNAME FOR 0n0098,MM_QUANT_LEV6,RW,00h,6'b000000,6,Quanti level 6. S6.7,,
+0n0098.07:06,TBD REGNAME FOR 0n0098,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0098.05:00,TBD REGNAME FOR 0n0098,MM_QUANT_LEV7,RW,00h,6'b000000,6,Quanti level 7. S6.7,,
+----------,,,,,,,,,
+0n0099.15:14,TBD REGNAME FOR 0n0099,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0099.13:08,TBD REGNAME FOR 0n0099,MM_QUANT_LEV8,RW,00h,6'b000000,6,Quanti level 8. S6.7,,
+0n0099.07:06,TBD REGNAME FOR 0n0099,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0099.05:00,TBD REGNAME FOR 0n0099,MM_QUANT_LEV9,RW,00h,6'b000000,6,Quanti level 9. S6.7,,
+----------,,,,,,,,,
+0n009A.15:14,TBD REGNAME FOR 0n009A,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n009A.13:08,TBD REGNAME FOR 0n009A,MM_QUANT_LEV10,RW,00h,6'b000000,6,Quanti level 10. S6.7,,
+0n009A.07:06,TBD REGNAME FOR 0n009A,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n009A.05:00,TBD REGNAME FOR 0n009A,MM_QUANT_LEV11,RW,00h,6'b000000,6,Quanti level 11. S6.7,,
+----------,,,,,,,,,
+0n009B.15:14,TBD REGNAME FOR 0n009B,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n009B.13:08,TBD REGNAME FOR 0n009B,MM_QUANT_LEV12,RW,00h,6'b000000,6,Quanti level 12. S6.7,,
+0n009B.07:00,TBD REGNAME FOR 0n009B,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00A0.15,TX TEST PATTERN CONFIGURATION,TX_TEST_DATA_SRC,RW,0h,1'b0,1,"Mux control bit selecting the TX test pattern when operating in test mode.
+    0h:     Test pattern memory, JP03B, or TxLinearity
+    1h:     PRBS generator",,
+0n00A0.14,TX TEST PATTERN CONFIGURATION,TX_PRBS_CLK_EN,RW,1h,1'b1,1,"Enables the clock source to the PRBS generator.
+    0h:     Disabled
+    1h:     Enabled",,
+0n00A0.13,TX TEST PATTERN CONFIGURATION,TX_TEST_EN,RW,0h,1'b0,1,"Mux control bit to select whether the TX sends out user data or test data.
+    0h:     User data
+    1h:     Test data",,
+0n00A0.12,TX TEST PATTERN CONFIGURATION,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n00A0.11,TX TEST PATTERN CONFIGURATION,TX_PRBS_GEN_EN,RW,0h,1'b0,1,"Enables the TX PRBS generator logic.
+    0h:     Disabled
+    1h:     Enabled",,
+0n00A0.10,TX TEST PATTERN CONFIGURATION,TX_PRBS_GEN_ERR,RW,0h,1'b0,1,"Setting this bit will generate a single bit flip in the PRBS generated output. To send additional error(s), the bit must be cleared first.",,
+0n00A0.09:08,TX TEST PATTERN CONFIGURATION,TX_PRBS_MODE,RW,0h,2'b00,2,"Mode select for the TX PRBS generator.
+    00b:     NRZ PRBS9 or PAM-4 PRBS9
+    01b:     NRZ PRBS15 or PAM-4 PRBS13
+    10b:     NRZ PRBS23 or PAM-4 PRBS15
+    11b:     NRZ PRBS31 or PAM-4 PRBS31
+* The PRBS13Q or PRBS31Q test pattern is a sequence formed by gray coding pairs of bits from two repetitions of the PRBS13 or PRBS31 pattern into PAM-4 symbols. After setting register 0n00AF[9]=1'b1 to enable gray code, the normal PRBS generator will generate PRBS13Q and PRBS31Q patterns.",,
+0n00A0.07,TX TEST PATTERN CONFIGURATION,TX_DATA_POL_FLIP,RW,0h,1'b0,1,"Polarity of the outgoing TX data.
+    0h:     Normal
+    1h:     Inverted",,
+0n00A0.06,TX TEST PATTERN CONFIGURATION,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n00A0.05,TX TEST PATTERN CONFIGURATION,TX_ANA_OUT_FLIP,RW,0h,1'b0,1,"TX analog output flip control
+    0h:     Inverted
+    1h:     Normal",,
+0n00A0.04,TX TEST PATTERN CONFIGURATION,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n00A0.03:02,TX TEST PATTERN CONFIGURATION,PAM4_TEST_PAT_MODE,RW,0h,2'b00,2,"Use these bits to select the pattern mode.
+    00b:     Pattern is generated by pattern memory
+    01b:     Pattern is JP03B
+    10b:     Pattern is TxLinearity
+Notes:
+*To use the JP03B pattern, set 0n00A0[13] to 1'b1, set 0n00A0[15] to 1'b0, and set 00A0[3:2] to 2'b01.
+* The JP03A pattern is a repeating {0,3} sequence that can be generated in pattern memory registers 00A1, 00A2, 00A3, and 00A4. Set 0n00A0[3:2] to 2'b00.",,
+0n00A0.01:00,TX TEST PATTERN CONFIGURATION,HALF_RATE_SPEED_MODE,RW,0h,2'b00,2,"Use these bits to select the operation speed when TX half-rate is enabled in 0n00B0[0] (set to 1'b1).
+    00b:     Full half-rate
+    01b:     Half half-rate
+    10b:     Quarter half-rate
+    11b:     Eighth half-rate",,
+----------,,,,,,,,,
+0n00A1.15:00,TX TEST PATTERN 3,TX_TEST_PAT_3,RW,AAAAh,16'b1010101010101010,16,"Upper word of 64-bit TX test pattern memory, bits 63:48. (16 MSB)",,
+----------,,,,,,,,,
+0n00A2.15:00,TX TEST PATTERN 2,TX_TEST_PAT_2,RW,AAAAh,16'b1010101010101010,16,"Next word of 64-bit TX test pattern memory, bits 47:32. (Next 16 MSB)",,
+----------,,,,,,,,,
+0n00A3.15:00,TX TEST PATTERN 1,TX_TEST_PAT_1,RW,AAAAh,16'b1010101010101010,16,"Next word of 64-bit TX test pattern memory, bits 31:16. (Next 16 MSB)",,
+----------,,,,,,,,,
+0n00A4.15:00,TX TEST PATTERN 0,TX_TEST_PAT_0,RW,AAAAh,16'b1010101010101010,16,"Lowest word of 64-bit TX test pattern memory, bits 15:0. (16 LSB)",,
+----------,,,,,,,,,
+0n00A5.15:08,TX PRECURSOR 2 LEVEL 1,TX_PRE_2,RW,00h,8'b00000000,8,TX coefficient value for pre-cursor 2 of +1 level.,,
+0n00A5.07:00,TX PRECURSOR 2 LEVEL 1,TX_PRE_2_COMP,RW,00h,8'b00000000,8,TX coefficient value for pre-cursor 2 of -1 level.,,
+----------,,,,,,,,,
+0n00A6.15:08,TX PRECURSOR 2 LEVEL 3,TX_PRE_2_3X,RW,00h,8'b00000000,8,TX coefficient value for pre-cursor 2 of +3 level.,,
+0n00A6.07:00,TX PRECURSOR 2 LEVEL 3,TX_PRE_2_3X_COMP,RW,00h,8'b00000000,8,TX coefficient value for pre-cursor 2 of -3 level.,,
+----------,,,,,,,,,
+0n00A7.15:08,TX PRECURSOR 1 LEVEL 1,TX_PRE_1,RW,00h,8'b00000000,8,TX coefficient value for pre-cursor 1 of +1 level,,
+0n00A7.07:00,TX PRECURSOR 1 LEVEL 1,TX_PRE_1_COMP,RW,00h,8'b00000000,8,TX coefficient value for pre-cursor 1 of -1 level.,,
+----------,,,,,,,,,
+0n00A8.15:08,TX PRECURSOR 1 LEVEL 3,TX_PRE_1_3X,RW,00h,8'b00000000,8,TX coefficient value for pre-cursor 1 of +3 level.,,
+0n00A8.07:00,TX PRECURSOR 1 LEVEL 3,TX_PRE_1_3X_COMP,RW,00h,8'b00000000,8,TX coefficient value for pre-cursor 1 of -3 level.,,
+----------,,,,,,,,,
+0n00A9.15:08,TX MAINCURSOR LEVEL 1,TX_MAIN,RW,00h,8'b00000000,8,TX coefficient value for the main-cursor of +1 level.,,
+0n00A9.07:00,TX MAINCURSOR LEVEL 1,TX_MAIN_COMP,RW,00h,8'b00000000,8,TX coefficient value for the main cursor of -1 level. ,,
+----------,,,,,,,,,
+0n00AA.15:08,TX MAINCURSOR LEVEL 3,TX_MAIN_3X,RW,00h,8'b00000000,8,TX coefficient value for the main-cursor of +3 level,,
+0n00AA.07:00,TX MAINCURSOR LEVEL 3,TX_MAIN_3X_COMP,RW,00h,8'b00000000,8,TX coefficient value for the main cursor -3 level. ,,
+----------,,,,,,,,,
+0n00AB.15:08,TX POSTCURSOR 1 LEVEL 1,TX_POST_1,RW,1Eh,8'b00011110,8,TX coefficient value for post-cursor 1 of level +1,,
+0n00AB.07:00,TX POSTCURSOR 1 LEVEL 1,TX_POST_1_COMP,RW,00h,8'b00000000,8,TX coefficient value for post-cursor 1 of level -1,,
+----------,,,,,,,,,
+0n00AC.15:08,TX POSTCURSOR 1 LEVEL 3,TX_POST_1_3X,RW,00h,8'b00000000,8,TX coefficient for post-cursor 1 of level +3.,,
+0n00AC.07:00,TX POSTCURSOR 1 LEVEL 3,TX_POST_1_3X_COMP,RW,00h,8'b00000000,8,TX coefficient value for post-cursor 1 of level -3.,,
+----------,,,,,,,,,
+0n00AD.15:08,TX POSTCURSOR 2 LEVEL 1,TX_POST_2,RW,00h,8'b00000000,8,TX coefficient value for post-cursor 2 of level +1.,,
+0n00AD.07:00,TX POSTCURSOR 2 LEVEL 1,TX_POST_2_COMP,RW,00h,8'b00000000,8,TX coefficient for post-cursor 2 of level -1.,,
+----------,,,,,,,,,
+0n00AE.15:08,TX POSTCURSOR 2 LEVEL 3,TX_POST_2_3X,RW,00h,8'b00000000,8,TX coefficient value for post-cursor 2 of level +3.,,
+0n00AE.07:00,TX POSTCURSOR 2 LEVEL 3,TX_POST_2_3X_COMP,RW,00h,8'b00000000,8,TX coefficient value for post-cursor 2 of level -3.,,
+----------,,,,,,,,,
+0n00AF.15,TX TAP SCALING,TX_POST2_AUTO_SEL,RW,1h,1'b1,1,Enable bit for automatic select coefficient post-cursor 2,,
+0n00AF.14,TX TAP SCALING,TX_POST1_AUTO_SEL,RW,1h,1'b1,1,Enable bit for automatic select coefficient post-cursor 1,,
+0n00AF.13,TX TAP SCALING,TX_MAIN_AUTO_SEL,RW,1h,1'b1,1,Enable bit for automatic select coefficient main cursor,,
+0n00AF.12,TX TAP SCALING,TX_PRE1_AUTO_SEL,RW,1h,1'b1,1,Enable bit for automatic select coefficient pre-cursor 1,,
+0n00AF.11,TX TAP SCALING,TX_PRE2_AUTO_SEL,RW,1h,1'b1,1,Enable bit for automatic select coefficient pre-cursor 2,,
+0n00AF.10,TX TAP SCALING,TX_SWAP_MSB_LSB,RW,1h,1'b1,1,Swap the MSB and LSB.,,
+0n00AF.09,TX TAP SCALING,TX_GRAYCODE_EN,RW,0h,1'b0,1,"Set this bit to 1b to enable gray code. When gray code is enabled, you can generate PAM-4 PRBS13Q or PRBS31Q test patterns. See also TX_PRBS_MODE in register 0n00A0.",,
+0n00AF.08,TX TAP SCALING,TX_PRECODE_EN,RW,0h,1'b0,1,"TX Precode enable bit: 1=enable, 0=disable",,
+0n00AF.07:06,TX TAP SCALING,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n00AF.05,TX TAP SCALING,TX_POST2_SCALE,RW,1h,1'b1,1,"TX post-cursor 2 scale
+    0h: Half scale
+    1h: Full scale",,
+0n00AF.04,TX TAP SCALING,TX_POST1_SCALE,RW,1h,1'b1,1,"TX post-cursor 1 scale
+    0h: Half scale
+    1h: Full scale",,
+0n00AF.03,TX TAP SCALING,TX_MAIN_SCALE,RW,1h,1'b1,1,"TX main cursor scale
+    0h: Half scale
+    1h: Full scale",,
+0n00AF.02,TX TAP SCALING,TX_PRE1_SCALE,RW,1h,1'b1,1,"TX pre-cursor 1 scale
+    0h: Half scale
+    1h: Full scale",,
+0n00AF.01,TX TAP SCALING,TX_PRE2_SCALE,RW,1h,1'b1,1,"TX pre-cursor 2 scale
+    0h: Half scale
+    1h: Full scale",,
+0n00AF.00,TX TAP SCALING,RSVD,RW,1h,1'b1,1,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00B0.15,TX NRZ AND PAM4 MODE CONTROL,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n00B0.14,TX NRZ AND PAM4 MODE CONTROL,TX_NRZ_PRBS_CLK_EN,RW,1h,1'b1,1,"For NRZ mode, enables the clock source to the PRBS generator.
+    0h:     PAM-4 mode
+    1h:     NRZ mode",,
+0n00B0.13:12,TX NRZ AND PAM4 MODE CONTROL,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n00B0.11,TX NRZ AND PAM4 MODE CONTROL,TX_NRZ_PRBS_GEN_EN,RW,0h,1'b0,1,"For NRZ mode, enables the TX PRBS generator logic.
+    0h:     Disabled
+    1h:     Enabled",,
+0n00B0.10,TX NRZ AND PAM4 MODE CONTROL,TX_NRZ_PRBS_GERR_EN,RW,0h,1'b0,1,"Setting this bit generates a single bit flip in the PRBS generated output. To send additional error(s), the bit must be cleared first.",,
+0n00B0.09:02,TX NRZ AND PAM4 MODE CONTROL,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+0n00B0.01,TX NRZ AND PAM4 MODE CONTROL,TX_NRZ_MODE,RW,0h,1'b0,1,"Mux control bit that selects the TX operating mode (PAM-4 or NRZ).
+    0h:     PAM-4 mode (Default)
+    1h:     NRZ mode",,
+0n00B0.00,TX NRZ AND PAM4 MODE CONTROL,TX_HALF_RATE_EN,RW,0h,1'b0,1,"For NRZ 10G mode, set this field to 1b.
+For NRZ 25G mode, leave this field at 0b. (Default)",,
+----------,,,,,,,,,
+0n00CA.15:00,TBD REGNAME FOR 0n00CA,SUBREVISION,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Subrevision,,
+----------,,,,,,,,,
+0n00CB.15:00,TBD REGNAME FOR 0n00CB,REVISION,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Revision,,
+----------,,,,,,,,,
+0n00CC.15:00,TBD REGNAME FOR 0n00CC,Version,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Version,,
+----------,,,,,,,,,
+0n00CE.15,TBD REGNAME FOR 0n00CE,PU_ACJTAG,RW,0h,1'b0,1,,,
+0n00CE.14:13,TBD REGNAME FOR 0n00CE,IDAC_ACJTAG,RW,0h,2'b00,2,,,
+0n00CE.12:00,TBD REGNAME FOR 0n00CE,RSVD,RW,0000h,13'b0000000000000,13,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00DB.15,TBD REGNAME FOR 0n00DB,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n00DB.14:08,TBD REGNAME FOR 0n00DB,TX_PLL_VCO_RANGE,RW,1Bh,7'b0011011,7,,,
+0n00DB.07:00,TBD REGNAME FOR 0n00DB,RSVD,RW,40h,8'b01000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00E9.15:13,TBD REGNAME FOR 0n00E90n00,TX_TESTMODE,RW,0h,3'b000,3,,,
+0n00E9.12:09,TBD REGNAME FOR 0n00E90n00,TX_VTSTGROUP,RW,0h,4'b0000,4,,,
+0n00E9.08,TBD REGNAME FOR 0n00E90n00,RX_TEST_EN,RW,0h,1'b0,1,"Enable TX block DC voltage test mode:
+1h = Enable test mode
+0h = Disable test mode",,
+0n00E9.07:00,TBD REGNAME FOR 0n00E90n00,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00EA.15:13,TBD REGNAME FOR 0n00EA0n00,RSVD,RW,4h,3'b100,3,Reserved. Do not change the default value.,,
+0n00EA.12:10,TBD REGNAME FOR 0n00EA0n00,V1P3REGVDRVBUF,RW,4h,3'b100,3,,,
+0n00EA.09:07,TBD REGNAME FOR 0n00EA0n00,RSVD,RW,3h,3'b011,3,Reserved. Do not change the default value.,,
+0n00EA.06,TBD REGNAME FOR 0n00EA0n00,PU_HIMODE_VDDR,RW,0h,1'b0,1,,,
+0n00EA.05:00,TBD REGNAME FOR 0n00EA0n00,RSVD,RW,00h,6'b000000,6,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00EB.15:12,TBD REGNAME FOR 0n00EB,RSVD,RW,6h,4'b0110,4,Reserved. Do not change the default value.,,
+0n00EB.11,TBD REGNAME FOR 0n00EB,ENEXTSEL,RW,0h,1'b0,1,,,
+0n00EB.10:00,TBD REGNAME FOR 0n00EB,RSVD,RW,36Ch,11'b01101101100,11,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00ED.15:12,TBD REGNAME FOR 0n00ED0n00,EDGE1,RW,7h,4'b0111,4,,,
+0n00ED.11:08,TBD REGNAME FOR 0n00ED0n00,EDGE2,RW,7h,4'b0111,4,,,
+0n00ED.07:04,TBD REGNAME FOR 0n00ED0n00,EDGE3,RW,7h,4'b0111,4,,,
+0n00ED.03:00,TBD REGNAME FOR 0n00ED0n00,EDGE4,RW,7h,4'b0111,4,,,
+----------,,,,,,,,,
+0n00EE.15:10,TBD REGNAME FOR 0n00EE0n00,RSVD,RW,1Ah,6'b011010,6,Reserved. Do not change the default value.,,
+0n00EE.09,TBD REGNAME FOR 0n00EE0n00,BYPASS1P3REG_ADC,RW,0h,1'b0,1,,,
+0n00EE.08:00,TBD REGNAME FOR 0n00EE0n00,RSVD,RW,11Ch,9'b100011100,9,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00F0.15,TBD REGNAME FOR 0n00F00n00,EYE_EN,RW,0h,1'b0,1,,,
+0n00F0.14:00,TBD REGNAME FOR 0n00F00n00,RSVD,RW,000h,15'b000000000000000,15,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00F2.15:11,TBD REGNAME FOR 0n00F20n00,IDACX_EYE,RW,00h,5'b00000,5,,,
+0n00F2.10:06,TBD REGNAME FOR 0n00F20n00,IDACY_EYE,RW,00h,5'b00000,5,,,
+0n00F2.05:00,TBD REGNAME FOR 0n00F20n00,IDACZ_EYE,RW,00h,6'b000000,6,,,
+----------,,,,,,,,,
+0n00F3.15,TBD REGNAME FOR 0n00F30n00,PH_ROTR_OWEN,RW,0h,1'b0,1,,,
+0n00F3.14:08,TBD REGNAME FOR 0n00F30n00,PH_ROTR_OW,RW,0h,7'b0000000,7,,,
+0n00F3.07,TBD REGNAME FOR 0n00F30n00,MASTERLESS_MODE_DIS,RW,00h,1'b0,1,,,
+0n00F3.06,TBD REGNAME FOR 0n00F30n00,PH_ROTR_FLIP,RW,0h,1'b0,1,,,
+0n00F3.05,TBD REGNAME FOR 0n00F30n00,ROTR_DIS,RW,0h,1'b0,1,,,
+0n00F3.04:03,TBD REGNAME FOR 0n00F30n00,REFCLK_MUX,RW,0h,2'b00,2,,,
+0n00F3.02,TBD REGNAME FOR 0n00F30n00,TX_PH_ROTR_FLIP,RW,0h,1'b0,1,,,
+0n00F3.01:00,TBD REGNAME FOR 0n00F30n00,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00F4.15:14,TBD REGNAME FOR 0n00F40n00,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n00F4.13,TBD REGNAME FOR 0n00F40n00,FREQ_ACC_TOP_OWEN,RW,0h,1'b0,1,,,
+0n00F4.12:01,TBD REGNAME FOR 0n00F40n00,FREQ_ACC_TOP_OW,RW,000h,12'b000000000000,12,,,
+0n00F4.00,TBD REGNAME FOR 0n00F40n00,TX_PI_EN,RW,0h,1'b0,1,Enable TX PLL using RX recovered clock as its reference clock.,,
+----------,,,,,,,,,
+0n00FA.15,TBD REGNAME FOR 0n00FA0n00,PU_VDRV_MA,RW,1h,1'b1,1,,,
+0n00FA.14,TBD REGNAME FOR 0n00FA0n00,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n00FA.13:11,TBD REGNAME FOR 0n00FA0n00,TX_PLL_TESTMODE,RW,00h,3'b000,3,,,
+0n00FA.10:06,TBD REGNAME FOR 0n00FA0n00,TX_PLL_VTSTGROUP,RW,0h,5'b00000,5,,,
+0n00FA.05,TBD REGNAME FOR 0n00FA0n00,TX_PLL_EST_EN,RW,0h,1'b0,1,,,
+0n00FA.04:00,TBD REGNAME FOR 0n00FA0n00,RSVD,RW,10h,5'b10000,5,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00FD.15:11,TBD REGNAME FOR 0n00FD,RSVD,RW,02h,5'b00010,5,Reserved. Do not change the default value.,,
+0n00FD.10,TBD REGNAME FOR 0n00FD,TX_BYPASS_PLLPMP,RW,0h,1'b0,1,,,
+0n00FD.09,TBD REGNAME FOR 0n00FD,TX_PLL_BYPASS1P7REG,RW,1h,1'b1,1,,,
+0n00FD.08:00,TBD REGNAME FOR 0n00FD,RSVD,RW,36h,9'b000110110,9,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n00FE.15:07,TBD REGNAME FOR 0n00FE,TX_PLL_N,RW,052h,9'b001010010,9,"PLL clock multiplier where:
+    PLL frequency = PLL reference clock * 2 * PLL_N. 
+The SerDes user NRZ rate is 2 * PLL frequency.
+The PAM-4 rate is 4 * PLL frequency.",,
+0n00FE.06:04,TBD REGNAME FOR 0n00FE,TX_CHARGE_PUMP_CUR,RW,3h,3'b011,3,,,
+0n00FE.03:01,TBD REGNAME FOR 0n00FE,TX_VCO_CURRENT,RW,2h,3'b010,3,,,
+0n00FE.00,TBD REGNAME FOR 0n00FE,PU_TX_PLL,RW,1h,1'b1,1,Power up PLL when this field is set to 1.,,
+----------,,,,,,,,,
+0n00FF.15:13,TBD REGNAME FOR 0n00FF,TX_VBG,RW,4h,3'b100,3,,,
+0n00FF.12,TBD REGNAME FOR 0n00FF,PU_TX_BG,RW,1h,1'b1,1,,,
+0n00FF.11:01,TBD REGNAME FOR 0n00FF,RSVD,RW,6FBh,11'b11011111011,11,Reserved. Do not change the default value.,,
+0n00FF.00,TBD REGNAME FOR 0n00FF,TX_REFCLK_DIV4_EN,RW,0h,1'b0,1,Mux control to select the LVDS reference clock directly to the PLLs when this field is set to 0 or to a/4 version when this field is set to 1.,,
+----------,,,,,,,,,
+0n0100.15:14,DFE INIT 1 VALUE,RSVD,RW,1h,2'b01,2,Reserved. Do not change the default value.,,
+0n0100.13:00,DFE INIT 1 VALUE,DFE_INIT_1_VAL,RW,1185h,14'b01000110000101,14,DFE init 1 value.,,
+----------,,,,,,,,,
+0n0101.15:14,DELTA CONTROL,DELTA_ADAPT_EN,RW,3h,2'b11,2,"DFE parameter. For 25G, set this field to 01b. For 10G, set this field to 00b.",,
+0n0101.13:07,DELTA CONTROL,DELTA_MIN,RW,04h,7'b0000100,7,Controls the low limit for delta accumulator.,,
+0n0101.06:00,DELTA CONTROL,TLOOP_CONST,RW,01h,7'b0000001,7,Timing loop constant.,,
+----------,,,,,,,,,
+0n0102.15:04,DFE ADAPTATION CONTROL,TARGET_CTRL,RW,200h,12'b001000000000,12,DFE adaptation target.,,
+0n0102.03:00,DFE ADAPTATION CONTROL,AGC_PERIOD,RW,6h,4'b0110,4,AGC settling time.,,
+----------,,,,,,,,,
+0n0103.15:11,RX NRZ SIGNAL DETECTION THRESHOLD,RSVD,RW,1Bh,5'b11011,5,Reserved. Do not change the default value.,,
+0n0103.10:00,RX NRZ SIGNAL DETECTION THRESHOLD,RX_NRZ_SD_THR,RW,333h,11'b01100110011,11,Signal detect threshold level of format U11.11. This is an unsigned number and each bit is equivalent to 0.4mV.,,
+----------,,,,,,,,,
+0n0104.15:12,RX SIGNAL DETECTION WINDOW AND COUNT,RX_SD_CLK_CYCLES,RW,7h,4'b0111,4,"Number of clock cycles that defines the signal detection window. The period is defined as 2^(N+6) UI, where N is a 4-bit value. Zero is not valid for N.",,
+0n0104.11:00,RX SIGNAL DETECTION WINDOW AND COUNT,RX_SD_CROSSOVER_COUNT,RW,00Ah,12'b000000001010,12,The count of the number of times the incoming signal must cross the signal detect threshold level within the signal detection window.,,
+----------,,,,,,,,,
+0n0105.15:00,TIMER 4,TIMER4,RW,8E82h,16'b1000111010000010,16,Controls the link-up state machine timer. Leave this value as is. Do not change without consulting the Credo Application Team.,,
+----------,,,,,,,,,
+0n0106.15:12,COUNTER 4,ITR_CNT4,RW,Dh,4'b1101,4,Iteration count 4.,,
+0n0106.11:00,COUNTER 4,RSVD,RW,100h,12'b000100000000,12,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0107.15:14,DFE INIT 2 VALUE,RSVD,RW,1h,2'b01,2,Reserved. Do not change the default value.,,
+0n0107.13:00,DFE INIT 2 VALUE,DFE_INIT_2_VAL,RW,1185h,14'b01000110000101,14,DFE init 2 value.,,
+----------,,,,,,,,,
+0n0108.15:12,TIMER 567,ITR_CNT5,RW,8h,4'b1000,4,Iteration count 5.,,
+0n0108.11:08,TIMER 567,MEAS_TIMER5,RW,Bh,4'b1011,4,State machine timer 5.,,
+0n0108.07:04,TIMER 567,MEAS_TIMER6,RW,Bh,4'b1011,4,State machine timer 6. Controls eye margin sample size.,,
+0n0108.03:00,TIMER 567,MEAS_TIMER7,RW,Bh,4'b1011,4,State machine timer 7.,,
+----------,,,,,,,,,
+0n0109.15,EYE MARGIN MODE,EM_MODE,RW,0h,1'b0,1,Setting this bit freezes all adapted loops. Use during eye diagram measurement.,,
+0n0109.14:00,EYE MARGIN MODE,RSVD,RW,2800h,15'b010100000000000,15,Reserved. Do not change the value.,,
+----------,,,,,,,,,
+0n010B.15,RX DFE OVERRIDE AND BREAKPOINTS 1 AND 2,NRZ_BP1_EN,RW,0h,1'b0,1,State machine breakpoint 1 enabled when set to 1. Set this bit to 0 and DOMAIN_RESET in register 980D to 0xAAA to stop firmware execution.,,
+0n010B.14:13,RX DFE OVERRIDE AND BREAKPOINTS 1 AND 2,RSVD,RW,0h,2'b00,2,Reserved. Do not change the value. The firmware sets the value of this field.,,
+0n010B.12:08,RX DFE OVERRIDE AND BREAKPOINTS 1 AND 2,NRZ_BP1_STATE,RW,00h,5'b00000,5,Breakpoint 1 state.,,
+0n010B.07,RX DFE OVERRIDE AND BREAKPOINTS 1 AND 2,NRZ_BP2_EN,RW,0h,1'b0,1,State machine breakpoint 2 enabled when set to 1.,,
+0n010B.06,RX DFE OVERRIDE AND BREAKPOINTS 1 AND 2,RX_DFE_OVER_EN,RW,0h,1'b0,1,"When enabled, the DFE settings are programmed with the override values and no adaptation occurs. For use in testing only.
+    0h:     Override disabled
+    1h:     Override enabled",,
+0n010B.05,RX DFE OVERRIDE AND BREAKPOINTS 1 AND 2,RSVD,RW,0h,1'b0,1,Reserved. Do not change the value. The firmware sets the value of this field.,,
+0n010B.04:00,RX DFE OVERRIDE AND BREAKPOINTS 1 AND 2,NRZ_BP2_STATE,RW,00h,5'b00000,5,Breakpoint 2 state.,,
+----------,,,,,,,,,
+0n010C.15,STATE MACHINE AND PHY_READY OVERWRITE,NRZ_SM_CONT,RW,0h,1'b0,1,Resume state machine. Set this bit to 1h if the state machine is stopped using a breakpoint in register 010B.,,
+0n010C.14:06,STATE MACHINE AND PHY_READY OVERWRITE,RSVD,RW,000h,9'b000000000,9,Reserved. Do not change the value. The firmware sets the value of this field.,,
+0n010C.05,STATE MACHINE AND PHY_READY OVERWRITE,NRZ_PHY_READY_OWEN,RW,0h,1'b0,1,"Overwrite enable signal for PHY_READY:
+    0h:     Disable
+    1h:     Enable",,
+0n010C.04,STATE MACHINE AND PHY_READY OVERWRITE,NRZ_PHY_READY_OW,RW,0h,1'b0,1,Overwrite value for PHY_READY.,,
+0n010C.03:00,STATE MACHINE AND PHY_READY OVERWRITE,RSVD,RW,0h,4'b0000,4,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n010D.15,DELTA VALUE,NRZ_BP1_REACHED,RO,xh,1'bx,1,"Readout of breakpoint 1 reached indicator signal: 
+    1h:     breakpoint reached
+    0h:     breakpoint not reached",,
+0n010D.14,DELTA VALUE,NRZ_BP2_REACHED,RO,xh,1'bx,1,"Readout of breakpoint 2 reached indicator signal: 
+    1h:     breakpoint reached
+    0h:     breakpoint not reached",,
+0n010D.13,DELTA VALUE,RSVD,RO,xh,1'bx,1,Reserved.,,
+0n010D.12:08,DELTA VALUE,NRZ_CURRENT_STATE,RO,xxh,5'bxxxxx,5,"Read back of current state number of the state machine. Note: due to crossing clock domains, this field should be firmware debounced.",,
+0n010D.07,DELTA VALUE,RSVD,RO,xh,1'bx,1,Reserved.,,
+0n010D.06:00,DELTA VALUE,DELTA_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable delta value.Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n012A.15,RX READ EYE MARGIN,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n012A.14:00,RX READ EYE MARGIN,RX_READ_EM,RO,xxxxh,15'bxxxxxxxxxxxxxxx,15,"Read only, variable value of the read eye margin of the format S15.11.
+This is a signed number and each bit is equivalent to 0.4mV.
+Note: Due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n012B.15,RX DFE TAP 1 CURRENT VALUE,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n012B.14:08,RX DFE TAP 1 CURRENT VALUE,RSVD,RO,xxh,7'bxxxxxxx,7,Reserved. ,,
+0n012B.07,RX DFE TAP 1 CURRENT VALUE,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n012B.06:00,RX DFE TAP 1 CURRENT VALUE,RX_DFE_TAP_1_CURR_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable value of the adapted DFE tap 1 value of the format S7.6.
+Each step size is ~13mV. 
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n012C.15,RX DFE TAP 2 AND 3 CURRENT VALUE,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n012C.14:08,RX DFE TAP 2 AND 3 CURRENT VALUE,RX_DFE_TAP_2_CURR_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable value of the adapted DFE tap 2 value of the format S7.6.
+Each step size is ~13mV.
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+0n012C.07,RX DFE TAP 2 AND 3 CURRENT VALUE,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n012C.06:00,RX DFE TAP 2 AND 3 CURRENT VALUE,RX_DFE_TAP_3_CURR_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable value of the adapted DFE tap 3 value of the format S7.6.
+Each step size is ~13mV.
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n012E.15,RX PHY READY AND SIGNAL DETECT STATUS,RSVD,RO,xh,1'bx,1,Reserved. ,,
+0n012E.14:12,RX PHY READY AND SIGNAL DETECT STATUS,RX_CDR_BW_CURR_VAL,RO,xh,3'bxxx,3,"Read back value of the CDR bandwidth.
+    111b:         15.0Mhz
+    110b:         7.5Mhz
+    101b:         3.75Mhz
+       ⋮          ⋮       (Continue dividing by 2, round to 2 digits all the way to 000.)
+    000b:         0.0Mhz",,
+0n012E.11:09,RX PHY READY AND SIGNAL DETECT STATUS,RSVD,RO,xh,3'bxxx,3,Reserved. ,,
+0n012E.08:07,RX PHY READY AND SIGNAL DETECT STATUS,RX_CDR_FREQ_CURR_VAL,RO,xh,2'bxx,2,"Read back value of the CDR second-order loop update rate.
+    11b:     Fastest
+    01b:     Slowest
+    00b:     Not updating",,
+0n012E.06,RX PHY READY AND SIGNAL DETECT STATUS,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n012E.05:04,RX PHY READY AND SIGNAL DETECT STATUS,RSVD,RO,xh,2'bxx,2,Reserved. ,,
+0n012E.03,RX PHY READY AND SIGNAL DETECT STATUS,RX_SIG_DET,RO,xh,1'bx,1,"Status of the Signal Detect logic.
+    0h:     Signal not detected
+    1h:     Signal detected",,
+0n012E.02,RX PHY READY AND SIGNAL DETECT STATUS,RX_NRZ_PHY_READY,RO,xh,1'bx,1,"Status of the PHY.
+    0h:     PHY not ready
+    1h:     PHY ready",,
+0n012E.01:00,RX PHY READY AND SIGNAL DETECT STATUS,RSVD,RO,xh,2'bxx,2,Reserved. ,,
+----------,,,,,,,,,
+0n013B.15,RX CDR BANDWIDTH,RX_CDR_OVER_BW,RW,0h,1'b0,1,"Enables override of automatic CDR bandwidth update.
+    0b:     Disable
+    1b:     Enable",,
+0n013B.14:12,RX CDR BANDWIDTH,RX_CDR_BW_OVER_VAL,RW,0h,3'b000,3,"CDR bandwidth override value.
+    111b:         15.00Mhz
+    110b:         7.50Mhz
+    101b:         3.75Mhz
+       ⋮          ⋮       (Continue dividing by 2, round to 2 digits all the way to 000.)
+    000b:         0.0Mhz",,
+0n013B.11,RX CDR BANDWIDTH,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n013B.10,RX CDR BANDWIDTH,RX_CDR_OVER_PH_K,RW,0h,1'b0,1,"Enables timing loop phase accumulator constant override.
+    0b:     Disable
+    1b:     Enable",,
+0n013B.09:08,RX CDR BANDWIDTH,RX_CDR_OVER_PH_K_VAL,RW,0h,2'b00,2,"Timing loop phase accumulator constant override value.
+    00b:     Freeze phase accumulator update
+    01b:     Lowest constant applied to PH1/PH2/PH3 phase accumulators
+    ...
+    11b:     Highest constant applied to PH1/PH2/PH3 phase accumulators",,
+0n013B.07,RX CDR BANDWIDTH,RX_CDR_OVER_FREQ,RW,0h,1'b0,1,"Enables override of automatic CDR bandwidth updating.
+    0b:     Disable
+    1b:     Enable",,
+0n013B.06:05,RX CDR BANDWIDTH,RX_CDR_FREQ_OVER_VAL,RW,0h,2'b00,2,"CDR second-order loop update rate override value.
+    11b:     Fastest
+    01b:     Slowest
+    00b:     Not updating",,
+0n013B.04:00,RX CDR BANDWIDTH,RSVD,RW,00h,5'b00000,5,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n014D.15,RX NRZ CTLE OVERRIDE,RX_NRZ_CTLE_OVER_EN,RW,0h,1'b0,1,"When enabled, the CTLE setting is programmed with the override values and no adaptation occurs. For use in testing only.
+    0h:     Override disabled
+    1h:     Override enabled",,
+0n014D.14:00,RX NRZ CTLE OVERRIDE,RSVD,RW,0080h,15'b000000010000000,15,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n014E.15:14,RX NRZ CTLE OVERRIDE VALUE,RSVD,RW,0h,2'b00,2,Reserved. ,,
+0n014E.13:11,RX NRZ CTLE OVERRIDE VALUE,RX_NRZ_CTLE_OVER_VAL,RW,0h,3'b000,3,"CTLE value written when CTLE override is enabled.
+    0h:         22.9 dB
+    1h:         20.4 dB
+    2h:         17.4 dB
+    3h:         15.1 dB
+    4h:         13.0 dB
+    5h:         10.6 dB
+    6h:         7.5 dB
+    7h:         2.5 dB",,
+0n014E.10:00,RX NRZ CTLE OVERRIDE VALUE,RSVD,RW,780h,11'b11110000000,11,Reserved. ,,
+----------,,,,,,,,,
+0n014F.15:12,EYE MARGIN SEARCH PARAMETER,RSVD,RW,0h,4'b0000,4,Reserved. Do not change the default value.,,
+0n014F.11:00,EYE MARGIN SEARCH PARAMETER,EM_SEARCH_PARAM,RW,020h,12'b000000100000,12,Eye margin search parameter.,,
+----------,,,,,,,,,
+0n0150.15:12,EM THRESHOLD,RSVD,RW,5h,4'b0101,4,Reserved. Do not change the default value.,,
+0n0150.11:00,EM THRESHOLD,EM_THR,RW,100h,12'b000100000000,12,Eye margin failure threshold.,,
+----------,,,,,,,,,
+0n015D.15,RX DFE TAP 1 AND 2 OVERRIDE VALUES,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n015D.14:08,RX DFE TAP 1 AND 2 OVERRIDE VALUES,RX_DFE_TAP_1_VAL,RW,00h,7'b0000000,7,"DFE tap 1 value of format S7.6 written when DFE override is enabled.
+Each step size is ~13mV.",,
+0n015D.07,RX DFE TAP 1 AND 2 OVERRIDE VALUES,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n015D.06:00,RX DFE TAP 1 AND 2 OVERRIDE VALUES,RX_DFE_TAP_2_VAL,RW,00h,7'b0000000,7,"DFE tap 2 value of format S7.6 written when DFE override is enabled.
+Each step size is ~13mV.",,
+----------,,,,,,,,,
+0n015E.15,RX DFE TAP 3 OVERRIDE VALUE,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n015E.14:08,RX DFE TAP 3 OVERRIDE VALUE,RX_DFE_TAP_3_VAL,RW,00h,7'b0000000,7,"DFE tap 3 value of format S7.6 written when DFE override is enabled.
+Each step size is ~13mV.",,
+0n015E.07:00,RX DFE TAP 3 OVERRIDE VALUE,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0161.15,RX PRBS CONFIGURATION,RX_PRBS_COUNT_RESET,RW,0h,1'b0,1,"Resets the RX PRBS error count. User needs to set, then clear this bit to resume accumulation.",,
+0n0161.14,RX PRBS CONFIGURATION,RX_POL_FLIP,RW,0h,1'b0,1,"Polarity of the incoming RX data.
+    0h:     Normal
+    1h:     Inverted",,
+0n0161.13:12,RX PRBS CONFIGURATION,RX_PRBS_MODE,RW,0h,2'b00,2,"PRBS mode select of the RX PRBS checker.
+    0h:     PRBS9
+    1h:     PRBS15
+    2h:     PRBS23
+    3h:     PRBS31",,
+0n0161.11,RX PRBS CONFIGURATION,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n0161.10,RX PRBS CONFIGURATION,RX_PRBS_CHECK_EN,RW,1h,1'b1,1,"Enables the RX PRBS checker logic.
+    0h:     Disabled
+    1h:     Enabled",,
+0n0161.09:08,RX PRBS CONFIGURATION,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0161.07,RX PRBS CONFIGURATION,PH1_OVER_EN,RW,0h,1'b0,1,Phase 1 overwrite enable with value in PH1_VAL.,,
+0n0161.06:00,RX PRBS CONFIGURATION,PH1_VAL,RW,20h,7'b0100000,7,Phase 1 interpolator value.,,
+----------,,,,,,,,,
+0n0162.15,RX PHASE CONTROL,PH2_OVER_EN,RW,0h,1'b0,1,Enables Phase 2 overwrite with value in PH2_VAL.,,
+0n0162.14:08,RX PHASE CONTROL,PH2_VAL,RW,20h,7'b0100000,7,Overwrite Phase 2 value in two's complement format (-64 to +63).,,
+0n0162.07,RX PHASE CONTROL,PH3_OVER_EN,RW,0h,1'b0,1,Enables Phase 3 overwrite with value in PH3_VAL.,,
+0n0162.06:00,RX PHASE CONTROL,PH3_VAL,RW,20h,7'b0100000,7,Overwrite Phase 3 value in two's complement format (-64 to +63).,,
+----------,,,,,,,,,
+0n0163.15:08,PHASE CONFIG 1,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+0n0163.07,PHASE CONFIG 1,PH1_POL_FLIP,RW,0h,1'b0,1,Phase 1 interpolator flip.,,
+0n0163.06:00,PHASE CONFIG 1,PH1_GRAY_VAL,RW,00h,7'b0000000,7,Overwrite Phase 1 values in gray code format (0 to 127).,,
+----------,,,,,,,,,
+0n0164.15,PHASE CONFIG 2,PH2_POL_FLIP,RW,0h,1'b0,1,Phase 2 interpolator flip.,,
+0n0164.14:08,PHASE CONFIG 2,PH2_GRAY_VAL,RW,00h,7'b0000000,7,Overwrite Phase 2 values in gray code format (0 to 127).,,
+0n0164.07,PHASE CONFIG 2,PH3_POL_FLIP,RW,0h,1'b0,1,Phase 3 interpolator flip.,,
+0n0164.06:00,PHASE CONFIG 2,PH3_GRAY_VAL,RW,00h,7'b0000000,7,Overwrite Phase 3 values in gray code format (0 to 127).,,
+----------,,,,,,,,,
+0n0165.15:08,PHASE CONFIG 3,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+0n0165.07,PHASE CONFIG 3,PH1_TLOOP_MODE,RW,0h,1'b0,1,"Controls phase 1 timing update mode.
+For short reach, set this to 0 (recommended).
+For long reach, set this to 1 (recommended).",,
+0n0165.06,PHASE CONFIG 3,PH2_TLOOP_MODE,RW,0h,1'b0,1,"Controls phase 2 timing update mode.
+For short reach, set this to 0 (recommended).
+For long reach, set this to 1 (recommended).",,
+0n0165.05,PHASE CONFIG 3,PH3_TLOOP_MODE,RW,0h,1'b0,1,"Controls phase 3 timing update mode.
+For short reach, set this to 0 (recommended).
+For long reach, set this to 1 (recommended).",,
+0n0165.04:00,PHASE CONFIG 3,RSVD,RW,00h,5'b00000,5,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0166.15:00,RX NRZ READ PRBS ERROR COUNT HIGH,RX_NRZ_PRBS_READ_ERR_HIGH,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Read only, variable value of the upper word of the RX PRBS 32-bit error count.
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n0167.15:00,RX NRZ READ PRBS ERROR COUNT LOW,RX_NRZ_PRBS_READ_ERR_LOW,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Read only, variable value of the lower word of the RX PRBS 32-bit error count.
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n016E.15:07,READ PHASE 1 GRAY VALUE,RSVD,RO,xxxh,9'bxxxxxxxxx,9,Reserved.,,
+0n016E.06:00,READ PHASE 1 GRAY VALUE,READ_PH1_GRAY_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable value for phase 1 in gray code format (0 to 127).
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n016F.15,READ PHASE 2 AND 3 GRAY VALUES,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n016F.14:08,READ PHASE 2 AND 3 GRAY VALUES,READ_PH2_GRAY_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable value for phase 2 in gray code format (0 to 127).
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+0n016F.07,READ PHASE 2 AND 3 GRAY VALUES,RSVD,RO,xh,1'bx,1,Reserved. Do not change the default value.,,
+0n016F.06:00,READ PHASE 2 AND 3 GRAY VALUES,READ_PH3_GRAY_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable value for phase 3 in gray code format (0 to 127).
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n0171.15,READ PHASE 1 and 2 VALUES,RSVD,RO,xh,1'bx,1,Reserved.,,
+0n0171.14:08,READ PHASE 1 and 2 VALUES,READ_PH1_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable Phase 1 interpolator value in two's complement format (-64 to +63).Note: due to crossing clock domains, this field should be firmware debounced.",,
+0n0171.07,READ PHASE 1 and 2 VALUES,RSVD,RO,xh,1'bx,1,Reserved. ,,
+0n0171.06:00,READ PHASE 1 and 2 VALUES,READ_PH2_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable Phase 2 interpolator value in two's complement format (-64 to +63).
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n0172.15,READ PHASE 3 VALUE,RSVD,RO,xh,1'bx,1,Reserved.,,
+0n0172.14:08,READ PHASE 3 VALUE,READ_PH3_VAL,RO,xxh,7'bxxxxxxx,7,"Read only, variable Phase 3 interpolator value in two's complement format (-64 to +63).
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+0n0172.07:00,READ PHASE 3 VALUE,RSVD,RO,xxh,8'bxxxxxxxx,8,Reserved.,,
+----------,,,,,,,,,
+0n0173.15:11,READ RX FREQUENCY ACCUMULATOR,RSVD,RO,xxh,5'bxxxxx,5,Reserved. Do not change the default value.,,
+0n0173.10:00,READ RX FREQUENCY ACCUMULATOR,RX_READ_FREQ_ERR,RO,xxxh,11'bxxxxxxxxxxx,11,"Read value of the RX frequency accumulator of format S11.11. Each bit represents ~0.5ppm offset error between the incoming traffic and the PLL.
+Note: due to crossing clock domains, this field should be firmware debounced.",,
+----------,,,,,,,,,
+0n0175.15:14,TIMING CONTROL 123,RSVD,RW,3h,2'b11,2,Reserved. Do not change the default value.,,
+0n0175.13:08,TIMING CONTROL 123,TLOOP_CTRL1,RW,3Bh,6'b111011,6,"Timing control parameters, group 1.",,
+0n0175.07:04,TIMING CONTROL 123,TLOOP_CTRL2,RW,Fh,4'b1111,4,"Timing control parameters, group 2.
+For 25G, set this field to 1111b.
+For 10G, set this field to 1010b.",,
+0n0175.03:00,TIMING CONTROL 123,TLOOP_CTRL3,RW,Fh,4'b1111,4,"Timing control parameters, group 3.
+For 25G, set this field to 1111b.
+For 10G, set this field to 1010b.",,
+----------,,,,,,,,,
+0n0176.15:00,CTLE MAP TABLE 3,CTLE_MAP_TABLE_3,RW,0094h,16'b0000000010010100,16,CTLE control table 3. Consult the Credo Application Team for recommended values. ,,
+----------,,,,,,,,,
+0n0177.15:00,CTLE MAP TABLE 2,CTLE_MAP_TABLE_2,RW,9B92h,16'b1001101110010010,16,CTLE control table 2. Consult the Credo Application Team for recommended values. ,,
+----------,,,,,,,,,
+0n0178.15:00,CTLE MAP TABLE 1,CTLE_MAP_TABLE_1,RW,DDBFh,16'b1101110110111111,16,CTLE control table 1. Consult the Credo Application Team for recommended values. ,,
+----------,,,,,,,,,
+0n0179.15:09,RX RATE CONTROL,RSVD,RW,40h,7'b1000000,7,Reserved. Do not change the default value.,,
+0n0179.08:07,RX RATE CONTROL,RX_SUB_RATE_MODE,RW,0h,2'b00,2,"RX NRZ sub-rate mode when RX_HALF_RATE_EN is enabled. When RX_HALF_RATE_EN is disabled the values do not have any effect.
+    0h:     Half-rate (default)
+    1h:     Quarter-rate
+    2h:     Eighth-rate
+    3h:     Sixteenth-rate",,
+0n0179.06,RX RATE CONTROL,RX_25G_EN,RW,0h,1'b0,1,"Selects the 25G timing mode:
+    0h:     Standard 25G timing mode (default)
+    1h:     BB 25G timing mode ",,
+0n0179.05,RX RATE CONTROL,RX_NRZ_MODE_EN,RW,0h,1'b0,1,"Enables RX NRZ mode when set to 1.
+    0b    Shuts down all the RX NRZ clocks (default)
+    1b    Enables NRZ mode. ",,
+0n0179.04:01,RX RATE CONTROL,RSVD,RW,Fh,4'b1111,4,Reserved. Do not change the default value.,,
+0n0179.00,RX RATE CONTROL,RX_HALF_RATE_EN,RW,0h,1'b0,1,"Enables RX NRZ half-rate mode.
+    0h:     Full-rate (default)
+    1h:     Half-rate
+For 10G, set this field to 1b.
+For 25G, leave this field at 0b. ",,
+----------,,,,,,,,,
+0n017D.15,NRZ BREAKPOINTS 3 AND 4,NRZ_BP3_EN,RW,0h,1'b0,1,"Enable signal for breakpoint 3
+    1h:     breakpoint function enabled
+    0h:     function disabled",,
+0n017D.14:13,NRZ BREAKPOINTS 3 AND 4,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value. Reserved. Do not change the default value. ,,
+0n017D.12:08,NRZ BREAKPOINTS 3 AND 4,NRZ_BP3_STATE,RW,00h,5'b00000,5,Breakpoint 3 for the state machine ,,
+0n017D.07,NRZ BREAKPOINTS 3 AND 4,NRZ_BP4_EN,RW,0h,1'b0,1,"Enable signal for breakpoint 4
+    1h:     breakpoint function enabled
+    0h:     function disabled",,
+0n017D.06:05,NRZ BREAKPOINTS 3 AND 4,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value. ,,
+0n017D.04:00,NRZ BREAKPOINTS 3 AND 4,NRZ_BP4_STATE,RW,00h,5'b00000,5,Breakpoint 4 for the state machine ,,
+----------,,,,,,,,,
+0n017E.15,NRZ BREAKPOINTS 5 AND 6,NRZ_BP5_EN,RW,0h,1'b0,1,"Enable signal for breakpoint 5
+    1h:     breakpoint function enabled
+    0h:     function disabled",,
+0n017E.14:13,NRZ BREAKPOINTS 5 AND 6,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value. ,,
+0n017E.12:08,NRZ BREAKPOINTS 5 AND 6,NRZ_BP5_STATE,RW,00h,5'b00000,5,Breakpoint 5 for the state machine ,,
+0n017E.07,NRZ BREAKPOINTS 5 AND 6,NRZ_BP6_EN,RW,0h,1'b0,1,"Enable signal for breakpoint 6
+    1h:     breakpoint function enabled
+    0h:     function disabled",,
+0n017E.06:05,NRZ BREAKPOINTS 5 AND 6,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value. ,,
+0n017E.04:00,NRZ BREAKPOINTS 5 AND 6,NRZ_BP6_STATE,RW,00h,5'b00000,5,Breakpoint 6 for the state machine ,,
+----------,,,,,,,,,
+0n017F.15:12,READ REFERENCE DAC AND CURRENT CTLE VALUE,DAC_SEL,RO,xh,4'bxxxx,4,"RX DAC value corresponding to input amplitude. Read-only.
+    1111b:             ~850mV
+       ⋮          ⋮       (Step size ~50mV)
+    0000b:         ~    100mV",,
+0n017F.11:09,READ REFERENCE DAC AND CURRENT CTLE VALUE,CTLE_READ_CURR_VAL,RO,xh,3'bxxx,3,Valid only when register 0n014D[15] is set to 0.Read only value of the current setting of the CTLE.,,
+0n017F.08:00,READ REFERENCE DAC AND CURRENT CTLE VALUE,RSVD,RO,xxxh,9'bxxxxxxxxx,9,Reserved.,,
+----------,,,,,,,,,
+0n0180.15:09,DELTA MAX,DELTA_MAX,RW,38h,7'b0111000,7,Delta Max for new CTLE-DFE.,,
+0n0180.08:00,DELTA MAX,RSVD,RW,100h,9'b100000000,9,Reserved. Do not change,,
+----------,,,,,,,,,
+0n0181.15:12,STATE MACHINE RESET,RSVD,RW,1h,4'b0001,4,Reserved. Do not change the default value.,,
+0n0181.11,STATE MACHINE RESET,NRZ_SM_RESET,RW,0h,1'b0,1,"To reset the state machine and start the optimization and adaptation process over, program to 1 and then clear.",,
+0n0181.10:00,STATE MACHINE RESET,NRZ_FREQ_INIT3,RW,180h,11'b00110000000,11,Initial timing 3 value.,,
+----------,,,,,,,,,
+0n0182.15:11,TIMING INIT 4,RSVD,RW,17h,5'b10111,5,Reserved. Do not change the default value.,,
+0n0182.10:00,TIMING INIT 4,NRZ_FREQ_INIT4,RW,680h,11'b11010000000,11,Initial timing 4 value.,,
+----------,,,,,,,,,
+0n0183.15:14,DFE INIT 3 VALUE,RSVD,RW,1h,2'b01,2,Reserved. Do not change the default value.,,
+0n0183.13:00,DFE INIT 3 VALUE,DFE_INIT_3_VAL,RW,1185h,14'b01000110000101,14,DFE init 3 value.,,
+----------,,,,,,,,,
+0n0184.15:14,DFE INIT 4 VALUE,RSVD,RW,2h,2'b10,2,Reserved. Do not change the default value.,,
+0n0184.13:00,DFE INIT 4 VALUE,DFE_INIT_4_VAL,RW,1185h,14'b01000110000101,14,DFE init 4 value.,,
+----------,,,,,,,,,
+0n0185.15:14,DFE INIT 5 VALUE,RSVD,RW,1h,2'b01,2,Reserved. Do not change the default value.,,
+0n0185.13:00,DFE INIT 5 VALUE,DFE_INIT_5_VAL,RW,1185h,14'b01000110000101,14,DFE init 5 value.,,
+----------,,,,,,,,,
+0n0186.15:14,DFE INIT 6 VALUE,RSVD,RW,3h,2'b11,2,Reserved. Do not change the default value.,,
+0n0186.13:00,DFE INIT 6 VALUE,DFE_INIT_6_VAL,RW,1185h,14'b01000110000101,14,DFE init 6 value.,,
+----------,,,,,,,,,
+0n0187.15:14,DFE INIT 7 VALUE,RSVD,RW,1h,2'b01,2,Reserved. Do not change the default value.,,
+0n0187.13:00,DFE INIT 7 VALUE,DFE_INIT_7_VAL,RW,1185h,14'b01000110000101,14,DFE init 7 value.,,
+----------,,,,,,,,,
+0n0188.15:14,DFE INIT 8 VALUE,RSVD,RW,1h,2'b01,2,Reserved. Do not change the default value.,,
+0n0188.13:00,DFE INIT 8 VALUE,DFE_INIT_8_VAL,RW,1185h,14'b01000110000101,14,DFE init 8 value.,,
+----------,,,,,,,,,
+0n01C0.15:04,TBD REGNAME FOR 0n01C0,RSVD,RW,000h,12'b000000000000,12,Reserved. Do not change the default value.,,
+0n01C0.03:00,TBD REGNAME FOR 0n01C0,SYM_SIZE,RW,Ah,4'b1010,4,FEC symbol size,,
+----------,,,,,,,,,
+0n01C1.15:04,TBD REGNAME FOR 0n01C1,RSVD,RW,000h,12'b000000000000,12,Reserved. Do not change the default value.,,
+0n01C1.03,TBD REGNAME FOR 0n01C1,CNT_CLR,RW,0h,1'b0,1,Clear all the counters,,
+0n01C1.02,TBD REGNAME FOR 0n01C1,CNT_FREEZE,RW,0h,1'b0,1,Freeze all the counters,,
+0n01C1.01,TBD REGNAME FOR 0n01C1,FEC_CLK_EN,RW,1h,1'b1,1,"Top clock enable, active high",,
+0n01C1.00,TBD REGNAME FOR 0n01C1,FEC_ANA_EN,RW,1h,1'b1,1,"FEC analyzer enable, active high",,
+----------,,,,,,,,,
+0n01C2.15:00,TBD REGNAME FOR 0n01C2,MEM1_RADDR,RW,0000h,16'b0000000000000000,16,Read address of memory,,
+----------,,,,,,,,,
+0n01C4.15:13,TBD REGNAME FOR 0n01C4,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n01C4.12:00,TBD REGNAME FOR 0n01C4,FRAM_SIZE,RW,1540h,13'b1010101000000,13,N: FEC frame size (number of bits),,
+----------,,,,,,,,,
+0n01C5.15:13,TBD REGNAME FOR 0n01C5,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n01C5.12,TBD REGNAME FOR 0n01C5,RESET_HIS,RW,0h,1'b0,1,Reset the histogram counters,,
+0n01C5.11:07,TBD REGNAME FOR 0n01C5,CORR_SIZE,RW,0Fh,5'b01111,5,T:FEC error correction capability,,
+0n01C5.06:03,TBD REGNAME FOR 0n01C5,TH_SIZE,RW,Fh,4'b1111,4,Memory trigger threshold,,
+0n01C5.02:00,TBD REGNAME FOR 0n01C5,N_HIS,RW,0h,3'b000,3,Group selection i(0-6) of error histogram,,
+----------,,,,,,,,,
+0n01C6.15:05,TBD REGNAME FOR 0n01C6,RSVD,RW,000h,11'b00000000000,11,Reserved. Do not change the default value.,,
+0n01C6.04,TBD REGNAME FOR 0n01C6,FEC_CLK_SEL,RW,1h,1'b1,1,Top clock source selection,,
+0n01C6.03,TBD REGNAME FOR 0n01C6,CLEAR_TRIGGER,RW,0h,1'b0,1,Clear the memory trigger status,,
+0n01C6.02,TBD REGNAME FOR 0n01C6,MEM2_WR_EN,RW,1h,1'b1,1,,,
+0n01C6.01,TBD REGNAME FOR 0n01C6,MEM1_WR_EN,RW,1h,1'b1,1,Write enable of memory,,
+0n01C6.00,TBD REGNAME FOR 0n01C6,SET_MEM_WREN,RW,0h,1'b0,1,Enable of manually write of memory,,
+----------,,,,,,,,,
+0n01C7.15:00,TBD REGNAME FOR 0n01C7,READ_DATA,RO,0000h,16'b0000000000000000,16,Readout from register,,
+----------,,,,,,,,,
+0n01C8.15:08,TBD REGNAME FOR 0n01C8,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+0n01C8.07,TBD REGNAME FOR 0n01C8,MEM1_SEL,RW,1h,1'b1,1,"selection of data source of memory, 1:debug signal, 0: golden data",,
+0n01C8.06:05,TBD REGNAME FOR 0n01C8,DEBUG_DATA_SEL,RW,0h,2'b00,2,Select data type for Error debug mode,,
+0n01C8.04:03,TBD REGNAME FOR 0n01C8,PRBS_MODE,RW,0h,2'b00,2,PRBS mode selection,,
+0n01C8.02:01,TBD REGNAME FOR 0n01C8,OPR_MODE,RW,0h,2'b00,2,"For symbol error counter, 00:M consecutive bits, 01:M even bits, 10:M odd bits ",,
+0n01C8.00,TBD REGNAME FOR 0n01C8,MEM2_DATA_SEL,RW,1h,1'b1,1,,,
+----------,,,,,,,,,
+0n01C9.15,TBD REGNAME FOR 0n01C9,PRBS_CHK_CNTR_RESET,RW,0h,1'b0,1,PRBS sync error counter reset signal.,,
+0n01C9.14,TBD REGNAME FOR 0n01C9,RX_PRBS_FORCE_RELOAD,RW,0h,1'b0,1,Force reload of the PRBS sync checker's shift registers: edge triggered,,
+0n01C9.13,TBD REGNAME FOR 0n01C9,RX_PRBS_AUTO_SYNC_EN,RW,1h,1'b1,1,Enable the auto sync function,,
+0n01C9.12:05,TBD REGNAME FOR 0n01C9,PRBS_MISMATCH_THR,RW,10h,8'b00010000,8,PRBS mismatch threshold,,
+0n01C9.04:00,TBD REGNAME FOR 0n01C9,PRBS_SYNC_THR,RW,02h,5'b00010,5,PRBS sync threshold,,
+----------,,,,,,,,,
+0n01CA.15:06,TBD REGNAME FOR 0n01CA,RSVD,RW,000h,10'b0000000000,10,Reserved. Do not change the default value.,,
+0n01CA.05:00,TBD REGNAME FOR 0n01CA,PRBS_SYNC_LOSS_THR,RW,05h,6'b000101,6,PRBS sync loss threshold,,
+----------,,,,,,,,,
+0n01CB.15:02,TBD REGNAME FOR 0n01CB,RSVD,RW,0000h,14'b00000000000000,14,Reserved. Do not change the default value.,,
+0n01CB.01:00,TBD REGNAME FOR 0n01CB,CTRL_TEI,RW,0h,2'b00,2,"TEI mode selection:
+    00b: TEI add 1
+    01b: TEI add SEI
+    10b: TEI add BEI",,
+----------,,,,,,,,,
+0n01CC.15:02,TBD REGNAME FOR 0n01CC,RSVD,RW,0000h,14'b00000000000000,14,Reserved. Do not change the default value.,,
+0n01CC.01:00,TBD REGNAME FOR 0n01CC,CTRL_TEO,RW,0h,2'b00,2,"TEO mode selection:
+    00b: TEO add 1
+    01b: TEO add SEO
+    10b: TEO add BEI",,
+----------,,,,,,,,,
+0n01CD.15:00,TBD REGNAME FOR 0n01CD,READ_SEL,RW,0000h,16'b0000000000000000,16,"The data source selection for read. For more information, see the multiplexing section of the device specification.",,
+----------,,,,,,,,,
+0n01DD.15:12,TBD REGNAME FOR 0n01DD,DEGENDL9,RW,8h,4'b1000,4,,,
+0n01DD.11:09,TBD REGNAME FOR 0n01DD,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n01DD.08,TBD REGNAME FOR 0n01DD,SKEF_EN,RW,0h,1'b0,1,,,
+0n01DD.07:05,TBD REGNAME FOR 0n01DD,SKEF_VAL,RW,2h,3'b010,3,,,
+0n01DD.04:02,TBD REGNAME FOR 0n01DD,SKEF_ADDCAP,RW,0h,3'b000,3,,,
+0n01DD.01,TBD REGNAME FOR 0n01DD,PU_INTP,RW,1h,1'b1,1,,,
+0n01DD.00,TBD REGNAME FOR 0n01DD,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01DE.15:12,TBD REGNAME FOR 0n01DE,DEGENDL5,RW,8h,4'b1000,4,,,
+0n01DE.11:08,TBD REGNAME FOR 0n01DE,DEGENDL6,RW,8h,4'b1000,4,,,
+0n01DE.07:04,TBD REGNAME FOR 0n01DE,DEGENDL7,RW,8h,4'b1000,4,,,
+0n01DE.03:00,TBD REGNAME FOR 0n01DE,DEGENDL8,RW,8h,4'b1000,4,,,
+----------,,,,,,,,,
+0n01DF.15:12,TBD REGNAME FOR 0n01DF,DEGENDL1,RW,8h,4'b1000,4,,,
+0n01DF.11:08,TBD REGNAME FOR 0n01DF,DEGENDL2,RW,8h,4'b1000,4,,,
+0n01DF.07:04,TBD REGNAME FOR 0n01DF,DEGENDL3,RW,8h,4'b1000,4,,,
+0n01DF.03:00,TBD REGNAME FOR 0n01DF,DEGENDL4,RW,8h,4'b1000,4,,,
+----------,,,,,,,,,
+0n01E0.15,TBD REGNAME FOR 0n01E0,PU_DEGENMAIN_SUM1_MSB,RW,1h,1'b1,1,,,
+0n01E0.14,TBD REGNAME FOR 0n01E0,PU_DEGENMAIN_SUM1_LSB,RW,1h,1'b1,1,,,
+0n01E0.13,TBD REGNAME FOR 0n01E0,PU_DEGENMAIN_SUM2_MSB,RW,1h,1'b1,1,,,
+0n01E0.12,TBD REGNAME FOR 0n01E0,PU_DEGENMAIN_SUM2_LSB,RW,1h,1'b1,1,,,
+0n01E0.11,TBD REGNAME FOR 0n01E0,PU_DEGENMAIN_SUM3_MSB,RW,1h,1'b1,1,,,
+0n01E0.10,TBD REGNAME FOR 0n01E0,PU_DEGENMAIN_SUM3_LSB,RW,1h,1'b1,1,,,
+0n01E0.09,TBD REGNAME FOR 0n01E0,POL_MUX1,RW,0h,1'b0,1,,,
+0n01E0.08,TBD REGNAME FOR 0n01E0,POL_MUX2,RW,0h,1'b0,1,,,
+0n01E0.07,TBD REGNAME FOR 0n01E0,POL_MUX3,RW,0h,1'b0,1,,,
+0n01E0.06,TBD REGNAME FOR 0n01E0,POL_MUX4,RW,0h,1'b0,1,,,
+0n01E0.05:00,TBD REGNAME FOR 0n01E0,RSVD,RW,00h,6'b000000,6,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01E1.15:12,TBD REGNAME FOR 0n01E1,DEGENMAIN_SUM4,RW,Ah,4'b1010,4,,,
+0n01E1.11:08,TBD REGNAME FOR 0n01E1,RSVD,RW,0h,4'b0000,4,Reserved. Do not change the default value.,,
+0n01E1.07:04,TBD REGNAME FOR 0n01E1,DEGENSUM_SUM4,RW,Ah,4'b1010,4,,,
+0n01E1.03:00,TBD REGNAME FOR 0n01E1,RSVD,RW,0h,4'b0000,4,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01E2.15:12,TBD REGNAME FOR 0n01E2,DEGENMAIN1_SUM3,RW,Ah,4'b1010,4,,,
+0n01E2.11:08,TBD REGNAME FOR 0n01E2,DEGENMAIN0_SUM3,RW,Ah,4'b1010,4,,,
+0n01E2.07:04,TBD REGNAME FOR 0n01E2,DEGENSUM1_SUM3,RW,Ah,4'b1010,4,,,
+0n01E2.03:00,TBD REGNAME FOR 0n01E2,DEGENSUM0_SUM3,RW,Ah,4'b1010,4,,,
+----------,,,,,,,,,
+0n01E3.15:12,TBD REGNAME FOR 0n01E3,DEGENMAIN1_SUM2,RW,Ah,4'b1010,4,,,
+0n01E3.11:08,TBD REGNAME FOR 0n01E3,DEGENMAIN0_SUM2,RW,Ah,4'b1010,4,,,
+0n01E3.07:04,TBD REGNAME FOR 0n01E3,DEGENSUM1_SUM2,RW,Ah,4'b1010,4,,,
+0n01E3.03:00,TBD REGNAME FOR 0n01E3,DEGENSUM0_SUM3,RW,Ah,4'b1010,4,,,
+----------,,,,,,,,,
+0n01E4.15:12,TBD REGNAME FOR 0n01E4,DEGENMAIN1_SUM1,RW,Ah,4'b1010,4,,,
+0n01E4.11:08,TBD REGNAME FOR 0n01E4,DEGENMAIN0_SUM1,RW,Ah,4'b1010,4,,,
+0n01E4.07:04,TBD REGNAME FOR 0n01E4,DEGENSUM1_SUM1,RW,Ah,4'b1010,4,,,
+0n01E4.03:00,TBD REGNAME FOR 0n01E4,DEGENSUM0_SUM1,RW,Ah,4'b1010,4,,,
+----------,,,,,,,,,
+0n01E7.15,TBD REGNAME FOR 0n01E7,PU_RX_AGC_LN,RW,1h,1'b1,1,"Power up RX AGC for this lane.
+    0h:     Power down
+    1h:     Power up",,
+0n01E7.14,TBD REGNAME FOR 0n01E7,PU_AGCDL,RW,1h,1'b1,1,,,
+0n01E7.13:12,TBD REGNAME FOR 0n01E7,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n01E7.11,TBD REGNAME FOR 0n01E7,RX_AC_COUPLE_EN,RW,1h,1'b1,1,"Enables RX AC coupling.
+    0h:     DC coupling
+    1h:     AC coupling",,
+0n01E7.10:08,TBD REGNAME FOR 0n01E7,RX_CTLE_CM1,RW,3h,3'b011,3,CTLE Common Mode voltage 1,,
+0n01E7.07:05,TBD REGNAME FOR 0n01E7,RX_CTLE_CM2,RW,3h,3'b011,3,CTLE Common Mode voltage 2,,
+0n01E7.04:00,TBD REGNAME FOR 0n01E7,RSVD,RW,0Ch,5'b01100,5,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01EB.15:11,TBD REGNAME FOR 0n01EB,RX_ACAL_BM_VCO,RO,xxh,5'bxxxxx,5,Reserved. Do not change the default value.,,
+0n01EB.10,TBD REGNAME FOR 0n01EB,RX_ACAL_DONE_C,RO,xh,1'bx,1,,,
+0n01EB.09,TBD REGNAME FOR 0n01EB,RX_ACAL_UP_DN,RO,xh,1'bx,1,,,
+0n01EB.08:00,TBD REGNAME FOR 0n01EB,RSVD,RO,xxxh,9'bxxxxxxxxx,9,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01EC.15:00,TBD REGNAME FOR 0n01EC,RX_ACAL_RG_ADC_REG4_S,RW,0000h,16'b0000000000000000,16,,,
+----------,,,,,,,,,
+0n01ED.15,TBD REGNAME FOR 0n01ED,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n01ED.14:13,TBD REGNAME FOR 0n01ED,RX_ACAL_RG_ADC_WAIT_S_SEL,RW,2h,2'b10,2,,,
+0n01ED.12:07,TBD REGNAME FOR 0n01ED,RX_ACAL_OVER_DATA,RW,00h,6'b000000,6,,,
+0n01ED.06,TBD REGNAME FOR 0n01ED,RX_ACAL_BM_VCO_OWEN,RW,1h,1'b1,1,,,
+0n01ED.05:00,TBD REGNAME FOR 0n01ED,RSVD,RW,00h,6'b000000,6,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01F3.15:06,TBD REGNAME FOR 0n01F3,RSVD,RW,2D1h,10'b1011010001,10,Reserved. Do not change the default value.,,
+0n01F3.05,TBD REGNAME FOR 0n01F3,PU_RX_PLL_INTP,RW,1h,1'b1,1,,,
+0n01F3.04:00,TBD REGNAME FOR 0n01F3,RSVD,RW,00h,5'b00000,5,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01F4.15,TBD REGNAME FOR 0n01F4,RX_REFCLK_DIV2_EN,RW,0h,1'b0,1,,,
+0n01F4.14:00,TBD REGNAME FOR 0n01F4,RSVD,RW,61E7h,15'b110000111100111,15,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01F5.15:09,TBD REGNAME FOR 0n01F5,RX_PLL_VCO_RANGE,RW,1Bh,7'b0011011,7,,,
+0n01F5.08:00,TBD REGNAME FOR 0n01F5,RSVD,RW,140h,9'b101000000,9,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01F7.15:13,TBD REGNAME FOR 0n01F7,RX_PLL_TESTMODE,RW,0h,3'b000,3,,,
+0n01F7.12:08,TBD REGNAME FOR 0n01F7,RX_PLL_VTSTGROUP,RW,0h,5'b00000,5,,,
+0n01F7.07,TBD REGNAME FOR 0n01F7,RX_PLL_TEST_EN,RW,0h,1'b0,1,,,
+0n01F7.06:00,TBD REGNAME FOR 0n01F7,RSVD,RW,00h,7'b0000000,7,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01F8.15:13,TBD REGNAME FOR 0n01F8,PU_ADC_MASTER,RW,7h,3'b111,3,,,
+0n01F8.12:00,TBD REGNAME FOR 0n01F8,RSVD,RW,0200h,13'b0001000000000,13,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01FC.15:13,TBD REGNAME FOR 0n01FC,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n01FC.12,TBD REGNAME FOR 0n01FC,RX_ENCLKLOSS_MASTER,RW,1h,1'b1,1,,,
+0n01FC.11:00,TBD REGNAME FOR 0n01FC,RSVD,RW,248h,12'b001001001000,12,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01FD.15:07,TBD REGNAME FOR 0n01FD,RX_PLL_N,RW,52h,9'b001010010,9,"PLL clock multiplier where:
+    PLL frequency = PLL reference clock * 2 * PLL_N.
+The SerDes user NRZ rate is 2 * PLL frequency.
+The PAM4 rate is 4 * PLL frequency.",,
+0n01FD.06:04,TBD REGNAME FOR 0n01FD,RSVD,RW,3h,3'b011,3,Reserved. Do not change the default value.,,
+0n01FD.03:01,TBD REGNAME FOR 0n01FD,RX_VCO_CURRENT,RW,2h,3'b010,3,,,
+0n01FD.00,TBD REGNAME FOR 0n01FD,PU_RX_PLL,RW,1h,1'b1,1,Power up PLL when this field is set to 1.,,
+----------,,,,,,,,,
+0n01FE.15,TBD REGNAME FOR 0n01FE,PU_AGC_1_MASTER,RW,1h,1'b1,1,,,
+0n01FE.14,TBD REGNAME FOR 0n01FE,PU_AGCDL_MASTER,RW,1h,1'b1,1,,,
+0n01FE.13:00,TBD REGNAME FOR 0n01FE,RSVD,RW,0000h,14'b00000000000000,14,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n01FF.15:13,TBD REGNAME FOR 0n01FF,RX_VBG,RW,4h,3'b100,3,,,
+0n01FF.12,TBD REGNAME FOR 0n01FF,PU_RX_BG,RW,1h,1'b1,1,,,
+0n01FF.11,TBD REGNAME FOR 0n01FF,PU_RX_RVDD,RW,1h,1'b1,1,,,
+0n01FF.10,TBD REGNAME FOR 0n01FF,RX_RVDDVCO_EN,RW,1h,1'b1,1,,,
+0n01FF.09:07,TBD REGNAME FOR 0n01FF,RSVD,RW,3h,3'b011,3,Reserved. Do not change the default value.,,
+0n01FF.06,TBD REGNAME FOR 0n01FF,RX_REFCLK_DIV4_EN,RW,0h,1'b0,1,,,
+0n01FF.05:00,TBD REGNAME FOR 0n01FF,RSVD,RW,31h,6'b110001,6,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0200.15:10,TBD REGNAME FOR 0n0200,RSVD,RW,00h,6'b000000,6,Reserved. Do not change the default value.,,
+0n0200.09,TBD REGNAME FOR 0n0200,RX_TO_TX_LPBK,RW,0h,1'b0,1,SerDes RX data to TX.,,
+0n0200.08,TBD REGNAME FOR 0n0200,TX_TO_RX_LPBK,RW,0h,1'b0,1,"TX data to RX directly, do not pass PHOENIX3",,
+0n0200.07:00,TBD REGNAME FOR 0n0200,RSVD,RW,80h,8'b10000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0202.15:04,TBD REGNAME FOR 0n0202,RSVD,RW,000h,12'b000000000000,12,Reserved. Do not change the default value.,,
+0n0202.03,TBD REGNAME FOR 0n0202,UBUMP_TX_TO_RX_LOOP,RW,0h,1'b0,1,TX clock to RX clock directly for clk loopback,,
+0n0202.02,TBD REGNAME FOR 0n0202,RX_PRBS_CLR_CNTR_S,RW,0h,1'b0,1,,,
+0n0202.01,TBD REGNAME FOR 0n0202,RX_PRBS_S_EN,RW,0h,1'b0,1,,,
+0n0202.00,TBD REGNAME FOR 0n0202,TX_PRBS_S_EN,RW,0h,1'b0,1,,,
+----------,,,,,,,,,
+0n0203.15:00,TBD REGNAME FOR 0n0203,PRBS_ERR_CNTR_15_0,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,,,
+----------,,,,,,,,,
+0n0204.15:00,TBD REGNAME FOR 0n0204,PRBS_ERR_CNTR_31_16,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,,,
+----------,,,,,,,,,
+0n0205.15:00,TBD REGNAME FOR 0n0205,PRBS_ERR_CNTR_47_32,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,,,
+----------,,,,,,,,,
+0n0206.15:00,TBD REGNAME FOR 0n0206,LANE_NUM,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Group number and lane number for this lane.,,
+----------,,,,,,,,,
+0n0207.15:13,TBD REGNAME FOR 0n0207,FIFO_MODE_A0,RW,0h,3'b000,3,"AR0_FIFO output data control register.
+    3'b0XX: Do not override AR0_FIFO's output data,
+    3'b100: AR0_FIFO output 32'd0
+    3'b101: AR0_FIFO output 32'hFFFF
+    3'b11X: AR0_FIFO output 32'b010101...",,
+0n0207.12:10,TBD REGNAME FOR 0n0207,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n0207.09:07,TBD REGNAME FOR 0n0207,INT_WR_COUNT_VAL_A0,RW,4h,3'b100,3,Slice 0 AR0_FIFO initial write address after AR0_PHY_READY toggle from inactive to active,,
+0n0207.06:00,TBD REGNAME FOR 0n0207,RSVD,RW,00h,7'b0000000,7,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0208.15:08,TBD REGNAME FOR 0n0208,RSVD,RO,xxh,8'bxxxxxxxx,8,,,
+0n0208.07,TBD REGNAME FOR 0n0208,AR0_WREN_0,RO,xh,1'bx,1,Slice 0 AR0_FIFO enable,,
+0n0208.06:00,TBD REGNAME FOR 0n0208,RSVD,RO,xxxh,7'bxxxxxxx,7,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n020A.15:00,TBD REGNAME FOR 0n020A,PRBS_DAT_CNTR_15_0,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,,,
+----------,,,,,,,,,
+0n020B.15:00,TBD REGNAME FOR 0n020B,PRBS_DAT_CNTR_31_16,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,,,
+----------,,,,,,,,,
+0n020C.15:00,TBD REGNAME FOR 0n020C,PRBS_DAT_CNTR_47_32,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,,,
+----------,,,,,,,,,
+0n0300.15,TBD REGNAME FOR 0n0300,AN_RESET,SC,0h,1'b0,1,"1 = AN reset
+0 = AN normal operation",,
+0n0300.14,TBD REGNAME FOR 0n0300,RSVD,RW,0h,1'b0,1,Value always 0 writes ignored,,
+0n0300.13,TBD REGNAME FOR 0n0300,EXTENDED_NEXT_PAGE_CONTROL,RO,1h,1'b1,1,"1 = Extended Next Pages are enabled 
+0 = Extended Next Pages are disabled",,
+0n0300.12,TBD REGNAME FOR 0n0300,AUTO_NEGOTIATION_EN,RW,0h,1'b0,1,"1 = enable Auto-Negotiation process 
+0 = disable Auto-Negotiation process",,
+0n0300.11:10,TBD REGNAME FOR 0n0300,RSVD,RW,0h,2'b00,2,Value always 0 writes ignored,,
+0n0300.09,TBD REGNAME FOR 0n0300,RESTART_AUTO_NEGOTIATION,SC,0h,1'b0,1,"1 = Restart Auto-Negotiation process
+0 = Auto-Negotiation in process disabled or not supported",,
+0n0300.08:00,TBD REGNAME FOR 0n0300,RSVD,RW,0h,9'b000000000,9,Value always 0 writes ignored,,
+----------,,,,,,,,,
+0n0301.15:10,TBD REGNAME FOR 0n0301,RSVD,RF,00h,6'b000000,6,"Value always 0
+Writes ignored",,
+0n0301.09,TBD REGNAME FOR 0n0301,PARALLEL_DECTECTION_FAULT,LH,0h,1'b0,1,"1 = A fault has been detected via the parallel detection function.
+0 = A fault has not been detected via the parallel detection function.",,
+0n0301.08,TBD REGNAME FOR 0n0301,RSVD,RF,0h,1'b0,1,Value always 0,,
+0n0301.07,TBD REGNAME FOR 0n0301,EXTENDED_NEXT_PAGE_STATUS,RO,1h,1'b1,1,"1 = Extended Next Page format is used 
+0 = Extended Next Page is not allowed",,
+0n0301.06,TBD REGNAME FOR 0n0301,PAGE_RECEIVED,LH,0h,1'b0,1,"1 = A page has been received
+0 = A page has not been received",,
+0n0301.05,TBD REGNAME FOR 0n0301,AUTO_NEGOTIATION_COMPLETE,RO,0h,1'b0,1,"1 = Auto-Negotiation process completed
+0 = Auto-Negotiation process not completed",,
+0n0301.04,TBD REGNAME FOR 0n0301,REMOTE_FAULT,LH,0h,1'b0,1,"1 = remote fault condition detected
+0 = no remote fault condition detected",,
+0n0301.03,TBD REGNAME FOR 0n0301,AUTO_NEGOTIATION_ABILITY,RO,1h,1'b1,1,"1 = PHY is able to perform Auto-Negotiation
+0 = PHY is not able to perform Auto-Negotiation",,
+0n0301.02,TBD REGNAME FOR 0n0301,LINK_STATUS,LL,0h,1'b0,1,"1 = Link is up
+0 = Link is down",,
+0n0301.01,TBD REGNAME FOR 0n0301,RSVD,RF,0h,1'b0,1,Value always 0,,
+0n0301.00,TBD REGNAME FOR 0n0301,LINK_PARTNER_AUTO_NEGOTIATION_ABILITY,RO,0h,1'b0,1,"1 = LP is able to perform Auto-Negotiation
+0 = LP is not able to perform Auto-Negotiation",,
+----------,,,,,,,,,
+0n0302.15:00,TBD REGNAME FOR 0n0302,OUI_PART_1,RO,6AB7h,16'b0110101010110111,16,OUI[2:17],,
+----------,,,,,,,,,
+0n0303.15:10,TBD REGNAME FOR 0n0303,OUI_PART_2,RO,22h,6'b100010,6,OUI[18:23],,
+0n0303.09:04,TBD REGNAME FOR 0n0303,MODEL_NUM,RO,00h,6'b000000,6,,,
+0n0303.03:00,TBD REGNAME FOR 0n0303,REVISION_NUM,RO,0h,4'b0000,4,,,
+----------,,,,,,,,,
+0n0305.15:12,TBD REGNAME FOR 0n0305,RSVD,RF,0h,4'b0000,4,Ignore on read,,
+0n0305.11,TBD REGNAME FOR 0n0305,SEPARATED_PMA_4_PRESENT,RO,0h,1'b0,1,"1 = Separated PMAc (4) present in package 
+0 = Separated PMA (4) not present in package",,
+0n0305.10,TBD REGNAME FOR 0n0305,SEPARATED_PMA_3_PRESENT,RO,0h,1'b0,1,"1 = Separated PMA (3) present in package
+0 = Separated PMA (3) not present in package",,
+0n0305.09,TBD REGNAME FOR 0n0305,SEPARATED_PMA_ 2_PRESENT,RO,0h,1'b0,1,"1 = Separated PMA (2) present in package 
+0 = Separated PMA (2) not present in package",,
+0n0305.08,TBD REGNAME FOR 0n0305,SEPARATED_PMA_1_PRESENT,RO,0h,1'b0,1,"1 = Separated PMA (1) present in package
+0 = Separated PMA (1) not present in package",,
+0n0305.07,TBD REGNAME FOR 0n0305,AUTO_NEGOTIATION_PRESENT,RO,1h,1'b1,1,"1 = Auto-Negotiation present in package
+0 = Auto-Negotiation not present in package",,
+0n0305.06,TBD REGNAME FOR 0n0305,TC_PRESENT,RO,0h,1'b0,1,"1 = TC present in package
+0 = TC not present in package",,
+0n0305.05,TBD REGNAME FOR 0n0305,DTE_XS_PRESENT,RO,0h,1'b0,1,"1 = DTE XS present in package
+0 = DTE XS not present in package",,
+0n0305.04,TBD REGNAME FOR 0n0305,PHY_XS_PRESENT,RO,1h,1'b1,1,"1 = PHY XS present in package
+0 = PHY XS not present in package",,
+0n0305.03,TBD REGNAME FOR 0n0305,PCS_PRESENT,RO,1h,1'b1,1,"1 = PCS present in package
+0 = PCS not present in package",,
+0n0305.02,TBD REGNAME FOR 0n0305,WIS_PRESENT,RO,0h,1'b0,1,"1 = WIS present in package
+0 = WIS not present in package",,
+0n0305.01,TBD REGNAME FOR 0n0305,PMD/PMA_PRESENT,RO,1h,1'b1,1,"1 = PMA/PMD present in package
+0 = PMA/PMD not present in package",,
+0n0305.00,TBD REGNAME FOR 0n0305,CLAUSE_22_REGISTER_PRES_ENT,RO,0h,1'b0,1,"1 = Clause 22 registers present in package
+0 = Clause 22 registers not present in package",,
+----------,,,,,,,,,
+0n0306.15,TBD REGNAME FOR 0n0306,VENDOR_SPECIFIC_DEVICE_2_PRESENT,RO,0h,1'b0,1,"1 = Vendor-specific device 2 present in package
+0 = Vendor-specific device 2 not present in package",,
+0n0306.14,TBD REGNAME FOR 0n0306,VENDOR_SPECIFIC_DEVICE_1_PRESENT,RO,0h,1'b0,1,"1 = Vendor-specific device 1 present in package
+0 = Vendor-specific device 1 not present in package",,
+0n0306.13,TBD REGNAME FOR 0n0306,CLAUSE_22_EXTENSION_PRESENT,RO,0h,1'b0,1,"1 = Clause 22 extension present in package
+0 = Clause 22 extension not present in package",,
+0n0306.12:00,TBD REGNAME FOR 0n0306,RSVD,RF,000h,13'b0000000000000,13,Ignore on read,,
+----------,,,,,,,,,
+0n0310.15,TBD REGNAME FOR 0n0310,NEXT_PAGE,RW,1h,1'b1,1,See 28.2.1.2 and 73.6.9,,
+0n0310.14,TBD REGNAME FOR 0n0310,ACKNOWLEDGE,RO,0h,1'b0,1,"Value always 0
+Writes ignored",,
+0n0310.13,TBD REGNAME FOR 0n0310,REMOTE_FAULT,RW,0h,1'b0,1,See 28.2.1.2 and 73.6.7,,
+0n0310.12:05,TBD REGNAME FOR 0n0310,D12:D5,RW,00h,8'b00000000,8,"See 28.2.1.2 and 73.6
+D12: C2, reserved
+D11:D10: PAUSE
+D9:D5: Echoed Nonce Field",,
+0n0310.04:00,TBD REGNAME FOR 0n0310,SELECTOR_FIELD,RW,001h,5'b00001,5,"See Annex 28A
+Fixed 5'b0_0001",,
+----------,,,,,,,,,
+0n0311.15:00,TBD REGNAME FOR 0n0311,D31:D16,RW,0000h,16'b0000000000000000,16,"See 73.6
+bit 4:0=D20:D16: Tx Nonce Field
+bit 15:5=D31:D21: A10 to A0
+Technology Ability Fields
+bit 5: A0: 1000BASE-KX
+bit 6: A1: 10G-KX4
+bit 7: A2: 10G-KR
+bit 8: A3: 40G-KR4
+bit 9: A4: 40G-CR4
+bit 10: A5: 100G-CR10
+(following are from 802.3bj)
+bit 11: A6: 100G-KP4
+bit 12: A7: 100G-KR4
+bit 13: A8: 100G-CR4
+(following are from 802.3by)
+bit 14: A9: 25G-KR/CR-S
+bit 15: A10: 25G-KR/CR",,
+----------,,,,,,,,,
+0n0312.15:00,TBD REGNAME FOR 0n0312,D47:D32,RW,0000h,16'b0000000000000000,16,"See 73.6
+D47: FEC request
+D46: FEC capability 
+D45:D32: A24 to A11",,
+----------,,,,,,,,,
+0n0313.15:00,TBD REGNAME FOR 0n0313,D15:D0,RO,0000h,16'b0000000000000000,16,See 28.2.1.2 and 73.6,,
+----------,,,,,,,,,
+0n0314.15:00,TBD REGNAME FOR 0n0314,D31:D16,RO,0000h,16'b0000000000000000,16,See 73.6,,
+----------,,,,,,,,,
+0n0315.15:00,TBD REGNAME FOR 0n0315,D47:D32,RO,0000h,16'b0000000000000000,16,See 73.6,,
+----------,,,,,,,,,
+0n0316.15,TBD REGNAME FOR 0n0316,NEXT_PAGE,RW,0h,1'b0,1,See 28.2.3.4 and 73.7.7.1,,
+0n0316.14,TBD REGNAME FOR 0n0316,RSVD,RF,0h,1'b0,1,Value always 0 writes ignored,,
+0n0316.13,TBD REGNAME FOR 0n0316,MSG_PAGE,RW,0h,1'b0,1,See 28.2.3.4 and 73.7.7.1,,
+0n0316.12,TBD REGNAME FOR 0n0316,ACKNOWLEDGE_2,RW,0h,1'b0,1,See 28.2.3.4 and 73.7.7.1,,
+0n0316.11,TBD REGNAME FOR 0n0316,TOGGLE,RO,0h,1'b0,1,See 28.2.3.4 and 73.7.7.1,,
+0n0316.10:00,TBD REGNAME FOR 0n0316,MSG_UNFORMATTED_CODE_FIELD,RW,000h,11'b00000000000,11,See 28.2.3.4 and 73.7.7.1,,
+----------,,,,,,,,,
+0n0317.15:00,TBD REGNAME FOR 0n0317,UNFORMATTED_CODE_FIELD_1,RW,0000h,16'b0000000000000000,16,See 28.2.3.4 and 73.7.7.1,,
+----------,,,,,,,,,
+0n0318.15:00,TBD REGNAME FOR 0n0318,UNFORMATTED_CODE_FIELD_2,RW,0000h,16'b0000000000000000,16,See 28.2.3.4 and 73.7.7.1,,
+----------,,,,,,,,,
+0n0319.15,TBD REGNAME FOR 0n0319,NEXT_PAGE,RO,0h,1'b0,1,See 28.2.3.4 and 73.7.7.1,,
+0n0319.14,TBD REGNAME FOR 0n0319,ACKNOWLEDGE,RO,0h,1'b0,1,See 28.2.3.4 and 73.7.7.1,,
+0n0319.13,TBD REGNAME FOR 0n0319,MSG_PANE,RO,0h,1'b0,1,See 28.2.3.4 and 73.7.7.1,,
+0n0319.12,TBD REGNAME FOR 0n0319,ACKNOWLEDGE_2,RO,0h,1'b0,1,See 28.2.3.4 and 73.7.7.1,,
+0n0319.11,TBD REGNAME FOR 0n0319,TOGGLE,RO,0h,1'b0,1,See 28.2.3.4 and 73.7.7.1,,
+0n0319.10:00,TBD REGNAME FOR 0n0319,MSG_UNFORMATTED_CODE_FIELD,RO,000h,11'b00000000000,11,See 28.2.3.4 and 73.7.7.1,,
+----------,,,,,,,,,
+0n031A.15:00,TBD REGNAME FOR 0n031A,UNFORMATTED_CODE_FIELD_1,RO,0000h,16'b0000000000000000,16,See 28.2.3.4 and 73.7.7.1,,
+----------,,,,,,,,,
+0n031B.15:00,TBD REGNAME FOR 0n031B,UNFORMATTED_CODE_FIELD_2,RO,0000h,16'b0000000000000000,16,See 28.2.3.4 and 73.7.7.1,,
+----------,,,,,,,,,
+0n0330.15,TBD REGNAME FOR 0n0330,5GBASE_KR_A12,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 5GBASE-KR
+0 = PMA/PMD is not negotiated to perform 5GBASE-KR",,
+0n0330.14,TBD REGNAME FOR 0n0330,2.5GBASE_KX_A11,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 2.5GBASE-KX
+0 = PMA/PMD is not negotiated to perform 2.5GBASE-KX",,
+0n0330.13,TBD REGNAME FOR 0n0330,2.5GBASE_KX OR 25GBASE_CR_A10,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 25GBASE-KR or 25GBASE-CR
+0 = PMA/PMD is not negotiated to perform 25GBASE-KR or 25GBASE-CR",,
+0n0330.12,TBD REGNAME FOR 0n0330,2.5GBASE_KR_S OR 25GBASE_CR_S_A9,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 25GBASE-KR-S or 25GBASE-CR-S
+0 = PMA/PMD is not negotiated to perform 25GBASE-KR-S or 25GBASE-CR-S",,
+0n0330.11,TBD REGNAME FOR 0n0330,100GBASE_CR4_A8,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 100GBASE-CR4
+0 = PMA/PMD is not negotiated to perform 100GBASE-CR4",,
+0n0330.10,TBD REGNAME FOR 0n0330,100GBASE_KR4_A7,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 100GBASE-KR4
+0 = PMA/PMD is not negotiated to perform 100GBASE-KR4",,
+0n0330.09,TBD REGNAME FOR 0n0330,100GBASE_KP4_A6,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 100GBASE-KP4
+0 = PMA/PMD is not negotiated to perform 100GBASE-KP4",,
+0n0330.08,TBD REGNAME FOR 0n0330,100GBASE_CR10_A5,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 100GBASE-CR10
+0 = PMA/PMD is not negotiated to perform 100GBASE-CR10",,
+0n0330.07,TBD REGNAME FOR 0n0330,RSVD,RO,0h,1'b0,1,Ignore on read,,
+0n0330.06,TBD REGNAME FOR 0n0330,40GBASE_CR4_A4,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 40GBASE-CR4
+0 = PMA/PMD is not negotiated to perform 40GBASE-CR4",,
+0n0330.05,TBD REGNAME FOR 0n0330,40GBASE_KR4_A3,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 40GBASE-KR4
+0 = PMA/PMD is not negotiated to perform 40GBASE-KR4",,
+0n0330.04,TBD REGNAME FOR 0n0330,BASE_R_FEC_NEGOTIATED,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform BASE-R FEC
+0 = PMA/PMD is not negotiated to perform BASE-R FEC",,
+0n0330.03,TBD REGNAME FOR 0n0330,10GBASE_KR_A2,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 10GBASE-KR
+0 = PMA/PMD is not negotiated to perform 10GBASE-KR",,
+0n0330.02,TBD REGNAME FOR 0n0330,10GBASE_KX4_A1,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 10GBASE-KX4 or CX4 
+0 = PMA/PMD is not negotiated to perform 10GBASE-KX4/CX4",,
+0n0330.01,TBD REGNAME FOR 0n0330,1000BASE_KX_A0,RO,0h,1'b0,1,"1 = PMA/PMD is negotiated to perform 1000BASE-KX
+0 = PMA/PMD is not negotiated to perform 1000BASE-KX",,
+0n0330.00,TBD REGNAME FOR 0n0330,BP_AN_ABILITY,RO,1h,1'b1,1,"If a Backplane BASE-R copper PHY type is implemented, this bit is set to 1.",,
+----------,,,,,,,,,
+0n03F0.15:00,TBD REGNAME FOR 0n03F0,25G_50G_CONSORTIUM_AUTONEG_NEXT_PAGE_MSG_PAGE_BIT_15:0,RW,A005h,16'b1010000000000101,16,,,
+----------,,,,,,,,,
+0n03F1.15:00,TBD REGNAME FOR 0n03F1,25G_50G_CONSORTIUM_AUTONEG_NEXT_PAGE_MSG_PAGE_BIT_31:16,RW,0353h,16'b0000001101010011,16,,,
+----------,,,,,,,,,
+0n03F2.15:00,TBD REGNAME FOR 0n03F2,25G_50G_CONSORTIUM_AUTONEG_NEXT_PAGE_MSG_PAGE_BIT_47_32,RW,04DFh,16'b0000010011011111,16,,,
+----------,,,,,,,,,
+0n03F3.15:00,TBD REGNAME FOR 0n03F3,25G_50G_CONSORTIUM_AUTONEG_NEXT_PAGE_MSG_PAGE_BIT_15_0,RW,0203h,16'b0000001000000011,16,,,
+----------,,,,,,,,,
+0n03F4.15:00,TBD REGNAME FOR 0n03F4,25G_50G_CONSORTIUM_AUTONEG_NEXT_PAGE_MSG_PAGE_BIT_31_16,RW,0000h,16'b0000000000000000,16,,,
+----------,,,,,,,,,
+0n03F5.15:00,TBD REGNAME FOR 0n03F5,25G_50G_CONSORTIUM_AUTONEG_NEXT_PAGE_MSG_PAGE_BIT_47_32,RW,0000h,16'b0000000000000000,16,,,
+----------,,,,,,,,,
+0n03F6.15:00,TBD REGNAME FOR 0n03F6,25G_50G_CONSORTIUM_OUI_MP5_VALID_CODE_FOR_COMPARING_WITH_RECEIVED_OUI_15_0,RW,737Dh,16'b0111001101111101,16,,,
+----------,,,,,,,,,
+0n03F7.15:00,TBD REGNAME FOR 0n03F7,25G_50G_CONSORTIUM_OUI_MP5_VALID_CODE_FOR_COMPARING_WITH_RECEIVED_OUI_23_16,RW,006Ah,16'b0000000001101010,16,,,
+----------,,,,,,,,,
+0n03F8.15:00,TBD REGNAME FOR 0n03F8,25G_50G_CONSORTIUM_OUI_MP5_VALID_CODE_FOR_COMPARING_WITH_RECEIVED_OUI_15_0,RW,0005h,16'b0000000000000101,16,,,
+----------,,,,,,,,,
+0n03F9.15:00,TBD REGNAME FOR 0n03F9,TX_ARG_NULL_MP_S_15_0,RW,0001h,16'b0000000000000001,16,,,
+----------,,,,,,,,,
+0n03FA.15:00,TBD REGNAME FOR 0n03FA,TX_ARG_NULL_MP_S_31_16,RW,0000h,16'b0000000000000000,16,,,
+----------,,,,,,,,,
+0n03FB.15:00,TBD REGNAME FOR 0n03FB,TX_ARG_NULL_MP_S_47_32,RW,0000h,16'b0000000000000000,16,,,
+----------,,,,,,,,,
+0n03FC.15:00,TBD REGNAME FOR 0n03FC,AA_LINK_CONTROL_REPORT_S_15_0,RO,0000h,16'b0000000000000000,16,,,
+----------,,,,,,,,,
+0n0400.15:02,TBD REGNAME FOR 0n0400,RSVD,RW,xxxxh,14'bxxxxxxxxxxxxxx,14,Reserved. Do not change the default value.,,
+0n0400.01,TBD REGNAME FOR 0n0400,TRAINING_EN,RW,1h,1'b1,1,"0h = Disable the training start-up protocol
+1h = Enable the training start-up protocol",,
+0n0400.00,TBD REGNAME FOR 0n0400,TRAINING_RESTART,RW,0h,1'b0,1,"0h = Normal operation
+1h = Restart the training start-up protocol",,
+----------,,,,,,,,,
+0n0404.15:13,TBD REGNAME FOR 0n0404,READOUT_STATE,RO,xh,3'bxxx,3,Readout for frame lock state.,,
+0n0404.12,TBD REGNAME FOR 0n0404,FRAME_LOCK,RO,xh,1'bx,1,Frame lock readout.,,
+0n0404.11,TBD REGNAME FOR 0n0404,RX_TRAINED,RO,xh,1'bx,1,Local training finish flag.,,
+0n0404.10:08,TBD REGNAME FOR 0n0404,READOUT_TRAINING_STATE,RO,xh,3'bxxx,3,Training state readout.,,
+0n0404.07,TBD REGNAME FOR 0n0404,TRAINING_FAILURE,RO,xh,1'bx,1,Training failure.,,
+0n0404.06,TBD REGNAME FOR 0n0404,TX_TRAINING_DATA_EN,RO,xh,1'bx,1,TX control to send training pattern.,,
+0n0404.05,TBD REGNAME FOR 0n0404,SIG_DET,RO,xh,1'bx,1,Signal detect for PCS.,,
+0n0404.04:00,TBD REGNAME FOR 0n0404,READOUT_TXSTATE,RO,xxh,5'bxxxxx,5,State machine readout for training arbiter,,
+----------,,,,,,,,,
+0n0406.15:00,TBD REGNAME FOR 0n0406,MAX_WAIT_TIMER_31_16,RW,0254h,16'b0000001001010100,16,Training max wait timer.,,
+----------,,,,,,,,,
+0n0407.15:00,TBD REGNAME FOR 0n0407,MAX_WAIT_TIMER_15_0,RW,0BE4h,16'b0000101111100100,16,Training max wait timer.,,
+----------,,,,,,,,,
+0n0408.15:00,TBD REGNAME FOR 0n0408,WAIT_TIMER_31_16,RW,0000h,16'b0000000000000000,16,Training wait timer.,,
+----------,,,,,,,,,
+0n0409.15:00,TBD REGNAME FOR 0n0409,WAIT_TIMER_15_0,RW,1A90h,16'b0001101010010000,16,Training wait timer.,,
+----------,,,,,,,,,
+0n040A.15,TBD REGNAME FOR 0n040A,TRAINING_STATE_OWEN,RW,0h,1'b0,1,Training state overwrite enable bit.,,
+0n040A.14:12,TBD REGNAME FOR 0n040A,TRAINING_STATE_OW,RW,0h,3'b000,3,Training state overwrite number.,,
+0n040A.11,TBD REGNAME FOR 0n040A,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n040A.10:05,TBD REGNAME FOR 0n040A,TOTAL_POWER_MAX,RW,19h,6'b011001,6,Total tap value maximum number. ,,
+0n040A.04,TBD REGNAME FOR 0n040A,RSVD,RW,1h,1'b1,1,Reserved. Do not change the default value.,,
+0n040A.03:00,TBD REGNAME FOR 0n040A,RSVD,RW,0h,4'b0000,4,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n040B.15:14,TBD REGNAME FOR 0n040B,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040B.13:08,TBD REGNAME FOR 0n040B,TAPM1_MAX_VAL,RW,00h,6'b000000,6,Maximum coefficient value for tap -1.,,
+0n040B.07:06,TBD REGNAME FOR 0n040B,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040B.05:00,TBD REGNAME FOR 0n040B,TAPM1_MIN_VAL,RW,39h,6'b111001,6,Minimum coefficient value for tap -1.,,
+----------,,,,,,,,,
+0n040C.15:14,TBD REGNAME FOR 0n040C,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040C.13:08,TBD REGNAME FOR 0n040C,TAPM1_PRESET_VAL,RW,00h,6'b000000,6,Preset coefficient value for tap -1.,,
+0n040C.07:06,TBD REGNAME FOR 0n040C,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040C.05:00,TBD REGNAME FOR 0n040C,TAPM1_INI_VAL,RW,3Eh,6'b111110,6,Initialize coefficient value for tap -1.,,
+----------,,,,,,,,,
+0n040D.15:14,TBD REGNAME FOR 0n040D,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040D.13:08,TBD REGNAME FOR 0n040D,TAP0_MAX_VAL,RW,19h,6'b011001,6,Maximum coefficient value for tap 0,,
+0n040D.07:06,TBD REGNAME FOR 0n040D,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040D.05:00,TBD REGNAME FOR 0n040D,TAP0_MIN_VAL,RW,0Eh,6'b001110,6,Minimum coefficient value for tap 0,,
+----------,,,,,,,,,
+0n040E.15:14,TBD REGNAME FOR 0n040E,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040E.13:08,TBD REGNAME FOR 0n040E,TAP0_PRESET_VAL,RW,19h,6'b011001,6,Preset coefficient value for tap 0,,
+0n040E.07:06,TBD REGNAME FOR 0n040E,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040E.05:00,TBD REGNAME FOR 0n040E,TAP0_INI_VAL,RW,12h,6'b010010,6,Initialize coefficient value for tap 0,,
+----------,,,,,,,,,
+0n040F.15:14,TBD REGNAME FOR 0n040F,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040F.13:08,TBD REGNAME FOR 0n040F,TAP1_MAX_VAL,RW,00h,6'b000000,6,Maximum coefficient value for tap 1,,
+0n040F.07:06,TBD REGNAME FOR 0n040F,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n040F.05:00,TBD REGNAME FOR 0n040F,TAP1_MIN_VAL,RW,35h,6'b110101,6,Minimum coefficient value for tap 1,,
+----------,,,,,,,,,
+0n0410.15:14,TBD REGNAME FOR 0n0410,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0410.13:08,TBD REGNAME FOR 0n0410,TAP1_PRESET_VAL,RW,00h,6'b000000,6,Preset coefficient value for tap 0,,
+0n0410.07:06,TBD REGNAME FOR 0n0410,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0410.05:00,TBD REGNAME FOR 0n0410,TAP1_INI_VAL,RW,3Eh,6'b111110,6,Initialize coefficient value for tap 0,,
+----------,,,,,,,,,
+0n0411.15:14,TBD REGNAME FOR 0n0411,RSVD,RO,xh,2'bxx,2,Reserved. Do not change the default value.,,
+0n0411.13,TBD REGNAME FOR 0n0411,LP_PRESET,RO,xh,1'bx,1,Link partner preset control,,
+0n0411.12,TBD REGNAME FOR 0n0411,LP_INIT,RO,xh,1'bx,1,Link partner initialize control,,
+0n0411.11:06,TBD REGNAME FOR 0n0411,RSVD,RO,xxh,6'bxxxxxx,6,Reserved. Do not change the default value.,,
+0n0411.05:04,TBD REGNAME FOR 0n0411,LP_COEFF_1UPDATE,RO,xh,2'bxx,2,Link partner coefficient (+1) update ,,
+0n0411.03:02,TBD REGNAME FOR 0n0411,LP_COEFF_0UPDATE,RO,xh,2'bxx,2,Link partner coefficient (0) update ,,
+0n0411.01:00,TBD REGNAME FOR 0n0411,LP_COEFF_M1UPDATE,RO,xh,2'bxx,2,Link partner coefficient (-1) update ,,
+----------,,,,,,,,,
+0n0412.15,TBD REGNAME FOR 0n0412,LP_PRESET_OWEN,RW,0h,1'b0,1,Link partner preset control overwrite enable,,
+0n0412.14,TBD REGNAME FOR 0n0412,LP_INIT_OWEN,RW,0h,1'b0,1,Link partner initialize control overwrite enable,,
+0n0412.13,TBD REGNAME FOR 0n0412,LP_PRESET_OW,RW,0h,1'b0,1,Link partner preset control overwrite,,
+0n0412.12,TBD REGNAME FOR 0n0412,LP_INIT_OW,RW,0h,1'b0,1,Link partner initialize control overwrite,,
+0n0412.11:09,TBD REGNAME FOR 0n0412,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n0412.08,TBD REGNAME FOR 0n0412,LP_COEFF_1UPDATE_OWEN,RW,0h,1'b0,1,Link partner coefficient (+1) update overwrite enable,,
+0n0412.07,TBD REGNAME FOR 0n0412,LP_COEFF_0UPDATE_OWEN,RW,0h,1'b0,1,Link partner coefficient (0) update overwrite enable,,
+0n0412.06,TBD REGNAME FOR 0n0412,LP_COEFF_M1UPDATE_OWEN,RW,0h,1'b0,1,Link partner coefficient (-1) update overwrite enable,,
+0n0412.05:04,TBD REGNAME FOR 0n0412,LP_COEFF_1UPDATE_OW,RW,0h,2'b00,2,Link partner coefficient (+1) update overwrite,,
+0n0412.03:02,TBD REGNAME FOR 0n0412,LP_COEFF_0UPDATE_OW,RW,0h,2'b00,2,Link partner coefficient (0) update overwrite,,
+0n0412.01:00,TBD REGNAME FOR 0n0412,LP_COEFF_M1UPDATE_OW,RW,0h,2'b00,2,Link partner coefficient (-1) update overwrite,,
+----------,,,,,,,,,
+0n0413.15,TBD REGNAME FOR 0n0413,LP_RECEIVER_READY,RO,xh,1'bx,1,Link partner training finish,,
+0n0413.14:06,TBD REGNAME FOR 0n0413,RSVD,RO,xxxh,9'bxxxxxxxxx,9,Reserved. Do not change the default value.,,
+0n0413.05:04,TBD REGNAME FOR 0n0413,LP_COEFF_1STATUS,RO,xh,2'bxx,2,Link partner coefficient (+1) status.,,
+0n0413.03:02,TBD REGNAME FOR 0n0413,LP_COEFF_0STATUS,RO,xh,2'bxx,2,Link partner coefficient (0) status.,,
+0n0413.01:00,TBD REGNAME FOR 0n0413,LP_COEFF_M1STATUS,RO,xh,2'bxx,2,Link partner coefficient (-1) status.,,
+----------,,,,,,,,,
+0n0414.15,TBD REGNAME FOR 0n0414,LP_RECEIVER_READY_OWEN,RW,0h,1'b0,1,Link partner training finish overwrite enable.,,
+0n0414.14,TBD REGNAME FOR 0n0414,LP_RECEIVER_READY_OW,RW,0h,1'b0,1,Link partner training finish overwrite.,,
+0n0414.13:09,TBD REGNAME FOR 0n0414,RSVD,RW,00h,5'b00000,5,Reserved. Do not change the default value.,,
+0n0414.08,TBD REGNAME FOR 0n0414,LP_COEFF_1STATUS_OWEN,RW,0h,1'b0,1,Link partner coefficient (+1) status overwrite enable.,,
+0n0414.07,TBD REGNAME FOR 0n0414,LP_COEFF_0STATUS_OWEN,RW,0h,1'b0,1,Link partner coefficient (0) status overwrite enable.,,
+0n0414.06,TBD REGNAME FOR 0n0414,LP_COEFF_M1STATUS_OWEN,RW,0h,1'b0,1,Link partner coefficient (-1) status overwrite enable.,,
+0n0414.05:04,TBD REGNAME FOR 0n0414,LP_COEFF_1STATUS_OW,RW,0h,2'b00,2,Link partner coefficient (+1) status overwrite.,,
+0n0414.03:02,TBD REGNAME FOR 0n0414,LP_COEFF_0STATUS_OW,RW,0h,2'b00,2,Link partner coefficient (0) status overwrite.,,
+0n0414.01:00,TBD REGNAME FOR 0n0414,LP_COEFF_M1STATUS_OW,RW,0h,2'b00,2,Link partner coefficient (-1) status overwrite.,,
+----------,,,,,,,,,
+0n0415.15:14,TBD REGNAME FOR 0n0415,RSVD,RO,xh,2'bxx,2,Reserved. Do not change the default value.,,
+0n0415.13,TBD REGNAME FOR 0n0415,LD_PRESET,RO,xh,1'bx,1,Local device preset control.,,
+0n0415.12,TBD REGNAME FOR 0n0415,LD_INIT,RO,xh,1'bx,1,Local device initialize control.,,
+0n0415.11:06,TBD REGNAME FOR 0n0415,RSVD,RO,xxh,6'bxxxxxx,6,Reserved. Do not change the default value.,,
+0n0415.05:04,TBD REGNAME FOR 0n0415,LD_COEFF_1UPDATE,RO,xh,2'bxx,2,Local device coefficient (+1) update. ,,
+0n0415.03:02,TBD REGNAME FOR 0n0415,LD_COEFF_0UPDATE,RO,xh,2'bxx,2,Local device coefficient (0) update. ,,
+0n0415.01:00,TBD REGNAME FOR 0n0415,LD_COEFF_M1UPDATE,RO,xh,2'bxx,2,Local device coefficient (-1) update. ,,
+----------,,,,,,,,,
+0n0416.15,TBD REGNAME FOR 0n0416,LD_PRESET_OWEN,RW,0h,1'b0,1,Local device preset control overwrite enable.,,
+0n0416.14,TBD REGNAME FOR 0n0416,LD_INIT_OWEN,RW,0h,1'b0,1,Local device initialize control overwrite enable.,,
+0n0416.13,TBD REGNAME FOR 0n0416,LD_PRESET_OW,RW,0h,1'b0,1,Local device preset control overwrite.,,
+0n0416.12,TBD REGNAME FOR 0n0416,LD_INIT_OW,RW,0h,1'b0,1,Local device initialize control overwrite.,,
+0n0416.11:09,TBD REGNAME FOR 0n0416,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n0416.08,TBD REGNAME FOR 0n0416,LD_COEFF_1UPDATE_OWEN,RW,0h,1'b0,1,Local device coefficient (+1) update overwrite enable.,,
+0n0416.07,TBD REGNAME FOR 0n0416,LD_COEFF_0UPDATE_OWEN,RW,0h,1'b0,1,Local device coefficient (0) update overwrite enable.,,
+0n0416.06,TBD REGNAME FOR 0n0416,LD_COEFF_M1UPDATE_OWEN,RW,0h,1'b0,1,Local device coefficient (-1) update overwrite enable.,,
+0n0416.05:04,TBD REGNAME FOR 0n0416,LD_COEFF_1UPDATE_OW,RW,0h,2'b00,2,Local device coefficient (+1) update overwrite.,,
+0n0416.03:02,TBD REGNAME FOR 0n0416,LD_COEFF_0UPDATE_OW,RW,0h,2'b00,2,Local device coefficient (0) update overwrite.,,
+0n0416.01:00,TBD REGNAME FOR 0n0416,LD_COEFF_M1UPDATE_OW,RW,0h,2'b00,2,Local device coefficient (-1) update overwrite.,,
+----------,,,,,,,,,
+0n0417.15,TBD REGNAME FOR 0n0417,LD_RECEIVER_READY,RO,xh,1'bx,1,Local device training finished.,,
+0n0417.14:06,TBD REGNAME FOR 0n0417,RSVD,RO,xxxh,9'bxxxxxxxxx,9,Reserved. Do not change the default value.,,
+0n0417.05:04,TBD REGNAME FOR 0n0417,LD_COEFF_1STATUS,RO,xh,2'bxx,2,Local device coefficient (+1) status.,,
+0n0417.03:02,TBD REGNAME FOR 0n0417,LD_COEFF_0STATUS,RO,xh,2'bxx,2,Local device coefficient (0) status.,,
+0n0417.01:00,TBD REGNAME FOR 0n0417,LD_COEFF_M1STATUS,RO,xh,2'bxx,2,Local device coefficient (-1) status.,,
+----------,,,,,,,,,
+0n0418.15,TBD REGNAME FOR 0n0418,LD_RECEIVER_READY_OWEN,RW,0h,1'b0,1,Local device training finished overwrite enable.,,
+0n0418.14,TBD REGNAME FOR 0n0418,LD_RECEIVER_READY_OW,RW,0h,1'b0,1,Local device training finished overwrite.,,
+0n0418.13:09,TBD REGNAME FOR 0n0418,RSVD,RW,00h,5'b00000,5,Reserved. Do not change the default value.,,
+0n0418.08,TBD REGNAME FOR 0n0418,LD_COEFF_1STATUS_OWEN,RW,0h,1'b0,1,Local device coefficient (+1) status overwrite enable.,,
+0n0418.07,TBD REGNAME FOR 0n0418,LD_COEFF_0STATUS_OWEN,RW,0h,1'b0,1,Local device coefficient (0) status overwrite enable.,,
+0n0418.06,TBD REGNAME FOR 0n0418,LD_COEFF_M1STATUS_OWEN,RW,0h,1'b0,1,Local device coefficient (-1) status overwrite enable.,,
+0n0418.05:04,TBD REGNAME FOR 0n0418,LD_COEFF_1STATUS_OW,RW,0h,2'b00,2,Local device coefficient (+1) status overwrite.,,
+0n0418.03:02,TBD REGNAME FOR 0n0418,LD_COEFF_0STATUS_OW,RW,0h,2'b00,2,Local device coefficient (0) status overwrite.,,
+0n0418.01:00,TBD REGNAME FOR 0n0418,LD_COEFF_M1STATUS_OW,RW,0h,2'b00,2,Local device coefficient (-1) status overwrite.,,
+----------,,,,,,,,,
+0n0419.15:13,TBD REGNAME FOR 0n0419,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+0n0419.12,TBD REGNAME FOR 0n0419,DIS_AN_START,RW,1h,1'b1,1,Disable auto-negotiation finish start,,
+0n0419.11,TBD REGNAME FOR 0n0419,HOLD_FRAME,RW,1h,1'b1,1,Send hold frame,,
+0n0419.10,TBD REGNAME FOR 0n0419,PRESET_FRAME,RW,0h,1'b0,1,Send preset frame,,
+0n0419.09,TBD REGNAME FOR 0n0419,INI_FRAME,RW,0h,1'b0,1,Send initialize frame,,
+0n0419.08,TBD REGNAME FOR 0n0419,COEFF0_FRAME_INC,RW,0h,1'b0,1,Send coefficient 0 increment frame,,
+0n0419.07,TBD REGNAME FOR 0n0419,COEFF0_FRAME_DEC,RW,0h,1'b0,1,Send coefficient 0 decrement frame,,
+0n0419.06,TBD REGNAME FOR 0n0419,COEFFM1_FRAME_INC,RW,0h,1'b0,1,Send coefficient -1 increment frame,,
+0n0419.05,TBD REGNAME FOR 0n0419,COEFFM1_FRAME_DEC,RW,0h,1'b0,1,Send coefficient -1 decrement frame,,
+0n0419.04,TBD REGNAME FOR 0n0419,COEFF1_FRAME_INC,RW,0h,1'b0,1,Send coefficient 1 increment frame,,
+0n0419.03,TBD REGNAME FOR 0n0419,COEFF1_FRAME_DEC,RW,0h,1'b0,1,Send coefficient 1 decrement frame,,
+0n0419.02,TBD REGNAME FOR 0n0419,REG_AUTO_FINISH,RW,1h,1'b1,1,Use timer counter to generated trained signal,,
+0n0419.01,TBD REGNAME FOR 0n0419,REG_RX_TRAINED,RW,0h,1'b0,1,Local device training finish,,
+0n0419.00,TBD REGNAME FOR 0n0419,REG_SEND_CLEAR,RW,0h,1'b0,1,Reset the TX state machine to UPDATE WAIT,,
+----------,,,,,,,,,
+0n041A.15:00,TBD REGNAME FOR 0n041A,FINISH_CNTR_MSB,RW,0095h,16'b0000000010010101,16,Auto finish training counter bits 31:16,,
+----------,,,,,,,,,
+0n041B.15:00,TBD REGNAME FOR 0n041B,FINISH_CNTR_LSB,RW,0000h,16'b0000000000000000,16,Auto finish training counter bits 15:0,,
+----------,,,,,,,,,
+0n041C.15:00,TBD REGNAME FOR 0n041C,TRAIN_INST_0,RW,4641h,16'b0100011001000001,16,"Training instruction command, bits 15:0. Four instructions.",,
+----------,,,,,,,,,
+0n041D.15:00,TBD REGNAME FOR 0n041D,TRAIN_INST_1,RW,4646h,16'b0100011001000110,16,"Training instruction command, bits 31:16. Four instructions.",,
+----------,,,,,,,,,
+0n041E.15:00,TBD REGNAME FOR 0n041E,TRAIN_INST_2,RW,0006h,16'b0000000000000110,16,"Training instruction command, bits 47:32. Four instructions.",,
+----------,,,,,,,,,
+0n041F.15:00,TBD REGNAME FOR 0n041F,TRAIN_INST_3,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 63:48. Four instructions.",,
+----------,,,,,,,,,
+0n0420.15:00,TBD REGNAME FOR 0n0420,TRAIN_INST_4,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 79:64. Four instructions.",,
+----------,,,,,,,,,
+0n0421.15:00,TBD REGNAME FOR 0n0421,TRAIN_INST_5,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 95:80. Four instructions.",,
+----------,,,,,,,,,
+0n0422.15:00,TBD REGNAME FOR 0n0422,TRAIN_INST_6,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 111:96. Four instructions.",,
+----------,,,,,,,,,
+0n0423.15:00,TBD REGNAME FOR 0n0423,TRAIN_INST_7,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 127:112. Four instructions.",,
+----------,,,,,,,,,
+0n0424.15:14,TBD REGNAME FOR 0n0424,TRAIN_MODE,RW,0h,2'b00,2,"Link training mode selection:
+     00b or 01b: Clause 136/137 PAM4 50G link training
+     11b: Clause 72, Clause 84/85 NRZ 10G link training
+     10b: Clause 92/93, Clause 110/111 NRZ 25G link training",,
+0n0424.13:00,TBD REGNAME FOR 0n0424,RSVD,RW,0000h,14'b00000000000000,14,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0425.15:00,TBD REGNAME FOR 0n0425,HOLDOFF_TIMER_31_16,RW,03B9h,16'b0000001110111001,16,Training timeout wait timer.,,
+----------,,,,,,,,,
+0n0426.15:00,TBD REGNAME FOR 0n0426,HOLDOFF_TIMER_15_0,RW,ACA0h,16'b1010110010100000,16,Training timeout wait timer.,,
+----------,,,,,,,,,
+0n0429.15,TBD REGNAME FOR 0n0429,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n0429.14:08,TBD REGNAME FOR 0n0429,TOTAL_POWER_MAX_50G,RW,19h,7'b0011001,7,Maximum total power.,,
+0n0429.07:00,TBD REGNAME FOR 0n0429,RSVD,RW,0h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n042A.15:14,TBD REGNAME FOR 0n042A,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042A.13:08,TBD REGNAME FOR 0n042A,TAP0_MAX_VAL_50G,RW,19h,6'b011001,6,Maximum coefficient value for tap 0.,,
+0n042A.07:06,TBD REGNAME FOR 0n042A,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042A.05:00,TBD REGNAME FOR 0n042A,TAP0_MIN_VAL_50G,RW,0Eh,6'b001110,6,Minimum coefficient value for tap 0.,,
+----------,,,,,,,,,
+0n042B.15:14,TBD REGNAME FOR 0n042B,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042B.13:08,TBD REGNAME FOR 0n042B,TAP0_PRESET1_VAL_50G,RW,19h,6'b011001,6,Preset1 coefficient value for tap 0.,,
+0n042B.07:06,TBD REGNAME FOR 0n042B,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042B.05:00,TBD REGNAME FOR 0n042B,TAP0_PRESET2_VAL_50G,RW,19h,6'b011001,6,Preset2 coefficient value for tap 0.,,
+----------,,,,,,,,,
+0n042C.15:14,TBD REGNAME FOR 0n042C,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042C.13:08,TBD REGNAME FOR 0n042C,TAP0_PRESET3_VAL_50G,RW,19h,6'b011001,6,Preset3 coefficient value for tap 0.,,
+0n042C.07:00,TBD REGNAME FOR 0n042C,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n042D.15:14,TBD REGNAME FOR 0n042D,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042D.13:08,TBD REGNAME FOR 0n042D,TAP1_MAX_VAL_50G,RW,00h,6'b000000,6,Maximum coefficient value for tap 1.,,
+0n042D.07:06,TBD REGNAME FOR 0n042D,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042D.05:00,TBD REGNAME FOR 0n042D,TAP1_MIN_VAL_50G,RW,39h,6'b111001,6,Minimum coefficient value for tap 1.,,
+----------,,,,,,,,,
+0n042E.15:14,TBD REGNAME FOR 0n042E,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042E.13:08,TBD REGNAME FOR 0n042E,TAP1_PRESET1_VAL_50G,RW,00h,6'b000000,6,Preset1 coefficient value for tap 1.,,
+0n042E.07:06,TBD REGNAME FOR 0n042E,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042E.05:00,TBD REGNAME FOR 0n042E,TAP1_PRESET2_VAL_50G,RW,00h,6'b000000,6,Preset2 coefficient value for tap 1.,,
+----------,,,,,,,,,
+0n042F.15:14,TBD REGNAME FOR 0n042F,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n042F.13:08,TBD REGNAME FOR 0n042F,TAP1_PRESET3_VAL_50G,RW,00h,6'b000000,6,Preset3 coefficient value for tap 1.,,
+0n042F.07:00,TBD REGNAME FOR 0n042F,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0430.15:14,TBD REGNAME FOR 0n0430,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0430.13:08,TBD REGNAME FOR 0n0430,TAPM1_MAX_VAL_50G,RW,00h,6'b000000,6,Maximum coefficient value for tap -1.,,
+0n0430.07:06,TBD REGNAME FOR 0n0430,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0430.05:00,TBD REGNAME FOR 0n0430,TAPM1_MIN_VAL_50G,RW,39h,6'b111001,6,Minimum coefficient value for tap -1.,,
+----------,,,,,,,,,
+0n0431.15:14,TBD REGNAME FOR 0n0431,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0431.13:08,TBD REGNAME FOR 0n0431,TAPM1_PRESET1_VAL_50G,RW,00h,6'b000000,6,Preset1 coefficient value for tap -1.,,
+0n0431.07:06,TBD REGNAME FOR 0n0431,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0431.05:00,TBD REGNAME FOR 0n0431,TAPM1_PRESET2_VAL_50G,RW,00h,6'b000000,6,Preset2 coefficient value for tap -1.,,
+----------,,,,,,,,,
+0n0432.15:14,TBD REGNAME FOR 0n0432,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0432.13:08,TBD REGNAME FOR 0n0432,TAPM1_PRESET3_VAL_50G,RW,00h,6'b000000,6,Preset3 coefficient value for tap -1.,,
+0n0432.07:00,TBD REGNAME FOR 0n0432,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0433.15:14,TBD REGNAME FOR 0n0433,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0433.13:08,TBD REGNAME FOR 0n0433,TAPM2_MAX_VAL_50G,RW,00h,6'b000000,6,Maximum coefficient value for tap -2.,,
+0n0433.07:06,TBD REGNAME FOR 0n0433,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0433.05:00,TBD REGNAME FOR 0n0433,TAPM2_MIN_VAL_50G,RW,39h,6'b111001,6,Minimum coefficient value for tap -2.,,
+----------,,,,,,,,,
+0n0434.15:14,TBD REGNAME FOR 0n0434,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0434.13:08,TBD REGNAME FOR 0n0434,TAPM2_PRESET1_VAL_50G,RW,00h,6'b000000,6,Preset1 coefficient value for tap -2.,,
+0n0434.07:06,TBD REGNAME FOR 0n0434,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0434.05:00,TBD REGNAME FOR 0n0434,TAPM2_PRESET2_VAL_50G,RW,00h,6'b000000,6,Preset2 coefficient value for tap -2.,,
+----------,,,,,,,,,
+0n0435.15:14,TBD REGNAME FOR 0n0435,RSVD,RW,0h,2'b00,2,Reserved. Do not change the default value.,,
+0n0435.13:08,TBD REGNAME FOR 0n0435,TAPM2_PRESET3_VAL_50G,RW,00h,6'b000000,6,Preset3 coefficient value for tap -2.,,
+0n0435.07:00,TBD REGNAME FOR 0n0435,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0436.15:00,TBD REGNAME FOR 0n0436,FINISH_CNTR_50G_31_16,RW,039Bh,16'b0000001110011011,16,Auto finish training counter.,,
+----------,,,,,,,,,
+0n0437.15:00,TBD REGNAME FOR 0n0437,FINISH_CNTR_50G_15_0,RW,0000h,16'b0000000000000000,16,Auto finish training counter.,,
+----------,,,,,,,,,
+0n0438.15:00,TBD REGNAME FOR 0n0438,TRAIN_INST_50G_15_0,RW,14A1h,16'b0001010010100001,16,"Training instruction command, bits 15:0.
+    TRAIN_INST_50G[159:0] holds 32 PAM-4 training frame requests. Each request is represented by 5 bits, with the first request in TRAIN_INST_50G[4:0] and the last in TRAIN_INST_50G[159:155].
+The 5 bit training frame requests are encoded as follows:
+    5'd0 = TRAINED_FRAME, last training frame was sent, ready to finish link training.
+    5'd1 = PRESET1_FRAME, training frame with Preset1 initial condition request 
+    5'd2 = PRESET2_FRAME, training frame with Preset2 initial condition request 
+    5'd3 = PRESET3_FRAME, training frame with Preset3 initial condition request 
+    5'd4 = C0_INC, training frame with coefficient select of c(0) and coefficient request of increment
+    5'd5 = C0_DEC, training frame with coefficient select of c(0) and coefficient request of decrement
+    5'd6 = C0_NO_EQ, training frame with coefficient select of c(0) and coefficient request of no equalization
+    5'd7 = CM2_INC, training frame with coefficient select of c(-2) and coefficient request of increment
+    5'd8 = CM2_DEC, training frame with coefficient select of c(-2) and coefficient request of decrement
+    5'd9 = CM2_NO_EQ, training frame with coefficient select of c(-2) and coefficient request of no equalization
+    5'd10 = CM1_INC, training frame with coefficient select of c(-1) and coefficient request of increment
+    5'd11 = CM1_DEC, training frame with coefficient select of c(-1) and coefficient request of decrement
+    5'd12 = CM1_NO_EQ, training frame with coefficient select of c(-1) and coefficient request of no equalization
+    5'd13 = C1_INC, training frame with coefficient select of c(1) and coefficient request of increment
+    5'd14 = C1_DEC, training frame with coefficient select of c(1) and coefficient request of increment
+    5'd15 = C1_NO_EQ, training frame with coefficient select of c(1) and coefficient request of no equalization",,
+----------,,,,,,,,,
+0n0439.15:00,TBD REGNAME FOR 0n0439,TRAIN_INST_50G_31_16,RW,1284h,16'b0001001010000100,16,"Training instruction command, bits 31:16.",,
+----------,,,,,,,,,
+0n043A.15:00,TBD REGNAME FOR 0n043A,TRAIN_INST_50G_47_32,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 47:32.",,
+----------,,,,,,,,,
+0n043B.15:00,TBD REGNAME FOR 0n043B,TRAIN_INST_50G_63_48,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 63:48.",,
+----------,,,,,,,,,
+0n043C.15:00,TBD REGNAME FOR 0n043C,TRAIN_INST_50G_79_64,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 79:64.",,
+----------,,,,,,,,,
+0n043D.15:00,TBD REGNAME FOR 0n043D,TRAIN_INST_50G_95_80,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 95:80.",,
+----------,,,,,,,,,
+0n043E.15:00,TBD REGNAME FOR 0n043E,TRAIN_INST_50G_111_96,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 111:96.",,
+----------,,,,,,,,,
+0n043F.15:00,TBD REGNAME FOR 0n043F,TRAIN_INST_50G_127_112,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 127:112.",,
+----------,,,,,,,,,
+0n0440.15:00,TBD REGNAME FOR 0n0440,TRAIN_INST_50G_143_128,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 143:128.",,
+----------,,,,,,,,,
+0n0441.15:00,TBD REGNAME FOR 0n0441,TRAIN_INST_50G_159_144,RW,0000h,16'b0000000000000000,16,"Training instruction command, bits 159:144.",,
+----------,,,,,,,,,
+0n0442.15,TBD REGNAME FOR 0n0442,LP_IC_REQ_OWEN,RW,0h,1'b0,1,Link partner initial condition request overwrite enable (50G mode).,,
+0n0442.14:13,TBD REGNAME FOR 0n0442,LP_IC_REQ_OW,RW,0h,2'b00,2,Link partner initial condition request overwrite (50G mode).,,
+0n0442.12,TBD REGNAME FOR 0n0442,LP_MOD_PREC_REQ_OWEN,RW,0h,1'b0,1,Link partner modulation and precoding request overwrite enable (50G mode).,,
+0n0442.11:10,TBD REGNAME FOR 0n0442,LP_MOD_PREC_REQ_OW,RW,0h,2'b00,2,Link partner modulation and precoding request overwrite (50G mode).,,
+0n0442.09,TBD REGNAME FOR 0n0442,LP_COEFF_SEL_OWEN,RW,0h,1'b0,1,Link partner coefficient select overwrite enable (50G mode). ,,
+0n0442.08:06,TBD REGNAME FOR 0n0442,LP_COEFF_SEL_OW,RW,0h,3'b000,3,Link partner coefficient select overwrite (50G mode),,
+0n0442.05,TBD REGNAME FOR 0n0442,LP_COEFF_REQ_OWEN,RW,0h,1'b0,1,Link partner coefficient request overwrite enable (50G mode).,,
+0n0442.04:03,TBD REGNAME FOR 0n0442,LP_COEFF_REQ_OW,RW,0h,2'b00,2,Link partner coefficient request overwrite (50G mode).,,
+0n0442.02:00,TBD REGNAME FOR 0n0442,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0443.15,TBD REGNAME FOR 0n0443,LP_MOD_PREC_STS_OWEN,RW,0h,1'b0,1,Link partner modulation and precoding status overwrite enable (50G mode).,,
+0n0443.14:13,TBD REGNAME FOR 0n0443,LP_MOD_PREC_STS_OW,RW,0h,2'b00,2,Link partner modulation and precoding status overwrite (50G mode).,,
+0n0443.12,TBD REGNAME FOR 0n0443,LP_IC_STS_OWEN,RW,0h,1'b0,1,Link partner initial condition status overwrite enable (50G mode).,,
+0n0443.11,TBD REGNAME FOR 0n0443,LP_IC_STS_OW,RW,0h,1'b0,1,Link partner initial condition status overwrite (50G mode).,,
+0n0443.10,TBD REGNAME FOR 0n0443,LP_COEFF_SEL_STS_OWEN,RW,0h,1'b0,1,Link partner coefficient select echo overwrite enable (50G mode).,,
+0n0443.09:07,TBD REGNAME FOR 0n0443,LP_COEFF_SEL_STS_OW,RW,0h,3'b000,3,Link partner coefficient select echo overwrite (50G mode).,,
+0n0443.06,TBD REGNAME FOR 0n0443,LP_COEFF_STS_OWEN,RW,0h,1'b0,1,Link partner coefficient status overwrite enable (50G mode).,,
+0n0443.05:03,TBD REGNAME FOR 0n0443,LP_COEFF_STS_OW,RW,0h,3'b000,3,Link partner coefficient status overwrite (50G mode).,,
+0n0443.02,TBD REGNAME FOR 0n0443,LP_RCV_TF_LOCK_STS_OWEN,RW,0h,1'b0,1,Link partner receiver frame lock overwrite enable (50G mode).,,
+0n0443.01,TBD REGNAME FOR 0n0443,LP_RCV_TF_LOCK_STS_OW,RW,0h,1'b0,1,Link partner receiver frame lock overwrite (50G mode).,,
+0n0443.00,TBD REGNAME FOR 0n0443,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0444.15,TBD REGNAME FOR 0n0444,LD_IC_REQ_OWEN,RW,0h,1'b0,1,Local device initial condition request overwrite enable (50G mode).,,
+0n0444.14:13,TBD REGNAME FOR 0n0444,LD_IC_REQ_OW,RW,0h,2'b00,2,Local device initial condition request overwrite (50G mode).,,
+0n0444.12,TBD REGNAME FOR 0n0444,LD_MOD_PREC_REQ_OWEN,RW,0h,1'b0,1,Local device modulation and precoding request overwrite enable (50G mode).,,
+0n0444.11:10,TBD REGNAME FOR 0n0444,LD_MOD_PREC_REQ_OW,RW,0h,2'b00,2,Local device modulation and precoding request overwrite (50G mode).,,
+0n0444.09,TBD REGNAME FOR 0n0444,LD_COEFF_SEL_OWEN,RW,0h,1'b0,1,Local device coefficient select overwrite enable (50G mode).,,
+0n0444.08:06,TBD REGNAME FOR 0n0444,LD_COEFF_SEL_OW,RW,0h,3'b000,3,Local device coefficient select overwrite (50G mode).,,
+0n0444.05,TBD REGNAME FOR 0n0444,LD_COEFF_REQ_OWEN,RW,0h,1'b0,1,Local device coefficient request overwrite enable (50G mode).,,
+0n0444.04:03,TBD REGNAME FOR 0n0444,LD_COEFF_REQ_OW,RW,0h,2'b00,2,Local device coefficient request overwrite (50G mode).,,
+0n0444.02,TBD REGNAME FOR 0n0444,LD_RCV_TF_LOCK_STS_OWEN,RW,0h,1'b0,1,Local device receiver frame lock overwrite enable (50G mode).,,
+0n0444.01,TBD REGNAME FOR 0n0444,LD_RCV_TF_LOCK_STS_OW,RW,0h,1'b0,1,Local device receiver frame lock overwrite (50G mode).,,
+0n0444.00,TBD REGNAME FOR 0n0444,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0445.15,TBD REGNAME FOR 0n0445,LD_MOD_PREC_STS_OWEN,RW,0h,1'b0,1,Local device modulation and precoding status overwrite enable (50G mode).,,
+0n0445.14:13,TBD REGNAME FOR 0n0445,LD_MOD_PREC_STS_OW,RW,0h,2'b00,2,Local device modulation and precoding status overwrite (50G mode).,,
+0n0445.12,TBD REGNAME FOR 0n0445,LD_IC_STS_OWEN,RW,0h,1'b0,1,Local device initial condition status overwrite enable (50G mode).,,
+0n0445.11,TBD REGNAME FOR 0n0445,LD_IC_STS_OW,RW,0h,1'b0,1,Local device initial condition status overwrite (50G mode).,,
+0n0445.10,TBD REGNAME FOR 0n0445,LD_COEFF_SEL_STS_OWEN,RW,0h,1'b0,1,Local device coefficient select echo overwrite enable (50G mode).,,
+0n0445.09:07,TBD REGNAME FOR 0n0445,LD_COEFF_SEL_STS_OW,RW,0h,3'b000,3,Local device coefficient select echo overwrite (50G mode).,,
+0n0445.06,TBD REGNAME FOR 0n0445,LD_COEFF_STS_OWEN,RW,0h,1'b0,1,Local device coefficient status overwrite enable (50G mode).,,
+0n0445.05:03,TBD REGNAME FOR 0n0445,LD_COEFF_STS_OW,RW,0h,3'b000,3,Local device coefficient status overwrite (50G mode).,,
+0n0445.02:00,TBD REGNAME FOR 0n0445,RSVD,RW,0h,3'b000,3,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n044E.15:14,TBD REGNAME FOR 0n044E,SEED_12_11,RW,0h,2'b00,2,CL136/137 PRBS 2 MSB seed value.,,
+0n044E.13,TBD REGNAME FOR 0n044E,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n044E.12:11,TBD REGNAME FOR 0n044E,POLYNOMIAL_IDENTIFIER,RW,0h,2'b00,2,Used to select PRBS polynomial.,,
+0n044E.10:00,TBD REGNAME FOR 0n044E,SEED_10_0,RW,000h,11'b00000000000,11,Seed value for all PRBS.,,
+----------,,,,,,,,,
+0n044F.15,TBD REGNAME FOR 0n044F,RECORD_25G_EN,RW,0h,1'b0,1,Training frame record enable for 25G mode.,,
+0n044F.14,TBD REGNAME FOR 0n044F,RECORD_CLEAR_25G,RW,1h,1'b1,1,Training frame record clear for 25G mode.,,
+0n044F.13:00,TBD REGNAME FOR 0n044F,CNTR_25G_START,RW,0000h,14'b00000000000000,14,Training frame record start address for 25G mode.,,
+----------,,,,,,,,,
+0n0450.15:00,TBD REGNAME FOR 0n0450,RECORD_FRAME_25G_119_104,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 25G mode, bits 119:104.",,
+----------,,,,,,,,,
+0n0451.15:00,TBD REGNAME FOR 0n0451,RECORD_FRAME_25G_103_88,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 25G mode, bits 103:88.",,
+----------,,,,,,,,,
+0n0452.15:00,TBD REGNAME FOR 0n0452,RECORD_FRAME_25G_87_72,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 25G mode, bits 87:72.",,
+----------,,,,,,,,,
+0n0453.15:00,TBD REGNAME FOR 0n0453,RECORD_FRAME_25G_71_56,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 25G mode, bits 71:56.",,
+----------,,,,,,,,,
+0n0454.15:00,TBD REGNAME FOR 0n0454,RECORD_FRAME_25G_55_40,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 25G mode, bits 55:40.",,
+----------,,,,,,,,,
+0n0455.15:00,TBD REGNAME FOR 0n0455,RECORD_FRAME_25G_39_24,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 25G mode, bits 39:24.",,
+----------,,,,,,,,,
+0n0456.15:00,TBD REGNAME FOR 0n0456,RECORD_FRAME_25G_23_8,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 25G mode, bits 23:8.",,
+----------,,,,,,,,,
+0n0457.15:08,TBD REGNAME FOR 0n0457,RECORD_FRAME_25G_7_0,RO,xxh,8'bxxxxxxxx,8,"Training frame record field for 25G mode, bits 7:0.",,
+0n0457.07:00,TBD REGNAME FOR 0n0457,RSVD,RO,xxh,8'bxxxxxxxx,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0458.15,TBD REGNAME FOR 0n0458,RECORD_50G_EN,RW,0h,1'b0,1,Training frame record enable for 25G mode.,,
+0n0458.14,TBD REGNAME FOR 0n0458,RECORD_CLEAR_50G,RW,1h,1'b1,1,Training frame record clear for 25G mode.,,
+0n0458.13:00,TBD REGNAME FOR 0n0458,CNTR_50G_START,RW,0000h,14'b00000000000000,14,Training frame record start frame counter for 25G mode.,,
+----------,,,,,,,,,
+0n0459.15:00,TBD REGNAME FOR 0n0459,RECORD_FRAME_50G_191_176,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 191:176.",,
+----------,,,,,,,,,
+0n045A.15:00,TBD REGNAME FOR 0n045A,RECORD_FRAME_50G_175_160,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 175:160.",,
+----------,,,,,,,,,
+0n045B.15:00,TBD REGNAME FOR 0n045B,RECORD_FRAME_50G_159_144,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 159:144.",,
+----------,,,,,,,,,
+0n045C.15:00,TBD REGNAME FOR 0n045C,RECORD_FRAME_50G_143_128,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 143:128.",,
+----------,,,,,,,,,
+0n045D.15:00,TBD REGNAME FOR 0n045D,RECORD_FRAME_50G_127_112,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 127:112.",,
+----------,,,,,,,,,
+0n045E.15:00,TBD REGNAME FOR 0n045E,RECORD_FRAME_50G_111_96,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 111:96.",,
+----------,,,,,,,,,
+0n045F.15:00,TBD REGNAME FOR 0n045F,RECORD_FRAME_50G_95_80,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 95:80.",,
+----------,,,,,,,,,
+0n0460.15:00,TBD REGNAME FOR 0n0460,RECORD_FRAME_50G_79_64,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 79:64.",,
+----------,,,,,,,,,
+0n0461.15:00,TBD REGNAME FOR 0n0461,RECORD_FRAME_50G_63_48,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 63:48.",,
+----------,,,,,,,,,
+0n0462.15:00,TBD REGNAME FOR 0n0462,RECORD_FRAME_50G_47_32,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 47:32.",,
+----------,,,,,,,,,
+0n0463.15:00,TBD REGNAME FOR 0n0463,RECORD_FRAME_50G_31_16,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 31:16.",,
+----------,,,,,,,,,
+0n0464.15:00,TBD REGNAME FOR 0n0464,RECORD_FRAME_50G_15_0,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,"Training frame record field for 50G mode, bits 15:0.",,
+----------,,,,,,,,,
+0n0501.15:03,TBD REGNAME FOR 0n0501,RSVD,RO,xxxxh,13'bxxxxxxxxxxxxx,13,Reserved. Do not change the default value.,,
+0n0501.02,TBD REGNAME FOR 0n0501,LINK_TRAINING_DONE,RO,xh,1'bx,1,Train done signal,,
+0n0501.01,TBD REGNAME FOR 0n0501,AN_FINISHED,RO,xh,1'bx,1,Auto-negotiation complete,,
+0n0501.00,TBD REGNAME FOR 0n0501,AA_HCD_RESOLVED,RO,xh,1'bx,1,Auto-negotiation done signal,,
+----------,,,,,,,,,
+0n0502.15:00,TBD REGNAME FOR 0n0502,COMPANY_OUI_15_0,RW,ADCAh,16'b1010110111001010,16,"OUI[16:1] for all active autoneg's OUI register. 
+8 auto-negotiation on side A side.
+8 auto-negotiation on side B side.",,
+----------,,,,,,,,,
+0n0503.15:08,TBD REGNAME FOR 0n0503,COMPANY_OUI_23_16,RW,9Ah,8'b10011010,8,"Credo's OUI[24:17] for all active auto-negotiation.
+8 auto-negotiation on side A side.
+8 auto-negotiation on side B side.",,
+0n0503.07:00,TBD REGNAME FOR 0n0503,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0504.15:10,TBD REGNAME FOR 0n0504,RSVD,RW,00h,6'b000000,6,Reserved. Do not change the default value.,,
+0n0504.09:04,TBD REGNAME FOR 0n0504,MODEL_NUM,RW,00h,6'b000000,6,"6-bits model number for all active auto-negotiation.
+8 autoneg on A side, 8 autoneg on B side)",,
+0n0504.03:00,TBD REGNAME FOR 0n0504,REVISION_NUM,RW,0h,4'b0000,4,"4-bits revision number for all active auto-negotiation (8 autoneg on A side, 8 autoneg on B side)",,
+----------,,,,,,,,,
+0n0505.15:12,TBD REGNAME FOR 0n0505,RSVD,RW,0h,4'b0000,4,Reserved. Do not change the default value.,,
+0n0505.11:10,TBD REGNAME FOR 0n0505,PCS_ADVERTISE_CONSORTIUM_50G_S,RW,0h,2'b00,2,"Default value of side A, lane 0 auto-negotiation for 25G Ethernet Consortium NP extended technology ability bits 50GBase-CR2/50Gbase-KR2.",,
+0n0505.09:08,TBD REGNAME FOR 0n0505,PCS_ADVERTISE_CONSORTIUM_25G_S,RW,0h,2'b00,2,"Default value of  side A side, lane 0 auto-negotiation for 25G Ethernet Consortium NP extended technology ability bits 25GBase-CR1/25Gbase-KR1.",,
+0n0505.07,TBD REGNAME FOR 0n0505,RSVD,RW,0h,1'b0,1,Reserved. Do not change the default value.,,
+0n0505.06:00,TBD REGNAME FOR 0n0505,PCS_ADVERTISE_ABILITY_S_22_16,RW,00h,7'b0000000,7,"Default value of side A side, lane 0 auto-negotiation BP technology ability bits A[22:16] ",,
+----------,,,,,,,,,
+0n0506.15:00,TBD REGNAME FOR 0n0506,PCS_ADVERTISE_ABILITY_S_15_0,RW,0000h,16'b0000000000000000,16,"Default value of side A side, lane 0 auto-negotiation BP technology ability bits A[15:0] ",,
+----------,,,,,,,,,
+0n0507.15:12,TBD REGNAME FOR 0n0507,PCS_ADVERTISE_CONSORTIUM_FEC_S,RW,0h,4'b0000,4,"Default value of side A side, lane 0 auto-negotiation  for 25G Ethernet Consortium NP extended technology ability bits F4/F3/F2/F1",,
+0n0507.11:08,TBD REGNAME FOR 0n0507,PCS_ADVERTISE_FEC_S,RW,0h,4'b0000,4,"Default value of side A side, lane 0 auto-negotiation BP FEC capability bits F1/F0/F3/F2",,
+0n0507.07:00,TBD REGNAME FOR 0n0507,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+0n0508.15:08,TBD REGNAME FOR 0n0508,RSVD,RW,00h,8'b00000000,8,Reserved. Do not change the default value.,,
+0n0508.07:03,TBD REGNAME FOR 0n0508,TX_NONCE_SEED,RW,15h,5'b10101,5,XOR groupnumber for TX seed,,
+0n0508.02,TBD REGNAME FOR 0n0508,PCS_RESTART_AUTONEG_S,RW,0h,1'b0,1,Auto-negotiation reset function,,
+0n0508.01,TBD REGNAME FOR 0n0508,PCS_AUTONEG_S_EN,RW,0h,1'b0,1,Value of Auto-negotiation IEEE 0x00[13],,
+0n0508.00,TBD REGNAME FOR 0n0508,MODE_25G,RW,1h,1'b1,1,"Select Serdes speed mode for Auto-negotiation:
+    1: Serdes runs at 25G;
+    0: Serdes runs at 10G;",,
+----------,,,,,,,,,
+0n0509.15:00,TBD REGNAME FOR 0n0509,PCS_LINK_STATUS_31_16,RW,0000h,16'b0000000000000000,16,"Used by A side lane 0, auto-negotiation as link_status_[*] variable. Each bit represent one type of link status.
+
+These bits are defined for exact PCS yet, reserved for future use.",,
+----------,,,,,,,,,
+0n050A.15:00,TBD REGNAME FOR 0n050A,PCS_LINK_STATUS_15_0,RW,0000h,16'b0000000000000000,16,"Used by A side lane, 0 auto-negotiation as a link_status_[*] variable. Each bit represents one type of link status as follows:
+
+[0 ]=LINK_STATUS_[1G_KX_BIT]
+[1 ]=LINK_STATUS_[10G_KX4_BIT]
+[2 ]=LINK_STATUS_[10G_KR_BIT]
+[3 ]=LINK_STATUS_[40G_KR4_BIT]
+[4 ]=LINK_STATUS_[40G_CR4_BIT]
+[5 ]=LINK_STATUS_[100G_CR10_BIT]
+[6 ]=LINK_STATUS_[100G_KP4_BIT]
+[7 ]=LINK_STATUS_[100G_KR4_BIT]
+[8 ]=LINK_STATUS_[100G_CR4_BIT]
+[9 ]=LINK_STATUS_[25G_KRS_CRS_BIT]
+[10]=LINK_STATUS_[25G_KR_CR_BIT]
+[11]=LINK_STATUS_[2P5G_KX_BIT]
+[12]=LINK_STATUS_[5G_KR_BIT]
+[13]=LINK_STATUS_[50G_KR_CR_BIT]
+[14]=LINK_STATUS_[100G_KR2_CR2_BIT]
+[15]=LINK_STATUS_[200G_KR4_CR4_BIT]",,
+----------,,,,,,,,,
+0n050B.15:00,TBD REGNAME FOR 0n050B,LANE_NUM,RO,xxxxh,16'bxxxxxxxxxxxxxxxx,16,Current lane and group number. Bits 6:3 are the group number. Bits 2:0 are the lane number of this group,,
+----------,,,,,,,,,
+9701.15,SRAM ECC STATUS,SRAM_ECC_CORR,LH,xh,1'bx,1,"When set, an SRAM ECC correctable error was detected and corrected. This bit remains latched high (LH) until it has been read. Reading this register clears this field.",,
+9701.14,SRAM ECC STATUS,SRAM_ECC_ERR,LH,xh,1'bx,1,"When set, an SRAM ECC uncorrectable error was detected. This bit remains latched high (LH) until it has been read. Reading this register clears this field.",,
+9701.13:00,SRAM ECC STATUS,RSVD,RF,0000h,14'b00000000000000,14,Reserved. Do not change the default value.,,
+----------,,,,,,,,,
+,,,,,,,,,
+----------,,,,,,,,,

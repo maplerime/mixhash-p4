@@ -1,0 +1,1448 @@
+/*******************************************************************************
+ * INTEL CONFIDENTIAL
+ *
+ * Copyright (c) 2021 Intel Corporation
+ * All Rights Reserved.
+ *
+ * This software and the related documents are Intel copyrighted materials,
+ * and your use of them is governed by the express license under which they
+ * were provided to you ("License"). Unless the License provides otherwise,
+ * you may not use, modify, copy, publish, distribute, disclose or transmit
+ * this software or the related documents without Intel's prior written
+ * permission.
+ *
+ * This software and the related documents are provided as is, with no express
+ * or implied warranties, other than those that are expressly stated in the
+ * License.
+ ******************************************************************************/
+//##############################################
+// Include block specs
+//##############################################
+#include "templates_rspec.csr"
+
+//##############################################
+// Define Global Parameters
+//##############################################
+property word_size = 4 bytes;
+
+//##############################################
+// Define Registers
+//##############################################
+
+addressmap {
+
+register eth_soft_reset {
+	 property title = "Enable to perform Software reset to different portion of the Ethernet block";
+	 property description = "Each bit defines a soft reset functionality which need to be asserted high  "
+                                "to generate a software reset of the block. ";
+	 property register_reset_value = 0x00000004;
+	 field {
+	       property title = "Software reset";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Reset Comira MAC/PCS \n"
+                                      " -[1]     : Reset App logic \n"
+                                      " -[2]     : Reset microcontroller \n"
+                                      " -[3]     : Reset Serdes IO Tile ";
+                property output_port = true;
+	 } [3:0] eth_swrst;
+};
+
+register serdes_config {
+	 property title = "Defines Serdes configuration/speed";
+	 property description = "Each physical Serdes lane need to be programmed for its current datapath. This register controls the 32b/40b alignment module between PCS and Serdes microbump interface";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Physical Lane 0 Rx alignment control";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Need to be set when Serdes operation at 25.78125 Gbps, enables 32-40b conversion. \n"
+                                      " -[1]     : Need to be set when Serdes operation at 10.3125 Gbps, enables 16-20b conversion. \n"
+                                      " -[2]     : Need to be set when Serdes operation at 1.25 Gbps, enables 8-10b conversion.";
+                property output_port = true;
+	 } [2:0] rx0_mode;
+	 field {
+	       property title = "Physical Lane 0 Tx alignment control";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Need to be set when Serdes operation at 25.78125 Gbps, enables 32-40b conversion. \n"
+                                      " -[1]     : Need to be set when Serdes operation at 10.3125 Gbps, enables 16-20b conversion. \n"
+                                      " -[2]     : Need to be set when Serdes operation at 1.25 Gbps, enables 8-10b conversion.";
+                property output_port = true;
+	 } [6:4] tx0_mode;
+	 field {
+	       property title = "Physical Lane 1 Rx alignment control";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Need to be set when Serdes operation at 25.78125 Gbps, enables 32-40b conversion. \n"
+                                      " -[1]     : Need to be set when Serdes operation at 10.3125 Gbps, enables 16-20b conversion. \n"
+                                      " -[2]     : Need to be set when Serdes operation at 1.25 Gbps, enables 8-10b conversion.";
+                property output_port = true;
+	 } [10:8] rx1_mode;
+	 field {
+	       property title = "Physical Lane 1 Tx alignment control";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Need to be set when Serdes operation at 25.78125 Gbps, enables 32-40b conversion. \n"
+                                      " -[1]     : Need to be set when Serdes operation at 10.3125 Gbps, enables 16-20b conversion. \n"
+                                      " -[2]     : Need to be set when Serdes operation at 1.25 Gbps, enables 8-10b conversion.";
+                property output_port = true;
+	 } [14:12] tx1_mode;
+	 field {
+	       property title = "Physical Lane 2 Rx alignment control";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Need to be set when Serdes operation at 25.78125 Gbps, enables 32-40b conversion. \n"
+                                      " -[1]     : Need to be set when Serdes operation at 10.3125 Gbps, enables 16-20b conversion. \n"
+                                      " -[2]     : Need to be set when Serdes operation at 1.25 Gbps, enables 8-10b conversion.";
+                property output_port = true;
+	 } [18:16] rx2_mode;
+	 field {
+	       property title = "Physical Lane 2 Tx alignment control";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Need to be set when Serdes operation at 25.78125 Gbps, enables 32-40b conversion. \n"
+                                      " -[1]     : Need to be set when Serdes operation at 10.3125 Gbps, enables 16-20b conversion. \n"
+                                      " -[2]     : Need to be set when Serdes operation at 1.25 Gbps, enables 8-10b conversion.";
+                property output_port = true;
+	 } [22:20] tx2_mode;
+	 field {
+	       property title = "Physical Lane 3 Rx alignment control";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Need to be set when Serdes operation at 25.78125 Gbps, enables 32-40b conversion. \n"
+                                      " -[1]     : Need to be set when Serdes operation at 10.3125 Gbps, enables 16-20b conversion. \n"
+                                      " -[2]     : Need to be set when Serdes operation at 1.25 Gbps, enables 8-10b conversion.";
+                property output_port = true;
+	 } [26:24] rx3_mode;
+	 field {
+	       property title = "Physical Lane 3 Tx alignment control";
+	       property description = "Each bit triggers a different software reset or control: \n"
+                                      " -[0]     : Need to be set when Serdes operation at 25.78125 Gbps, enables 32-40b conversion. \n"
+                                      " -[1]     : Need to be set when Serdes operation at 10.3125 Gbps, enables 16-20b conversion. \n"
+                                      " -[2]     : Need to be set when Serdes operation at 1.25 Gbps, enables 8-10b conversion.";
+                property output_port = true;
+	 } [30:28] tx3_mode;
+};
+
+register eth_clkobs_ctrl {
+	 property title = "Clock observation daisy chaining control register";
+	 property description = "Control whether the selected is sent through the daisy chain to the Clock Observation pad  ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Enable clock observation on daisy chain 0";
+	       property description = "Enables the selected clock obervation selected of the MAC to be sent on the daisy chain up to the clock observation pad ";
+               property output_port = true;
+	 } [0] ena_clkobs0;
+	 field {
+	       property title = "Divider value of clock observation on daisy chain 0";
+	       property description = "Defines the clock divider settings: \n"
+                                      " - 00b : divide-by-2 \n "
+                                      " - 01b : divide-by-4 \n "
+                                      " - 10b : divide-by-8 \n "
+                                      " - 11b : divide-by-16 ";
+               property output_port = true;
+	 } [3:2] div_clkobs0;
+	 field {
+	       property title = "Select which internal clock does to clock observation on daisy chain 0";
+	       property description = "Defines the clock divider settings: \n"
+                                      " - 0000b : rxclk0 \n "
+                                      " - 0001b : rxclk1 \n "
+                                      " - 0010b : rxclk2 \n "
+                                      " - 0011b : rxclk3 \n "
+                                      " - 0100b : txclk0 \n "
+                                      " - 0101b : txclk1 \n "
+                                      " - 0110b : txclk2 \n "
+                                      " - 0111b : txclk3 \n "
+                                      " - 1000b : mclk \n "
+                                      " - 1001b : clk \n "
+                                      " - 1010b : mci \n "
+                                      " - 1011b : mco \n "
+                                      " - 11xxb : reserved  \n ";
+               property output_port = true;
+	 } [7:4] sel_clkobs0;
+	 field {
+	       property title = "Enable clock observation on daisy chain 1";
+	       property description = "Enables the selected clock obervation selected of the MAC to be sent on the daisy chain up to the clock observation pad ";
+               property output_port = true;
+	 } [8] ena_clkobs1;
+	 field {
+	       property title = "Divider value of clock observation on daisy chain 1";
+	       property description = "Defines the clock divider settings: \n"
+                                      " - 00b : divide-by-2 \n "
+                                      " - 01b : divide-by-4 \n "
+                                      " - 10b : divide-by-8 \n "
+                                      " - 11b : divide-by-16 ";
+               property output_port = true;
+	 } [11:10] div_clkobs1;
+	 field {
+	       property title = "Select which internal clock does to clock observation on daisy chain 1";
+	       property description = "Defines the clock divider settings: \n"
+                                      " - 0000b : rxclk0 \n "
+                                      " - 0001b : rxclk1 \n "
+                                      " - 0010b : rxclk2 \n "
+                                      " - 0011b : rxclk3 \n "
+                                      " - 0100b : txclk0 \n "
+                                      " - 0101b : txclk1 \n "
+                                      " - 0110b : txclk2 \n "
+                                      " - 0111b : txclk3 \n "
+                                      " - 1000b : mclk \n "
+                                      " - 1001b : clk \n "
+                                      " - 1010b : mci \n "
+                                      " - 1011b : mco \n "
+                                      " - 11xxb : reserved  \n ";
+               property output_port = true;
+	 } [15:12] sel_clkobs1;
+};
+
+register eth_ring_setup {
+	 property title = "Ethernet Ring Setup";
+	 property description = "Control whether the selected is sent through the daisy chain to the Clock Observation pad  ";
+	 property register_reset_value = 0x00000003F;
+	 field {
+	       property title = "Select the slot allocated for the port in the GPIO IO ring";
+	       property description = "Defines a timeslot associated for the port \n";
+               property output_port = true;
+	 } [5:0] ring_id;
+	 field {
+	       property title = "GPIO ring select";
+	       property description = "Select GPIO ring 0 or 1";
+               property output_port = true;
+	 } [8] ring_sel;
+};
+
+register eth_ring_addr {
+	 property title = "Ethernet Ring Address ";
+	 property description = "Ethernet Ring data written during a direct write access";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Ethernet Ring Address";
+	       property description = "In I2c Mode, the first byte sent over I2C is bit [7:0], followed by [15:8],... \n"
+                                      "In MDIO Mode, bit [4:0] defines portaddr[4:0] and bit [12:8] defines devaddr[4:0]. \n"
+                                      "In StateOut Mode,this register can be used to write an extra 4B. \n"
+                                      "The number of bytes depends on Ethernet Ring Control settings.  ";
+	       property output_port = true;
+	 } [31:0] addr;
+};
+
+register eth_ring_wdata {
+	 property title = "Ethernet Ring Write data ";
+	 property description = "Ethernet Ring data written during a direct write access";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Ethernet Ring Write data";
+	       property description = "Data written during a direct write access. The first byte sent over I2C is bit [7:0]."
+                                      " The number of byte written depends on ethernet ring control register settings. ";
+	       property output_port = true;
+	 } [31:0] wdata;
+};
+
+register eth_ring_rdata {
+	 property title = "Ethernet Ring read data";
+	 property description = "Report up to 4 byte data read from Ethernet GPIO block";
+	 property register_reset_value = 0x0000000;
+	 field {
+	       property title = "Ring read data";
+	       property description = "Report the 4 byte data read on I2C/MDIO interface during a register read. "
+                                      "first byte read is on bit [7:0],...";
+               property load_enable = true;
+               property input_value = true;
+	 } [31:0] rdata;
+};
+
+
+register eth_ring_ctrl {
+	 property title = "Ethernet Ring Control ";
+	 property description = "Ethernet Ring Control";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Ethernet Ring typerequest register";
+	       property description = "Defines the type of transaction to be performed: \n"
+                                      " - 00b : Idle \n"
+                                      " - 01b : I2C transaction \n"
+                                      " - 10b : MDIO transaction \n"
+                                      " - 11b : StateOut \n"
+                                      "This register get cleared back to 00b when transaction has been issued to the ethernet GPIO block."
+                                      "Refer to the Status register to see status of the current transaction" ;
+	       property output_port = true;
+               property input_value = true;
+               property load_enable = true;
+	 } [1:0] req_type;
+	 field {
+	       property title = "Command";
+	       property description = "In I2C mode, defines which command:\n"
+                                      " - 00b : write address and write data command \n"
+                                      " - 01b : write address and read data \n"
+                                      " - 10b : write device address only\n"
+                                      " - 11b : read data only \n";
+ 	       property output_port = true;
+	 } [3:2] cmd;
+	 field {
+	       property title = "Number of address byte";
+	       property description = "In I2C mode, defines the number of address bytes (0-4) to transfer after the device address byte. \n"
+                                      "In MDIO mode, contains the MDIO transaction code (on bit [1:0]) and transaction type (on bit [2]) \n"
+                                      "In StateOut mode, this field is reserved";
+ 	       property output_port = true;
+	 } [6:4] addrnum;
+	 field {
+	       property title = "Device address";
+	       property description = "In I2C mode, bit [6:0] defines the device address of the I2C device to target. \n"
+                                      "On StateOut mode, bit [7:0] defines the start address of the StateOut transfer. ";
+	       property output_port = true;
+	 } [15:8] devaddr;
+	 field {
+	       property title = "Number of data phase";
+	       property description = "For I2C mode, maximum number of byte is 4"
+                                      "For MDIO mode, \n"
+                                      "In StateOut mode, maximum 8B can be transferred \n";
+	       property output_port = true;
+	 } [19:16] datanum;
+	 field {
+	       property title = "Lock mode";
+	       property description = "Transaction ";
+ 	       property output_port = true;
+	 } [20] lock_req;
+	 field {
+	       property title = "GPIO group ID";
+	       property description = "Defines which GPIO group/pair is targeted by the transaction. Value value are 0-5."
+                                      " It is assumed that the GPIO pair targeted is programmed in expected mode for I2C and MDIO settings. ";
+ 	       property output_port = true;
+	 } [23:21] gpio_id;
+	 field {
+	       property title = "Transaction Status";
+	       property description = "Defines the status of the on-going transaction: \n"
+                                      " - 000b: No update \n"
+                                      " - 001b: Request sent to GPIO block. \n"
+                                      " - 010b: Request granted by GPIO block. \n"
+                                      " - 011b: Response received from GPIO block with no error. \n"
+                                      " - 101b: Response received from GPIO block with error.";
+               property load_enable = true;
+               property input_value = true;
+	 } [26:24] status;
+	 field {
+	       property title = "Lock Error";
+	       property description = "Register get set when lock error status is received. Lock error bit need to be cleared by hardware.";
+	       property output_port = true;
+               property input_value = true;
+               property load_enable = true;
+	 } [28] lock_err;
+};
+
+
+register soft_port_alive {
+	 property title = "Software port alive";
+	 property description = "Contain the software-controlled port_alive entry";
+	 property register_reset_value = 0x0000000;
+	 field {
+	       property title = "Software port alive";
+	       property description = "Defines the software-controlled port_alive entry (1 bit per channel), going to the Look-Up Table"
+                                      " to create the final port_alive signal which will be sent to PGR block.";
+	       property output_port = true;
+	 } [3:0] val;
+};
+
+
+
+register eth_onestep_ets_offset_ctrl {
+	 property title = "Defines the offset used for One Step Egress Timestamping";
+	 property description = "The offset is added to the MAC layer timestamp to compute the "
+                                "correction field of the packet transmitted marked as egress timestamping. ";
+	 property register_reset_value = 0x00000000;
+         property atomic_access = "lsb_read_msb_write";
+	 field {
+	       property title = "One Step Egress Timestamping offset";
+	       property description = "Offset which is added to timestamp during egress timestamping and"
+                                      "which need to account for full MAC/PCS layer latency. \n"
+                                      "Note that increment/drift is received from MBus Station as"
+                                      "the logic works on CoreClk. ";
+               property output_port = true;
+	 } [47:0] eth_onestep_ets_offset;
+	 field {
+	       property title = "One Step Egress Timestamping Tx fifo adjust ";
+	       property description = "Adjust the Egress timestamping offset by the current Tx app fifo count multiply by"
+                                      " the adjustment factor (4 lsb represent ns and 12 lsb represent ps)";
+               property output_port = true;
+	 } [63:48] eth_onestep_ets_txff_cnt_adj;
+};
+
+register eth_mac_ts_offset_ctrl {
+	 property title = "Defines the offset/increment used for MAC Timestamping";
+	 property description = "Control the MAC layer ingress timestamping and egress timestamping "
+                                "(capture TS on transmit) ";
+	 property register_reset_value = 0x00000000;
+         property atomic_access = "lsb_read_msb_write";
+	 field {
+	       property title = "MAC Layer Timestamping offset";
+	       property description = "Offset which is added to timestamp received from MBus Station";
+               property output_port = true;
+	 } [47:0] eth_mac_ts_offset;
+	 field {
+	       property title = "MAC Timestamping Increment";
+	       property description = "Increment/Drift on MAC clock to automatically increment timestamp every"
+                                      "MAC clock cycle (4 lsb represent ns and 12 lsb represent ps)";
+               property output_port = true;
+	 } [63:48] eth_mac_ts_incr;
+};
+
+register eth_status {
+	 property title = "Ethernet Status";
+	 property description = "Report Status Bits of the MAC block";
+	 property register_reset_value = 0x0000000;
+	 field {
+	       property title = "MAC Tx Idle status";
+	       property description = "Report the Tx Idle status of the MAC (per channel)";
+	       property field_type = "status";
+               property input_value = true;
+	 } [15:12] macsts_txidle;
+	 field {
+	       property title = "MAC Tx Good status";
+	       property description = "Report the Tx good status of the MAC (per channel)";
+	       property field_type = "status";
+               property input_value = true;
+	 } [11:8] macsts_txgood;
+	 field {
+	       property title = "MAC Rx Sync status";
+	       property description = "Report the Rx Sync status of the MAC (per channel)";
+	       property field_type = "status";
+               property input_value = true;
+	 } [7:4] macsts_rxsync;
+	 field {
+	       property title = "MAC Rx Signal OK status";
+	       property description = "Report the Rx Signal OK status of the MAC (per channel)";
+	       property field_type = "status";
+               property input_value = true;
+	 } [3:0] macsts_rxsigok;
+};
+
+register chnl_seq {
+	 property title = "Channel Sequencing control register";
+	 property description = "Defines 4 slots of Time Domain Multiplexing Each slot corresponding to one channel. \n"
+	                        "The channel sequencing need to follow the throughput rule of 1 slot per 25G of throughput, spaced in time appropriately.";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Channel Sequence";
+	       property description = "Each 2-bit correspond to a channel slot";
+	       property output_port = true;
+	 } [7:0] chnl_seq;
+	 field {
+	       property title = "Select Egress Buffer sequencing";
+	       property description = "Can be set dynamically before transmitting data to use the egress buffer sequencing";
+	       property output_port = true;
+	 } [31] sel_buf_seq;
+};
+
+register txff_ctrl {
+	 property title = "Transmit fifo Control (per channel)";
+	 property description = "Defines the Tx fifo control register on a per channel basis";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Channel Enable";
+	       property description = "Enable Tx fifo for traffic";
+	       property output_port = true;
+	 } [0] chnl_ena;
+	 field {
+	       property title = "Flush Tx fifo";
+	       property description = "when set, put the Tx fifo in flush mode, discarding any new packet coming from Egress Buffer";
+	       property output_port = true;
+	 } [1] tx_flush;
+	 field {
+	       property title = "Channel Mode";
+	       property description = "Define the channel configuration as follow: \n"
+                                      " - 00b: 100G Mode (channel 0 only) \n"
+                                      " - 01b: 50G Mode  (channel 0/2 only) \n"
+                                      " - 10b: 10G Mode  (channel 0/1/2/3) \n"
+                                      " - 11b: reserved \n";
+	       property output_port = true;
+	 } [3:2] chnl_mode;
+	 field {
+	       property title = "Enable Rx XOFF";
+	       property description = "when set, check whether all PFC XOFF are set to also report port XOFF to the core of the chip";
+	       property output_port = true;
+	 } [4] en_rx_xoff;
+	 field {
+	       property title = "Override Rx PFC XOFF Control";
+	       property description = "when set, replace the Rx PFC XOFF received and extracted by the MAC by a fix value provided by the register space";
+	       property output_port = true;
+	 } [5] ovr_rx_pfcxoff;
+	 field {
+	       property title = "Enable Transmit to Rx loopback immediately after the Tx fifo (min latency)";
+	       property description = "when set, loopback the Tx data (from Egress Buffer) back to Rx (to Ingress Parser Buffer)";
+	       property output_port = true;
+	 } [6] txrx_lpbk;
+	 field {
+	       property title = "Override Rx PFC XOFF Value";
+	       property description = "Defines the value of Rx PFC XOFF when provided by the register space (one bit per PFC)";
+	       property output_port = true;
+	 } [15:8] val_rx_pfcxoff;
+	 field {
+	       property title = "Initial Credit with Egress Buffer";
+	       property description = "Defines the amount of credit to send to Egress Buffer when channel get enabled (one credit is equivalent to 16B data payload)";
+	       property output_port = true;
+	 } [22:16] cred_ini;
+	 field {
+	       property title = "Forwarding minimum threshold check";
+	       property description = "Defines the number of 16B data payload to be accumulated on a start of packet before forwarding the packet to the Tx MAC.";
+	       property output_port = true;
+	 } [30:24] min_thr;
+};
+
+
+register mac_ctrl {
+	 property title = "MAC Control";
+	 property description = "Defines MAC control static register";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Insert Wait-states when sending to MAC layer";
+	       property description = "This field can be programmed to non-zero value when "
+                                      "the MAC IP is programmed in single channel mode but that "
+                                      "the mode in not 100G. Programming this register to 3 will "
+                                      "insert a wait-states every 4 clock cycles when sending to "
+                                      "the MAC IP.";
+	       property output_port = true;
+	 } [2:0] ins_ws;
+	 field {
+	       property title = "Tx Disable FCS insertion ";
+	       property description = "When set, disable FCS insertion by MAC layer" ;
+	       property output_port = true;
+	 } [4] txdisfcs;
+	 field {
+	       property title = "Tx Disable PAD insertion ";
+	       property description = "When set, disable PAD insertion by MAC layer" ;
+	       property output_port = true;
+	 } [5] txdispad;
+};
+
+register txff_pream0 {
+	 property title = "Fix preamble sent to MAC (LSB portion)";
+	 property description = "Enable to specify a fix preamble for every packet";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Fix preamble LSB portion";
+	       property description = "Define the fix preamble to sent with the packet";
+	       property output_port = true;
+	 } [31:0] preamble_lsb;
+};
+
+register txff_pream1 {
+	 property title = "Fix preamble sent to MAC (MSB portion)";
+	 property description = "Enable to specify a fix preamble for every packet";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Fix preamble MSB portion";
+	       property description = "Define the fix preamble to sent with the packet";
+	       property output_port = true;
+	 } [23:0] preamble_msb;
+	 field {
+	       property title = "Defines the IPG after each packet";
+	       property description = "Define the IPG after each packet when enabled inside the MAC";
+	       property output_port = true;
+	 } [31:24] tx_ipg;
+};
+
+register txff_status {
+	 property title = "Ethernet Transmit Fifo Status";
+	 property description = "Report Status Bits of the Transmit fifo";
+	 property register_reset_value = 0x0000000;
+	 field {
+	       property title = "PFC XOFF status from MAC layer";
+	       property description = "Report the Rx PFC XOFF reported by the MAC layer";
+	       property field_type = "status";
+               property input_value = true;
+	 } [7:0] pfc_rxxoff;
+	 field {
+	       property title = "Tx fifo count (per channel)";
+	       property description = "Report the Tx fifo current count in 16B increment";
+	       property field_type = "status";
+               property input_value = true;
+	 } [17:8] txff_count;
+	 field {
+	       property title = "Tx app fifo count (per channel)";
+	       property description = "Report the Tx application fifo current count in 64B increment";
+	       property field_type = "status";
+               property input_value = true;
+	 } [31:24] txappfifo_count;
+};
+
+
+register rxff_ctrl {
+	 property title = "Receive fifo Control (per channel)";
+	 property description = "Defines the Rx fifo control register on a per channel basis";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "CRC generation disable";
+	       property description = "when set, globally disable the internal CRC regeneration from the MAC layer";
+	       property output_port = true;
+	 } [0] crcgen_dis;
+	 field {
+	       property title = "CRC generation disable on error";
+	       property description = "when set, disable the internal CRC regeneration from the MAC layer only for frames received with error";
+	       property output_port = true;
+	 } [1] crcerr_dis;
+	 field {
+	       property title = "Enable Tx XOFF";
+	       property description = "when set, assert all PFC XOFF bits when Tx XOFF is received from the core of the chip for that channel";
+	       property output_port = true;
+	 } [4] en_tx_xoff;
+	 field {
+	       property title = "Override Tx PFC XOFF Control";
+	       property description = "when set, replace the Tx PFC XOFF received from IBP and sent to the MAC the fix value provided by the register space";
+	       property output_port = true;
+	 } [5] ovr_tx_pfcxoff;
+	 field {
+	       property title = "Override Tx XOFF Control";
+	       property description = "when set, replace the Tx XOFF received from IBP and sent to the MAC the fix value provided by the register space";
+	       property output_port = true;
+	 } [6] ovr_tx_xoff;
+	 field {
+	       property title = "Override Tx XOFF Control";
+	       property description = "when set, replace the Tx XOFF received from IBP and sent to the MAC the fix value provided by the register space";
+	       property output_port = true;
+	 } [7] val_tx_xoff;
+	 field {
+	       property title = "Override Tx PFC XOFF Value";
+	       property description = "Defines the value of Tx PFC XOFF when provided by the register space (one bit per PFC)";
+	       property output_port = true;
+	 } [15:8] val_tx_pfcxoff;
+};
+
+
+
+register txcrc_trunc_ctrl {
+	 property title = "Transmit path packet CRC check and truncation control";
+	 property description = "Control the Tx path CRC check and truncation feature of the packet";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "CRC checker disable";
+	       property description = "when set, globally disable the internal CRC checker from the MAC layer";
+	       property output_port = true;
+	 } [0] crcchk_dis;
+	 field {
+	       property title = "CRC checker disable on error and do not remove the 4B CRC";
+	       property description = "when set, disable the internal CRC checker and do not remove the 4B CRC before sending to the Tx MAC layer (MAC should be dynamically controlled to not generate Tx CRC.";
+	       property output_port = true;
+	 } [1] crcerr_dis;
+	 field {
+	       property title = "CRC generation disable on error";
+	       property description = "when set, disable the internal CRC regeneration from the MAC layer only for frames received with error";
+	       property output_port = true;
+	 } [2] crcrmv_dis;
+	 field {
+	       property title = "Truncation enable";
+	       property description = "Enable packet truncation for that channel";
+	       property output_port = true;
+	 } [3] trunc_ena;
+	 field {
+	       property title = "Truncation size";
+	       property description = "Report the size in byte for truncating packet. "
+                                      "Truncated packet will have valid CRC32 independantly of the CRC received from Deparser.";
+	       property output_port = true;
+	 } [29:16] trunc_size;
+};
+
+register rxpkt_err_sts {
+	 property title = "Rx Packet Error Status capture";
+	 property description = "Capture the Rx status of last error packet received";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Rx Packet Error Status capture";
+	       property description = "Capture the Rx status of last error packet received";
+	       property field_type = "status";
+               property input_value = true;
+	 } [31:0] last_rxsts;
+};
+
+
+register port_alive_lut {
+	 property title = "Defines the Port Alive LUT programming";
+	 property description = "Allow to flexibly map rxsigok, txgood, rxsync, ext_rxsigok and ofault to generate port_alive to packet gen and TM ";
+	 property register_reset_value = 0xAAAAAAAA;
+         property register_output_port = true;
+	 field {
+	       property title = "Defines the Port Alive LUT programming";
+	       property description = "Allow to flexibly map internal status to generate port_alive status for TM and packet generator : \n"
+                                      " port_alive = port_alive_lut[{ofault,ext_rxsigok,rxsigok,txgood,rxsync}] \n"
+                                      " Thus if only rxsync contributes to port_alive, programming is 16'hAAAA.";
+	 } [31:0] port_alive_lut;
+};
+
+register global_intr_stat {
+	 property title = "Global Interrupt Status";
+	 property description = "Global Interrupt Status which redirect to MAC interrupt, Channel interrupt or Memory interrupt";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Global Low-priority Interrupt Status";
+	       property description = "Report which interrupt register is asserted: \n"
+                                      " - bit 0 : Channel interrupt \n"
+                                      " - bit 1 : Memory interrupt \n"
+                                      " - bit 2 : MAC interrupt \n"
+                                      " - bit 3 : MDIOCI interrupt \n "
+                                      " - bit 4 : Microcontroller interrupt. ";
+	       property field_type = "status";
+               property input_value = true;
+	 } [4:0] int_lo_stat;
+	 field {
+	       property title = "Global High-priority Interrupt Status";
+	       property description = "Report which interrupt register is asserted: \n"
+                                      " - bit 0 : Channel interrupt \n"
+                                      " - bit 1 : Memory interrupt \n"
+                                      " - bit 2 : MAC interrupt \n"
+                                      " - bit 3 : MDIOCI interrupt \n "
+                                      " - bit 4 : Microcontroller interrupt. ";
+	       property field_type = "status";
+               property input_value = true;
+	 } [12:8] int_hi_stat;
+};
+
+
+register crcerr_inj {
+	 property title = "CRC error Injection Register";
+	 property description = "CRC error injection on Rx path, set interrupt and self-clear; \n"
+	                        "Each bit generate a single CRC error for one channel as if reported by MAC";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Interrupt injection";
+	       property description = "Inject a crc error for each channel";
+	       property output_port = true;
+               property load_enable = true;
+               property input_value = true;	       
+	 } [3:0] inj;
+};
+
+
+register tv80_debug_ctrl {
+	 property title = "TV80 debug fifo base and limit address";
+	 property description = "Debug fifo base/limit addresses and enable bit which memorize all register Rd/Wr transactions performed by the TV80 microcontroller. "
+                                "The debug fifo is implemented in the microcontroller SRAM allowingportion which is not allocated by SW for firmware or user data. \n "
+                                "Each fifo entry corresponds to two addresses of the microcontroller SRAM where the : \n"
+                                " -first  address bit[17:0] : Byte address of the transaction \n"
+                                " -first  address bit[30]   : Error during transaction acknowledge phase \n"
+                                " -first  address bit[31]   : Read (1b) / Write (0b) \n"
+                                " -second address bit[31:0] : Write data or read data ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Base address of debug fifo";
+	       property description = "Define the base address of debug fifo structure";
+	       property output_port = true;
+	 } [11:0] base_addr;
+	 field {
+	       property title = "Limit address of debug fifo";
+	       property description = "Define the limit address of debug fifo structure";
+	       property output_port = true;
+ 	 } [23:12] limit_addr;
+	 field {
+	       property title = "Log register transaction generated by TV80";
+	       property description = "When set, the debug buffer will capture all register transactions generated by TV80. "
+                                      "Each instruction will be 32-bit quanta and will logged as follow:  : \n"
+                                      " -first  address bit[31:30] : Instruction code (00b for register access) \n"
+                                      " -first  address bit[29]    : Error during transaction acknowledge phase \n"
+                                      " -first  address bit[28]    : Read (1b) / Write (0b) \n"
+                                      " -first  address bit[27:0]  : Word address of the transaction \n"
+                                      " -second address bit[31:0]  : Write data or read data ";
+	       property output_port = true;
+ 	 } [25] log_reg;
+	 field {
+	       property title = "Log instruction";
+	       property description = "When set, the debug buffer will capture all instruction and data read by the microcontroller. "
+                                      "Each instruction will be 32-bit quanta and will logged as follow:  \n"
+                                      " - bit[31:30] : Instruction Code (11b) \n"
+                                      " - bit[29]    : M1 cycle  \n"
+                                      " - bit[28]    : Read (1b) / Write (0b)  \n"
+                                      " - bit[23:16] : Data  \n"
+                                      " - bit[13:0]  : Address  \n";
+	       property output_port = true;
+ 	 } [26] log_inst;
+	 field {
+	       property title = "Fifo Mode";
+	       property description = "When set, the debug buffer works in fifo mode which stalls automatically when fifo is full. "
+                                      " When cleared, the fifo works in circular buffer mode, overriding the oldest instruction executed.";
+	       property output_port = true;
+ 	 } [29] fifomode;
+	 field {
+	       property title = "Debug fifo interrupt on full";
+	       property description = "When set, assert an interrupt when debug fifo get full. It is only applicable if debug works in fifo mode and not in circular buffer";
+	       property output_port = true;
+ 	 } [30] full_int;
+	 field {
+	       property title = "Debug fifo enable";
+	       property description = "when set, enable the debug fifo structure";
+	       property output_port = true;
+ 	 } [31] enable;
+};
+
+register tv80_debug_tail_ptr {
+	 property title = "TV80 debug fifo tail pointer";
+	 property description = "Debug fifo tail pointer which is automatically updated by the microcontroller logic when a new entry is written inside the fifo. ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Tail address of debug fifo";
+	       property description = "Define the current write address of debug fifo structure";
+	       property field_type = "status";
+               property input_value = true;
+	 } [11:0] tail_ptr;
+};
+
+register tv80_debug_head_ptr {
+	 property title = "TV80 debug fifo head pointer";
+	 property description = "Defines the head address of the fifo structure. The head address is updated by SW when fifo entries are read by SW.";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Head pointer of debug fifo";
+	       property description = "Define the current read address of the debug fifo";
+	       property output_port = true;
+	 } [11:0] head_ptr;
+};
+
+register tv80_watchdog_ctrl {
+	 property title = "TV80 watchdog time out and enable";
+	 property description = "Defines the TV80 watchdog timer that is required to be cleared by TV80 or an NMI interrupt will be triggered.";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Watchdog Timeout value";
+	       property description = "Define the maximum of the timeout counter.";
+	       property output_port = true;
+	 } [30:0] timeout_value;
+	 field {
+	       property title = "Watchdog Timeout Enable";
+	       property description = "Enables the watchdog timeout mechanism to trigger NMI.";
+	       property output_port = true;
+	 } [31] enable;
+};
+
+register tv80_watchdog_count {
+	 property title = "TV80 watchdog counter";
+	 property description = "Report the current value of the TV80 Watchdog Counter. Can be written back to 0 by TV80 to reset the watchdog timer."
+                                "Counter increment by 1 every clock (Clock BPS ~1.35 GHz) when enabled";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Watchdog Timeout value";
+	       property description = "Define the maximum of the timeout counter.";
+	       property output_port = true;
+               property load_enable = true;
+               property input_value = true;	       
+	 } [30:0] cur_time;
+};
+
+register tv80_stall_on_error {
+	 property title = "TV80 stall on error";
+	 property description = "This register defines whether the TV80 get automatically stalled when register access or memory dual-bit error."
+                                " The corresponding interrupt is sent to PCIe which will be in charge of clearing the interrupt. When interrupt get cleared,"
+                                " TV80 will resume (except if reset or INT/NMI is generated). Settings those registers will prevent TV80 to continue"
+                                " operating in case of critical error detected.";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Stall command";
+	       property description = "When set, the  microcontroller code execution is halted through the logic "
+                                      "does not responding to TV80 trying to read the next instruction from its firmware located in SRAM."
+                                      " SW will have to clear this bit to enable TV80 to resume its operation.";
+	       property output_port = true;
+ 	 } [0] stall_absolute;
+	 field {
+	       property title = "Stall on memory multi-bit ECC error";
+	       property description = "When set, the TV80 will be stalled when a memory multi-bit error is detected on its own SRAM containing data/firmware. SW will have to clear this bit to enable TV80 to resume its operation.";
+	       property output_port = true;
+	 } [1] stall_on_mbe;
+	 field {
+	       property title = "Stall on error for register access generated by TV80 ";
+	       property description = "When set, the TV80 will be stalled when a read error transaction generated by TV80.";
+	       property output_port = true;
+	 } [2] stall_on_rerr;
+};
+
+register tv80_halted_status {
+	 property title = "TV80 halted status";
+	 property description = "Status register reporting that the TV80 microcontroller has been halted.";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "TV80 halted status";
+	       property description = "Status register reporting that the TV80 microcontroller has been halted.";
+	       property field_type = "status";
+               property input_value = true;
+	 } [0] tv80_halted;
+};
+
+register eth_rxsigok_ctrl {
+	 property title = "Control the generation of RxSigOK from Ethernet Serdes";
+	 property description = "Have control registers enabling to debounce the rx_idle_det output "
+                                "of the Serdes and generate rxsigok for the MAC layer. Can also force"
+                                "RxSigOK high or low. ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "rxSigOk Debounce counter";
+	       property description = "Defines the number of consecutive clock cycle that the Rx_idle_det need to"
+                                      "be asserted high or low to report rxSigOK to the MAC layer. Set to zero to prevent any debouncing ";
+               property output_port = true;
+	 } [15:0] sigok_debounce_count;
+	 field {
+	       property title = "Force rxSigOk high";
+	       property description = "Ignore Signal OK from Serdes and forces RxSigOK high (per lane) ";
+               property output_port = true;
+	 } [23:16] force_rxsigok_high;
+	 field {
+	       property title = "Force rxSigOk low";
+	       property description = "Ignore Signal OK from Serdes and forces RxSigOK low (per lane)";
+               property output_port = true;
+	 } [31:24] force_rxsigok_low;
+};
+
+register eth_mdioci_ctrl {
+	 property title = "Control the register access to Serdes tile";
+	 property description = "Serdes tile has the MDIOCI interface to Serdes Tile to perform register read/write. "
+                                "This register control how the Serdes tile get accessed";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "MDIOCI interface enable";
+	       property description = "Enables access to MDIOCI interface";
+               property output_port = true;
+	 } [0] mdioci_en;
+	 field {
+	       property title = "MDIOCI reset command";
+	       property description = "Generate a reset command to MDIOCI interface";
+               property output_port = true;
+	 } [1] mdioci_reset;
+	 field {
+	       property title = "MDIOCI clock divider";
+	       property description = "Define the clock speed of the MDIOCI interface clock"
+                                      " 0001b : Core clock divider by 2 \n"
+                                      " 0011b : Core clock divider by 4 \n"
+                                      " 0111b : Core clock divider by 8 \n"
+                                      " 1111b : Core clock divider by 16 \n"
+                                      "The MDC clock output is generated when the 4-bit counter reaches it max value.";
+               property output_port = true;
+	 } [7:4] mdioci_clkdiv;
+};
+
+register eth_mdioci_poll_ctrl {
+	 property title = "Serdes tile Polling Control";
+	 property description = "Controls the automatic polling of Serdes Tile RxSignalOK vector. ";
+ 	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "interrupt address";
+	       property description = "Define the address of the interrupt to be polled";
+              property output_port = true;
+	 } [23:0] poll_addr;
+};
+
+register eth_mdioci_poll_time {
+	 property title = "Serdes tile Polling Time Period";
+	 property description = "Defines the interval between two polling request.";
+ 	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "interrupt address";
+	       property description = "Define the address of the interrupt to be polled";
+              property output_port = true;
+	 } [15:0] poll_time;
+	 field {
+	       property title = "Polling enable";
+	       property description = "enables polling of RxSignalOK";
+               property output_port = true;
+	 } [16] poll_ena;
+};
+
+register eth_rxsigok_bitsel {
+	 property title = "Serdes tile Interrupt Vector Mask";
+	 property description = "Defines which bit from the polling 32bit register is the rxsigok signal for a specific lane";
+ 	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Lane 0 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [3:0] rxsigok_sel0;
+	 field {
+	       property title = "Lane 1 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [7:4] rxsigok_sel1;
+	 field {
+	       property title = "Lane 2 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [11:8] rxsigok_sel2;
+	 field {
+	       property title = "Lane 3 RxSignalOK Bit select";
+	       property description = "Defines which bit from the polling register is the rxsigok signal for a specific logical lane";
+               property output_port = true;
+	 } [15:12] rxsigok_sel3;
+};
+
+
+register mdioci_intr_stat {
+	 property title = "MDIOCI (Serdes Tile) Interrupt Status";
+	 property description = "Serdes Tile interrupt status which has been pulled by the MDIOCI interface";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Serdes (tile) Interrupt Status";
+	       property description = "Report which interrupt register is asserted";
+	       property field_type = "status";
+               property input_value = true;
+	 } [0] intr_stat;
+};
+
+register eth_ppm_sel {
+	 property title = "PPM comparator clock source select";
+	 property description = "Select Rx and Tx clock going to the PPM comparator  ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "Select Rx clock source";
+	       property description = "Select Rx clock source for PPM comparator.";
+               property output_port = true;
+	 } [1:0] sel_rxclk;
+	 field {
+	       property title = "Select Tx clock source";
+	       property description = "Select Tx clock source for PPM comparator.";
+               property output_port = true;
+	 } [5:4] sel_txclk;
+};
+
+
+register eth_ppm_ctrl {
+	 property title = "PPM comparator control register";
+	 property description = "PPM comparator control register ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "PPM maximum count value";
+	       property description = "Defines the number of clock cycles for the PPM comparator to run before reporting valid PPM differences. ";
+               property output_port = true;
+	 } [30:0] max_count;
+	 field {
+	       property title = "Enables the PPM comparator logic ";
+	       property description = "When set to 1, the PPM comparator logic is enabled. It is required to have valid clock source before enabling the PPM comparator. The PPM comparator runs continuously as long as enabled.";
+               property output_port = true;
+	 } [31] ppm_ena;
+};
+
+register eth_ppm_stat {
+	 property title = "PPM comparator status register";
+	 property description = "PPM comparator status register  ";
+	 property register_reset_value = 0x00000000;
+	 field {
+	       property title = "PPM differences seen";
+	       property description = "Represent a signed number of PPM seen between Tx and Rx clock. The logic add 1 clock uncertainty and thus to get an accuracy of 1 PPM, \n"
+                                      " it is recommended to run the PPM comparator for at least 10 M cycles. New value get reported automatically after each iteration as long as enabled. ";
+	       property field_type = "status";
+               property input_value = true;
+	 } [30:0] ppm_seen;
+	 field {
+	       property title = "PPM difference valid ";
+	       property description = "When a result is available after been enabled, report 1 when the PPM comparator has a valid value to report.";
+	       property field_type = "status";
+               property input_value = true;
+	 } [31] ppm_val;
+};
+
+//##############################################
+// Define Register Address Space
+//##############################################
+
+    property title = "Ethernet Block  Registers";
+    property description = "Registers controlling the Ethernet Application layer";
+
+    property addressmap_ready_port = true;
+    property addressmap_clock_port = "clk";
+
+    property addressmap_undefined_value = 0x0bad0bad;
+
+    property addressmap_bus_input_pipeline_stage  = true;
+    property addressmap_bus_output_pipeline_stage = true;
+
+    scratch_r                                   scratch [4];
+    dft_csr_memctrl_r                           dft_csr;
+    eth_soft_reset                              eth_soft_reset;
+    chnl_seq                                    chnl_seq;
+    port_alive_lut                              port_alive_lut;
+    eth_clkobs_ctrl                             eth_clkobs_ctrl;
+    eth_onestep_ets_offset_ctrl                 eth_onestep_ets_offset_ctrl [4];
+    eth_mac_ts_offset_ctrl                      eth_mac_ts_offset_ctrl;
+    eth_status                                  eth_status;
+    global_intr_stat                            global_intr_stat;
+
+    txff_ctrl                                   txff_ctrl [4];
+    txff_status                                 txff_status [4];
+    txcrc_trunc_ctrl                            txcrc_trunc_ctrl [4];
+    rxff_ctrl                                   rxff_ctrl [4];
+    rxpkt_err_sts                               rxpkt_err_sts [4];
+
+    eth_ring_addr                               eth_ring_addr;
+    eth_ring_wdata                              eth_ring_wdata;
+    eth_ring_rdata                              eth_ring_rdata;
+    eth_ring_ctrl                               eth_ring_ctrl;
+    eth_ring_setup                              eth_ring_setup;
+    soft_port_alive                             soft_port_alive;
+
+    interrupt_register_g                        chnl_intr (
+                                                    interrupts  = [
+                                                                   "rxcrc_err0",
+                                                                   "rxcrc_err1",
+                                                                   "rxcrc_err2",
+                                                                   "rxcrc_err3",
+                                                                   "txcrc_err0",
+                                                                   "txcrc_err1",
+                                                                   "txcrc_err2",
+                                                                   "txcrc_err3",
+                                                                   "txfifo_ovf0",
+                                                                   "txfifo_ovf1",
+                                                                   "txfifo_ovf2",
+                                                                   "txfifo_ovf3",
+                                                                   "rxeop_timo0",
+                                                                   "rxeop_timo1",
+                                                                   "rxeop_timo2",
+                                                                   "rxeop_timo3"
+                                                                  ],
+                                                    titles      = [
+                                                                   "Rx CRC Detected (channel 0)",
+                                                                   "Rx CRC Detected (channel 1)",
+                                                                   "Rx CRC Detected (channel 2)",
+                                                                   "Rx CRC Detected (channel 3)",
+                                                                   "Tx CRC Check Error (channel 0)",
+                                                                   "Tx CRC Check Error (channel 1)",
+                                                                   "Tx CRC Check Error (channel 2)",
+                                                                   "Tx CRC Check Error (channel 3)",
+                                                                   "Tx Fifo Overflow  (channel 0)",
+                                                                   "Tx Fifo Overflow  (channel 1)",
+                                                                   "Tx Fifo Overflow  (channel 2)",
+                                                                   "Tx Fifo Overflow  (channel 3)",
+                                                                   "Rx EOP Timeout (channel 0)",
+                                                                   "Rx EOP Timeout (channel 1)",
+                                                                   "Rx EOP Timeout (channel 2)",
+                                                                   "Rx EOP Timeout (channel 3)"
+                                                                  ],
+                                                    descriptions= [
+                                                                   "Asserted when Rx MAC report an errored packet for channel 0.",
+                                                                   "Asserted when Rx MAC report an errored packet for channel 1.",
+                                                                   "Asserted when Rx MAC report an errored packet for channel 2.",
+                                                                   "Asserted when Rx MAC report an errored packet for channel 3.",
+                                                                   "Asserted when Tx CRC detect a CRC error for channel 0.",
+                                                                   "Asserted when Tx CRC detect a CRC error for channel 1.",
+                                                                   "Asserted when Tx CRC detect a CRC error for channel 2.",
+                                                                   "Asserted when Tx CRC detect a CRC error for channel 3.",
+                                                                   "Asserted when Tx Fifo overflows signalling a credit loop issue for channel 0.",
+                                                                   "Asserted when Tx Fifo overflows signalling a credit loop issue for channel 1.",
+                                                                   "Asserted when Tx Fifo overflows signalling a credit loop issue for channel 2.",
+                                                                   "Asserted when Tx Fifo overflows signalling a credit loop issue for channel 3.",
+                                                                   "Asserted when Rx Packet is never closed by the MAC and timeout occurs for channel 0.",
+                                                                   "Asserted when Rx Packet is never closed by the MAC and timeout occurs for channel 1.",
+                                                                   "Asserted when Rx Packet is never closed by the MAC and timeout occurs for channel 2.",
+                                                                   "Asserted when Rx Packet is never closed by the MAC and timeout occurs for channel 3."
+                                                                  ],
+                                                    types       = [
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge"
+                                                                  ],
+                                                    actives     = [
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high"
+                                                                  ]
+                                                );
+
+
+    interrupt_register_g                        mem_intr (
+                                                    interrupts  = [
+                                                                   "txfifo_sbe",
+                                                                   "txfifo_mbe",
+                                                                   "statsmem_sbe",
+                                                                   "statsmem_mbe",
+                                                                   "tv80mem_sbe",
+                                                                   "tv80mem_mbe"
+                                                                   ],
+                                                    titles      = [
+                                                                   "Tx fifo Single Bit Error",
+                                                                   "Tx fifo  Multi Bit Error",
+                                                                   "Stats memory Single Bit Error",
+                                                                   "Stats memory  Multi Bit Error",
+                                                                   "Microcontroller memory Single Bit Error",
+                                                                   "Microcontroller memory  Multi Bit Error"
+                                                                   ],
+                                                    descriptions= [
+                                                                   "Asserted when Tx fifo gets correctable error.",
+                                                                   "Asserted when Tx fifo gets uncorrectable error.",
+                                                                   "Asserted when Stats memory gets correctable error.",
+                                                                   "Asserted when Stats memory gets uncorrectable error.",
+                                                                   "Asserted when Microcontroller memory gets correctable error.",
+                                                                   "Asserted when microcontroller memory gets uncorrectable error."
+                                                                  ],
+                                                    types       = [
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge"
+                                                                  ],
+                                                    actives     = [
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high"
+                                                                  ]
+                                                );
+
+
+    interrupt_register_g                        uctrl_intr (
+                                                    interrupts  = [
+                                                                   "int0",
+                                                                   "int1",
+                                                                   "int2",
+                                                                   "int3",
+                                                                   "int4",
+                                                                   "int5",
+                                                                   "int6",
+                                                                   "int7",
+                                                                   "rerr",
+                                                                   "debug"
+                                                                  ],
+                                                    titles      = [
+                                                                   "TV80 generated interrupt 0",
+                                                                   "TV80 generated interrupt 1",
+                                                                   "TV80 generated interrupt 2",
+                                                                   "TV80 generated interrupt 3",
+                                                                   "TV80 generated interrupt 4",
+                                                                   "TV80 generated interrupt 5",
+                                                                   "TV80 generated interrupt 6",
+                                                                   "TV80 generated interrupt 7",
+                                                                   "TV80 register transaction error",
+                                                                   "TV80 debug fifo full interrupt"
+                                                                  ],
+                                                    descriptions= [
+                                                                   "Generates TV80 interrupt 0 for PCIe. If enabled interrupt is sent to PCIe and must be cleared by main CPU",
+                                                                   "Generates TV80 interrupt 1 for PCIe. If enabled interrupt is sent to PCIe and must be cleared by main CPU",
+                                                                   "Generates TV80 interrupt 2 for PCIe. If enabled interrupt is sent to PCIe and must be cleared by main CPU",
+                                                                   "Generates TV80 interrupt 3 for PCIe. If enabled interrupt is sent to PCIe and must be cleared by main CPU",
+                                                                   "Generates TV80 interrupt 4 for PCIe. If enabled interrupt is sent to PCIe and must be cleared by main CPU",
+                                                                   "Generates TV80 interrupt 5 for PCIe. If enabled interrupt is sent to PCIe and must be cleared by main CPU",
+                                                                   "Generates TV80 interrupt 6 for PCIe. If enabled interrupt is sent to PCIe and must be cleared by main CPU",
+                                                                   "Generates TV80 interrupt 7 for PCIe. If enabled interrupt is sent to PCIe and must be cleared by main CPU",
+                                                                   "Register transaction initiated by TV80 ended up in error. If enabled interrupt is sent to PCIe and must be cleared by main CPU",
+                                                                   "Generates TV80 debug fifo full interrupt. If enabled interrupt is sent to PCIe and must be cleared by main CPU"
+                                                                  ],
+                                                    types       = [
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge"
+                                                                  ],
+                                                    actives     = [
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high"
+                                                                  ]
+                                                );
+
+
+
+    ecc_control_r                               mem_ecc (
+                                                    names = ["txfifo_sram",
+                                                             "statsmem",
+                                                             "tv80mem"
+                                                            ],
+                                                    types = ["gen_chk",
+                                                             "gen_chk",
+                                                             "gen_chk"
+                                                            ]
+                                                );
+
+
+
+
+    interrupt_log_r                             txfifo_sbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Tx Fifo Single Bit Error",
+                                                        intrfield   = field(mem_intr.stat.txfifo_sbe),
+                                                        field_names = ["addr"],
+                                                        field_widths= [6]
+                                                       );
+
+    interrupt_log_r                             txfifo_mbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Tx fifo Dual Bit Error",
+                                                        intrfield   = field(mem_intr.stat.txfifo_mbe),
+                                                        field_names = ["addr"],
+                                                        field_widths= [6]
+                                                       );
+
+    interrupt_log_r                             statsmem_sbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Statistic Memory Single Bit Error",
+                                                        intrfield   = field(mem_intr.stat.statsmem_sbe),
+                                                        field_names = ["addr"],
+                                                        field_widths= [9]
+                                                       );
+
+    interrupt_log_r                             statsmem_mbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Statistic Memory Dual Bit Error",
+                                                        intrfield   = field(mem_intr.stat.statsmem_mbe),
+                                                        field_names = ["addr"],
+                                                        field_widths= [9]
+                                                       );
+    interrupt_log_r                             tv80mem_sbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Microcontroller Memory Single Bit Error",
+                                                        intrfield   = field(mem_intr.stat.tv80mem_sbe),
+                                                        field_names = ["addr"],
+                                                        field_widths= [12]
+                                                       );
+
+    interrupt_log_r                             tv80mem_mbe_err_log (
+                                                        title       =
+                                                        "Interrupt Log Register for Microcontroller Memory Dual Bit Error",
+                                                        intrfield   = field(mem_intr.stat.tv80mem_mbe),
+                                                        field_names = ["addr"],
+                                                        field_widths= [12]
+                                                       );
+   interrupt_enable_r           mac_en0 (
+                                          interrupts = ["mac"],
+                                          types = ["rising_edge"],
+                                          priority = 0,
+                                          reset_value = 0x0
+                                        );
+   interrupt_enable_r           mac_en1 (
+                                          interrupts = ["mac"],
+                                          types = ["rising_edge"],
+                                          priority = 1,
+                                          reset_value = 0x0
+                                        );
+   interrupt_freeze_enable_r    mac_freeze_enable (interrupts = ["mac"], types = ["rising_edge"]);
+
+   crcerr_inj                   crcerr_inj;
+
+   interrupt_register_g         tv80_intr (
+                                                    interrupts  = [
+                                                                   "int_0",
+                                                                   "int_1",
+                                                                   "int_2",
+                                                                   "int_3",
+                                                                   "int_4",
+                                                                   "int_5",
+                                                                   "int_6",
+                                                                   "int_7",
+                                                                   "nmi"
+                                                                  ],
+                                                    titles      = [
+                                                                   "TV80 Maskable Interrupt 0",
+                                                                   "TV80 Maskable Interrupt 1",
+                                                                   "TV80 Maskable Interrupt 2",
+                                                                   "TV80 Maskable Interrupt 3",
+                                                                   "TV80 Maskable Interrupt 4",
+                                                                   "TV80 Maskable Interrupt 5",
+                                                                   "TV80 Maskable Interrupt 6",
+                                                                   "TV80 Maskable Interrupt 7",
+                                                                   "TV80 Non-Maskable Interrupt"
+                                                                  ],
+                                                    descriptions= [
+                                                                   "Assert Maskable Interrupt 0 for TV80 microcontroller through interrupt injection. Interrupt should be cleared by TV80.",
+                                                                   "Assert Maskable Interrupt 1 for TV80 microcontroller through interrupt injection. Interrupt should be cleared by TV80.",
+                                                                   "Assert Maskable Interrupt 2 for TV80 microcontroller through interrupt injection. Interrupt should be cleared by TV80.",
+                                                                   "Assert Maskable Interrupt 3 for TV80 microcontroller through interrupt injection. Interrupt should be cleared by TV80.",
+                                                                   "Assert Maskable Interrupt 4 for TV80 microcontroller through interrupt injection. Interrupt should be cleared by TV80.",
+                                                                   "Assert Maskable Interrupt 5 for TV80 microcontroller through interrupt injection. Interrupt should be cleared by TV80.",
+                                                                   "Assert Maskable Interrupt 6 for TV80 microcontroller through interrupt injection. Interrupt should be cleared by TV80.",
+                                                                   "Assert Maskable Interrupt 7 for TV80 microcontroller through interrupt injection. Interrupt should be cleared by TV80.",
+                                                                   "Assert Non-Maskable Interrupt for TV80 microcontroller through interrupt injection. Interrupt should be cleared by TV80."
+                                                                  ],
+                                                    types       = [
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge",
+                                                                   "rising_edge"
+                                                                  ],
+                                                    actives     = [
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high",
+                                                                   "high"
+                                                                  ]
+                                                );
+
+
+   tv80_debug_ctrl              tv80_debug_ctrl; 
+   tv80_debug_head_ptr          tv80_debug_head_ptr; 
+   tv80_debug_tail_ptr          tv80_debug_tail_ptr; 
+
+   tv80_stall_on_error          tv80_stall_on_error;
+   tv80_halted_status           tv80_halted_status;
+   tv80_watchdog_ctrl           tv80_watchdog_ctrl;
+   tv80_watchdog_count          tv80_watchdog_count;
+
+   eth_rxsigok_ctrl             eth_rxsigok_ctrl;
+   eth_mdioci_ctrl              eth_mdioci_ctrl;
+   eth_mdioci_poll_ctrl         eth_mdioci_poll_ctrl;
+   eth_mdioci_poll_time         eth_mdioci_poll_time;
+   eth_rxsigok_bitsel           eth_rxsigok_bitsel;
+
+   mdioci_intr_stat             mdioci_intr_stat;
+   interrupt_enable_r           mdioci_en0 (
+                                          interrupts = ["int0" 
+                                                        ],
+                                          types = ["rising_edge"
+                                                  ],
+                                          priority = 0,
+                                          reset_value = 0x0
+                                        );
+   interrupt_enable_r           mdioci_en1 (
+                                          interrupts = ["int0" 
+                                                        ],
+                                          types = ["rising_edge"
+                                                  ],
+                                          priority = 1,
+                                          reset_value = 0x0
+                                        );
+   interrupt_freeze_enable_r    mdioci_freeze_enable (interrupts = ["int0" 
+                                                        ],
+                                          types = ["rising_edge"
+                                                  ]);
+   mac_ctrl                     mac_ctrl;
+   txff_pream0                  txff_pream0;
+   txff_pream1                  txff_pream1;
+   serdes_config                serdes_config;
+
+   eth_ppm_sel   eth_ppm_sel;
+   eth_ppm_ctrl  eth_ppm_ctrl;
+   eth_ppm_stat  eth_ppm_stat;
+
+} eth100g_reg_rspec;
+
+

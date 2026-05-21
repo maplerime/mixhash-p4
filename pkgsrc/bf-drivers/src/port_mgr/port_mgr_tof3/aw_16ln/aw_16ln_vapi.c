@@ -1,0 +1,665 @@
+#include <stdint.h>
+#include <bf_types/bf_types.h>
+#include "../aw_if.h"
+#include "../aw_driver_sim.h"
+
+int aw_pmd_16ln_vfld_lsref_bypass_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0000012C, 0xFFFFFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_lsref_bypass_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0000012C, 0xFFFFFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_cmn_sris_enable_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x00000128, 0x00100000, 0x00000014, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_cmn_sris_enable_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x00000128, 0x00100000, 0x00000014, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_fast_sram_clk_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x00000130, 0xFFFFFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_fast_sram_clk_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x00000130, 0xFFFFFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_tx_spare_0_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200102C, 0x00000400, 0x0000000A, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_tx_spare_0_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200102C, 0x00000400, 0x0000000A, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_tx_spare_1_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200102C, 0x00000800, 0x0000000B, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_tx_spare_1_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200102C, 0x00000800, 0x0000000B, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq0_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020007F8, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq0_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020007F8, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq1_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020007F8, 0xFFFF0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq1_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020007F8, 0xFFFF0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq2_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000808, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq2_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000808, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq3_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000808, 0xFFFF0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq3_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000808, 0xFFFF0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq4_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200080C, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq4_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200080C, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq5_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200080C, 0xFFFF0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nyq5_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200080C, 0xFFFF0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_cm1c1_takeover_ratio_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000810, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_cm1c1_takeover_ratio_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000810, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_c0_takeover_code_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000810, 0x001F0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_c0_takeover_code_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000810, 0x001F0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_counter_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000814, 0x0000001F, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_counter_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000814, 0x0000001F, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_temp1_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000814, 0x00000FE0, 0x00000005, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_temp1_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000814, 0x00000FE0, 0x00000005, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_temp2_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000814, 0x0000F000, 0x0000000C, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_temp2_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000814, 0x0000F000, 0x0000000C, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_sigdet_offset_cal_valid_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000814, 0x00010000, 0x00010000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_sigdet_offset_cal_valid_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000814, 0x00010000, 0x00010000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_sigdet_offset_cal_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000814, 0x001E0000, 0x001E0000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_sigdet_offset_cal_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000814, 0x001E0000, 0x001E0000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_fg_done_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000818, 0x00000001, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_fg_done_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000818, 0x00000001, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_first_iter_done_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000818, 0x00000002, 0x00000001, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_first_iter_done_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000818, 0x00000002, 0x00000001, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_post1_npre1_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000818, 0x00000004, 0x00000002, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_post1_npre1_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000818, 0x00000004, 0x00000002, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_linkeval_state_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000818, 0x00000078, 0x00000003, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_linkeval_state_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000818, 0x00000078, 0x00000003, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_c0_dec_counter_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000818, 0x00000F80, 0x00000007, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_c0_dec_counter_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000818, 0x00000F80, 0x00000007, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_cm1_inc_counter_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000818, 0x001F8000, 0x0000000F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_cm1_inc_counter_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000818, 0x001F8000, 0x0000000F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_c1_inc_counter_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000818, 0x07E00000, 0x00000015, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_c1_inc_counter_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000818, 0x07E00000, 0x00000015, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_c0_iter_remain_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000818, 0xF8000000, 0x0000001B, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_c0_iter_remain_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000818, 0xF8000000, 0x0000001B, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_channel_type_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000818, 0x00030000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_channel_type_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000818, 0x00030000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_autoeq_disable_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x000000FF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_autoeq_disable_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x000000FF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqstore_valid_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x0000FF00, 0x00000008, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqstore_valid_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x0000FF00, 0x00000008, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_disable_vga_cap_adapt_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x00010000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_disable_vga_cap_adapt_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x00010000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_disable_ctle_adapt_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x00020000, 0x00000011, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_disable_ctle_adapt_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x00020000, 0x00000011, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_disable_c0_adapt_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x00040000, 0x00000012, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_disable_c0_adapt_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x00040000, 0x00000012, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_disable_cm1c1_adapt_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x00080000, 0x00000013, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_disable_cm1c1_adapt_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x00080000, 0x00000013, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_vga_cap_takeover_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x00100000, 0x00000014, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_vga_cap_takeover_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x00100000, 0x00000014, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_ctle_takeover_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x00200000, 0x00000015, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_ctle_takeover_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x00200000, 0x00000015, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_c0_takeover_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x00400000, 0x00000016, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_c0_takeover_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x00400000, 0x00000016, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_cm1c1_dz_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x00800000, 0x00000017, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_cm1c1_dz_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x00800000, 0x00000017, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_cdr_offset_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x01000000, 0x01000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_cdr_offset_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x01000000, 0x01000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_skip_wait_lt_done_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x04000000, 0x0000001A, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_skip_wait_lt_done_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x04000000, 0x0000001A, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_target_cma_bypass_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x10000000, 0x0000001C, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_target_cma_bypass_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x10000000, 0x0000001C, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_zero_small_taps_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x20000000, 0x0000001D, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_zero_small_taps_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x20000000, 0x0000001D, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nes_mode_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x40000000, 0x0000001E, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nes_mode_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x40000000, 0x0000001E, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_pick_c162_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x0200081C, 0x80000000, 0x0000001F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_pick_c162_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x0200081C, 0x80000000, 0x0000001F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_vga_cap_takeover_ratio_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000820, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_vga_cap_takeover_ratio_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000820, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_ctle_takeover_ratio_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000820, 0xFFFF0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_ctle_takeover_ratio_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000820, 0xFFFF0000, 0x00000010, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_dz_pre1_fw_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000824, 0xFFFFFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_dz_pre1_fw_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000824, 0xFFFFFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_dz_post1_fw_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020007FC, 0xFFFFFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_dz_post1_fw_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020007FC, 0xFFFFFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_cdr_offset_cfg_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000800, 0x000001FF, 0x000001FF, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_cdr_offset_cfg_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000800, 0x000001FF, 0x000001FF, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_rxeq_prbs_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000800, 0x10000000, 0x0000001C, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_rxeq_prbs_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000800, 0x10000000, 0x0000001C, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_skip_delay_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000800, 0x20000000, 0x0000001D, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_skip_delay_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000800, 0x20000000, 0x0000001D, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_hold_req_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000800, 0x80000000, 0x0000001F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_hold_req_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000800, 0x80000000, 0x0000001F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_hold_ack_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000804, 0x80000000, 0x0000001F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_eqbk_hold_ack_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000804, 0x80000000, 0x0000001F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_ffe_tap_disable_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A0, 0x007FFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_ffe_tap_disable_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A0, 0x007FFFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_ffe_tap_disable_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A0, 0x00800000, 0x00000017, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_ffe_tap_disable_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A0, 0x00800000, 0x00000017, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_rx_sris_enable_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x02000804, 0x01000000, 0x00000018, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_rx_sris_enable_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x02000804, 0x01000000, 0x00000018, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_enable_roaming_adapt_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A4, 0x00000100, 0x00000008, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_enable_roaming_adapt_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A4, 0x00000100, 0x00000008, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_roaming_windows_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A4, 0x00000200, 0x00000009, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_custom_roaming_windows_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A4, 0x00000200, 0x00000009, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_first_fom_done_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A4, 0x00000400, 0x0000000A, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_first_fom_done_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A4, 0x00000400, 0x0000000A, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_roaming_windows_cfg_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A8, 0x00003FFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_roaming_windows_cfg_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A8, 0x00003FFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_reduced_taps_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A8, 0x00004000, 0x0000000E, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_reduced_taps_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A8, 0x00004000, 0x0000000E, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_reduced_taps_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A8, 0x00018000, 0x0000000F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_reduced_taps_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A8, 0x00018000, 0x0000000F, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_auto_lookup_dfe_ratio_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A8, 0x00100000, 0x00000014, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_use_auto_lookup_dfe_ratio_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A8, 0x00100000, 0x00000014, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_enable_dfe_ratio_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001A8, 0x00200000, 0x00000015, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_enable_dfe_ratio_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001A8, 0x00200000, 0x00000015, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nes_dfe_bypass_value_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001AC, 0x000000FF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_nes_dfe_bypass_value_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001AC, 0x000000FF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_target_cma_bypass_value_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001AC, 0x0001FF00, 0x00000008, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_target_cma_bypass_value_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001AC, 0x0001FF00, 0x00000008, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_custom_dfe_ratio_get(mss_access_t *mss, uint32_t *val) {
+  CHECK(pmd_read_field(mss, 0x020001B8, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
+int aw_pmd_16ln_vfld_custom_dfe_ratio_set(mss_access_t *mss, uint32_t val) {
+  CHECK(pmd_write_field(mss, 0x020001B8, 0x0000FFFF, 0x00000000, val));
+  return 0;
+}
+
