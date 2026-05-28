@@ -1,0 +1,81 @@
+digraph ingress {
+tbl_tna_arp_route207 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_arp_route207\l\l
+R:\l
+ ig_intr_md.ingress_port\l
+\lW:\l
+ ig_md.ingress_port\l
+ "];
+cond_4 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.arp.$valid == 1\l\l
+ "];
+tbl_tna_arp_route210 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_arp_route210\l\l
+R:\l
+ hdr.arp_ipv4.sender_proto_addr\l
+\lW:\l
+ ig_intr_md_for_dprsr.digest_type\l
+ ig_md.learn_src_ip\l
+ "];
+cond_6 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.ipv4.$valid == 1\l\l
+ "];
+cond_5 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.arp.opcode == 1\l\l
+ "];
+tbl_tna_arp_route214 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_arp_route214\l\l
+W:\l
+ ig_intr_md_for_tm.mcast_grp_a\l
+ "];
+dmac_table_0 [ shape=record, style="filled", fillcolor=cornsilk, label="dmac_table_0\l\l
+M:\l
+ hdr.ethernet.dst_addr\l
+\lW:\l
+ ig_intr_md_for_tm.ucast_egress_port\l
+ ig_intr_md_for_tm.mcast_grp_a\l
+ ig_intr_md_for_dprsr.drop_ctl\l
+ "];
+tbl_tna_arp_route232 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_arp_route232\l\l
+W:\l
+ ig_intr_md_for_tm.bypass_egress\l
+ "];
+tbl_tna_arp_route220 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_arp_route220\l\l
+R:\l
+ hdr.ipv4.src_addr\l
+\lW:\l
+ ig_intr_md_for_dprsr.digest_type\l
+ ig_md.learn_src_ip\l
+ "];
+tbl_tna_arp_route229 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_arp_route229\l\l
+W:\l
+ ig_intr_md_for_dprsr.drop_ctl\l
+ "];
+smac_table_0 [ shape=record, style="filled", fillcolor=cornsilk, label="smac_table_0\l\l
+M:\l
+ hdr.ethernet.src_addr\l
+ hdr.ipv4.src_addr\l
+\l "];
+ipv4_route_0 [ shape=record, style="filled", fillcolor=cornsilk, label="ipv4_route_0\l\l
+M:\l
+ hdr.ipv4.dst_addr\l
+\lR:\l
+ hdr.ipv4.ttl\l
+\lW:\l
+ hdr.ethernet.src_addr\l
+ hdr.ethernet.dst_addr\l
+ hdr.ipv4.ttl\l
+ ig_intr_md_for_tm.ucast_egress_port\l
+ "];
+    PARSER -> tbl_tna_arp_route207
+    tbl_tna_arp_route207 -> cond_4
+    cond_4 -> tbl_tna_arp_route210
+    cond_4 -> cond_6
+    tbl_tna_arp_route210 -> cond_5
+    cond_5 -> tbl_tna_arp_route214
+    cond_5 -> dmac_table_0
+    tbl_tna_arp_route214 -> tbl_tna_arp_route232
+    dmac_table_0 -> tbl_tna_arp_route232
+    cond_6 -> tbl_tna_arp_route220
+    cond_6 -> tbl_tna_arp_route229
+    tbl_tna_arp_route220 -> smac_table_0
+    smac_table_0 -> ipv4_route_0
+    ipv4_route_0 -> dmac_table_0
+    ipv4_route_0 -> tbl_tna_arp_route232
+    tbl_tna_arp_route229 -> tbl_tna_arp_route232
+    tbl_tna_arp_route232 -> DEPARSER
+}

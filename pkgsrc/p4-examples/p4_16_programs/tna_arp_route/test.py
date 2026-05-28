@@ -44,10 +44,6 @@ def setup_mc_group(bfrt_info, target, mgid, ports):
         mc_grp.entry_del(target, [mc_grp.make_key([gc.KeyTuple('$MGID', mgid)])])
     except:
         pass
-    try:
-        prune_tbl.entry_del(target, [prune_tbl.make_key([gc.KeyTuple('$MULTICAST_L2_XID', mgid)])])
-    except:
-        pass
 
     node_ids = []
     for i, port in enumerate(ports):
@@ -94,7 +90,7 @@ def clean_p4_tables(bfrt_info, target):
     """Remove all entries from P4 tables to avoid stale data between tests."""
     mc_mgr = bfrt_info.table_get("$pre.node")
     mc_grp = bfrt_info.table_get("$pre.mgid")
-    for tbl_name in ["SwitchIngress.arp_table", "SwitchIngress.smac_table",
+    for tbl_name in ["SwitchIngress.smac_table",
                      "SwitchIngress.dmac_table", "SwitchIngress.ipv4_route"]:
         try:
             bfrt_info.table_get(tbl_name).entry_del(target, [])
@@ -112,8 +108,19 @@ def clean_p4_tables(bfrt_info, target):
         pass
 
 
+def drain_digests(interface, bfrt_info):
+    """Consume any pending digests to avoid queue accumulation."""
+    try:
+        learn_filter = bfrt_info.learn_get("pipe.SwitchIngressDeparser.learn_digest")
+        learn_filter.info.data_field_annotation_add("src_mac", "mac")
+        learn_filter.info.data_field_annotation_add("src_ip", "ipv4")
+        interface.digest_get(timeout=0)
+    except Exception:
+        pass
+
+
 class ArpBroadcastTest(BfRuntimeTest):
-    """@brief Test ARP request broadcast via multicast group."""
+    """@brief Test ARP request auto-flood (no arp_table needed)."""
 
     def setUp(self):
         BfRuntimeTest.setUp(self, 0, "tna_arp_route")
@@ -126,40 +133,30 @@ class ArpBroadcastTest(BfRuntimeTest):
         sender_ip = "10.0.0.1"
 
         bfrt_info = self.interface.bfrt_info_get("tna_arp_route")
-        arp_table = bfrt_info.table_get("SwitchIngress.arp_table")
-        arp_table.info.key_field_annotation_add("hdr.arp_ipv4.target_proto_addr", "ipv4")
         target = gc.Target(device_id=0, pipe_id=0xffff)
 
         clean_p4_tables(bfrt_info, target)
 
-        # Setup multicast group 1 flooding to data ports only
+        # Only need multicast group, no arp_table
         node_ids = setup_mc_group(bfrt_info, target, 1, data_ports)
-
-        # ARP request for target_ip -> broadcast via mgid 1
-        arp_table.entry_add(
-            target,
-            [arp_table.make_key([gc.KeyTuple('hdr.arp.opcode', 0x0001),
-                                 gc.KeyTuple('hdr.arp_ipv4.target_proto_addr', target_ip)])],
-            [arp_table.make_data([gc.DataTuple('mgid', 1)],
-                                 'SwitchIngress.arp_broadcast')])
 
         arp_pkt = build_arp_packet(
             "ff:ff:ff:ff:ff:ff", sender_mac, 1,
             sender_mac, sender_ip, "00:00:00:00:00:00", target_ip)
 
-        logger.info("Sending ARP request on port %d", ig_port)
+        logger.info("Sending ARP request on port %d (auto-flood)", ig_port)
         testutils.send_packet(self, ig_port, arp_pkt)
 
         expected_ports = list(data_ports)
         testutils.verify_packets_any(self, arp_pkt, expected_ports)
 
         # Cleanup
-        arp_table.entry_del(
-            target,
-            [arp_table.make_key([gc.KeyTuple('hdr.arp.opcode', 0x0001),
-                                 gc.KeyTuple('hdr.arp_ipv4.target_proto_addr', target_ip)])])
         cleanup_mc_group(bfrt_info, target, 1, node_ids)
-    """@brief Test ARP reply unicast forwarding."""
+        drain_digests(self.interface, bfrt_info)
+
+
+class ArpReplyUnicastTest(BfRuntimeTest):
+    """@brief Test ARP reply forwarded via DMAC lookup."""
 
     def setUp(self):
         BfRuntimeTest.setUp(self, 0, "tna_arp_route")
@@ -174,18 +171,18 @@ class ArpBroadcastTest(BfRuntimeTest):
         target_ip = "10.0.0.1"
 
         bfrt_info = self.interface.bfrt_info_get("tna_arp_route")
-        arp_table = bfrt_info.table_get("SwitchIngress.arp_table")
-        arp_table.info.key_field_annotation_add("hdr.arp_ipv4.target_proto_addr", "ipv4")
+        dmac_table = bfrt_info.table_get("SwitchIngress.dmac_table")
+        dmac_table.info.key_field_annotation_add("hdr.ethernet.dst_addr", "mac")
         target = gc.Target(device_id=0, pipe_id=0xffff)
 
         clean_p4_tables(bfrt_info, target)
 
-        arp_table.entry_add(
+        # Pre-populate DMAC so the reply can be forwarded
+        dmac_table.entry_add(
             target,
-            [arp_table.make_key([gc.KeyTuple('hdr.arp.opcode', 0x0002),
-                                 gc.KeyTuple('hdr.arp_ipv4.target_proto_addr', target_ip)])],
-            [arp_table.make_data([gc.DataTuple('port', eg_port)],
-                                 'SwitchIngress.arp_reply_unicast')])
+            [dmac_table.make_key([gc.KeyTuple('hdr.ethernet.dst_addr', target_mac)])],
+            [dmac_table.make_data([gc.DataTuple('port', eg_port)],
+                                  'SwitchIngress.forward')])
 
         arp_pkt = build_arp_packet(
             target_mac, sender_mac, 2,
@@ -195,21 +192,12 @@ class ArpBroadcastTest(BfRuntimeTest):
         testutils.send_packet(self, ig_port, arp_pkt)
         testutils.verify_packet(self, arp_pkt, eg_port)
 
-        arp_table.entry_del(
-            target,
-            [arp_table.make_key([gc.KeyTuple('hdr.arp.opcode', 0x0002),
-                                 gc.KeyTuple('hdr.arp_ipv4.target_proto_addr', target_ip)])])
+        dmac_table.entry_del(target, [])
+        drain_digests(self.interface, bfrt_info)
 
 
 class L2ForwardTest(BfRuntimeTest):
-    """@brief Test L2 forwarding of regular IP packets based on learned MAC-port mappings.
-
-    Simulates the learning process:
-    1. Host A (MAC_A, IP_A) is on port 0
-    2. Host B (MAC_B, IP_B) is on port 1
-    3. Control plane "learns" by populating smac_table and dmac_table
-    4. Send packet from A to B -> forwarded to port 1
-    """
+    """@brief Test L2 forwarding of regular IP packets based on learned MAC-port mappings."""
 
     def setUp(self):
         BfRuntimeTest.setUp(self, 0, "tna_arp_route")
@@ -282,20 +270,9 @@ class L2ForwardTest(BfRuntimeTest):
         testutils.verify_packet(self, pkt_rev, port_a)
 
         # Cleanup
-        smac_table.entry_del(
-            target,
-            [smac_table.make_key([gc.KeyTuple('hdr.ethernet.src_addr', mac_a),
-                                  gc.KeyTuple('hdr.ipv4.src_addr', ip_a)])])
-        smac_table.entry_del(
-            target,
-            [smac_table.make_key([gc.KeyTuple('hdr.ethernet.src_addr', mac_b),
-                                  gc.KeyTuple('hdr.ipv4.src_addr', ip_b)])])
-        dmac_table.entry_del(
-            target,
-            [dmac_table.make_key([gc.KeyTuple('hdr.ethernet.dst_addr', mac_a)])])
-        dmac_table.entry_del(
-            target,
-            [dmac_table.make_key([gc.KeyTuple('hdr.ethernet.dst_addr', mac_b)])])
+        smac_table.entry_del(target, [])
+        dmac_table.entry_del(target, [])
+        drain_digests(self.interface, bfrt_info)
 
 
 class L2ForwardUnknownMacFloodTest(BfRuntimeTest):
@@ -347,6 +324,7 @@ class L2ForwardUnknownMacFloodTest(BfRuntimeTest):
             target,
             [dmac_table.make_key([gc.KeyTuple('hdr.ethernet.dst_addr', mac_unknown)])])
         cleanup_mc_group(bfrt_info, target, 2, node_ids)
+        drain_digests(self.interface, bfrt_info)
 
 
 class Ipv4RouteTest(BfRuntimeTest):
@@ -409,18 +387,15 @@ class Ipv4RouteTest(BfRuntimeTest):
 
         # Cleanup
         route_table.entry_del(target, [])
-
-        # Cleanup dmac_table too (smac_table hit may have populated it via default)
-        dmac_table = bfrt_info.table_get("SwitchIngress.dmac_table")
-        dmac_table.info.key_field_annotation_add("hdr.ethernet.dst_addr", "mac")
+        drain_digests(self.interface, bfrt_info)
 
 
 class ArpAndL2ForwardCombinedTest(BfRuntimeTest):
-    """@brief Combined test: ARP learning followed by L2 forwarding.
+    """@brief Combined test: ARP exchange followed by L2 forwarding.
 
-    1. Host A sends ARP request (broadcast)
-    2. Host B sends ARP reply (unicast to A)
-    3. Control plane learns MAC-IP-port bindings from ARP
+    1. Host A sends ARP request (auto-flood via mgid=1)
+    2. Host B sends ARP reply (forwarded via DMAC)
+    3. Control plane learns MAC-IP-port bindings from digests
     4. Host A sends IP packet to Host B -> L2 forwarded
     """
 
@@ -437,8 +412,6 @@ class ArpAndL2ForwardCombinedTest(BfRuntimeTest):
         ip_b = "10.0.0.2"
 
         bfrt_info = self.interface.bfrt_info_get("tna_arp_route")
-        arp_table = bfrt_info.table_get("SwitchIngress.arp_table")
-        arp_table.info.key_field_annotation_add("hdr.arp_ipv4.target_proto_addr", "ipv4")
         dmac_table = bfrt_info.table_get("SwitchIngress.dmac_table")
         dmac_table.info.key_field_annotation_add("hdr.ethernet.dst_addr", "mac")
         smac_table = bfrt_info.table_get("SwitchIngress.smac_table")
@@ -446,80 +419,57 @@ class ArpAndL2ForwardCombinedTest(BfRuntimeTest):
         smac_table.info.key_field_annotation_add("hdr.ipv4.src_addr", "ipv4")
         target = gc.Target(device_id=0, pipe_id=0xffff)
 
-        # Clean up stale entries from previous tests
-        for tbl_name in ["SwitchIngress.arp_table", "SwitchIngress.smac_table",
-                         "SwitchIngress.dmac_table"]:
-            try:
-                bfrt_info.table_get(tbl_name).entry_del(target, [])
-            except Exception:
-                pass
+        clean_p4_tables(bfrt_info, target)
 
         # Setup broadcast group
         node_ids = setup_mc_group(bfrt_info, target, 1, data_ports)
 
-        # Step 1: ARP request for ip_b -> broadcast
-        arp_table.entry_add(
-            target,
-            [arp_table.make_key([gc.KeyTuple('hdr.arp.opcode', 0x0001),
-                                 gc.KeyTuple('hdr.arp_ipv4.target_proto_addr', ip_b)])],
-            [arp_table.make_data([gc.DataTuple('mgid', 1)],
-                                 'SwitchIngress.arp_broadcast')])
+        # --- Step 1: ARP request from A (auto-flood, no table needed) ---
+        arp_req = build_arp_packet(
+            "ff:ff:ff:ff:ff:ff", mac_a, 1,
+            mac_a, ip_a, "00:00:00:00:00:00", ip_b)
 
-        # Step 2: ARP reply to ip_a -> unicast to port_a
-        arp_table.entry_add(
-            target,
-            [arp_table.make_key([gc.KeyTuple('hdr.arp.opcode', 0x0002),
-                                 gc.KeyTuple('hdr.arp_ipv4.target_proto_addr', ip_a)])],
-            [arp_table.make_data([gc.DataTuple('port', port_a)],
-                                 'SwitchIngress.arp_reply_unicast')])
+        logger.info("Step 1: ARP request from A (auto-flood)")
+        testutils.send_packet(self, port_a, arp_req)
+        expected_ports = list(data_ports)
+        testutils.verify_packets_any(self, arp_req, expected_ports)
 
-        # Step 3: "Learn" bindings from ARP exchange
+        # "Learn" A from the digest (simulating learn_daemon)
         smac_table.entry_add(
             target,
             [smac_table.make_key([gc.KeyTuple('hdr.ethernet.src_addr', mac_a),
                                   gc.KeyTuple('hdr.ipv4.src_addr', ip_a)])],
             [smac_table.make_data([gc.DataTuple('port', port_a)],
                                   'SwitchIngress.learn')])
-
-        smac_table.entry_add(
-            target,
-            [smac_table.make_key([gc.KeyTuple('hdr.ethernet.src_addr', mac_b),
-                                  gc.KeyTuple('hdr.ipv4.src_addr', ip_b)])],
-            [smac_table.make_data([gc.DataTuple('port', port_b)],
-                                  'SwitchIngress.learn')])
-
         dmac_table.entry_add(
             target,
             [dmac_table.make_key([gc.KeyTuple('hdr.ethernet.dst_addr', mac_a)])],
             [dmac_table.make_data([gc.DataTuple('port', port_a)],
                                   'SwitchIngress.forward')])
 
+        # --- Step 2: ARP reply from B (forwarded via DMAC to port_a) ---
+        arp_reply = build_arp_packet(
+            mac_a, mac_b, 2,
+            mac_b, ip_b, mac_a, ip_a)
+
+        logger.info("Step 2: ARP reply from B (unicast to port %d via DMAC)", port_a)
+        testutils.send_packet(self, port_b, arp_reply)
+        testutils.verify_packet(self, arp_reply, port_a)
+
+        # "Learn" B from the digest
+        smac_table.entry_add(
+            target,
+            [smac_table.make_key([gc.KeyTuple('hdr.ethernet.src_addr', mac_b),
+                                  gc.KeyTuple('hdr.ipv4.src_addr', ip_b)])],
+            [smac_table.make_data([gc.DataTuple('port', port_b)],
+                                  'SwitchIngress.learn')])
         dmac_table.entry_add(
             target,
             [dmac_table.make_key([gc.KeyTuple('hdr.ethernet.dst_addr', mac_b)])],
             [dmac_table.make_data([gc.DataTuple('port', port_b)],
                                   'SwitchIngress.forward')])
 
-        # --- Send ARP request from A (broadcast) ---
-        arp_req = build_arp_packet(
-            "ff:ff:ff:ff:ff:ff", mac_a, 1,
-            mac_a, ip_a, "00:00:00:00:00:00", ip_b)
-
-        logger.info("Step 1: ARP request from A (broadcast)")
-        testutils.send_packet(self, port_a, arp_req)
-        expected_ports = list(data_ports)
-        testutils.verify_packets_any(self, arp_req, expected_ports)
-
-        # --- Send ARP reply from B (unicast to A) ---
-        arp_reply = build_arp_packet(
-            mac_a, mac_b, 2,
-            mac_b, ip_b, mac_a, ip_a)
-
-        logger.info("Step 2: ARP reply from B (unicast to port %d)", port_a)
-        testutils.send_packet(self, port_b, arp_reply)
-        testutils.verify_packet(self, arp_reply, port_a)
-
-        # --- Send IP packet A -> B (L2 forward) ---
+        # --- Step 3: IP packet A -> B (L2 forward) ---
         pkt = testutils.simple_tcp_packet(
             eth_dst=mac_b, eth_src=mac_a,
             ip_dst=ip_b, ip_src=ip_a, ip_ttl=64)
@@ -529,7 +479,128 @@ class ArpAndL2ForwardCombinedTest(BfRuntimeTest):
         testutils.verify_packet(self, pkt, port_b)
 
         # Cleanup
-        arp_table.entry_del(target, [])
         smac_table.entry_del(target, [])
         dmac_table.entry_del(target, [])
         cleanup_mc_group(bfrt_info, target, 1, node_ids)
+        drain_digests(self.interface, bfrt_info)
+
+
+class DigestLearnTest(BfRuntimeTest):
+    """@brief Test digest-based MAC learning.
+
+    1. Send ARP request -> verify digest is generated with correct MAC/IP/port
+    2. Use digest info to populate smac_table and dmac_table
+    3. Send ARP reply -> verify forwarded via DMAC
+    4. Use digest to learn host B
+    5. Send IP packet -> verify L2 forwarding works with learned entries
+    """
+
+    def setUp(self):
+        BfRuntimeTest.setUp(self, 0, "tna_arp_route")
+
+    def runTest(self):
+        data_ports = get_data_ports()
+        port_a = data_ports[0]
+        port_b = data_ports[1]
+        mac_a = "00:aa:bb:cc:00:01"
+        ip_a = "10.0.0.1"
+        mac_b = "00:aa:bb:cc:00:02"
+        ip_b = "10.0.0.2"
+
+        bfrt_info = self.interface.bfrt_info_get("tna_arp_route")
+        target = gc.Target(device_id=0, pipe_id=0xffff)
+
+        clean_p4_tables(bfrt_info, target)
+
+        # Setup broadcast group
+        node_ids = setup_mc_group(bfrt_info, target, 1, data_ports)
+
+        # Setup learn filter for digest
+        learn_filter = bfrt_info.learn_get("pipe.SwitchIngressDeparser.learn_digest")
+        learn_filter.info.data_field_annotation_add("src_mac", "mac")
+        learn_filter.info.data_field_annotation_add("src_ip", "ipv4")
+
+        smac_table = bfrt_info.table_get("SwitchIngress.smac_table")
+        smac_table.info.key_field_annotation_add("hdr.ethernet.src_addr", "mac")
+        smac_table.info.key_field_annotation_add("hdr.ipv4.src_addr", "ipv4")
+        dmac_table = bfrt_info.table_get("SwitchIngress.dmac_table")
+        dmac_table.info.key_field_annotation_add("hdr.ethernet.dst_addr", "mac")
+
+        # Step 1: Send ARP request from A -> triggers digest
+        arp_req = build_arp_packet(
+            "ff:ff:ff:ff:ff:ff", mac_a, 1,
+            mac_a, ip_a, "00:00:00:00:00:00", ip_b)
+        testutils.send_packet(self, port_a, arp_req)
+
+        # Drain broadcast copies
+        testutils.verify_no_other_packets(self)
+
+        # Get digest and verify
+        digest = self.interface.digest_get()
+        data_list = learn_filter.make_data_list(digest)
+        self.assertGreater(len(data_list), 0, "Expected at least one digest")
+
+        dd = data_list[0].to_dict()
+        self.assertEqual(dd["src_mac"], mac_a,
+                         "Digest src_mac mismatch: got %s, expected %s" % (dd["src_mac"], mac_a))
+        self.assertEqual(dd["src_ip"], ip_a,
+                         "Digest src_ip mismatch: got %s, expected %s" % (dd["src_ip"], ip_a))
+        self.assertEqual(dd["ingress_port"], port_a,
+                         "Digest ingress_port mismatch: got %s, expected %s" % (dd["ingress_port"], port_a))
+        logger.info("Digest verified: MAC=%s IP=%s port=%d", mac_a, ip_a, port_a)
+
+        # Step 2: Learn host A from digest
+        smac_table.entry_add(
+            target,
+            [smac_table.make_key([gc.KeyTuple('hdr.ethernet.src_addr', mac_a),
+                                  gc.KeyTuple('hdr.ipv4.src_addr', ip_a)])],
+            [smac_table.make_data([gc.DataTuple('port', port_a)],
+                                  'SwitchIngress.learn')])
+        dmac_table.entry_add(
+            target,
+            [dmac_table.make_key([gc.KeyTuple('hdr.ethernet.dst_addr', mac_a)])],
+            [dmac_table.make_data([gc.DataTuple('port', port_a)],
+                                  'SwitchIngress.forward')])
+
+        # Step 3: Send ARP reply from B -> forwarded via DMAC to port_a
+        arp_reply = build_arp_packet(
+            mac_a, mac_b, 2,
+            mac_b, ip_b, mac_a, ip_a)
+        testutils.send_packet(self, port_b, arp_reply)
+        testutils.verify_packet(self, arp_reply, port_a)
+
+        # Get digest for B and learn it
+        digest2 = self.interface.digest_get()
+        data_list2 = learn_filter.make_data_list(digest2)
+        self.assertGreater(len(data_list2), 0, "Expected digest for host B")
+        dd2 = data_list2[0].to_dict()
+        self.assertEqual(dd2["src_mac"], mac_b)
+        self.assertEqual(dd2["src_ip"], ip_b)
+        self.assertEqual(dd2["ingress_port"], port_b)
+
+        smac_table.entry_add(
+            target,
+            [smac_table.make_key([gc.KeyTuple('hdr.ethernet.src_addr', mac_b),
+                                  gc.KeyTuple('hdr.ipv4.src_addr', ip_b)])],
+            [smac_table.make_data([gc.DataTuple('port', port_b)],
+                                  'SwitchIngress.learn')])
+        dmac_table.entry_add(
+            target,
+            [dmac_table.make_key([gc.KeyTuple('hdr.ethernet.dst_addr', mac_b)])],
+            [dmac_table.make_data([gc.DataTuple('port', port_b)],
+                                  'SwitchIngress.forward')])
+
+        # Step 4: Send IP packet A->B -> should be L2 forwarded
+        pkt = testutils.simple_tcp_packet(
+            eth_dst=mac_b, eth_src=mac_a,
+            ip_dst=ip_b, ip_src=ip_a, ip_ttl=64)
+        testutils.send_packet(self, port_a, pkt)
+        testutils.verify_packet(self, pkt, port_b)
+
+        logger.info("Digest-based learning test passed!")
+
+        # Cleanup
+        smac_table.entry_del(target, [])
+        dmac_table.entry_del(target, [])
+        cleanup_mc_group(bfrt_info, target, 1, node_ids)
+        drain_digests(self.interface, bfrt_info)

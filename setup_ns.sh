@@ -74,19 +74,6 @@ do_ns() {
     done
 
     echo ""
-    echo "=== 配置静态 ARP ==="
-    for entry in "${HOSTS[@]}"; do
-        parse_host "$entry"
-        local my_name="$NAME" my_veth="$VETH"
-        for other in "${HOSTS[@]}"; do
-            parse_host "$other"
-            [ "$my_name" = "$NAME" ] && continue
-            ip netns exec "$my_name" ip neigh replace "$IP" lladdr "$MAC" dev "$my_veth"
-        done
-    done
-    echo "  完成"
-
-    echo ""
     echo "=== 状态 ==="
     for entry in "${HOSTS[@]}"; do
         parse_host "$entry"
@@ -107,14 +94,7 @@ do_prog() {
     PY_LIB=$(python3 -c "from distutils import sysconfig; print(sysconfig.get_python_lib(prefix='', standard_lib=True, plat_specific=True))")
     export PYTHONPATH=$($SDE_INSTALL/bin/sdepythonpath.py):$SDE_INSTALL/$PY_LIB/site-packages/tofino/bfrt_grpc:$SDE_INSTALL/$PY_LIB/site-packages:$SDE_INSTALL/$PY_LIB/site-packages/tofino:$PYTHONPATH
 
-    # 从 HOSTS 数组构建 Python 参数列表
-    local host_args=""
-    for entry in "${HOSTS[@]}"; do
-        parse_host "$entry"
-        host_args="$host_args --host $NAME $PORT $IP $MAC"
-    done
-
-    python3 "$SDE/setup_ns_prog.py" $host_args
+    python3 "$SDE/setup_ns_prog.py" --ports $(for entry in "${HOSTS[@]}"; do parse_host "$entry"; echo -n "$PORT "; done)
 }
 
 # ---------------------------------------------------------------------------
@@ -128,6 +108,20 @@ do_cleanup() {
             echo "  已删除: $NAME"
         fi
     done
+}
+
+# ---------------------------------------------------------------------------
+# 启动学习守护进程
+# ---------------------------------------------------------------------------
+do_learn() {
+    echo ""
+    echo "=== 启动学习守护进程 ==="
+
+    local PY_LIB
+    PY_LIB=$(python3 -c "from distutils import sysconfig; print(sysconfig.get_python_lib(prefix='', standard_lib=True, plat_specific=True))")
+    export PYTHONPATH=$($SDE_INSTALL/bin/sdepythonpath.py):$SDE_INSTALL/$PY_LIB/site-packages/tofino/bfrt_grpc:$SDE_INSTALL/$PY_LIB/site-packages:$SDE_INSTALL/$PY_LIB/site-packages/tofino:$PYTHONPATH
+
+    python3 "$SDE/learn_daemon.py" -v
 }
 
 # ---------------------------------------------------------------------------
@@ -161,6 +155,7 @@ case "${1:-}" in
     cleanup)  do_cleanup ;;
     ns)       do_ns ;;
     prog)     do_prog ;;
+    learn)    do_learn ;;
     ping)     do_ping ;;
-    *)        do_ns; do_prog ;;
+    *)        do_ns; do_prog; echo ""; echo "提示: 运行 './setup_ns.sh learn' 启动学习守护进程(另一个终端)" ;;
 esac

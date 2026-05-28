@@ -53,7 +53,14 @@
       "Bash(xargs -r kill -9)",
       "Bash(export SDE=/root/bf-sde-9.13.3)",
       "Bash(export SDE_INSTALL=$SDE/install)",
-      "Bash(grep -n 'EXCLUDE_SRC\\\\|exclude_src\\\\|$MULTICAST_EXCLUDE_SRC' /root/bf-sde-9.13.3/install/lib/python3.8/site-packages/tofino/bfrt_grpc/client.py)"
+      "Bash(grep -n 'EXCLUDE_SRC\\\\|exclude_src\\\\|$MULTICAST_EXCLUDE_SRC' /root/bf-sde-9.13.3/install/lib/python3.8/site-packages/tofino/bfrt_grpc/client.py)",
+      "Bash(pkill -f learn_daemon.py)",
+      "Bash(sudo /root/bf-sde-9.13.3/install/bin/veth_setup.sh)",
+      "Bash(sudo *)",
+      "Bash(sudo /root/bf-sde-9.13.3/install/bin/tofino-model --port-monitor -d 1 -k 1 -f /root/bf-sde-9.13.3/pkgsrc/p4-examples/p4_16_programs/tna_arp_route/ports.json --p4-target-config /root/bf-sde-9.13.3/install/share/p4/targets/tofino/tna_arp_route.conf --install-dir /root/bf-sde-9.13.3/install --chip-type 2)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(echo \"Model PID: $!\")",
+      "Bash(break)"
     ]
   }
 }

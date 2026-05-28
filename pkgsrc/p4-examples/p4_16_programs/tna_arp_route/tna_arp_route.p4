@@ -25,10 +25,16 @@ struct local_header_t {
     arp_ipv4_h   arp_ipv4;
 }
 
+struct learn_digest_t {
+    mac_addr_t  src_mac;
+    ipv4_addr_t src_ip;
+    PortId_t    ingress_port;
+}
+
 struct metadata_t {
-    bit<1> is_arp;
-    bit<1> is_arp_request;
     bit<1> routed;
+    PortId_t ingress_port;
+    ipv4_addr_t learn_src_ip;
 }
 
 // ---------------------------------------------------------------------------
@@ -86,6 +92,7 @@ control SwitchIngressDeparser(
         in ingress_intrinsic_metadata_for_deparser_t ig_dprsr_md) {
 
     Checksum() ipv4_checksum;
+    Digest<learn_digest_t>() learn_digest;
 
     apply {
         hdr.ipv4.hdr_checksum = ipv4_checksum.update({
@@ -100,6 +107,12 @@ control SwitchIngressDeparser(
             hdr.ipv4.protocol,
             hdr.ipv4.src_addr,
             hdr.ipv4.dst_addr});
+
+        if (ig_dprsr_md.digest_type == 1) {
+            learn_digest.pack({hdr.ethernet.src_addr,
+                               ig_md.learn_src_ip,
+                               ig_md.ingress_port});
+        }
 
         pkt.emit(hdr.ethernet);
         pkt.emit(hdr.ipv4);
@@ -167,33 +180,6 @@ control SwitchIngress(
         size = 1024;
     }
 
-    // ---- ARP handling ----
-    action arp_broadcast(MulticastGroupId_t mgid) {
-        ig_tm_md.mcast_grp_a = mgid;
-        ig_md.is_arp = 1;
-        ig_md.is_arp_request = 1;
-    }
-
-    action arp_reply_unicast(PortId_t port) {
-        ig_tm_md.ucast_egress_port = port;
-        ig_md.is_arp = 1;
-        ig_md.is_arp_request = 0;
-    }
-
-    table arp_table {
-        key = {
-            hdr.arp.opcode                 : exact;
-            hdr.arp_ipv4.target_proto_addr : exact;
-        }
-
-        actions = {
-            arp_broadcast;
-            arp_reply_unicast;
-        }
-
-        size = 1024;
-    }
-
     // ---- IPv4 routing (LPM) ----
     action route(mac_addr_t src_mac, mac_addr_t dst_mac, PortId_t port) {
         hdr.ethernet.src_addr = src_mac;
@@ -218,9 +204,21 @@ control SwitchIngress(
     }
 
     apply {
+        ig_md.ingress_port = ig_intr_md.ingress_port;
+
         if (hdr.arp.isValid()) {
-            arp_table.apply();
+            ig_dprsr_md.digest_type = 1;
+            ig_md.learn_src_ip = hdr.arp_ipv4.sender_proto_addr;
+            if (hdr.arp.opcode == 0x0001) {
+                // ARP request → flood
+                ig_tm_md.mcast_grp_a = 1;
+            } else {
+                // ARP reply → forward via DMAC lookup
+                dmac_table.apply();
+            }
         } else if (hdr.ipv4.isValid()) {
+            ig_dprsr_md.digest_type = 1;
+            ig_md.learn_src_ip = hdr.ipv4.src_addr;
             smac_table.apply();
             if (ipv4_route.apply().hit) {
                 // routed: egress port already set by route action

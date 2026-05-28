@@ -143,6 +143,7 @@ set (P4_16_PROGRAMS
   tna_range_match
   tna_register
   tna_resubmit
+  tna_route
   tna_snapshot
   tna_symmetric_hash
   tna_ternary_match
