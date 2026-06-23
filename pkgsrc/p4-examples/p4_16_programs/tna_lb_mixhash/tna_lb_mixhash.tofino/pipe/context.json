@@ -1,0 +1,21 @@
+{
+    "build_date": "Tue Jun  9 10:16:14 2026",
+    "program_name": "tna_lb_mixhash.p4",
+    "run_id": "6f5fb3fb7ebb45a3",
+    "schema_version": "1.12.4",
+    "compiler_version": "9.13.3",
+    "target": "tofino",
+    "tables": [],
+    "phv_allocation": [],
+    "parser": {
+        "ingress": [],
+        "egress": []
+    },
+    "learn_quanta": [],
+    "mau_stage_characteristics": [],
+    "dynamic_hash_calculations": [],
+    "configuration_cache": [],
+    "driver_options": {
+        "hash_parity_enabled": false
+    }
+}

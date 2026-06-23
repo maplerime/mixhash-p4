@@ -210,10 +210,10 @@ control SwitchIngress(
             ig_dprsr_md.digest_type = 1;
             ig_md.learn_src_ip = hdr.arp_ipv4.sender_proto_addr;
             if (hdr.arp.opcode == 0x0001) {
-                // ARP request → flood
+                // ARP request -> flood
                 ig_tm_md.mcast_grp_a = 1;
             } else {
-                // ARP reply → forward via DMAC lookup
+                // ARP reply -> forward via DMAC lookup
                 dmac_table.apply();
             }
         } else if (hdr.ipv4.isValid()) {

@@ -60,7 +60,9 @@
       "Bash(sudo /root/bf-sde-9.13.3/install/bin/tofino-model --port-monitor -d 1 -k 1 -f /root/bf-sde-9.13.3/pkgsrc/p4-examples/p4_16_programs/tna_arp_route/ports.json --p4-target-config /root/bf-sde-9.13.3/install/share/p4/targets/tofino/tna_arp_route.conf --install-dir /root/bf-sde-9.13.3/install --chip-type 2)",
       "Bash(echo \"PID: $!\")",
       "Bash(echo \"Model PID: $!\")",
-      "Bash(break)"
+      "Bash(break)",
+      "Bash(/root/bf-sde-9.13.3/install/bin/bf-p4c -b tofino-tna tna_lb_mixhash.p4)",
+      "Bash(/root/bf-sde-9.13.3/install/bin/bf-p4c -b tofino-tna pkgsrc/p4-examples/p4_16_programs/tna_lb_mixhash/tna_lb_mixhash.p4)"
     ]
   }
 }

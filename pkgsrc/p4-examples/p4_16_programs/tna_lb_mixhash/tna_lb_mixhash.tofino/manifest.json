@@ -1,0 +1,60 @@
+{
+  "schema_version": "3.0.1",
+  "target": "tofino",
+  "build_date": "Tue Jun  9 10:16:14 2026",
+  "compiler_version": "9.13.3 (7de9294)",
+  "compilation_succeeded": false,
+  "compilation_time": "16.242570877075195",
+  "run_id": "6f5fb3fb7ebb45a3",
+  "target_data": {
+    "architecture": "tna",
+    "architectureConfig": {
+      "name": "64q",
+      "pipes": [
+        {
+          "pipe": 0,
+          "ingress": {
+            "pipeName": "SwitchIngress",
+            "nextControl": [
+              {
+                "pipe": 0,
+                "pipeName": "EmptyEgress"
+              }
+            ]
+          },
+          "egress": {
+            "pipeName": "EmptyEgress",
+            "nextControl": []
+          }
+        }
+      ]
+    },
+    "conf_file": "tna_lb_mixhash.conf"
+  },
+  "programs": [
+    {
+      "program_name": "tna_lb_mixhash.p4",
+      "p4_version": "p4-16",
+      "source_files": {
+        "src_root": "/root/bf-sde-9.13.3/pkgsrc/p4-examples/p4_16_programs/tna_lb_mixhash",
+        "includes": [],
+        "defines": []
+      },
+      "pipes": [
+        {
+          "pipe_id": 0,
+          "pipe_name": "pipe",
+          "files": {
+            "context": {
+              "path": "pipe/context.json"
+            },
+            "resources": [],
+            "graphs": [],
+            "logs": []
+          }
+        }
+      ]
+    }
+  ],
+  "compile_command": "/root/bf-sde-9.13.3/install/bin/bf-p4c -b tofino-tna tna_lb_mixhash.p4"
+}

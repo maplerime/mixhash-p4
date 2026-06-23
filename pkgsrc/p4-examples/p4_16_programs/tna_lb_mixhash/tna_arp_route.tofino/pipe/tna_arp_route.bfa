@@ -1,0 +1,579 @@
+version:
+  version: 1.0.1
+  run_id: "4cbd8e05f224496f"
+  target: Tofino
+error_mode: propagate_and_disable
+phv ingress:
+  ig_intr_md.ingress_port: {  stage 0: H5(0..8) } 
+  hdr.ethernet.dst_addr.0-31: W2
+  hdr.ethernet.dst_addr.32-47: H3
+  hdr.ethernet.src_addr.0-31: W3
+  hdr.ethernet.src_addr.32-47: H4
+  hdr.ethernet.ether_type: TH0
+  hdr.ipv4.version: TW0(28..31)
+  hdr.ipv4.ihl: TW0(24..27)
+  hdr.ipv4.diffserv: TW0(16..23)
+  hdr.ipv4.total_len: TW0(0..15)
+  hdr.ipv4.identification: TW1(16..31)
+  hdr.ipv4.flags: TW1(13..15)
+  hdr.ipv4.frag_offset: TW1(0..12)
+  hdr.ipv4.ttl: B0
+  hdr.ipv4.protocol: TB0
+  hdr.ipv4.hdr_checksum: TH1
+  hdr.ipv4.src_addr: W0
+  hdr.ipv4.dst_addr: W4
+  hdr.arp.hw_type: TW0(16..31)
+  hdr.arp.proto_type: TW0(0..15)
+  hdr.arp.hw_addr_len: TB1
+  hdr.arp.proto_addr_len: TB0
+  hdr.arp.opcode.0-7: B0
+  hdr.arp.opcode.8-15: B4
+  hdr.arp_ipv4.sender_hw_addr.0-31: TW3
+  hdr.arp_ipv4.sender_hw_addr.32-47: TH2
+  hdr.arp_ipv4.sender_proto_addr: W0
+  hdr.arp_ipv4.target_hw_addr.0-31: TW2
+  hdr.arp_ipv4.target_hw_addr.32-47: TH1
+  hdr.arp_ipv4.target_proto_addr: TW1
+  ig_md.ingress_port: {  stage 1..12: H6(0..8) } 
+  ig_md.learn_src_ip: {  stage 1..12: W1 } 
+  ig_intr_md_for_dprsr.drop_ctl: {  stage 2..12: B3(0..2) } 
+  ig_intr_md_for_dprsr.digest_type: {  stage 1..12: B1(0..2) } 
+  ig_intr_md_for_dprsr.mirror_type: {  stage 12: B2(0..2) } 
+  ig_intr_md_for_tm.ucast_egress_port: {  stage 1..12: H1(0..8) } 
+  ig_intr_md_for_tm.bypass_egress: {  stage 1..12: B3(3) } 
+  ig_intr_md_for_tm.mcast_grp_a: {  stage 1..12: H0 } 
+  $tmp2: {  stage 12: H2(0..9) } 
+  hdr.ethernet.$valid: B5(0)
+  hdr.ipv4.$valid: B5(1)
+  hdr.arp.$valid: B5(2)
+  hdr.arp_ipv4.$valid: B5(3)
+phv egress:
+parser ingress:
+  start: $init_match
+  init_zero: [ H6, W1, B3, B2, H2, B5 ]
+  bitwise_or: [ B5 ]
+  hdr_len_adj: 16
+  states:
+    $init_match:
+      *:
+        load: { byte1 : 0 }
+        buf_req: 1
+        next: $entry_point.start
+    $entry_point.start:
+      match: [ byte1 ]
+      0b1*******:
+        0..1: H5  # bit[7..15] -> H5 bit[8..0]: ingress::ig_intr_md.ingress_port
+        shift: 8
+        buf_req: 8
+        next: end
+      0b0*******:
+        0..1: H5  # bit[7..15] -> H5 bit[8..0]: ingress::ig_intr_md.ingress_port
+        16..17: H3  # ingress::hdr.ethernet.dst_addr[47:32].32-47
+        18..21: W2  # ingress::hdr.ethernet.dst_addr[31:0].0-31
+        22..23: H4  # ingress::hdr.ethernet.src_addr[47:32].32-47
+        24..27: W3  # ingress::hdr.ethernet.src_addr[31:0].0-31
+        28..29: TH0  # ingress::hdr.ethernet.ether_type
+        B5: 1  # value 1 -> B5 bit[0]: ingress::hdr.ethernet.$valid
+        load: { half : 28..29 }
+        shift: 30
+        buf_req: 30
+        next: TofinoIngressParser_parse_port_metadata
+    TofinoIngressParser_parse_port_metadata:
+      match: [ half ]
+      0x0800:
+        0..3: TW0
+            # - bit[0..3] -> TW0 bit[31..28]: ingress::hdr.ipv4.version
+            # - bit[4..7] -> TW0 bit[27..24]: ingress::hdr.ipv4.ihl
+            # - bit[8..15] -> TW0 bit[23..16]: ingress::hdr.ipv4.diffserv
+            # - bit[16..31] -> TW0 bit[15..0]: ingress::hdr.ipv4.total_len
+        4..7: TW1
+            # - bit[32..47] -> TW1 bit[31..16]: ingress::hdr.ipv4.identification
+            # - bit[48..50] -> TW1 bit[15..13]: ingress::hdr.ipv4.flags
+            # - bit[51..63] -> TW1 bit[12..0]: ingress::hdr.ipv4.frag_offset
+        8: B0  # ingress::hdr.ipv4.ttl
+        9: TB0  # ingress::hdr.ipv4.protocol
+        10..11: TH1  # ingress::hdr.ipv4.hdr_checksum
+        12..15: W0  # ingress::hdr.ipv4.src_addr
+        16..19: W4  # ingress::hdr.ipv4.dst_addr
+        B5: 2  # value 1 -> B5 bit[1]: ingress::hdr.ipv4.$valid
+        shift: 20
+        buf_req: 20
+        next: end
+      0x0806:
+        0..3: TW0
+            # - bit[0..15] -> TW0 bit[31..16]: ingress::hdr.arp.hw_type
+            # - bit[16..31] -> TW0 bit[15..0]: ingress::hdr.arp.proto_type
+        4: TB1  # ingress::hdr.arp.hw_addr_len
+        5: TB0  # ingress::hdr.arp.proto_addr_len
+        6: B4  # ingress::hdr.arp.opcode[15:8].8-15
+        7: B0  # ingress::hdr.arp.opcode[7:0].0-7
+        load: { half : 6..7 }
+        shift: 8
+        buf_req: 8
+        next: parse_arp.$split_0
+      0x****:
+        buf_req: 0
+        next: end
+    parse_arp.$split_0:
+      match: [ half ]
+      0x0001:
+        B5: 4  # value 1 -> B5 bit[2]: ingress::hdr.arp.$valid
+        buf_req: 0
+        next: parse_arp_ipv4
+      0x0002:
+        B5: 4  # value 1 -> B5 bit[2]: ingress::hdr.arp.$valid
+        buf_req: 0
+        next: parse_arp_ipv4
+      0x****:
+        B5: 4  # value 1 -> B5 bit[2]: ingress::hdr.arp.$valid
+        buf_req: 0
+        next: end
+    parse_arp_ipv4:
+      *:
+        0..1: TH2  # ingress::hdr.arp_ipv4.sender_hw_addr[47:32].32-47
+        2..5: TW3  # ingress::hdr.arp_ipv4.sender_hw_addr[31:0].0-31
+        6..9: W0  # ingress::hdr.arp_ipv4.sender_proto_addr
+        10..11: TH1  # ingress::hdr.arp_ipv4.target_hw_addr[47:32].32-47
+        12..15: TW2  # ingress::hdr.arp_ipv4.target_hw_addr[31:0].0-31
+        16..19: TW1  # ingress::hdr.arp_ipv4.target_proto_addr
+        B5: 8  # value 1 -> B5 bit[3]: ingress::hdr.arp_ipv4.$valid
+        shift: 20
+        buf_req: 20
+        next: end
+deparser ingress:
+  dictionary:
+    H3: B5(0)  # ingress::hdr.ethernet.dst_addr.32-47 if ingress::hdr.ethernet.$valid
+    W2: B5(0)  # ingress::hdr.ethernet.dst_addr.0-31 if ingress::hdr.ethernet.$valid
+    H4: B5(0)  # ingress::hdr.ethernet.src_addr.32-47 if ingress::hdr.ethernet.$valid
+    W3: B5(0)  # ingress::hdr.ethernet.src_addr.0-31 if ingress::hdr.ethernet.$valid
+    TH0: B5(0)  # ingress::hdr.ethernet.ether_type if ingress::hdr.ethernet.$valid
+    TW0: B5(1)
+        # - bit[31..28]: ingress::hdr.ipv4.version if ingress::hdr.ipv4.$valid
+        # - bit[27..24]: ingress::hdr.ipv4.ihl if ingress::hdr.ipv4.$valid
+        # - bit[23..16]: ingress::hdr.ipv4.diffserv if ingress::hdr.ipv4.$valid
+        # - bit[15..0]: ingress::hdr.ipv4.total_len if ingress::hdr.ipv4.$valid
+    TW1: B5(1)
+        # - bit[31..16]: ingress::hdr.ipv4.identification if ingress::hdr.ipv4.$valid
+        # - bit[15..13]: ingress::hdr.ipv4.flags if ingress::hdr.ipv4.$valid
+        # - bit[12..0]: ingress::hdr.ipv4.frag_offset if ingress::hdr.ipv4.$valid
+    B0: B5(1)  # ingress::hdr.ipv4.ttl if ingress::hdr.ipv4.$valid
+    TB0: B5(1)  # ingress::hdr.ipv4.protocol if ingress::hdr.ipv4.$valid
+    full_checksum 0: B5(1)  # ingress::hdr.ipv4.$valid
+    W0: B5(1)  # ingress::hdr.ipv4.src_addr if ingress::hdr.ipv4.$valid
+    W4: B5(1)  # ingress::hdr.ipv4.dst_addr if ingress::hdr.ipv4.$valid
+    TW0: B5(2)
+        # - bit[31..16]: ingress::hdr.arp.hw_type if ingress::hdr.arp.$valid
+        # - bit[15..0]: ingress::hdr.arp.proto_type if ingress::hdr.arp.$valid
+    TB1: B5(2)  # ingress::hdr.arp.hw_addr_len if ingress::hdr.arp.$valid
+    TB0: B5(2)  # ingress::hdr.arp.proto_addr_len if ingress::hdr.arp.$valid
+    B4: B5(2)  # ingress::hdr.arp.opcode.8-15 if ingress::hdr.arp.$valid
+    B0: B5(2)  # ingress::hdr.arp.opcode.0-7 if ingress::hdr.arp.$valid
+    TH2: B5(3)  # ingress::hdr.arp_ipv4.sender_hw_addr.32-47 if ingress::hdr.arp_ipv4.$valid
+    TW3: B5(3)  # ingress::hdr.arp_ipv4.sender_hw_addr.0-31 if ingress::hdr.arp_ipv4.$valid
+    W0: B5(3)  # ingress::hdr.arp_ipv4.sender_proto_addr if ingress::hdr.arp_ipv4.$valid
+    TH1: B5(3)  # ingress::hdr.arp_ipv4.target_hw_addr.32-47 if ingress::hdr.arp_ipv4.$valid
+    TW2: B5(3)  # ingress::hdr.arp_ipv4.target_hw_addr.0-31 if ingress::hdr.arp_ipv4.$valid
+    TW1: B5(3)  # ingress::hdr.arp_ipv4.target_proto_addr if ingress::hdr.arp_ipv4.$valid
+  partial_checksum 0: 
+    - TW0: { }
+        # - bit[31..28]: ingress::hdr.ipv4.version
+        # - bit[27..24]: ingress::hdr.ipv4.ihl
+        # - bit[23..16]: ingress::hdr.ipv4.diffserv
+        # - bit[15..0]: ingress::hdr.ipv4.total_len
+    - TW1: { }
+        # - bit[31..16]: ingress::hdr.ipv4.identification
+        # - bit[15..13]: ingress::hdr.ipv4.flags
+        # - bit[12..0]: ingress::hdr.ipv4.frag_offset
+    - B0: { swap: 1 }  # ingress::hdr.ipv4.ttl
+    - TB0: { }  # ingress::hdr.ipv4.protocol
+    - W0: { }  # ingress::hdr.ipv4.src_addr
+    - W4: { }  # ingress::hdr.ipv4.dst_addr
+  full_checksum 0: 
+    - partial_checksum 0: { }
+  egress_unicast_port: H1(0..8)  # bit[8..0]: ingress::ig_intr_md_for_tm.ucast_egress_port
+  bypss_egr: B3(3..3)  # bit[3]: ingress::ig_intr_md_for_tm.bypass_egress
+  drop_ctl: B3(0..2)  # bit[2..0]: ingress::ig_intr_md_for_dprsr.drop_ctl
+  egress_multicast_group_0:
+    - H0  # ingress::ig_intr_md_for_tm.mcast_grp_a
+  learning:
+    select: B1(0..2)  # bit[2..0]: ingress::ig_intr_md_for_dprsr.digest_type
+    1:
+      - B1(0..2)  # bit[2..0]: ingress::ig_intr_md_for_dprsr.digest_type
+      - H4  # ingress::hdr.ethernet.src_addr.32-47
+      - W3  # ingress::hdr.ethernet.src_addr.0-31
+      - W1  # ingress::ig_md.learn_src_ip
+      - H6(0..8)  # bit[8..0]: ingress::ig_md.ingress_port
+    context_json:
+      1:
+        - [ hdr.ethernet.src_addr, 1, 16, 7, 32]
+        - [ hdr.ethernet.src_addr, 3, 32, 7, 0]
+        - [ ig_md.learn_src_ip, 7, 32, 7, 0]
+        - [ ig_md.ingress_port, 11, 9, 0, 0]
+      name: [ SwitchIngressDeparser.learn_digest ]
+  mirror:
+    select: B2(0..2)  # bit[2..0]: ingress::ig_intr_md_for_dprsr.mirror_type
+    0:
+      - H2(0..9)  # bit[9..0]: ingress::$tmp2
+parser egress:
+  start: $entry_point.start
+  hdr_len_adj: 0
+  meta_opt: 0
+  states:
+    $entry_point.start:
+      *:
+        buf_req: 0
+        next: end
+deparser egress:
+  dictionary: {}
+stage 0 ingress:
+  phase0_match SwitchIngressParser.$PORT_METADATA:
+    p4:
+      name: SwitchIngressParser.$PORT_METADATA
+      size: 288
+      preferred_match_type: exact
+      match_type: exact
+    size: 288
+    p4_param_order:
+      ig_intr_md.ingress_port: { type: exact, size: 9 }
+    format: {ig_intr_md: 0..63}
+    constant_value: 0
+    actions:
+      set_port_metadata:
+      - handle: 0x20000000
+      - p4_param_order: { ig_intr_md: 64 } 
+  ternary_match tbl_tna_arp_route232 0:
+    p4: { name: tbl_tna_arp_route232, hidden: true }
+    hit: [  tbl_tna_arp_route207 ]
+    miss:  tbl_tna_arp_route207
+    indirect: tbl_tna_arp_route232$tind
+  ternary_indirect tbl_tna_arp_route232$tind:
+    row: 2
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_tna_arp_route232$tind(action, $DEFAULT)
+    actions:
+      tna_arp_route232(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000d
+      - next_table: 0
+      - set ig_intr_md_for_tm.bypass_egress, 1
+    default_action: tna_arp_route232
+  ternary_match tbl_tna_arp_route207 1:
+    p4: { name: tbl_tna_arp_route207, hidden: true }
+    hit: [  tbl_tna_arp_route210 ]
+    miss:  tbl_tna_arp_route210
+    indirect: tbl_tna_arp_route207$tind
+  ternary_indirect tbl_tna_arp_route207$tind:
+    row: 1
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_tna_arp_route207$tind(action, $DEFAULT)
+    actions:
+      tna_arp_route207(0, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000001
+      - next_table: 0
+      - set ig_md.ingress_port, ig_intr_md.ingress_port
+    default_action: tna_arp_route207
+  ternary_match tbl_tna_arp_route210 2:
+    p4: { name: tbl_tna_arp_route210, hidden: true }
+    gateway:
+      name: cond-4
+      input_xbar:
+        exact group 0: { 2: hdr.arp.$valid }
+      row: 0
+      bus: 0
+      unit: 0
+      match: { 2: hdr.arp.$valid }
+      0x1:
+        run_table: true
+      miss:
+        next:  smac_table_0
+      condition: 
+        expression: "(hdr.arp.$valid == 1)"
+        true:  tbl_tna_arp_route210
+        false:  smac_table_0
+    hit: [  tbl_tna_arp_route214 ]
+    miss:  tbl_tna_arp_route214
+    indirect: tbl_tna_arp_route210$tind
+  ternary_indirect tbl_tna_arp_route210$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_tna_arp_route210$tind(action, $DEFAULT)
+    actions:
+      tna_arp_route210(1, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000002
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.digest_type, 1
+      - set ig_md.learn_src_ip, hdr.arp_ipv4.sender_proto_addr
+    default_action: tna_arp_route210
+  exact_match smac_table_0 3:
+    p4: { name: SwitchIngress.smac_table, size: 1024 }
+    p4_param_order: 
+      hdr.ethernet.src_addr: { type: exact, size: 48, full_size: 48 }
+      hdr.ipv4.src_addr: { type: exact, size: 32, full_size: 32 }
+    row: 7
+    bus: 0
+    column: [ 2, 3, 4, 5 ]
+    stash: 
+      row: [ 7 ]
+      col: [ 2 ]
+      unit: [ 0 ]
+    ways:
+      - { group: 0, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
+      - { group: 0, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
+      - { group: 0, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
+      - { group: 0, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
+    input_xbar:
+      exact group 0: { 8: hdr.ipv4.src_addr(8..31), 32: hdr.ipv4.src_addr(0..7), 40: hdr.ethernet.src_addr.0-31(8..31), 64: hdr.ethernet.src_addr.0-31(0..7), 72: hdr.ethernet.src_addr.32-47(8..15), 80: hdr.ethernet.src_addr.32-47(0..7) }
+      hash 0:
+        0..9: random(hdr.ipv4.src_addr(8..31), hdr.ipv4.src_addr(0..7), hdr.ethernet.src_addr.0-31(8..31))
+        10..19: random(hdr.ipv4.src_addr(8..31), hdr.ipv4.src_addr(0..7), hdr.ethernet.src_addr.0-31(8..31))
+        20..29: random(hdr.ipv4.src_addr(8..31), hdr.ipv4.src_addr(0..7), hdr.ethernet.src_addr.0-31(8..31))
+        30..39: random(hdr.ipv4.src_addr(8..31), hdr.ipv4.src_addr(0..7), hdr.ethernet.src_addr.0-31(8..31))
+      hash 1:
+        0..1: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(8..9)
+        2..9: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(0..7)
+        11..12: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(8..9)
+        13..19: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(0..6)
+        10: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(7)
+        22..23: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(8..9)
+        24..29: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(0..5)
+        20..21: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(6..7)
+        33..34: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(8..9)
+        35..39: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(0..4)
+        30..32: random(hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(5..7)
+      hash group 0:
+        table: [0, 1]
+        seed: 0x8aac779260
+    format: { action(0): 0..0, version(0): 112..115, match(0): [ 98..103, 32..95 ] }
+    match: [ hdr.ethernet.src_addr.32-47(10..15), hdr.ipv4.src_addr(0..7), hdr.ipv4.src_addr(8..15), hdr.ipv4.src_addr(16..23), hdr.ipv4.src_addr(24..31), hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.0-31(8..15), hdr.ethernet.src_addr.0-31(16..23), hdr.ethernet.src_addr.0-31(24..31) ]
+    match_group_map: [ [ 0 ] ]
+    gateway:
+      name: cond-6
+      input_xbar:
+        exact group 0: { 1: hdr.ipv4.$valid }
+      row: 7
+      bus: 0
+      unit: 0
+      match: { 1: hdr.ipv4.$valid }
+      0x1:
+        run_table: true
+      miss:
+        next:  tbl_tna_arp_route229
+      condition: 
+        expression: "(hdr.ipv4.$valid == 1)"
+        true:  smac_table_0
+        false:  tbl_tna_arp_route229
+    hit: [  tbl_tna_arp_route220 ]
+    miss:  tbl_tna_arp_route220
+    instruction: smac_table_0(action, $DEFAULT)
+    actions:
+      SwitchIngress.learn(1, 0):
+      - p4_param_order: { port: 9 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: false, reason: has_const_default_action }
+      - handle: 0x20000008
+      - next_table: 0
+      SwitchIngress.nop(-1, 4):
+      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
+      - default_only_action: { allowed: true, is_constant: true }
+      - handle: 0x20000009
+      - next_table: 0
+    default_only_action: SwitchIngress.nop
+  ternary_match tbl_tna_arp_route220 4:
+    p4: { name: tbl_tna_arp_route220, hidden: true }
+    hit: [  ipv4_route_0 ]
+    miss:  ipv4_route_0
+    indirect: tbl_tna_arp_route220$tind
+  ternary_indirect tbl_tna_arp_route220$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_tna_arp_route220$tind(action, $DEFAULT)
+    actions:
+      tna_arp_route220(0, 5):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000007
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.digest_type, 1
+      - set ig_md.learn_src_ip, hdr.ipv4.src_addr
+    default_action: tna_arp_route220
+  ternary_match ipv4_route_0 5:
+    p4: { name: SwitchIngress.ipv4_route, size: 1024 }
+    p4_param_order: 
+      hdr.ipv4.dst_addr: { type: lpm, size: 32, full_size: 32 }
+    row: [ 0, 1 ]
+    bus: [ 0, 0 ]
+    column:
+    - 0
+    - 0
+    indirect_bus: 0
+    input_xbar:
+      ternary group 0: { 0: hdr.ipv4.dst_addr }
+    match:
+    - { group: 0, byte_config: 3, dirtcam: 0x55 }
+    hit: [  END ]
+    miss:  dmac_table_0
+    action: ipv4_route_0$action_data($DIRECT, $DEFAULT)
+    instruction: ipv4_route_0($DEFAULT, $DEFAULT)
+    actions:
+      SwitchIngress.route(0, 6):
+      - p4_param_order: { src_mac: 48, dst_mac: 48, port: 9 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: false, reason: has_const_default_action }
+      - handle: 0x2000000a
+      - next_table_miss:  dmac_table_0
+      - next_table: 0
+      - { port_4: $adf_h0(0..8), port: port_4, dst_mac.32-47: $adf_h1(0..15), src_mac_1.32-47: $adf_h2(0..15), src_mac.32-47: src_mac_1.32-47, dst_mac.0-31: $adf_f2(0..31), src_mac_1.0-31: $adf_f3(0..31), src_mac.0-31: src_mac_1.0-31 }
+      - set hdr.ethernet.src_addr.0-31, src_mac.0-31
+      - set hdr.ethernet.src_addr.32-47, src_mac.32-47
+      - set hdr.ethernet.dst_addr.0-31, dst_mac.0-31
+      - set hdr.ethernet.dst_addr.32-47, dst_mac.32-47
+      - set ig_intr_md_for_tm.ucast_egress_port, port
+      - add B0, 255, B0
+      SwitchIngress.nop(-1, 0):
+      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
+      - default_only_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000b
+      - next_table_miss:  dmac_table_0
+      - {  }
+    default_only_action: SwitchIngress.nop
+  action ipv4_route_0$action_data:
+    p4: { name: SwitchIngress.ipv4_route$action }
+    row: 15
+    logical_bus: A
+    column: 0
+    vpns: [ 0 ]
+    home_row:
+    - 15
+    format SwitchIngress.route: { $adf_h0: 0..15, $adf_h1: 16..31, $adf_h2: 32..47, $adf_f2: 64..95, $adf_f3: 96..127 }
+    action_bus: { 64..65 : $adf_h0, 66..67 : $adf_h1, 68..69 : $adf_h2, 96..99 : $adf_f2, 100..103 : $adf_f3 }
+  ternary_match tbl_tna_arp_route214 6:
+    p4: { name: tbl_tna_arp_route214, hidden: true }
+    gateway:
+      name: cond-5
+      input_xbar:
+        exact group 0: { 88: hdr.arp.opcode.0-7, 96: hdr.arp.opcode.8-15 }
+      row: 0
+      bus: 1
+      unit: 1
+      match: { 0: hdr.arp.opcode.0-7, 8: hdr.arp.opcode.8-15 }
+      0x0001:
+        run_table: true
+      miss:
+        next:  dmac_table_0
+      condition: 
+        expression: "(hdr.arp.opcode == 1)"
+        true:  tbl_tna_arp_route214
+        false:  dmac_table_0
+    hit: [  END ]
+    miss:  END
+    indirect: tbl_tna_arp_route214$tind
+  ternary_indirect tbl_tna_arp_route214$tind:
+    row: 2
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_tna_arp_route214$tind(action, $DEFAULT)
+    actions:
+      tna_arp_route214(1, 7):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000003
+      - next_table: 0
+      - set ig_intr_md_for_tm.mcast_grp_a, 1
+    default_action: tna_arp_route214
+stage 1 ingress:
+  dependency: match
+  ternary_match tbl_tna_arp_route229 1:
+    p4: { name: tbl_tna_arp_route229, hidden: true }
+    hit: [  END ]
+    miss:  END
+    indirect: tbl_tna_arp_route229$tind
+  ternary_indirect tbl_tna_arp_route229$tind:
+    row: 0
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_tna_arp_route229$tind(action, $DEFAULT)
+    actions:
+      tna_arp_route229(0, 4):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000c
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.drop_ctl, 1
+    default_action: tna_arp_route229
+  exact_match dmac_table_0 0:
+    p4: { name: SwitchIngress.dmac_table, size: 1024 }
+    p4_param_order: 
+      hdr.ethernet.dst_addr: { type: exact, size: 48, full_size: 48 }
+    row: 7
+    bus: 0
+    column: [ 2, 3, 4, 5 ]
+    stash: 
+      row: [ 7 ]
+      col: [ 2 ]
+      unit: [ 0 ]
+    ways:
+      - { group: 0, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
+      - { group: 0, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
+      - { group: 0, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
+      - { group: 0, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
+    input_xbar:
+      exact group 0: { 0: hdr.ethernet.dst_addr.0-31, 32: hdr.ethernet.dst_addr.32-47 }
+      hash 0:
+        0..7: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(0..7)
+        8..9: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(8..9)
+        11..18: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(0..7)
+        19: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(8)
+        10: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(9)
+        22..29: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(0..7)
+        20..21: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(8..9)
+        33..39: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(0..6)
+        30: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(7)
+        31..32: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(8..9)
+      hash group 0:
+        table: [0]
+        seed: 0xc27f351091
+    format: { action(0): 0..0, immediate(0): 2..17, version(0): 112..115, match(0): 34..71, action(1): 1..1, immediate(1): 18..33, version(1): 116..119, match(1): [ 106..111, 72..103 ] }
+    match: [ hdr.ethernet.dst_addr.32-47(10..15), hdr.ethernet.dst_addr.0-31(0..7), hdr.ethernet.dst_addr.0-31(8..15), hdr.ethernet.dst_addr.0-31(16..23), hdr.ethernet.dst_addr.0-31(24..31) ]
+    match_group_map: [ [ 0, 1 ] ]
+    hit: [  END ]
+    miss:  END
+    action_bus: { 32..33 : immediate(0..15) }
+    instruction: dmac_table_0(action, $DEFAULT)
+    actions:
+      SwitchIngress.forward(0, 1):
+      - p4_param_order: { port: 9 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: false, reason: has_const_default_action }
+      - handle: 0x20000004
+      - next_table: 0
+      - { port_3: immediate(0..8), port: port_3 }
+      - set ig_intr_md_for_tm.ucast_egress_port, port
+      SwitchIngress.flood(1, 2):
+      - p4_param_order: { mgid: 16 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: false, reason: has_const_default_action }
+      - handle: 0x20000005
+      - next_table: 0
+      - { mgid: immediate(0..15) }
+      - set ig_intr_md_for_tm.mcast_grp_a, mgid
+      SwitchIngress.drop(-1, 3):
+      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
+      - default_only_action: { allowed: true, is_constant: true }
+      - handle: 0x20000006
+      - next_table: 0
+      - {  }
+      - set ig_intr_md_for_dprsr.drop_ctl, 1
+    default_only_action: SwitchIngress.drop
+
+
+primitives: "tna_arp_route.prim.json"
+dynhash: "tna_arp_route.dynhash.json"
