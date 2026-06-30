@@ -18,16 +18,26 @@ header arp_ipv4_h {
     ipv4_addr_t  target_proto_addr;
 }
 
-// Reorder buffer resubmit digest (8 bytes = 64 bits)
-const bit<3> REORDER_RESUBMIT_TYPE = 2;
-const bit<8> REORDER_DIGEST_MAGIC = 8w0xFF;
+// Reorder buffer recirculation header (carried in front of the packet).
+// Unlike resubmit, recirculation preserves header edits and can loop many
+// times, so the digest travels as an ordinary header detected by its magic.
+const bit<16>  REORDER_MAGIC     = 16w0xBF01;
+const bit<8>   REORDER_MAX_LOOPS = 8w16;
+// All reorder state lives in ONE pipe's register copy (registers are
+// per-pipe on Tofino). Packets that arrive on another pipe are funneled to
+// this "owner" pipe first. For a single-pipe deployment owner pipe == the
+// only pipe, so the funnel branch is never taken (zero overhead).
+const bit<2>   REORDER_OWNER_PIPE = 2w0;
+// Recirc port = DP-local port 68 of the owner pipe: (owner_pipe << 7) | 68.
+// dev_port is bit<9> = {pipe[8:7], local_port[6:0]}; (0<<7)|68 = 68.
+const PortId_t REORDER_RECIRC_PORT = 9w68;
 
 header reorder_digest_h {
-    bit<8>  type;
+    bit<16> magic;         // = REORDER_MAGIC
     bit<16> flow_hash;
     bit<16> seq;
-    bit<8>  resubmit_count;
-    bit<16> reserved;
+    bit<8>  recirc_count;
+    bit<8>  reserved;
 }
 
 struct local_header_t {
@@ -75,21 +85,12 @@ parser SwitchIngressParser(
 
     state start {
         pkt.extract(ig_intr_md);
-        transition select(ig_intr_md.resubmit_flag) {
-            0 : parse_port_metadata;
-            1 : parse_resubmit;
-        }
-    }
-
-    state parse_port_metadata {
         pkt.advance(PORT_METADATA_SIZE);
-        transition parse_ethernet;
-    }
-
-    state parse_resubmit {
-        transition select(pkt.lookahead<bit<8>>()) {
-            REORDER_DIGEST_MAGIC : parse_reorder_digest;
-            default : parse_ethernet;
+        // Recirculated reorder packets arrive on the recirc port AND carry the
+        // digest header (magic) in front; fresh packets start with Ethernet.
+        transition select(ig_intr_md.ingress_port, pkt.lookahead<bit<16>>()) {
+            (REORDER_RECIRC_PORT, REORDER_MAGIC) : parse_reorder_digest;
+            default                              : parse_ethernet;
         }
     }
 
@@ -152,13 +153,8 @@ control SwitchIngressDeparser(
 
     Checksum() ipv4_checksum;
     Digest<learn_digest_t>() learn_digest;
-    Resubmit(REORDER_RESUBMIT_TYPE) reorder_resubmit;
 
     apply {
-        if (ig_dprsr_md.resubmit_type == REORDER_RESUBMIT_TYPE) {
-            reorder_resubmit.emit(hdr.reorder_digest);
-        }
-
         hdr.ipv4.hdr_checksum = ipv4_checksum.update({
             hdr.ipv4.version,
             hdr.ipv4.ihl,
@@ -178,6 +174,9 @@ control SwitchIngressDeparser(
                                ig_md.ingress_port});
         }
 
+        // Digest header rides in front only when valid (recirculating);
+        // it is stripped before the packet leaves to its final port.
+        pkt.emit(hdr.reorder_digest);
         pkt.emit(hdr.ethernet);
         pkt.emit(hdr.ipv4);
         pkt.emit(hdr.tcp);
@@ -429,10 +428,10 @@ control SwitchIngress(
             // ================================================================
             // Reorder check
             // ================================================================
-            bool is_resub = hdr.reorder_digest.isValid();
-            bool do_reorder = is_resub;
+            bool is_recirc = hdr.reorder_digest.isValid();
+            bool do_reorder = is_recirc;
 
-            if (!is_resub) {
+            if (!is_recirc) {
                 reorder_enable_table.apply();
                 if (ig_md.reorder_enabled == 1w1) {
                     do_reorder = true;
@@ -443,12 +442,12 @@ control SwitchIngress(
                 // ---- Reorder logic (inc always, undo if mismatch) ----
                 bit<16> seq;
                 bit<16> rhash;
-                bit<8>  resub_count;
+                bit<8>  recirc_count;
 
-                if (is_resub) {
+                if (is_recirc) {
                     seq = hdr.reorder_digest.seq;
                     rhash = hdr.reorder_digest.flow_hash;
-                    resub_count = hdr.reorder_digest.resubmit_count;
+                    recirc_count = hdr.reorder_digest.recirc_count;
                 } else {
                     seq = hdr.ipv4.identification;
                     rhash = reorder_hash.get({
@@ -457,41 +456,64 @@ control SwitchIngress(
                         ig_md.l4_src_port,
                         ig_md.l4_dst_port
                     });
-                    resub_count = 8w0;
+                    recirc_count = 8w0;
                 }
 
-                // Atomic read + increment
-                bit<32> old_ctrl = ctrl_inc.execute(rhash);
-                bit<16> expected = old_ctrl[15:0];
-                bit<8>  state    = old_ctrl[23:16];
-                bool init = state != 8w0;
+                // All reorder state lives in the owner pipe's register copy.
+                // A fresh packet that landed on another pipe must NOT touch the
+                // local (wrong) copy — funnel it to the owner pipe first, with
+                // flow_hash/seq carried in the digest so no recompute is needed.
+                // is_recirc packets are already on the owner pipe (they came
+                // back through its recirc port). On a single-pipe deployment
+                // owner_pipe == ingress pipe, so this branch is never taken.
+                bool in_owner_pipe =
+                    (ig_intr_md.ingress_port[8:7] == REORDER_OWNER_PIPE);
 
-                if (!init) {
-                    // First packet: increment was init, forward
-                } else if (seq == expected) {
-                    // In order: increment was correct, forward
+                if (!is_recirc && !in_owner_pipe) {
+                    // Funnel to owner pipe (no register access on this pipe).
+                    ig_md.routed = 1w1;
+                    hdr.reorder_digest.setValid();
+                    hdr.reorder_digest.magic = REORDER_MAGIC;
+                    hdr.reorder_digest.flow_hash = rhash;
+                    hdr.reorder_digest.seq = seq;
+                    hdr.reorder_digest.recirc_count = 8w0;
+                    hdr.reorder_digest.reserved = 8w0;
+                    ig_tm_md.ucast_egress_port = REORDER_RECIRC_PORT;
                 } else {
-                    // Out of order or retry: undo increment
-                    ctrl_dec.execute(rhash);
+                    // On the owner pipe: atomic read + speculative increment.
+                    bit<32> old_ctrl = ctrl_inc.execute(rhash);
+                    bit<16> expected = old_ctrl[15:0];
+                    bit<8>  state    = old_ctrl[23:16];
+                    bool init = state != 8w0;
 
-                    if (is_resub && resub_count >= 8w5) {
-                        // Retry limit: drop
-                        ig_md.routed = 1w1;
-                        ig_dprsr_md.drop_ctl = 0x1;
+                    if (!init) {
+                        // First packet for this flow: increment initialized it,
+                        // strip any digest and forward in order.
+                        hdr.reorder_digest.setInvalid();
+                    } else if (seq == expected) {
+                        // In order: increment correct, strip digest and forward.
+                        hdr.reorder_digest.setInvalid();
                     } else {
-                        // Resubmit
-                        ig_md.routed = 1w1;
-                        hdr.reorder_digest.type = REORDER_DIGEST_MAGIC;
-                        hdr.reorder_digest.flow_hash = rhash;
-                        hdr.reorder_digest.seq = seq;
-                        if (is_resub) {
-                            hdr.reorder_digest.resubmit_count =
-                                (bit<8>)(resub_count + 8w1);
+                        // Out of order: undo the speculative increment.
+                        ctrl_dec.execute(rhash);
+
+                        if (recirc_count >= REORDER_MAX_LOOPS) {
+                            // Loop limit reached: give up and drop.
+                            ig_md.routed = 1w1;
+                            hdr.reorder_digest.setInvalid();
+                            ig_dprsr_md.drop_ctl = 0x1;
                         } else {
-                            hdr.reorder_digest.resubmit_count = 8w0;
+                            // Recirculate: (re)attach digest and loop via port.
+                            ig_md.routed = 1w1;
+                            hdr.reorder_digest.setValid();
+                            hdr.reorder_digest.magic = REORDER_MAGIC;
+                            hdr.reorder_digest.flow_hash = rhash;
+                            hdr.reorder_digest.seq = seq;
+                            hdr.reorder_digest.recirc_count =
+                                (bit<8>)(recirc_count + 8w1);
+                            hdr.reorder_digest.reserved = 8w0;
+                            ig_tm_md.ucast_egress_port = REORDER_RECIRC_PORT;
                         }
-                        hdr.reorder_digest.reserved = 16w0;
-                        ig_dprsr_md.resubmit_type = REORDER_RESUBMIT_TYPE;
                     }
                 }
 

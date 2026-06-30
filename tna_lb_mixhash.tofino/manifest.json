@@ -1,11 +1,11 @@
 {
   "schema_version": "3.0.1",
   "target": "tofino",
-  "build_date": "Wed Jun 10 02:27:20 2026",
+  "build_date": "Tue Jun 30 08:09:59 2026",
   "compiler_version": "9.13.3 (7de9294)",
   "compilation_succeeded": true,
-  "compilation_time": "10.949142694473267",
-  "run_id": "396c2647cbe54c60",
+  "compilation_time": "34.73192548751831",
+  "run_id": "c530f1bf354745e2",
   "target_data": {
     "architecture": "tna",
     "architectureConfig": {

@@ -2222,10 +2222,10 @@
     },
     {
       "name" : "pipe.snapshot.cfg",
-      "id" : 2448878680,
+      "id" : 2432714103,
       "table_type" : "SnapshotCfg",
       "size" : 12,
-      "depends_on" : [2465655896, 2449491319],
+      "depends_on" : [2449491319, 2465655896],
       "key" : [
         {
           "id" : 65587,
@@ -2341,1681 +2341,6 @@
           "singleton" : {
             "id" : 65623,
             "name" : "ghost_capture",
-            "repeated" : true,
-            "annotations" : [],
-            "type" : {
-              "type" : "uint32"
-            }
-          }
-        }
-      ],
-      "supported_operations" : [],
-      "attributes" : []
-    },
-    {
-      "name" : "pipe.snapshot.egress_trigger",
-      "id" : 2465655896,
-      "table_type" : "SnapshotTrigger",
-      "size" : 12,
-      "depends_on" : [],
-      "key" : [
-        {
-          "id" : 65587,
-          "name" : "stage",
-          "repeated" : false,
-          "annotations" : [],
-          "mandatory" : true,
-          "match_type" : "Exact",
-          "type" : {
-            "type" : "uint32",
-            "default_value" : 0
-          }
-        }
-      ],
-      "data" : [
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 65589,
-            "name" : "enable",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bool",
-              "default_value" : false
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 65590,
-            "name" : "trigger_state",
-            "repeated" : true,
-            "annotations" : [],
-            "type" : {
-              "type" : "string",
-              "choices" : ["PASSIVE", "ARMED", "FULL"]
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 92,
-            "name" : "trig.eg_intr_md._pad0",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32860,
-            "name" : "trig.eg_intr_md._pad0_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 93,
-            "name" : "trig.eg_intr_md.egress_port",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 9
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32861,
-            "name" : "trig.eg_intr_md.egress_port_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 9
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 94,
-            "name" : "trig.eg_intr_md._pad1",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32862,
-            "name" : "trig.eg_intr_md._pad1_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 95,
-            "name" : "trig.eg_intr_md.enq_qdepth",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 19
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32863,
-            "name" : "trig.eg_intr_md.enq_qdepth_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 19
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 96,
-            "name" : "trig.eg_intr_md._pad2",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 6
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32864,
-            "name" : "trig.eg_intr_md._pad2_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 6
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 97,
-            "name" : "trig.eg_intr_md.enq_congest_stat",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 2
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32865,
-            "name" : "trig.eg_intr_md.enq_congest_stat_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 2
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 98,
-            "name" : "trig.eg_intr_md._pad3",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 14
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32866,
-            "name" : "trig.eg_intr_md._pad3_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 14
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 99,
-            "name" : "trig.eg_intr_md.enq_tstamp",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 18
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32867,
-            "name" : "trig.eg_intr_md.enq_tstamp_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 18
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 100,
-            "name" : "trig.eg_intr_md._pad4",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32868,
-            "name" : "trig.eg_intr_md._pad4_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 101,
-            "name" : "trig.eg_intr_md.deq_qdepth",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 19
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32869,
-            "name" : "trig.eg_intr_md.deq_qdepth_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 19
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 102,
-            "name" : "trig.eg_intr_md._pad5",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 6
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32870,
-            "name" : "trig.eg_intr_md._pad5_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 6
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 103,
-            "name" : "trig.eg_intr_md.deq_congest_stat",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 2
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32871,
-            "name" : "trig.eg_intr_md.deq_congest_stat_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 2
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 104,
-            "name" : "trig.eg_intr_md.app_pool_congest_stat",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 8
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32872,
-            "name" : "trig.eg_intr_md.app_pool_congest_stat_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 8
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 105,
-            "name" : "trig.eg_intr_md._pad6",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 14
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32873,
-            "name" : "trig.eg_intr_md._pad6_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 14
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 106,
-            "name" : "trig.eg_intr_md.deq_timedelta",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 18
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32874,
-            "name" : "trig.eg_intr_md.deq_timedelta_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 18
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 107,
-            "name" : "trig.eg_intr_md.egress_rid",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 16
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32875,
-            "name" : "trig.eg_intr_md.egress_rid_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 16
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 108,
-            "name" : "trig.eg_intr_md._pad7",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32876,
-            "name" : "trig.eg_intr_md._pad7_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 109,
-            "name" : "trig.eg_intr_md.egress_rid_first",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32877,
-            "name" : "trig.eg_intr_md.egress_rid_first_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 110,
-            "name" : "trig.eg_intr_md._pad8",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32878,
-            "name" : "trig.eg_intr_md._pad8_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 111,
-            "name" : "trig.eg_intr_md.egress_qid",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32879,
-            "name" : "trig.eg_intr_md.egress_qid_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 112,
-            "name" : "trig.eg_intr_md._pad9",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32880,
-            "name" : "trig.eg_intr_md._pad9_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 113,
-            "name" : "trig.eg_intr_md.egress_cos",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32881,
-            "name" : "trig.eg_intr_md.egress_cos_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 114,
-            "name" : "trig.eg_intr_md._pad10",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32882,
-            "name" : "trig.eg_intr_md._pad10_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 115,
-            "name" : "trig.eg_intr_md.deflection_flag",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32883,
-            "name" : "trig.eg_intr_md.deflection_flag_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 116,
-            "name" : "trig.eg_intr_md.pkt_length",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 16
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32884,
-            "name" : "trig.eg_intr_md.pkt_length_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 16
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 117,
-            "name" : "trig.eg_intr_md_from_prsr.global_tstamp",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 48
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32885,
-            "name" : "trig.eg_intr_md_from_prsr.global_tstamp_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 48
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 118,
-            "name" : "trig.eg_intr_md_from_prsr.global_ver",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 32
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32886,
-            "name" : "trig.eg_intr_md_from_prsr.global_ver_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 32
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 119,
-            "name" : "trig.eg_intr_md_from_prsr.parser_err",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 16
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32887,
-            "name" : "trig.eg_intr_md_from_prsr.parser_err_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 16
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 120,
-            "name" : "trig.ig_intr_dprs_md.drop_ctl",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32888,
-            "name" : "trig.ig_intr_dprs_md.drop_ctl_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 121,
-            "name" : "trig.ig_intr_dprs_md.mirror_type",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32889,
-            "name" : "trig.ig_intr_dprs_md.mirror_type_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 122,
-            "name" : "trig.ig_intr_dprs_md.coalesce_flush",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32890,
-            "name" : "trig.ig_intr_dprs_md.coalesce_flush_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 123,
-            "name" : "trig.ig_intr_dprs_md.coalesce_length",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32891,
-            "name" : "trig.ig_intr_dprs_md.coalesce_length_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 124,
-            "name" : "trig.eg_intr_oport_md.capture_tstamp_on_tx",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32892,
-            "name" : "trig.eg_intr_oport_md.capture_tstamp_on_tx_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 125,
-            "name" : "trig.eg_intr_oport_md.update_delay_on_tx",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : false,
-          "singleton" : {
-            "id" : 32893,
-            "name" : "trig.eg_intr_oport_md.update_delay_on_tx_mask",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        }
-      ],
-      "supported_operations" : [],
-      "attributes" : []
-    },
-    {
-      "name" : "pipe.snapshot.egress_data",
-      "id" : 2482433112,
-      "table_type" : "SnapshotData",
-      "size" : 12,
-      "depends_on" : [],
-      "key" : [
-        {
-          "id" : 65587,
-          "name" : "stage",
-          "repeated" : false,
-          "annotations" : [],
-          "mandatory" : true,
-          "match_type" : "Exact",
-          "type" : {
-            "type" : "uint32",
-            "default_value" : 0
-          }
-        }
-      ],
-      "data" : [
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 65599,
-            "name" : "prev_stage_trigger",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bool",
-              "default_value" : false
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 65592,
-            "name" : "timer_trigger",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bool",
-              "default_value" : false
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 65601,
-            "name" : "local_stage_trigger",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bool",
-              "default_value" : false
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 65603,
-            "name" : "next_table_name",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "string"
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 65596,
-            "name" : "table_info",
-            "repeated" : true,
-            "annotations" : [],
-            "container" : [
-              {
-                "mandatory" : false,
-                "read_only" : true,
-                "singleton" : {
-                  "id" : 65611,
-                  "name" : "table_name",
-                  "repeated" : false,
-                  "annotations" : [],
-                  "type" : {
-                    "type" : "string"
-                  }
-                }
-              },
-              {
-                "mandatory" : false,
-                "read_only" : true,
-                "singleton" : {
-                  "id" : 65614,
-                  "name" : "match_hit_handle",
-                  "repeated" : false,
-                  "annotations" : [],
-                  "type" : {
-                    "type" : "uint32"
-                  }
-                }
-              },
-              {
-                "mandatory" : false,
-                "read_only" : true,
-                "singleton" : {
-                  "id" : 65615,
-                  "name" : "table_hit",
-                  "repeated" : false,
-                  "annotations" : [],
-                  "type" : {
-                    "type" : "bool"
-                  }
-                }
-              },
-              {
-                "mandatory" : false,
-                "read_only" : true,
-                "singleton" : {
-                  "id" : 65616,
-                  "name" : "table_inhibited",
-                  "repeated" : false,
-                  "annotations" : [],
-                  "type" : {
-                    "type" : "bool"
-                  }
-                }
-              },
-              {
-                "mandatory" : false,
-                "read_only" : true,
-                "singleton" : {
-                  "id" : 65617,
-                  "name" : "table_executed",
-                  "repeated" : false,
-                  "annotations" : [],
-                  "type" : {
-                    "type" : "bool"
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 92,
-            "name" : "eg_intr_md._pad0",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 93,
-            "name" : "eg_intr_md.egress_port",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 9
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 94,
-            "name" : "eg_intr_md._pad1",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 95,
-            "name" : "eg_intr_md.enq_qdepth",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 19
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 96,
-            "name" : "eg_intr_md._pad2",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 6
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 97,
-            "name" : "eg_intr_md.enq_congest_stat",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 2
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 98,
-            "name" : "eg_intr_md._pad3",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 14
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 99,
-            "name" : "eg_intr_md.enq_tstamp",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 18
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 100,
-            "name" : "eg_intr_md._pad4",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 101,
-            "name" : "eg_intr_md.deq_qdepth",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 19
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 102,
-            "name" : "eg_intr_md._pad5",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 6
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 103,
-            "name" : "eg_intr_md.deq_congest_stat",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 2
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 104,
-            "name" : "eg_intr_md.app_pool_congest_stat",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 8
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 105,
-            "name" : "eg_intr_md._pad6",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 14
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 106,
-            "name" : "eg_intr_md.deq_timedelta",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 18
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 107,
-            "name" : "eg_intr_md.egress_rid",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 16
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 108,
-            "name" : "eg_intr_md._pad7",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 109,
-            "name" : "eg_intr_md.egress_rid_first",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 110,
-            "name" : "eg_intr_md._pad8",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 111,
-            "name" : "eg_intr_md.egress_qid",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 112,
-            "name" : "eg_intr_md._pad9",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 5
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 113,
-            "name" : "eg_intr_md.egress_cos",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 114,
-            "name" : "eg_intr_md._pad10",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 115,
-            "name" : "eg_intr_md.deflection_flag",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 116,
-            "name" : "eg_intr_md.pkt_length",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 16
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 117,
-            "name" : "eg_intr_md_from_prsr.global_tstamp",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 48
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 118,
-            "name" : "eg_intr_md_from_prsr.global_ver",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 32
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 119,
-            "name" : "eg_intr_md_from_prsr.parser_err",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 16
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 120,
-            "name" : "ig_intr_dprs_md.drop_ctl",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 121,
-            "name" : "ig_intr_dprs_md.mirror_type",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 3
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 122,
-            "name" : "ig_intr_dprs_md.coalesce_flush",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 123,
-            "name" : "ig_intr_dprs_md.coalesce_length",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 7
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 124,
-            "name" : "eg_intr_oport_md.capture_tstamp_on_tx",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        },
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 125,
-            "name" : "eg_intr_oport_md.update_delay_on_tx",
-            "repeated" : false,
-            "annotations" : [],
-            "type" : {
-              "type" : "bytes",
-              "width" : 1
-            }
-          }
-        }
-      ],
-      "supported_operations" : [],
-      "attributes" : []
-    },
-    {
-      "name" : "pipe.snapshot.egress_liveness",
-      "id" : 2499210328,
-      "table_type" : "SnapshotLiveness",
-      "size" : 0,
-      "depends_on" : [],
-      "key" : [
-        {
-          "id" : 65618,
-          "name" : "field_name",
-          "repeated" : false,
-          "annotations" : [],
-          "mandatory" : true,
-          "match_type" : "Exact",
-          "type" : {
-            "type" : "string"
-          }
-        }
-      ],
-      "data" : [
-        {
-          "mandatory" : false,
-          "read_only" : true,
-          "singleton" : {
-            "id" : 65619,
-            "name" : "valid_stages",
             "repeated" : true,
             "annotations" : [],
             "type" : {
@@ -5341,12 +3666,12 @@
           "read_only" : false,
           "singleton" : {
             "id" : 46,
-            "name" : "trig.hdr.reorder_digest.type",
+            "name" : "trig.hdr.reorder_digest.magic",
             "repeated" : false,
             "annotations" : [],
             "type" : {
               "type" : "bytes",
-              "width" : 8
+              "width" : 16
             }
           }
         },
@@ -5355,12 +3680,12 @@
           "read_only" : false,
           "singleton" : {
             "id" : 32814,
-            "name" : "trig.hdr.reorder_digest.type_mask",
+            "name" : "trig.hdr.reorder_digest.magic_mask",
             "repeated" : false,
             "annotations" : [],
             "type" : {
               "type" : "bytes",
-              "width" : 8
+              "width" : 16
             }
           }
         },
@@ -5425,7 +3750,7 @@
           "read_only" : false,
           "singleton" : {
             "id" : 49,
-            "name" : "trig.hdr.reorder_digest.resubmit_count",
+            "name" : "trig.hdr.reorder_digest.recirc_count",
             "repeated" : false,
             "annotations" : [],
             "type" : {
@@ -5439,7 +3764,7 @@
           "read_only" : false,
           "singleton" : {
             "id" : 32817,
-            "name" : "trig.hdr.reorder_digest.resubmit_count_mask",
+            "name" : "trig.hdr.reorder_digest.recirc_count_mask",
             "repeated" : false,
             "annotations" : [],
             "type" : {
@@ -5458,7 +3783,7 @@
             "annotations" : [],
             "type" : {
               "type" : "bytes",
-              "width" : 16
+              "width" : 8
             }
           }
         },
@@ -5472,7 +3797,7 @@
             "annotations" : [],
             "type" : {
               "type" : "bytes",
-              "width" : 16
+              "width" : 8
             }
           }
         },
@@ -7416,12 +5741,12 @@
           "read_only" : true,
           "singleton" : {
             "id" : 46,
-            "name" : "hdr.reorder_digest.type",
+            "name" : "hdr.reorder_digest.magic",
             "repeated" : false,
             "annotations" : [],
             "type" : {
               "type" : "bytes",
-              "width" : 8
+              "width" : 16
             }
           }
         },
@@ -7458,7 +5783,7 @@
           "read_only" : true,
           "singleton" : {
             "id" : 49,
-            "name" : "hdr.reorder_digest.resubmit_count",
+            "name" : "hdr.reorder_digest.recirc_count",
             "repeated" : false,
             "annotations" : [],
             "type" : {
@@ -7477,7 +5802,7 @@
             "annotations" : [],
             "type" : {
               "type" : "bytes",
-              "width" : 16
+              "width" : 8
             }
           }
         },
@@ -8062,6 +6387,1681 @@
     {
       "name" : "pipe.snapshot.ingress_liveness",
       "id" : 2483045751,
+      "table_type" : "SnapshotLiveness",
+      "size" : 0,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65618,
+          "name" : "field_name",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "string"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65619,
+            "name" : "valid_stages",
+            "repeated" : true,
+            "annotations" : [],
+            "type" : {
+              "type" : "uint32"
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.snapshot.egress_trigger",
+      "id" : 2465655896,
+      "table_type" : "SnapshotTrigger",
+      "size" : 12,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65587,
+          "name" : "stage",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32",
+            "default_value" : 0
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 65589,
+            "name" : "enable",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bool",
+              "default_value" : false
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65590,
+            "name" : "trigger_state",
+            "repeated" : true,
+            "annotations" : [],
+            "type" : {
+              "type" : "string",
+              "choices" : ["PASSIVE", "ARMED", "FULL"]
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 92,
+            "name" : "trig.eg_intr_md._pad0",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32860,
+            "name" : "trig.eg_intr_md._pad0_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 93,
+            "name" : "trig.eg_intr_md.egress_port",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 9
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32861,
+            "name" : "trig.eg_intr_md.egress_port_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 9
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 94,
+            "name" : "trig.eg_intr_md._pad1",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32862,
+            "name" : "trig.eg_intr_md._pad1_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 95,
+            "name" : "trig.eg_intr_md.enq_qdepth",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 19
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32863,
+            "name" : "trig.eg_intr_md.enq_qdepth_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 19
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 96,
+            "name" : "trig.eg_intr_md._pad2",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 6
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32864,
+            "name" : "trig.eg_intr_md._pad2_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 6
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 97,
+            "name" : "trig.eg_intr_md.enq_congest_stat",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 2
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32865,
+            "name" : "trig.eg_intr_md.enq_congest_stat_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 2
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 98,
+            "name" : "trig.eg_intr_md._pad3",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 14
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32866,
+            "name" : "trig.eg_intr_md._pad3_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 14
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 99,
+            "name" : "trig.eg_intr_md.enq_tstamp",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 18
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32867,
+            "name" : "trig.eg_intr_md.enq_tstamp_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 18
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 100,
+            "name" : "trig.eg_intr_md._pad4",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32868,
+            "name" : "trig.eg_intr_md._pad4_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 101,
+            "name" : "trig.eg_intr_md.deq_qdepth",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 19
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32869,
+            "name" : "trig.eg_intr_md.deq_qdepth_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 19
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 102,
+            "name" : "trig.eg_intr_md._pad5",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 6
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32870,
+            "name" : "trig.eg_intr_md._pad5_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 6
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 103,
+            "name" : "trig.eg_intr_md.deq_congest_stat",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 2
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32871,
+            "name" : "trig.eg_intr_md.deq_congest_stat_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 2
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 104,
+            "name" : "trig.eg_intr_md.app_pool_congest_stat",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 8
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32872,
+            "name" : "trig.eg_intr_md.app_pool_congest_stat_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 8
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 105,
+            "name" : "trig.eg_intr_md._pad6",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 14
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32873,
+            "name" : "trig.eg_intr_md._pad6_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 14
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 106,
+            "name" : "trig.eg_intr_md.deq_timedelta",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 18
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32874,
+            "name" : "trig.eg_intr_md.deq_timedelta_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 18
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 107,
+            "name" : "trig.eg_intr_md.egress_rid",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 16
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32875,
+            "name" : "trig.eg_intr_md.egress_rid_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 16
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 108,
+            "name" : "trig.eg_intr_md._pad7",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32876,
+            "name" : "trig.eg_intr_md._pad7_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 109,
+            "name" : "trig.eg_intr_md.egress_rid_first",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32877,
+            "name" : "trig.eg_intr_md.egress_rid_first_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 110,
+            "name" : "trig.eg_intr_md._pad8",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32878,
+            "name" : "trig.eg_intr_md._pad8_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 111,
+            "name" : "trig.eg_intr_md.egress_qid",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32879,
+            "name" : "trig.eg_intr_md.egress_qid_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 112,
+            "name" : "trig.eg_intr_md._pad9",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32880,
+            "name" : "trig.eg_intr_md._pad9_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 113,
+            "name" : "trig.eg_intr_md.egress_cos",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32881,
+            "name" : "trig.eg_intr_md.egress_cos_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 114,
+            "name" : "trig.eg_intr_md._pad10",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32882,
+            "name" : "trig.eg_intr_md._pad10_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 115,
+            "name" : "trig.eg_intr_md.deflection_flag",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32883,
+            "name" : "trig.eg_intr_md.deflection_flag_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 116,
+            "name" : "trig.eg_intr_md.pkt_length",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 16
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32884,
+            "name" : "trig.eg_intr_md.pkt_length_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 16
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 117,
+            "name" : "trig.eg_intr_md_from_prsr.global_tstamp",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 48
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32885,
+            "name" : "trig.eg_intr_md_from_prsr.global_tstamp_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 48
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 118,
+            "name" : "trig.eg_intr_md_from_prsr.global_ver",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32886,
+            "name" : "trig.eg_intr_md_from_prsr.global_ver_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 119,
+            "name" : "trig.eg_intr_md_from_prsr.parser_err",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 16
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32887,
+            "name" : "trig.eg_intr_md_from_prsr.parser_err_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 16
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 120,
+            "name" : "trig.ig_intr_dprs_md.drop_ctl",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32888,
+            "name" : "trig.ig_intr_dprs_md.drop_ctl_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 121,
+            "name" : "trig.ig_intr_dprs_md.mirror_type",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32889,
+            "name" : "trig.ig_intr_dprs_md.mirror_type_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 122,
+            "name" : "trig.ig_intr_dprs_md.coalesce_flush",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32890,
+            "name" : "trig.ig_intr_dprs_md.coalesce_flush_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 123,
+            "name" : "trig.ig_intr_dprs_md.coalesce_length",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32891,
+            "name" : "trig.ig_intr_dprs_md.coalesce_length_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 124,
+            "name" : "trig.eg_intr_oport_md.capture_tstamp_on_tx",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32892,
+            "name" : "trig.eg_intr_oport_md.capture_tstamp_on_tx_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 125,
+            "name" : "trig.eg_intr_oport_md.update_delay_on_tx",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 32893,
+            "name" : "trig.eg_intr_oport_md.update_delay_on_tx_mask",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.snapshot.egress_data",
+      "id" : 2482433112,
+      "table_type" : "SnapshotData",
+      "size" : 12,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65587,
+          "name" : "stage",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32",
+            "default_value" : 0
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65599,
+            "name" : "prev_stage_trigger",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bool",
+              "default_value" : false
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65592,
+            "name" : "timer_trigger",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bool",
+              "default_value" : false
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65601,
+            "name" : "local_stage_trigger",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bool",
+              "default_value" : false
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65603,
+            "name" : "next_table_name",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "string"
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65596,
+            "name" : "table_info",
+            "repeated" : true,
+            "annotations" : [],
+            "container" : [
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65611,
+                  "name" : "table_name",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65614,
+                  "name" : "match_hit_handle",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "uint32"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65615,
+                  "name" : "table_hit",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bool"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65616,
+                  "name" : "table_inhibited",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bool"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65617,
+                  "name" : "table_executed",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bool"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 92,
+            "name" : "eg_intr_md._pad0",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 93,
+            "name" : "eg_intr_md.egress_port",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 9
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 94,
+            "name" : "eg_intr_md._pad1",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 95,
+            "name" : "eg_intr_md.enq_qdepth",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 19
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 96,
+            "name" : "eg_intr_md._pad2",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 6
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 97,
+            "name" : "eg_intr_md.enq_congest_stat",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 2
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 98,
+            "name" : "eg_intr_md._pad3",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 14
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 99,
+            "name" : "eg_intr_md.enq_tstamp",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 18
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 100,
+            "name" : "eg_intr_md._pad4",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 101,
+            "name" : "eg_intr_md.deq_qdepth",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 19
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 102,
+            "name" : "eg_intr_md._pad5",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 6
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 103,
+            "name" : "eg_intr_md.deq_congest_stat",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 2
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 104,
+            "name" : "eg_intr_md.app_pool_congest_stat",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 8
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 105,
+            "name" : "eg_intr_md._pad6",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 14
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 106,
+            "name" : "eg_intr_md.deq_timedelta",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 18
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 107,
+            "name" : "eg_intr_md.egress_rid",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 16
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 108,
+            "name" : "eg_intr_md._pad7",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 109,
+            "name" : "eg_intr_md.egress_rid_first",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 110,
+            "name" : "eg_intr_md._pad8",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 111,
+            "name" : "eg_intr_md.egress_qid",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 112,
+            "name" : "eg_intr_md._pad9",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 5
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 113,
+            "name" : "eg_intr_md.egress_cos",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 114,
+            "name" : "eg_intr_md._pad10",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 115,
+            "name" : "eg_intr_md.deflection_flag",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 116,
+            "name" : "eg_intr_md.pkt_length",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 16
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 117,
+            "name" : "eg_intr_md_from_prsr.global_tstamp",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 48
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 118,
+            "name" : "eg_intr_md_from_prsr.global_ver",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 119,
+            "name" : "eg_intr_md_from_prsr.parser_err",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 16
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 120,
+            "name" : "ig_intr_dprs_md.drop_ctl",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 121,
+            "name" : "ig_intr_dprs_md.mirror_type",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 3
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 122,
+            "name" : "ig_intr_dprs_md.coalesce_flush",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 123,
+            "name" : "ig_intr_dprs_md.coalesce_length",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 7
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 124,
+            "name" : "eg_intr_oport_md.capture_tstamp_on_tx",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 125,
+            "name" : "eg_intr_oport_md.update_delay_on_tx",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 1
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.snapshot.egress_liveness",
+      "id" : 2499210328,
       "table_type" : "SnapshotLiveness",
       "size" : 0,
       "depends_on" : [],

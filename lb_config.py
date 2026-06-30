@@ -18,7 +18,8 @@ Usage:
   # Direct route (single next-hop)
   python3 lb_config.py add-route 10.0.1.0/24 --src-mac 00:11:22:33:44:55 --dst-mac 00:aa:bb:cc:01:01 --port 8
 
-  # Reorder: enable on receiver ports
+  # Reorder: enable recirculation port (once), then enable on receiver ports
+  python3 lb_config.py setup-recirc            # MAC loopback on recirc port 68
   python3 lb_config.py enable-reorder 8
   python3 lb_config.py enable-reorder 9
   python3 lb_config.py clear-reorder
@@ -415,6 +416,45 @@ def cmd_clear_reorder(args):
     interface._die = True
 
 
+# ---------------------------------------------------------------------------
+# Recirculation port setup (required for reorder loop)
+# ---------------------------------------------------------------------------
+
+# DP-local recirculation port (must match REORDER_RECIRC_PORT in the P4).
+RECIRC_PORT = 68
+
+
+def cmd_setup_recirc(args):
+    """Enable recirculation by putting the recirc port into MAC near-loopback."""
+    interface, bfrt_info, target = connect()
+    port_tbl = bfrt_info.table_get("$PORT")
+
+    dev_port = args.port
+    try:
+        # Try to add the port first (may already exist on a recirc port).
+        port_tbl.entry_add(
+            target,
+            [port_tbl.make_key([gc.KeyTuple("$DEV_PORT", dev_port)])],
+            [port_tbl.make_data([
+                gc.DataTuple("$SPEED", str_val="BF_SPEED_100G"),
+                gc.DataTuple("$FEC", str_val="BF_FEC_TYP_NONE"),
+                gc.DataTuple("$PORT_ENABLE", bool_val=True),
+                gc.DataTuple("$LOOPBACK_MODE", str_val="BF_LPBK_MAC_NEAR"),
+            ])])
+    except Exception:
+        # Already present: just enable loopback.
+        port_tbl.entry_mod(
+            target,
+            [port_tbl.make_key([gc.KeyTuple("$DEV_PORT", dev_port)])],
+            [port_tbl.make_data([
+                gc.DataTuple("$PORT_ENABLE", bool_val=True),
+                gc.DataTuple("$LOOPBACK_MODE", str_val="BF_LPBK_MAC_NEAR"),
+            ])])
+
+    print("Configured recirculation (MAC near-loopback) on dev_port %d" % dev_port)
+    interface._die = True
+
+
 def main():
     p = argparse.ArgumentParser(description="Load balancer config for tna_lb_mixhash")
     p.add_argument("--grpc", default=GRPC_ADDR, help="gRPC server address")
@@ -492,6 +532,12 @@ def main():
 
     # --- Reorder: clear-reorder ---
     sub.add_parser("clear-reorder", help="Reset reorder registers")
+
+    # --- Reorder: setup-recirc ---
+    sp = sub.add_parser("setup-recirc",
+                        help="Enable recirculation (MAC loopback) on the recirc port")
+    sp.add_argument("--port", type=int, default=RECIRC_PORT,
+                    help="Recirc dev_port (default %d)" % RECIRC_PORT)
 
     args = p.parse_args()
     if not args.command:
