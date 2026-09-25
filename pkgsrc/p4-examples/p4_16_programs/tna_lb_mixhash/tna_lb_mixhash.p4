@@ -346,7 +346,11 @@ control SwitchIngress(
             hdr.ipv4.dst_addr   : selector;
             ig_md.l4_src_port   : selector;
             ig_md.l4_dst_port   : selector;
+#ifdef CLASSIC_ECMP
+            // 基线模式: 逐流静态哈希, 不含逐包变化的 ecmp_counter
+#else
             ig_md.ecmp_counter  : selector;
+#endif
         }
 
         actions = {
