@@ -159,6 +159,15 @@ def cmd_add_ecmp_group(args):
             gc.DataTuple("$ACTION_MEMBER_STATUS", bool_arr_val=member_status),
         ])])
 
+    # Bind the match-table key (ig_md.ecmp_group_id) to the selector group.
+    # Without this the dataplane lookup at ecmp_group_table misses and the
+    # packet falls through to dmac_table (default drop).
+    match_tbl = bfrt_info.table_get("SwitchIngress.ecmp_group_table")
+    match_tbl.entry_add(
+        target,
+        [match_tbl.make_key([gc.KeyTuple("ig_md.ecmp_group_id", args.group_id)])],
+        [match_tbl.make_data([gc.DataTuple("$SELECTOR_GROUP_ID", args.group_id)])])
+
     print("Added ECMP group %d: members %s" % (args.group_id, members))
     interface._die = True
 
@@ -170,6 +179,11 @@ def cmd_del_ecmp_group(args):
     sel_tbl.entry_del(
         target,
         [sel_tbl.make_key([gc.KeyTuple("$SELECTOR_GROUP_ID", args.group_id)])])
+
+    match_tbl = bfrt_info.table_get("SwitchIngress.ecmp_group_table")
+    match_tbl.entry_del(
+        target,
+        [match_tbl.make_key([gc.KeyTuple("ig_md.ecmp_group_id", args.group_id)])])
 
     print("Deleted ECMP group %d" % args.group_id)
     interface._die = True
