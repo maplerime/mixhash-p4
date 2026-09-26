@@ -72,6 +72,13 @@ struct metadata_t {
     bit<16> lb_backend_index;
     // Reorder
     bit<1>  reorder_enabled;
+    // MixHash per-flow counter register index. The raw Hash.get() value must
+    // NOT be passed straight to RegisterAction.execute(): that compiles to a
+    // hash-addressed stateful ALU (ExecuteStatefulAluFromHash), whose address
+    // distribution tofino-model rejects (vpn_range_check DISCARDING), so the
+    // register would never update. Masking the hash into this metadata field
+    // makes the SALU PHV-addressed, which works on both model and hardware.
+    bit<14> flow_reg_idx;
 }
 
 // ---------------------------------------------------------------------------
@@ -207,9 +214,12 @@ control SwitchIngress(
     // ---- MixHash LB externs ----
     Hash<bit<32>>(HashAlgorithm_t.CRC32) flow_hash;
     Hash<bit<32>>(HashAlgorithm_t.CRC32) mix_hash;
-    Register<bit<16>, bit<32>>(16384) flow_counter_reg;
+    // Index width bit<14> (16384 entries): a bit<32> index forces the hash-
+    // addressed stateful ALU path, which tofino-model discards (see note at
+    // ig_md.flow_reg_idx).
+    Register<bit<16>, bit<14>>(16384) flow_counter_reg;
 
-    RegisterAction<bit<16>, bit<32>, bit<16>>(flow_counter_reg) counter_action = {
+    RegisterAction<bit<16>, bit<14>, bit<16>>(flow_counter_reg) counter_action = {
         void apply(inout bit<16> reg_val, out bit<16> old_val) {
             old_val = reg_val;
             reg_val = reg_val + 1;
@@ -527,32 +537,54 @@ control SwitchIngress(
                 ig_md.learn_src_ip = hdr.ipv4.src_addr;
                 smac_table.apply();
 
-                bit<32> fhash = flow_hash.get({
-                    hdr.ipv4.src_addr,
-                    hdr.ipv4.dst_addr,
-                    ig_md.l4_src_port,
-                    ig_md.l4_dst_port
-                });
-                bit<16> pkt_counter = counter_action.execute(fhash);
-                hdr.ipv4.identification = pkt_counter;
-                ig_md.ecmp_counter = (bit<16>)pkt_counter[2:0];
+                // RoCEv2 exemption: RoCE (UDP dst port 4791) validates ICRC
+                // over the whole IPv4 header, including identification —
+                // the per-packet ID rewrite below breaks it at the receiver
+                // and triggers a retransmission storm. RoCE also requires
+                // strict ordering, so it must not be per-packet rehashed:
+                // keep the original ID and route per-flow.
+                bool is_roce = hdr.udp.isValid() &&
+                    (hdr.udp.dst_port == 16w4791);
 
-                lb_vip_table.apply();
-
-                if (ig_md.lb_hit == 1w1) {
-                    bit<32> mhash = mix_hash.get({
-                        hdr.ipv4.src_addr,
-                        hdr.ipv4.dst_addr,
-                        ig_md.l4_src_port,
-                        ig_md.l4_dst_port,
-                        pkt_counter
-                    });
-                    ig_md.lb_backend_index = (bit<16>)mhash[15:0];
-                    lb_backend_table.apply();
-                } else {
+                if (is_roce) {
                     ipv4_route.apply();
                     if (ig_md.ecmp_select == 1w1) {
                         ecmp_group_table.apply();
+                    }
+                } else {
+                    bit<32> fhash = flow_hash.get({
+                        hdr.ipv4.src_addr,
+                        hdr.ipv4.dst_addr,
+                        ig_md.l4_src_port,
+                        ig_md.l4_dst_port
+                    });
+                    // Mask to the 16384-entry register size and go through
+                    // metadata so the stateful ALU is PHV-addressed (see note
+                    // in metadata_t) — hash-addressed execute is discarded by
+                    // the tofino-model address distribution.
+                    ig_md.flow_reg_idx = (bit<14>)(fhash & 0x3FFF);
+                    bit<16> pkt_counter =
+                        counter_action.execute(ig_md.flow_reg_idx);
+                    hdr.ipv4.identification = pkt_counter;
+                    ig_md.ecmp_counter = (bit<16>)pkt_counter[7:0];
+
+                    lb_vip_table.apply();
+
+                    if (ig_md.lb_hit == 1w1) {
+                        bit<32> mhash = mix_hash.get({
+                            hdr.ipv4.src_addr,
+                            hdr.ipv4.dst_addr,
+                            ig_md.l4_src_port,
+                            ig_md.l4_dst_port,
+                            pkt_counter
+                        });
+                        ig_md.lb_backend_index = (bit<16>)mhash[15:0];
+                        lb_backend_table.apply();
+                    } else {
+                        ipv4_route.apply();
+                        if (ig_md.ecmp_select == 1w1) {
+                            ecmp_group_table.apply();
+                        }
                     }
                 }
             }

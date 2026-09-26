@@ -127,6 +127,7 @@ set (P4_16_PROGRAMS
   tna_exact_match
   tna_field_slice
   tna_idletimeout
+  tna_lb_mixhash
   tna_lpm_match
   tna_meter_bytecount_adjust
   tna_meter_lpf_wred
