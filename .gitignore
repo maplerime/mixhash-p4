@@ -6,3 +6,4 @@ p4studio/*
 *.a
 *.so
 pkgsrc/p4i/*
+__pycache__/

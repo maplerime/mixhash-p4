@@ -1,11 +1,11 @@
 {
   "schema_version": "3.0.1",
   "target": "tofino",
-  "build_date": "Tue Jun 30 08:09:59 2026",
+  "build_date": "Mon Sep 28 06:59:20 2026",
   "compiler_version": "9.13.3 (7de9294)",
   "compilation_succeeded": true,
-  "compilation_time": "34.73192548751831",
-  "run_id": "c530f1bf354745e2",
+  "compilation_time": "18.828861236572266",
+  "run_id": "6bb5e986b0f347b5",
   "target_data": {
     "architecture": "tna",
     "architectureConfig": {
@@ -56,5 +56,5 @@
       ]
     }
   ],
-  "compile_command": "/root/bf-sde-9.13.3/install/bin/bf-p4c -b tofino-tna pkgsrc/p4-examples/p4_16_programs/tna_lb_mixhash/tna_lb_mixhash.p4"
+  "compile_command": "/root/bf-sde-9.13.3/install/bin/bf-p4c --target tofino --arch tna -o tna_lb_mixhash.tofino --bf-rt-schema tna_lb_mixhash.tofino/bfrt.json pkgsrc/p4-examples/p4_16_programs/tna_lb_mixhash/tna_lb_mixhash.p4"
 }

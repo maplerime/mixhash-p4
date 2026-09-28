@@ -40,6 +40,23 @@ header reorder_digest_h {
     bit<8>  reserved;
 }
 
+// RoCEv2 Base Transport Header (BTH, 12 bytes, follows UDP dst port 4791).
+// ICRC covers the whole BTH (including PSN), so switches may only READ these
+// fields — writing PSN breaks ICRC at the receiver exactly like the IP-ID
+// rewrite (see mixhash-ipid-breaks-roce). PSN is the sender's per-packet
+// sequence: rxe increments it once per packet AT THE SOURCE, and it travels
+// hop-by-hop in-band. So reading PSN is the ICRC-safe way to give MixHash a
+// per-packet value that is already "incremented only at the source".
+header roce_bth_h {
+    bit<8>  opcode;           // byte 0
+    bit<8>  se_m_pad_tver;    // byte 1: SE | M | PadCount | TVer
+    bit<16> pkey;             // bytes 2-3
+    bit<8>  reserved8;        // byte 4
+    bit<24> dest_qp;          // bytes 5-7
+    bit<8>  a_reserved7;      // byte 8: AcknowledgeReq | Reserved
+    bit<24> psn;              // bytes 9-11
+}
+
 struct local_header_t {
     ethernet_h       ethernet;
     ipv4_h           ipv4;
@@ -47,6 +64,7 @@ struct local_header_t {
     arp_ipv4_h       arp_ipv4;
     tcp_h            tcp;
     udp_h            udp;
+    roce_bth_h       roce_bth;
     reorder_digest_h reorder_digest;
 }
 
@@ -79,6 +97,14 @@ struct metadata_t {
     // register would never update. Masking the hash into this metadata field
     // makes the SALU PHV-addressed, which works on both model and hardware.
     bit<14> flow_reg_idx;
+    // Reorder register index: the CRC16 reorder hash masked to 12 bits (4096
+    // entries = 2^12), routed through metadata for the same PHV-addressed SALU
+    // reason as flow_reg_idx above.
+    bit<12> reorder_reg_idx;
+    // Spine dispersion log index: src/dst last octets of the 10.100.1.x ->
+    // 10.100.2.x cross-leaf flows, concatenated then masked to 12 bits, routed
+    // through metadata for the same PHV-addressed SALU reason.
+    bit<12> disp_idx;
 }
 
 // ---------------------------------------------------------------------------
@@ -131,6 +157,14 @@ parser SwitchIngressParser(
 
     state parse_udp {
         pkt.extract(hdr.udp);
+        transition select(hdr.udp.dst_port) {
+            16w4791 : parse_roce_bth;   // RoCEv2
+            default : accept;
+        }
+    }
+
+    state parse_roce_bth {
+        pkt.extract(hdr.roce_bth);
         transition accept;
     }
 
@@ -188,6 +222,7 @@ control SwitchIngressDeparser(
         pkt.emit(hdr.ipv4);
         pkt.emit(hdr.tcp);
         pkt.emit(hdr.udp);
+        pkt.emit(hdr.roce_bth);
         pkt.emit(hdr.arp);
         pkt.emit(hdr.arp_ipv4);
     }
@@ -228,23 +263,84 @@ control SwitchIngress(
 
     // ---- Reorder buffer externs ----
     Hash<bit<16>>(HashAlgorithm_t.CRC16) reorder_hash;
-    // Per-flow reorder control: [15:0]=expected, [23:16]=state
-    // state: 0=uninit, 1=init
-    Register<bit<32>, bit<16>>(4096) reorder_ctrl_reg;
+    // Per-flow reorder state, split across TWO registers because Tofino-1
+    // cannot pair a plain read and a plain write on the same register in one
+    // pass ("non-mutually exclusive"), and RegisterAction has no PHV input so
+    // it cannot seed a data value. The data-dependent seed (expected = seq+1
+    // on the first packet) needs a plain write; the running advance needs an
+    // atomic RegisterAction. The two live on different registers so their
+    // accesses are disjoint branches:
+    //
+    //   reorder_seen_reg     : >0 once the flow has been seen (0 = unseen).
+    //   reorder_expected_reg : next in-order PSN[15:0]; seeded seq+1, then +1
+    //                          per accepted packet.
+    //
+    // The branch conditions each depend on a SINGLE stateful result (seen, or
+    // old expected). A branch depending on both a plain-read result AND an
+    // action result (e.g. seq == base + count) is rejected by the backend as
+    // "condition expression too complex".
+    //
+    // 4096 entries = 2^12, so the index type is bit<12>: a wider index forces
+    // a hash-addressed stateful ALU that tofino-model discards (see the
+    // flow_reg_idx note in metadata_t).
+    Register<bit<16>, bit<12>>(4096) reorder_seen_reg;
+    Register<bit<16>, bit<12>>(4096) reorder_expected_reg;
 
-    // RegisterAction for atomic increment (expected++, state=init)
-    RegisterAction<bit<32>, bit<16>, bit<32>>(reorder_ctrl_reg) ctrl_inc = {
-        void apply(inout bit<32> reg_val, out bit<32> old_val) {
+    RegisterAction<bit<16>, bit<12>, bit<16>>(reorder_seen_reg) seen_inc = {
+        void apply(inout bit<16> reg_val, out bit<16> old_val) {
             old_val = reg_val;
-            reg_val = reg_val + 32w0x00010001;
+            reg_val = reg_val + 16w1;
         }
     };
 
-    // RegisterAction to undo incorrect increment
-    RegisterAction<bit<32>, bit<16>, bit<32>>(reorder_ctrl_reg) ctrl_dec = {
+    RegisterAction<bit<16>, bit<12>, bit<16>>(reorder_expected_reg) expected_inc = {
+        void apply(inout bit<16> reg_val, out bit<16> old_val) {
+            old_val = reg_val;
+            reg_val = reg_val + 16w1;
+        }
+    };
+
+    RegisterAction<bit<16>, bit<12>, bit<16>>(reorder_expected_reg) expected_dec = {
+        void apply(inout bit<16> reg_val, out bit<16> old_val) {
+            old_val = reg_val;
+            reg_val = reg_val - 16w1;
+        }
+    };
+
+    // Seed the expected value for the first packet of a flow. The seed must be a
+    // CONSTANT so it compiles to constant SALU arithmetic ("add lo, lo, 1"):
+    // tofino-model's stateful-ALU BlackBox does not execute PHV-operand SALU
+    // instructions ("add lo, phv_lo, 1"), which the compiler emits when the body
+    // reads ig_md.reorder_seq. A fresh reorder_expected_reg slot reads 0, so this
+    // increment seeds expected=1; the demo therefore starts each flow at PSN 0.
+    RegisterAction<bit<16>, bit<12>, bit<16>>(reorder_expected_reg) seed_expected = {
+        void apply(inout bit<16> reg_val, out bit<16> old_val) {
+            old_val = reg_val;
+            reg_val = reg_val + 16w1;
+        }
+    };
+
+    // ---- Spine dispersion log (per ECMP member, per flow) ----
+    // Counts packets forwarded via each ECMP member (device port 6 = spine1,
+    // 7 = spine2) per cross-leaf flow, indexed by
+    // ((src_octet ++ dst_octet) & 0xFFF) — e.g. h1->h9 (10.100.1.11 ->
+    // 10.100.2.21) lands on 0xB15. Read from the control plane after a test
+    // to measure per-flow spine dispersion and aggregate balance. Index via
+    // metadata (PHV-addressed SALU — see flow_reg_idx note).
+    Register<bit<32>, bit<12>>(4096) disp_sp1_reg;
+    Register<bit<32>, bit<12>>(4096) disp_sp2_reg;
+
+    RegisterAction<bit<32>, bit<12>, bit<32>>(disp_sp1_reg) disp_sp1_inc = {
         void apply(inout bit<32> reg_val, out bit<32> old_val) {
             old_val = reg_val;
-            reg_val = reg_val - 32w0x00010001;
+            reg_val = reg_val + 32w1;
+        }
+    };
+
+    RegisterAction<bit<32>, bit<12>, bit<32>>(disp_sp2_reg) disp_sp2_inc = {
+        void apply(inout bit<32> reg_val, out bit<32> old_val) {
+            old_val = reg_val;
+            reg_val = reg_val + 32w1;
         }
     };
 
@@ -357,9 +453,19 @@ control SwitchIngress(
             ig_md.l4_src_port   : selector;
             ig_md.l4_dst_port   : selector;
 #ifdef CLASSIC_ECMP
-            // 基线模式: 逐流静态哈希, 不含逐包变化的 ecmp_counter
+            // 基线模式: 逐流静态哈希, 不含逐包变化的字段
 #else
-            ig_md.ecmp_counter  : selector;
+            // Per-packet inputs MUST be header fields, not metadata written
+            // earlier in the same ingress pass: the tofino-model ActionSelector
+            // hashes only PV (header) operands reliably — ig_md.ecmp_counter
+            // written just before apply() reads as stale/zero in the selector
+            // hash, pinning every RoCE packet of a flow to one member.
+            // RoCE: BTH PSN is the sender's per-packet sequence (ICRC-safe to
+            // read, never written). Invalid when not RoCE → contributes 0.
+            hdr.roce_bth.psn[15:0]  : selector;
+            // Non-RoCE: sender mode stamps ipv4.identification with the
+            // per-flow packet counter just above (a header write, hashed fine).
+            hdr.ipv4.identification : selector;
 #endif
         }
 
@@ -463,7 +569,19 @@ control SwitchIngress(
                     rhash = hdr.reorder_digest.flow_hash;
                     recirc_count = hdr.reorder_digest.recirc_count;
                 } else {
-                    seq = hdr.ipv4.identification;
+                    // The per-packet sequence number is exactly what sender
+                    // mode loads into ig_md.ecmp_counter: RoCE carries it in
+                    // the (ICRC-covered, never-rewritten) BTH PSN — the IPv4
+                    // identification field is left at 0 for RoCE, so reading
+                    // it here would make every RoCE packet look identical.
+                    // Non-RoCE flows keep using the per-flow packet counter
+                    // that MixHash wrote into hdr.ipv4.identification.
+                    if (hdr.udp.isValid() &&
+                        (hdr.udp.dst_port == 16w4791)) {
+                        seq = hdr.roce_bth.psn[15:0];
+                    } else {
+                        seq = hdr.ipv4.identification;
+                    }
                     rhash = reorder_hash.get({
                         hdr.ipv4.src_addr,
                         hdr.ipv4.dst_addr,
@@ -472,6 +590,11 @@ control SwitchIngress(
                     });
                     recirc_count = 8w0;
                 }
+
+                // Narrow the CRC16 reorder hash to the 12-bit register index
+                // and carry it in metadata so the register access is PHV-
+                // addressed (not hash-addressed) — see the flow_reg_idx note.
+                ig_md.reorder_reg_idx = (bit<12>)(rhash & 16w0x0FFF);
 
                 // All reorder state lives in the owner pipe's register copy.
                 // A fresh packet that landed on another pipe must NOT touch the
@@ -494,39 +617,51 @@ control SwitchIngress(
                     hdr.reorder_digest.reserved = 8w0;
                     ig_tm_md.ucast_egress_port = REORDER_RECIRC_PORT;
                 } else {
-                    // On the owner pipe: atomic read + speculative increment.
-                    bit<32> old_ctrl = ctrl_inc.execute(rhash);
-                    bit<16> expected = old_ctrl[15:0];
-                    bit<8>  state    = old_ctrl[23:16];
-                    bool init = state != 8w0;
+                    // On the owner pipe: seed (first packet) / compare /
+                    // undo (out-of-order). `seen` is 0 only for the first
+                    // packet of a flow, which seeds expected = seq+1 (a random
+                    // RoCE PSN start then reads as in-order) and is accepted
+                    // unconditionally. Later packets speculatively advance
+                    // expected and undo on a mismatch. Each branch condition
+                    // depends on a single stateful result (seen, or the old
+                    // expected value).
+                    bit<16> seen = seen_inc.execute(ig_md.reorder_reg_idx);
 
-                    if (!init) {
-                        // First packet for this flow: increment initialized it,
-                        // strip any digest and forward in order.
-                        hdr.reorder_digest.setInvalid();
-                    } else if (seq == expected) {
-                        // In order: increment correct, strip digest and forward.
+                    if (seen == 16w0) {
+                        // First packet for this flow: seed expected = seq + 1.
+                        // Do it through a RegisterAction so the write lands on
+                        // the stateful-ALU path, atomically with expected_inc /
+                        // expected_dec below (a plain register.write() would be
+                        // applied at a different pipeline time and corrupt the
+                        // running expected value on tofino-model).
+                        seed_expected.execute(ig_md.reorder_reg_idx);
                         hdr.reorder_digest.setInvalid();
                     } else {
-                        // Out of order: undo the speculative increment.
-                        ctrl_dec.execute(rhash);
-
-                        if (recirc_count >= REORDER_MAX_LOOPS) {
-                            // Loop limit reached: give up and drop.
-                            ig_md.routed = 1w1;
+                        bit<16> old_expected =
+                            expected_inc.execute(ig_md.reorder_reg_idx);
+                        if (seq == old_expected) {
+                            // In order: expected already advanced, strip digest.
                             hdr.reorder_digest.setInvalid();
-                            ig_dprsr_md.drop_ctl = 0x1;
                         } else {
-                            // Recirculate: (re)attach digest and loop via port.
-                            ig_md.routed = 1w1;
-                            hdr.reorder_digest.setValid();
-                            hdr.reorder_digest.magic = REORDER_MAGIC;
-                            hdr.reorder_digest.flow_hash = rhash;
-                            hdr.reorder_digest.seq = seq;
-                            hdr.reorder_digest.recirc_count =
-                                (bit<8>)(recirc_count + 8w1);
-                            hdr.reorder_digest.reserved = 8w0;
-                            ig_tm_md.ucast_egress_port = REORDER_RECIRC_PORT;
+                            // Out of order: undo the speculative advance.
+                            expected_dec.execute(ig_md.reorder_reg_idx);
+                            if (recirc_count >= REORDER_MAX_LOOPS) {
+                                // Loop limit reached: give up and drop.
+                                ig_md.routed = 1w1;
+                                hdr.reorder_digest.setInvalid();
+                                ig_dprsr_md.drop_ctl = 0x1;
+                            } else {
+                                // Recirculate: (re)attach digest and loop via port.
+                                ig_md.routed = 1w1;
+                                hdr.reorder_digest.setValid();
+                                hdr.reorder_digest.magic = REORDER_MAGIC;
+                                hdr.reorder_digest.flow_hash = rhash;
+                                hdr.reorder_digest.seq = seq;
+                                hdr.reorder_digest.recirc_count =
+                                    (bit<8>)(recirc_count + 8w1);
+                                hdr.reorder_digest.reserved = 8w0;
+                                ig_tm_md.ucast_egress_port = REORDER_RECIRC_PORT;
+                            }
                         }
                     }
                 }
@@ -537,20 +672,22 @@ control SwitchIngress(
                 ig_md.learn_src_ip = hdr.ipv4.src_addr;
                 smac_table.apply();
 
-                // RoCEv2 exemption: RoCE (UDP dst port 4791) validates ICRC
-                // over the whole IPv4 header, including identification —
-                // the per-packet ID rewrite below breaks it at the receiver
-                // and triggers a retransmission storm. RoCE also requires
-                // strict ordering, so it must not be per-packet rehashed:
-                // keep the original ID and route per-flow.
+                // RoCEv2 (UDP dst port 4791) validates ICRC over the BTH
+                // (including PSN) and the invariant IP header — so we must
+                // NOT rewrite IP identification or PSN. But the BTH PSN is
+                // already the sender's per-packet sequence (rxe increments it
+                // once per packet at the source, and it travels hop-by-hop),
+                // so we READ it into ig_md.ecmp_counter — the one per-packet
+                // hash input for ECMP/LB path selection at every hop — instead
+                // of rewriting any field: per-packet MixHash without touching a
+                // single ICRC-covered bit. With a single-member group this is
+                // a no-op; with a multi-member group it sprays per-packet and
+                // therefore REQUIRES the destination-side PSN reorder buffer.
                 bool is_roce = hdr.udp.isValid() &&
                     (hdr.udp.dst_port == 16w4791);
 
                 if (is_roce) {
-                    ipv4_route.apply();
-                    if (ig_md.ecmp_select == 1w1) {
-                        ecmp_group_table.apply();
-                    }
+                    ig_md.ecmp_counter = hdr.roce_bth.psn[15:0];
                 } else {
                     bit<32> fhash = flow_hash.get({
                         hdr.ipv4.src_addr,
@@ -566,24 +703,46 @@ control SwitchIngress(
                     bit<16> pkt_counter =
                         counter_action.execute(ig_md.flow_reg_idx);
                     hdr.ipv4.identification = pkt_counter;
-                    ig_md.ecmp_counter = (bit<16>)pkt_counter[7:0];
+                    ig_md.ecmp_counter = pkt_counter;
+                }
 
-                    lb_vip_table.apply();
+                // Unified per-packet MixHash path: ECMP/LB hashing is driven
+                // by ig_md.ecmp_counter at every hop (for RoCE that value is
+                // the in-band BTH PSN, which travels hop-by-hop unchanged).
+                lb_vip_table.apply();
 
-                    if (ig_md.lb_hit == 1w1) {
-                        bit<32> mhash = mix_hash.get({
-                            hdr.ipv4.src_addr,
-                            hdr.ipv4.dst_addr,
-                            ig_md.l4_src_port,
-                            ig_md.l4_dst_port,
-                            pkt_counter
-                        });
-                        ig_md.lb_backend_index = (bit<16>)mhash[15:0];
-                        lb_backend_table.apply();
-                    } else {
-                        ipv4_route.apply();
-                        if (ig_md.ecmp_select == 1w1) {
-                            ecmp_group_table.apply();
+                if (ig_md.lb_hit == 1w1) {
+                    bit<32> mhash = mix_hash.get({
+                        hdr.ipv4.src_addr,
+                        hdr.ipv4.dst_addr,
+                        ig_md.l4_src_port,
+                        ig_md.l4_dst_port,
+                        // header PVs, not metadata — same model hazard as the
+                        // ecmp selector key (see ecmp_group_table comment)
+                        hdr.roce_bth.psn[15:0],
+                        hdr.ipv4.identification
+                    });
+                    ig_md.lb_backend_index = (bit<16>)mhash[15:0];
+                    lb_backend_table.apply();
+                } else {
+                    ipv4_route.apply();
+                    if (ig_md.ecmp_select == 1w1) {
+                        if (ecmp_group_table.apply().hit) {
+                            // Spine dispersion log: count this packet on the
+                            // member (spine) the selector just chose. Flow
+                            // index = (src_last_octet ++ dst_last_octet) &
+                            // 0xFFF — pure concat+mask, same SALU complexity
+                            // class as flow_reg_idx. The branch reads only PHV
+                            // (egress port), never a stateful result, so it
+                            // fits Tofino-1's dependency rules.
+                            ig_md.disp_idx = (bit<12>)(
+                                (hdr.ipv4.src_addr[7:0] ++
+                                 hdr.ipv4.dst_addr[7:0]) & 16w0x0FFF);
+                            if (ig_tm_md.ucast_egress_port == 6) {
+                                disp_sp1_inc.execute(ig_md.disp_idx);
+                            } else {
+                                disp_sp2_inc.execute(ig_md.disp_idx);
+                            }
                         }
                     }
                 }

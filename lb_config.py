@@ -299,7 +299,7 @@ def cmd_list(args):
             k = key.to_dict()
             d = data.to_dict()
             print("  member=%d  %s  port=%d" % (
-                k["$ACTION_MEMBER_ID"], d["nhop_dst_mac"], d["nhop_port"]))
+                k["$ACTION_MEMBER_ID"]["value"], d["nhop_dst_mac"], d["nhop_port"]))
     except Exception:
         print("  (empty)")
 
@@ -324,11 +324,11 @@ def cmd_list(args):
         for data, key in route_tbl.entry_get(target, [], flags={"from_hw": False}):
             k = key.to_dict()
             d = data.to_dict()
-            action = d.get("action", "")
+            action = d.get("action_name", "")
             if "route" in action.lower():
-                print("  %s -> direct  port=%d" % (k["hdr.ipv4.dst_addr"], d.get("port", "?")))
+                print("  %s -> direct  port=%d" % (k["hdr.ipv4.dst_addr"]["value"], d.get("port", "?")))
             else:
-                print("  %s -> ecmp group %d" % (k["hdr.ipv4.dst_addr"], d.get("group_id", "?")))
+                print("  %s -> ecmp group %d" % (k["hdr.ipv4.dst_addr"]["value"], d.get("group_id", "?")))
     except Exception:
         print("  (empty)")
 
@@ -368,7 +368,8 @@ def cmd_clear(args):
         pass
 
     # Reset reorder registers
-    for reg_name, size in [("SwitchIngress.reorder_ctrl_reg", 4096)]:
+    for reg_name, size in [("SwitchIngress.reorder_seen_reg", 4096),
+                           ("SwitchIngress.reorder_expected_reg", 4096)]:
         try:
             reg = bfrt_info.table_get(reg_name)
             for i in range(size):
@@ -415,7 +416,8 @@ def cmd_disable_reorder(args):
 def cmd_clear_reorder(args):
     interface, bfrt_info, target = connect()
 
-    for reg_name, size in [("SwitchIngress.reorder_ctrl_reg", 4096)]:
+    for reg_name, size in [("SwitchIngress.reorder_seen_reg", 4096),
+                           ("SwitchIngress.reorder_expected_reg", 4096)]:
         try:
             reg = bfrt_info.table_get(reg_name)
             for i in range(size):

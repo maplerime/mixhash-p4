@@ -1,69 +1,75 @@
 version:
   version: 1.0.1
-  run_id: "c530f1bf354745e2"
+  run_id: "6bb5e986b0f347b5"
   target: Tofino
 error_mode: propagate_and_disable
 phv ingress:
   ig_intr_md.ingress_port: {  stage 0..3: H12(0..8) } 
   hdr.reorder_digest.magic: H11
   hdr.reorder_digest.flow_hash: H3
-  hdr.reorder_digest.seq: H6
+  hdr.reorder_digest.seq: H7
   hdr.reorder_digest.recirc_count: B1
   hdr.reorder_digest.reserved: B6
   hdr.ethernet.dst_addr.0-31: W4
   hdr.ethernet.dst_addr.32-47: H9
   hdr.ethernet.src_addr.0-31: W5
   hdr.ethernet.src_addr.32-47: H10
-  hdr.ethernet.ether_type: TH3
+  hdr.ethernet.ether_type: TH5
   hdr.ipv4.version: TW0(28..31)
   hdr.ipv4.ihl: TW0(24..27)
   hdr.ipv4.diffserv: TW0(16..23)
   hdr.ipv4.total_len: TW0(0..15)
-  hdr.ipv4.identification: H5
-  hdr.ipv4.flags: TH0(13..15)
-  hdr.ipv4.frag_offset: TH0(0..12)
+  hdr.ipv4.identification: H6
+  hdr.ipv4.flags: TH1(13..15)
+  hdr.ipv4.frag_offset: TH1(0..12)
   hdr.ipv4.ttl: B2
   hdr.ipv4.protocol: TB0
-  hdr.ipv4.hdr_checksum: TH4
+  hdr.ipv4.hdr_checksum: TW3(0..15)
   hdr.ipv4.src_addr: W0
   hdr.ipv4.dst_addr: W6
   hdr.tcp.src_port: W2(16..31)
   hdr.tcp.dst_port: W2(0..15)
-  hdr.tcp.seq_no.0-15: TH1
-  hdr.tcp.seq_no.16-31: TH2
-  hdr.tcp.ack_no: TW3
-  hdr.tcp.data_offset: TW1(28..31)
-  hdr.tcp.res: TW1(24..27)
-  hdr.tcp.flags: TW1(16..23)
-  hdr.tcp.window: TW1(0..15)
-  hdr.tcp.checksum: TW2(16..31)
-  hdr.tcp.urgent_ptr: TW2(0..15)
+  hdr.tcp.seq_no.0-15: TH3
+  hdr.tcp.seq_no.16-31: TH4
+  hdr.tcp.ack_no: TW2
+  hdr.tcp.data_offset: TH2(12..15)
+  hdr.tcp.res: TH2(8..11)
+  hdr.tcp.flags: TH2(0..7)
+  hdr.tcp.window: TH0
+  hdr.tcp.checksum: TW1(16..31)
+  hdr.tcp.urgent_ptr: TW1(0..15)
   hdr.udp.src_port: W2(16..31)
   hdr.udp.dst_port: W2(0..15)
-  hdr.udp.hdr_length: TW1(16..31)
-  hdr.udp.checksum: TW1(0..15)
+  hdr.udp.hdr_length: TW2(16..31)
+  hdr.udp.checksum: TW2(0..15)
+  hdr.roce_bth.opcode: TH3(8..15)
+  hdr.roce_bth.se_m_pad_tver: TH3(0..7)
+  hdr.roce_bth.pkey: TH2
+  hdr.roce_bth.reserved8: TW1(24..31)
+  hdr.roce_bth.dest_qp: TW1(0..23)
+  hdr.roce_bth.a_reserved7: TH0(8..15)
+  hdr.roce_bth.psn.0-15: H4
+  hdr.roce_bth.psn.16-23: TH0(0..7)
   hdr.arp.hw_type: TW0(16..31)
   hdr.arp.proto_type: TW0(0..15)
   hdr.arp.hw_addr_len: TH0(8..15)
   hdr.arp.proto_addr_len: TH0(0..7)
-  hdr.arp.opcode: H5
-  hdr.arp_ipv4.sender_hw_addr.0-31: TW3
-  hdr.arp_ipv4.sender_hw_addr.32-47: TH2
+  hdr.arp.opcode: H4
+  hdr.arp_ipv4.sender_hw_addr.0-15: TH1
+  hdr.arp_ipv4.sender_hw_addr.16-31: TH2
+  hdr.arp_ipv4.sender_hw_addr.32-47: TH4
   hdr.arp_ipv4.sender_proto_addr: W0
   hdr.arp_ipv4.target_hw_addr.0-31: TW2
-  hdr.arp_ipv4.target_hw_addr.32-47: TH1
+  hdr.arp_ipv4.target_hw_addr.32-47: TH3
   hdr.arp_ipv4.target_proto_addr: TW1
   ig_md.routed: {  stage 4..8: B5(4) } 
   ig_md.ingress_port: {  stage 1..12: H13(0..8) } 
   ig_md.learn_src_ip: {  stage 1..12: W1 } 
-  ig_md.l4_src_port: {  stage 2..5: W3(16..31) } 
-  ig_md.l4_dst_port: {  stage 2..5: W3(0..15) } 
-  ig_md.ecmp_group_id.0-7: {  stage 5: B0 } 
-  ig_md.ecmp_group_id.8-15: {  stage 5: H12(0..7) } 
-  ig_md.ecmp_select: {  stage 5: H7(3) } 
-  ig_md.ecmp_counter.0-2: {  stage 4..5: H7(0..2) } 
-  ig_md.ecmp_counter.3-15: {  stage 4..5: H8(0..12) } 
-  ig_md.lb_hit: {  stage 3: H7(4) } 
+  ig_md.l4_src_port: {  stage 2..4: W3(16..31) } 
+  ig_md.l4_dst_port: {  stage 2..4: W3(0..15) } 
+  ig_md.ecmp_group_id: {  stage 4: H8 } 
+  ig_md.ecmp_select: {  stage 4: B0(0) } 
+  ig_md.lb_hit: {  stage 3: B0(1) } 
   ig_md.reorder_enabled: {  stage 1: B5(5) } 
   ig_intr_md_for_dprsr.drop_ctl: {  stage 1..12: B5(0..2) } 
   ig_intr_md_for_dprsr.digest_type: {  stage 1..12: B3(0..2) } 
@@ -72,26 +78,27 @@ phv ingress:
   ig_intr_md_for_tm.bypass_egress: {  stage 10..12: B5(3) } 
   ig_intr_md_for_tm.mcast_grp_a: {  stage 1..12: H0 } 
   do_reorder_0: {  stage 1..2: B4(0) } 
-  seq_0: {  stage 3..7: H7 } 
+  seq_0: {  stage 3..7: H8 } 
   rhash_0: {  stage 3..7: H2 } 
   recirc_count_0: {  stage 3..7: B0 } 
-  old_ctrl_0.0-15: {  stage 7: H4 } 
-  old_ctrl_0.16-31: {  stage 7: H8 } 
-  pkt_counter_0: {  stage 3: H4 } 
-  mhash_0.0-7: {  stage 4: B0 } 
-  mhash_0.8-31: {  stage 4: W7(0..23) } 
+  seen_0: {  stage 4..6: H14 } 
+  old_expected_0: {  stage 7: H5 } 
+  pkt_counter_0: {  stage 3: H5 } 
+  mhash_0.0-15: {  stage 5: H8 } 
+  mhash_0.16-31: {  stage 5: H14 } 
   $tmp2: {  stage 12: H2(0..9) } 
   hdr.reorder_digest.$valid: B7(0)
   hdr.ethernet.$valid: B7(1)
   hdr.ipv4.$valid: B7(2)
   hdr.tcp.$valid: B7(3)
   hdr.udp.$valid: B7(4)
-  hdr.arp.$valid: B7(5)
-  hdr.arp_ipv4.$valid: B7(6)
+  hdr.roce_bth.$valid: B7(5)
+  hdr.arp.$valid: B7(6)
+  hdr.arp_ipv4.$valid: B7(7)
 phv egress:
 parser ingress:
   start: $init_match
-  init_zero: [ B5, H13, W1, W3, B0, H7, H8, B4, H2, H4, W7, B7 ]
+  init_zero: [ B5, H13, W1, W3, H8, B0, B4, H2, H14, H5, B7 ]
   bitwise_or: [ B7 ]
   hdr_len_adj: 16
   states:
@@ -117,7 +124,7 @@ parser ingress:
       *:
         0..1: H11  # ingress::hdr.reorder_digest.magic
         2..3: H3  # ingress::hdr.reorder_digest.flow_hash
-        4..5: H6  # ingress::hdr.reorder_digest.seq
+        4..5: H7  # ingress::hdr.reorder_digest.seq
         6: B1  # ingress::hdr.reorder_digest.recirc_count
         7: B6  # ingress::hdr.reorder_digest.reserved
         B7: 1  # value 1 -> B7 bit[0]: ingress::hdr.reorder_digest.$valid
@@ -132,7 +139,7 @@ parser ingress:
         2..5: W4  # ingress::hdr.ethernet.dst_addr[31:0].0-31
         6..7: H10  # ingress::hdr.ethernet.src_addr[47:32].32-47
         8..11: W5  # ingress::hdr.ethernet.src_addr[31:0].0-31
-        12..13: TH3  # ingress::hdr.ethernet.ether_type
+        12..13: TH5  # ingress::hdr.ethernet.ether_type
         B7: 2  # value 1 -> B7 bit[1]: ingress::hdr.ethernet.$valid
         load: { byte1 : 23 }
         shift: 14
@@ -143,7 +150,7 @@ parser ingress:
         2..5: W4  # ingress::hdr.ethernet.dst_addr[31:0].0-31
         6..7: H10  # ingress::hdr.ethernet.src_addr[47:32].32-47
         8..11: W5  # ingress::hdr.ethernet.src_addr[31:0].0-31
-        12..13: TH3  # ingress::hdr.ethernet.ether_type
+        12..13: TH5  # ingress::hdr.ethernet.ether_type
         B7: 2  # value 1 -> B7 bit[1]: ingress::hdr.ethernet.$valid
         load: { half : 20..21 }
         shift: 14
@@ -154,7 +161,7 @@ parser ingress:
         2..5: W4  # ingress::hdr.ethernet.dst_addr[31:0].0-31
         6..7: H10  # ingress::hdr.ethernet.src_addr[47:32].32-47
         8..11: W5  # ingress::hdr.ethernet.src_addr[31:0].0-31
-        12..13: TH3  # ingress::hdr.ethernet.ether_type
+        12..13: TH5  # ingress::hdr.ethernet.ether_type
         B7: 2  # value 1 -> B7 bit[1]: ingress::hdr.ethernet.$valid
         shift: 14
         buf_req: 14
@@ -167,13 +174,13 @@ parser ingress:
             # - bit[4..7] -> TW0 bit[27..24]: ingress::hdr.ipv4.ihl
             # - bit[8..15] -> TW0 bit[23..16]: ingress::hdr.ipv4.diffserv
             # - bit[16..31] -> TW0 bit[15..0]: ingress::hdr.ipv4.total_len
-        4..5: H5  # ingress::hdr.ipv4.identification
-        6..7: TH0
-            # - bit[48..50] -> TH0 bit[15..13]: ingress::hdr.ipv4.flags
-            # - bit[51..63] -> TH0 bit[12..0]: ingress::hdr.ipv4.frag_offset
+        4..5: H6  # ingress::hdr.ipv4.identification
+        6..7: TH1
+            # - bit[48..50] -> TH1 bit[15..13]: ingress::hdr.ipv4.flags
+            # - bit[51..63] -> TH1 bit[12..0]: ingress::hdr.ipv4.frag_offset
         8: B2  # ingress::hdr.ipv4.ttl
+        8..11: TW3  # bit[80..95] -> TW3 bit[15..0]: ingress::hdr.ipv4.hdr_checksum
         9: TB0  # ingress::hdr.ipv4.protocol
-        10..11: TH4  # ingress::hdr.ipv4.hdr_checksum
         12..15: W0  # ingress::hdr.ipv4.src_addr
         16..19: W6  # ingress::hdr.ipv4.dst_addr
         B7: 4  # value 1 -> B7 bit[2]: ingress::hdr.ipv4.$valid
@@ -186,18 +193,19 @@ parser ingress:
             # - bit[4..7] -> TW0 bit[27..24]: ingress::hdr.ipv4.ihl
             # - bit[8..15] -> TW0 bit[23..16]: ingress::hdr.ipv4.diffserv
             # - bit[16..31] -> TW0 bit[15..0]: ingress::hdr.ipv4.total_len
-        4..5: H5  # ingress::hdr.ipv4.identification
-        6..7: TH0
-            # - bit[48..50] -> TH0 bit[15..13]: ingress::hdr.ipv4.flags
-            # - bit[51..63] -> TH0 bit[12..0]: ingress::hdr.ipv4.frag_offset
+        4..5: H6  # ingress::hdr.ipv4.identification
+        6..7: TH1
+            # - bit[48..50] -> TH1 bit[15..13]: ingress::hdr.ipv4.flags
+            # - bit[51..63] -> TH1 bit[12..0]: ingress::hdr.ipv4.frag_offset
         8: B2  # ingress::hdr.ipv4.ttl
+        8..11: TW3  # bit[80..95] -> TW3 bit[15..0]: ingress::hdr.ipv4.hdr_checksum
         9: TB0  # ingress::hdr.ipv4.protocol
-        10..11: TH4  # ingress::hdr.ipv4.hdr_checksum
         12..15: W0  # ingress::hdr.ipv4.src_addr
         16..19: W6  # ingress::hdr.ipv4.dst_addr
         B7: 4  # value 1 -> B7 bit[2]: ingress::hdr.ipv4.$valid
+        load: { half : 22..23 }
         shift: 20
-        buf_req: 20
+        buf_req: 24
         next: parse_udp
       0x**:
         0..3: TW0
@@ -205,13 +213,13 @@ parser ingress:
             # - bit[4..7] -> TW0 bit[27..24]: ingress::hdr.ipv4.ihl
             # - bit[8..15] -> TW0 bit[23..16]: ingress::hdr.ipv4.diffserv
             # - bit[16..31] -> TW0 bit[15..0]: ingress::hdr.ipv4.total_len
-        4..5: H5  # ingress::hdr.ipv4.identification
-        6..7: TH0
-            # - bit[48..50] -> TH0 bit[15..13]: ingress::hdr.ipv4.flags
-            # - bit[51..63] -> TH0 bit[12..0]: ingress::hdr.ipv4.frag_offset
+        4..5: H6  # ingress::hdr.ipv4.identification
+        6..7: TH1
+            # - bit[48..50] -> TH1 bit[15..13]: ingress::hdr.ipv4.flags
+            # - bit[51..63] -> TH1 bit[12..0]: ingress::hdr.ipv4.frag_offset
         8: B2  # ingress::hdr.ipv4.ttl
+        8..11: TW3  # bit[80..95] -> TW3 bit[15..0]: ingress::hdr.ipv4.hdr_checksum
         9: TB0  # ingress::hdr.ipv4.protocol
-        10..11: TH4  # ingress::hdr.ipv4.hdr_checksum
         12..15: W0  # ingress::hdr.ipv4.src_addr
         16..19: W6  # ingress::hdr.ipv4.dst_addr
         B7: 4  # value 1 -> B7 bit[2]: ingress::hdr.ipv4.$valid
@@ -223,32 +231,61 @@ parser ingress:
         0..3: W2
             # - bit[0..15] -> W2 bit[31..16]: ingress::hdr.tcp.src_port
             # - bit[16..31] -> W2 bit[15..0]: ingress::hdr.tcp.dst_port
-        4..5: TH2  # ingress::hdr.tcp.seq_no[31:16].16-31
-        6..7: TH1  # ingress::hdr.tcp.seq_no[15:0].0-15
-        8..11: TW3  # ingress::hdr.tcp.ack_no
-        12..15: TW1
-            # - bit[96..99] -> TW1 bit[31..28]: ingress::hdr.tcp.data_offset
-            # - bit[100..103] -> TW1 bit[27..24]: ingress::hdr.tcp.res
-            # - bit[104..111] -> TW1 bit[23..16]: ingress::hdr.tcp.flags
-            # - bit[112..127] -> TW1 bit[15..0]: ingress::hdr.tcp.window
-        16..19: TW2
-            # - bit[128..143] -> TW2 bit[31..16]: ingress::hdr.tcp.checksum
-            # - bit[144..159] -> TW2 bit[15..0]: ingress::hdr.tcp.urgent_ptr
+        4..5: TH4  # ingress::hdr.tcp.seq_no[31:16].16-31
+        6..7: TH3  # ingress::hdr.tcp.seq_no[15:0].0-15
+        8..11: TW2  # ingress::hdr.tcp.ack_no
+        12..13: TH2
+            # - bit[96..99] -> TH2 bit[15..12]: ingress::hdr.tcp.data_offset
+            # - bit[100..103] -> TH2 bit[11..8]: ingress::hdr.tcp.res
+            # - bit[104..111] -> TH2 bit[7..0]: ingress::hdr.tcp.flags
+        14..15: TH0  # ingress::hdr.tcp.window
+        16..19: TW1
+            # - bit[128..143] -> TW1 bit[31..16]: ingress::hdr.tcp.checksum
+            # - bit[144..159] -> TW1 bit[15..0]: ingress::hdr.tcp.urgent_ptr
         B7: 8  # value 1 -> B7 bit[3]: ingress::hdr.tcp.$valid
         shift: 20
         buf_req: 20
         next: end
     parse_udp:
-      *:
+      match: [ half ]
+      0x12b7:
         0..3: W2
             # - bit[0..15] -> W2 bit[31..16]: ingress::hdr.udp.src_port
             # - bit[16..31] -> W2 bit[15..0]: ingress::hdr.udp.dst_port
-        4..7: TW1
-            # - bit[32..47] -> TW1 bit[31..16]: ingress::hdr.udp.hdr_length
-            # - bit[48..63] -> TW1 bit[15..0]: ingress::hdr.udp.checksum
+        4..7: TW2
+            # - bit[32..47] -> TW2 bit[31..16]: ingress::hdr.udp.hdr_length
+            # - bit[48..63] -> TW2 bit[15..0]: ingress::hdr.udp.checksum
         B7: 16  # value 1 -> B7 bit[4]: ingress::hdr.udp.$valid
         shift: 8
         buf_req: 8
+        next: parse_roce_bth
+      0x****:
+        0..3: W2
+            # - bit[0..15] -> W2 bit[31..16]: ingress::hdr.udp.src_port
+            # - bit[16..31] -> W2 bit[15..0]: ingress::hdr.udp.dst_port
+        4..7: TW2
+            # - bit[32..47] -> TW2 bit[31..16]: ingress::hdr.udp.hdr_length
+            # - bit[48..63] -> TW2 bit[15..0]: ingress::hdr.udp.checksum
+        B7: 16  # value 1 -> B7 bit[4]: ingress::hdr.udp.$valid
+        shift: 8
+        buf_req: 8
+        next: end
+    parse_roce_bth:
+      *:
+        0..1: TH3
+            # - bit[0..7] -> TH3 bit[15..8]: ingress::hdr.roce_bth.opcode
+            # - bit[8..15] -> TH3 bit[7..0]: ingress::hdr.roce_bth.se_m_pad_tver
+        2..3: TH2  # ingress::hdr.roce_bth.pkey
+        4..7: TW1
+            # - bit[32..39] -> TW1 bit[31..24]: ingress::hdr.roce_bth.reserved8
+            # - bit[40..63] -> TW1 bit[23..0]: ingress::hdr.roce_bth.dest_qp
+        8..9: TH0
+            # - bit[64..71] -> TH0 bit[15..8]: ingress::hdr.roce_bth.a_reserved7
+            # - bit[72..79] -> TH0 bit[7..0]: ingress::hdr.roce_bth.psn[23:16].16-23
+        10..11: H4  # ingress::hdr.roce_bth.psn[15:0].0-15
+        B7: 32  # value 1 -> B7 bit[5]: ingress::hdr.roce_bth.$valid
+        shift: 12
+        buf_req: 12
         next: end
     parse_arp:
       match: [ half ]
@@ -259,8 +296,8 @@ parser ingress:
         4..5: TH0
             # - bit[32..39] -> TH0 bit[15..8]: ingress::hdr.arp.hw_addr_len
             # - bit[40..47] -> TH0 bit[7..0]: ingress::hdr.arp.proto_addr_len
-        6..7: H5  # ingress::hdr.arp.opcode
-        B7: 32  # value 1 -> B7 bit[5]: ingress::hdr.arp.$valid
+        6..7: H4  # ingress::hdr.arp.opcode
+        B7: 64  # value 1 -> B7 bit[6]: ingress::hdr.arp.$valid
         shift: 8
         buf_req: 8
         next: parse_arp_ipv4
@@ -271,8 +308,8 @@ parser ingress:
         4..5: TH0
             # - bit[32..39] -> TH0 bit[15..8]: ingress::hdr.arp.hw_addr_len
             # - bit[40..47] -> TH0 bit[7..0]: ingress::hdr.arp.proto_addr_len
-        6..7: H5  # ingress::hdr.arp.opcode
-        B7: 32  # value 1 -> B7 bit[5]: ingress::hdr.arp.$valid
+        6..7: H4  # ingress::hdr.arp.opcode
+        B7: 64  # value 1 -> B7 bit[6]: ingress::hdr.arp.$valid
         shift: 8
         buf_req: 8
         next: parse_arp_ipv4
@@ -283,20 +320,21 @@ parser ingress:
         4..5: TH0
             # - bit[32..39] -> TH0 bit[15..8]: ingress::hdr.arp.hw_addr_len
             # - bit[40..47] -> TH0 bit[7..0]: ingress::hdr.arp.proto_addr_len
-        6..7: H5  # ingress::hdr.arp.opcode
-        B7: 32  # value 1 -> B7 bit[5]: ingress::hdr.arp.$valid
+        6..7: H4  # ingress::hdr.arp.opcode
+        B7: 64  # value 1 -> B7 bit[6]: ingress::hdr.arp.$valid
         shift: 8
         buf_req: 8
         next: end
     parse_arp_ipv4:
       *:
-        0..1: TH2  # ingress::hdr.arp_ipv4.sender_hw_addr[47:32].32-47
-        2..5: TW3  # ingress::hdr.arp_ipv4.sender_hw_addr[31:0].0-31
+        0..1: TH4  # ingress::hdr.arp_ipv4.sender_hw_addr[47:32].32-47
+        2..3: TH2  # ingress::hdr.arp_ipv4.sender_hw_addr[31:16].16-31
+        4..5: TH1  # ingress::hdr.arp_ipv4.sender_hw_addr[15:0].0-15
         6..9: W0  # ingress::hdr.arp_ipv4.sender_proto_addr
-        10..11: TH1  # ingress::hdr.arp_ipv4.target_hw_addr[47:32].32-47
+        10..11: TH3  # ingress::hdr.arp_ipv4.target_hw_addr[47:32].32-47
         12..15: TW2  # ingress::hdr.arp_ipv4.target_hw_addr[31:0].0-31
         16..19: TW1  # ingress::hdr.arp_ipv4.target_proto_addr
-        B7: 64  # value 1 -> B7 bit[6]: ingress::hdr.arp_ipv4.$valid
+        B7: 128  # value 1 -> B7 bit[7]: ingress::hdr.arp_ipv4.$valid
         shift: 20
         buf_req: 20
         next: end
@@ -304,21 +342,21 @@ deparser ingress:
   dictionary:
     H11: B7(0)  # ingress::hdr.reorder_digest.magic if ingress::hdr.reorder_digest.$valid
     H3: B7(0)  # ingress::hdr.reorder_digest.flow_hash if ingress::hdr.reorder_digest.$valid
-    H6: B7(0)  # ingress::hdr.reorder_digest.seq if ingress::hdr.reorder_digest.$valid
+    H7: B7(0)  # ingress::hdr.reorder_digest.seq if ingress::hdr.reorder_digest.$valid
     B1: B7(0)  # ingress::hdr.reorder_digest.recirc_count if ingress::hdr.reorder_digest.$valid
     B6: B7(0)  # ingress::hdr.reorder_digest.reserved if ingress::hdr.reorder_digest.$valid
     H9: B7(1)  # ingress::hdr.ethernet.dst_addr.32-47 if ingress::hdr.ethernet.$valid
     W4: B7(1)  # ingress::hdr.ethernet.dst_addr.0-31 if ingress::hdr.ethernet.$valid
     H10: B7(1)  # ingress::hdr.ethernet.src_addr.32-47 if ingress::hdr.ethernet.$valid
     W5: B7(1)  # ingress::hdr.ethernet.src_addr.0-31 if ingress::hdr.ethernet.$valid
-    TH3: B7(1)  # ingress::hdr.ethernet.ether_type if ingress::hdr.ethernet.$valid
+    TH5: B7(1)  # ingress::hdr.ethernet.ether_type if ingress::hdr.ethernet.$valid
     TW0: B7(2)
         # - bit[31..28]: ingress::hdr.ipv4.version if ingress::hdr.ipv4.$valid
         # - bit[27..24]: ingress::hdr.ipv4.ihl if ingress::hdr.ipv4.$valid
         # - bit[23..16]: ingress::hdr.ipv4.diffserv if ingress::hdr.ipv4.$valid
         # - bit[15..0]: ingress::hdr.ipv4.total_len if ingress::hdr.ipv4.$valid
-    H5: B7(2)  # ingress::hdr.ipv4.identification if ingress::hdr.ipv4.$valid
-    TH0: B7(2)
+    H6: B7(2)  # ingress::hdr.ipv4.identification if ingress::hdr.ipv4.$valid
+    TH1: B7(2)
         # - bit[15..13]: ingress::hdr.ipv4.flags if ingress::hdr.ipv4.$valid
         # - bit[12..0]: ingress::hdr.ipv4.frag_offset if ingress::hdr.ipv4.$valid
     B2: B7(2)  # ingress::hdr.ipv4.ttl if ingress::hdr.ipv4.$valid
@@ -329,44 +367,56 @@ deparser ingress:
     W2: B7(3)
         # - bit[31..16]: ingress::hdr.tcp.src_port if ingress::hdr.tcp.$valid
         # - bit[15..0]: ingress::hdr.tcp.dst_port if ingress::hdr.tcp.$valid
-    TH2: B7(3)  # ingress::hdr.tcp.seq_no.16-31 if ingress::hdr.tcp.$valid
-    TH1: B7(3)  # ingress::hdr.tcp.seq_no.0-15 if ingress::hdr.tcp.$valid
-    TW3: B7(3)  # ingress::hdr.tcp.ack_no if ingress::hdr.tcp.$valid
+    TH4: B7(3)  # ingress::hdr.tcp.seq_no.16-31 if ingress::hdr.tcp.$valid
+    TH3: B7(3)  # ingress::hdr.tcp.seq_no.0-15 if ingress::hdr.tcp.$valid
+    TW2: B7(3)  # ingress::hdr.tcp.ack_no if ingress::hdr.tcp.$valid
+    TH2: B7(3)
+        # - bit[15..12]: ingress::hdr.tcp.data_offset if ingress::hdr.tcp.$valid
+        # - bit[11..8]: ingress::hdr.tcp.res if ingress::hdr.tcp.$valid
+        # - bit[7..0]: ingress::hdr.tcp.flags if ingress::hdr.tcp.$valid
+    TH0: B7(3)  # ingress::hdr.tcp.window if ingress::hdr.tcp.$valid
     TW1: B7(3)
-        # - bit[31..28]: ingress::hdr.tcp.data_offset if ingress::hdr.tcp.$valid
-        # - bit[27..24]: ingress::hdr.tcp.res if ingress::hdr.tcp.$valid
-        # - bit[23..16]: ingress::hdr.tcp.flags if ingress::hdr.tcp.$valid
-        # - bit[15..0]: ingress::hdr.tcp.window if ingress::hdr.tcp.$valid
-    TW2: B7(3)
         # - bit[31..16]: ingress::hdr.tcp.checksum if ingress::hdr.tcp.$valid
         # - bit[15..0]: ingress::hdr.tcp.urgent_ptr if ingress::hdr.tcp.$valid
     W2: B7(4)
         # - bit[31..16]: ingress::hdr.udp.src_port if ingress::hdr.udp.$valid
         # - bit[15..0]: ingress::hdr.udp.dst_port if ingress::hdr.udp.$valid
-    TW1: B7(4)
+    TW2: B7(4)
         # - bit[31..16]: ingress::hdr.udp.hdr_length if ingress::hdr.udp.$valid
         # - bit[15..0]: ingress::hdr.udp.checksum if ingress::hdr.udp.$valid
-    TW0: B7(5)
+    TH3: B7(5)
+        # - bit[15..8]: ingress::hdr.roce_bth.opcode if ingress::hdr.roce_bth.$valid
+        # - bit[7..0]: ingress::hdr.roce_bth.se_m_pad_tver if ingress::hdr.roce_bth.$valid
+    TH2: B7(5)  # ingress::hdr.roce_bth.pkey if ingress::hdr.roce_bth.$valid
+    TW1: B7(5)
+        # - bit[31..24]: ingress::hdr.roce_bth.reserved8 if ingress::hdr.roce_bth.$valid
+        # - bit[23..0]: ingress::hdr.roce_bth.dest_qp if ingress::hdr.roce_bth.$valid
+    TH0: B7(5)
+        # - bit[15..8]: ingress::hdr.roce_bth.a_reserved7 if ingress::hdr.roce_bth.$valid
+        # - bit[7..0]: ingress::hdr.roce_bth.psn.16-23 if ingress::hdr.roce_bth.$valid
+    H4: B7(5)  # ingress::hdr.roce_bth.psn.0-15 if ingress::hdr.roce_bth.$valid
+    TW0: B7(6)
         # - bit[31..16]: ingress::hdr.arp.hw_type if ingress::hdr.arp.$valid
         # - bit[15..0]: ingress::hdr.arp.proto_type if ingress::hdr.arp.$valid
-    TH0: B7(5)
+    TH0: B7(6)
         # - bit[15..8]: ingress::hdr.arp.hw_addr_len if ingress::hdr.arp.$valid
         # - bit[7..0]: ingress::hdr.arp.proto_addr_len if ingress::hdr.arp.$valid
-    H5: B7(5)  # ingress::hdr.arp.opcode if ingress::hdr.arp.$valid
-    TH2: B7(6)  # ingress::hdr.arp_ipv4.sender_hw_addr.32-47 if ingress::hdr.arp_ipv4.$valid
-    TW3: B7(6)  # ingress::hdr.arp_ipv4.sender_hw_addr.0-31 if ingress::hdr.arp_ipv4.$valid
-    W0: B7(6)  # ingress::hdr.arp_ipv4.sender_proto_addr if ingress::hdr.arp_ipv4.$valid
-    TH1: B7(6)  # ingress::hdr.arp_ipv4.target_hw_addr.32-47 if ingress::hdr.arp_ipv4.$valid
-    TW2: B7(6)  # ingress::hdr.arp_ipv4.target_hw_addr.0-31 if ingress::hdr.arp_ipv4.$valid
-    TW1: B7(6)  # ingress::hdr.arp_ipv4.target_proto_addr if ingress::hdr.arp_ipv4.$valid
+    H4: B7(6)  # ingress::hdr.arp.opcode if ingress::hdr.arp.$valid
+    TH4: B7(7)  # ingress::hdr.arp_ipv4.sender_hw_addr.32-47 if ingress::hdr.arp_ipv4.$valid
+    TH2: B7(7)  # ingress::hdr.arp_ipv4.sender_hw_addr.16-31 if ingress::hdr.arp_ipv4.$valid
+    TH1: B7(7)  # ingress::hdr.arp_ipv4.sender_hw_addr.0-15 if ingress::hdr.arp_ipv4.$valid
+    W0: B7(7)  # ingress::hdr.arp_ipv4.sender_proto_addr if ingress::hdr.arp_ipv4.$valid
+    TH3: B7(7)  # ingress::hdr.arp_ipv4.target_hw_addr.32-47 if ingress::hdr.arp_ipv4.$valid
+    TW2: B7(7)  # ingress::hdr.arp_ipv4.target_hw_addr.0-31 if ingress::hdr.arp_ipv4.$valid
+    TW1: B7(7)  # ingress::hdr.arp_ipv4.target_proto_addr if ingress::hdr.arp_ipv4.$valid
   partial_checksum 0: 
     - TW0: { }
         # - bit[31..28]: ingress::hdr.ipv4.version
         # - bit[27..24]: ingress::hdr.ipv4.ihl
         # - bit[23..16]: ingress::hdr.ipv4.diffserv
         # - bit[15..0]: ingress::hdr.ipv4.total_len
-    - H5: { }  # ingress::hdr.ipv4.identification
-    - TH0: { }
+    - H6: { }  # ingress::hdr.ipv4.identification
+    - TH1: { }
         # - bit[15..13]: ingress::hdr.ipv4.flags
         # - bit[12..0]: ingress::hdr.ipv4.frag_offset
     - B2: { swap: 1 }  # ingress::hdr.ipv4.ttl
@@ -426,111 +476,111 @@ stage 0 ingress:
       set_port_metadata:
       - handle: 0x20000000
       - p4_param_order: { ig_intr_md: 64 } 
-  ternary_match tbl_tna_lb_mixhash401 0:
-    p4: { name: tbl_tna_lb_mixhash401, hidden: true }
-    hit: [  tbl_tna_lb_mixhash408 ]
-    miss:  tbl_tna_lb_mixhash408
-    indirect: tbl_tna_lb_mixhash401$tind
-  ternary_indirect tbl_tna_lb_mixhash401$tind:
-    row: 1
-    bus: 1
+  ternary_match tbl_tna_lb_mixhash493 0:
+    p4: { name: tbl_tna_lb_mixhash493, hidden: true }
+    hit: [  tbl_tna_lb_mixhash500 ]
+    miss:  tbl_tna_lb_mixhash500
+    indirect: tbl_tna_lb_mixhash493$tind
+  ternary_indirect tbl_tna_lb_mixhash493$tind:
+    row: 2
+    bus: 0
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash401$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash493$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash401(0, 1):
+      tna_lb_mixhash493(0, 1):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
       - handle: 0x20000001
       - next_table: 0
       - set ig_md.ingress_port, ig_intr_md.ingress_port
-    default_action: tna_lb_mixhash401
-  ternary_match tbl_tna_lb_mixhash408 1:
-    p4: { name: tbl_tna_lb_mixhash408, hidden: true }
+    default_action: tna_lb_mixhash493
+  ternary_match tbl_tna_lb_mixhash500 1:
+    p4: { name: tbl_tna_lb_mixhash500, hidden: true }
     gateway:
-      name: cond-17
+      name: cond-19
       input_xbar:
-        exact group 0: { 5: hdr.arp.$valid }
-      row: 0
-      bus: 1
-      unit: 1
-      match: { 5: hdr.arp.$valid }
+        exact group 0: { 6: hdr.arp.$valid }
+      row: 1
+      bus: 0
+      unit: 0
+      match: { 6: hdr.arp.$valid }
       0x1:
         run_table: true
       miss:
-        next:  tbl_tna_lb_mixhash432
+        next:  tbl_tna_lb_mixhash524
       condition: 
         expression: "(hdr.arp.$valid == 1)"
-        true:  tbl_tna_lb_mixhash408
-        false:  tbl_tna_lb_mixhash432
-    hit: [  tbl_tna_lb_mixhash411 ]
-    miss:  tbl_tna_lb_mixhash411
-    indirect: tbl_tna_lb_mixhash408$tind
-  ternary_indirect tbl_tna_lb_mixhash408$tind:
+        true:  tbl_tna_lb_mixhash500
+        false:  tbl_tna_lb_mixhash524
+    hit: [  tbl_tna_lb_mixhash503 ]
+    miss:  tbl_tna_lb_mixhash503
+    indirect: tbl_tna_lb_mixhash500$tind
+  ternary_indirect tbl_tna_lb_mixhash500$tind:
     row: 1
-    bus: 0
+    bus: 1
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash408$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash500$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash408(1, 2):
+      tna_lb_mixhash500(1, 2):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
       - handle: 0x20000002
       - next_table: 0
       - set ig_intr_md_for_dprsr.digest_type, 1
       - set ig_md.learn_src_ip, hdr.arp_ipv4.sender_proto_addr
-    default_action: tna_lb_mixhash408
-  ternary_match tbl_tna_lb_mixhash432 2:
-    p4: { name: tbl_tna_lb_mixhash432, hidden: true }
+    default_action: tna_lb_mixhash500
+  ternary_match tbl_tna_lb_mixhash524 2:
+    p4: { name: tbl_tna_lb_mixhash524, hidden: true }
     gateway:
-      name: cond-19
+      name: cond-21
       input_xbar:
         exact group 0: { 2: hdr.ipv4.$valid }
       row: 0
-      bus: 0
-      unit: 0
+      bus: 1
+      unit: 1
       match: { 2: hdr.ipv4.$valid }
       0x1:
         run_table: true
       miss:
-        next:  tbl_tna_lb_mixhash561
+        next:  tbl_tna_lb_mixhash712
       condition: 
         expression: "(hdr.ipv4.$valid == 1)"
-        true:  tbl_tna_lb_mixhash432
-        false:  tbl_tna_lb_mixhash561
+        true:  tbl_tna_lb_mixhash524
+        false:  tbl_tna_lb_mixhash712
     hit: [  reorder_enable_table_0 ]
     miss:  reorder_enable_table_0
-    indirect: tbl_tna_lb_mixhash432$tind
-  ternary_indirect tbl_tna_lb_mixhash432$tind:
-    row: 0
-    bus: 1
+    indirect: tbl_tna_lb_mixhash524$tind
+  ternary_indirect tbl_tna_lb_mixhash524$tind:
+    row: 1
+    bus: 0
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash432$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash524$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash432(1, 3):
+      tna_lb_mixhash524(1, 3):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
       - handle: 0x20000009
       - next_table: 0
       - set do_reorder_0, hdr.reorder_digest.$valid
-    default_action: tna_lb_mixhash432
-  ternary_match tbl_tna_lb_mixhash561 4:
-    p4: { name: tbl_tna_lb_mixhash561, hidden: true }
-    hit: [  tbl_tna_lb_mixhash564 ]
-    miss:  tbl_tna_lb_mixhash564
-    indirect: tbl_tna_lb_mixhash561$tind
-  ternary_indirect tbl_tna_lb_mixhash561$tind:
+    default_action: tna_lb_mixhash524
+  ternary_match tbl_tna_lb_mixhash712 4:
+    p4: { name: tbl_tna_lb_mixhash712, hidden: true }
+    hit: [  tbl_tna_lb_mixhash715 ]
+    miss:  tbl_tna_lb_mixhash715
+    indirect: tbl_tna_lb_mixhash712$tind
+  ternary_indirect tbl_tna_lb_mixhash712$tind:
     row: 0
-    bus: 0
+    bus: 1
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash561$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash712$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash561(0, 6):
+      tna_lb_mixhash712(0, 6):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000026
+      - handle: 0x20000028
       - next_table: 0
       - set ig_intr_md_for_dprsr.drop_ctl, 1
-    default_action: tna_lb_mixhash561
+    default_action: tna_lb_mixhash712
   exact_match reorder_enable_table_0 3:
     p4: { name: SwitchIngress.reorder_enable_table, size: 64 }
     p4_param_order: 
@@ -555,7 +605,7 @@ stage 0 ingress:
     format: { action(0): 0..0, version(0): 112..115, action(1): 1..1, version(1): 116..119, action(2): 2..2, version(2): 120..123, action(3): 3..3, version(3): 124..127, action(4): 4..4, version(4): 8..11 }
     match_group_map: [ [ 0, 1, 2, 3, 4 ] ]
     gateway:
-      name: cond-22
+      name: cond-24
       input_xbar:
         exact group 0: { 0: hdr.reorder_digest.$valid }
       row: 7
@@ -563,15 +613,15 @@ stage 0 ingress:
       unit: 0
       match: { 0: hdr.reorder_digest.$valid }
       0x1:
-        next:  tbl_tna_lb_mixhash418
+        next:  tbl_tna_lb_mixhash510
       miss:
         run_table: true
       condition: 
         expression: "(hdr.reorder_digest.$valid == 1)"
-        true:  tbl_tna_lb_mixhash418
+        true:  tbl_tna_lb_mixhash510
         false:  reorder_enable_table_0
-    hit: [  tbl_tna_lb_mixhash437 ]
-    miss:  tbl_tna_lb_mixhash437
+    hit: [  tbl_tna_lb_mixhash529 ]
+    miss:  tbl_tna_lb_mixhash529
     instruction: reorder_enable_table_0(action, $DEFAULT)
     actions:
       SwitchIngress.enable_reorder(1, 4):
@@ -586,13 +636,13 @@ stage 0 ingress:
       - handle: 0x2000000b
       - next_table: 0
     default_only_action: SwitchIngress.nop
-  ternary_match tbl_tna_lb_mixhash411 5:
-    p4: { name: tbl_tna_lb_mixhash411, hidden: true }
+  ternary_match tbl_tna_lb_mixhash503 5:
+    p4: { name: tbl_tna_lb_mixhash503, hidden: true }
     gateway:
-      name: cond-18
+      name: cond-20
       input_xbar:
         exact group 0: { 24: hdr.arp.opcode(8..15), 32: hdr.arp.opcode(0..7) }
-      row: 1
+      row: 0
       bus: 0
       unit: 0
       match: { 0: hdr.arp.opcode(0..7), 8: hdr.arp.opcode(8..15) }
@@ -602,30 +652,30 @@ stage 0 ingress:
         next:  dmac_table_0
       condition: 
         expression: "(hdr.arp.opcode == 1)"
-        true:  tbl_tna_lb_mixhash411
+        true:  tbl_tna_lb_mixhash503
         false:  dmac_table_0
-    hit: [  tbl_tna_lb_mixhash564 ]
-    miss:  tbl_tna_lb_mixhash564
-    indirect: tbl_tna_lb_mixhash411$tind
-  ternary_indirect tbl_tna_lb_mixhash411$tind:
-    row: 2
+    hit: [  tbl_tna_lb_mixhash715 ]
+    miss:  tbl_tna_lb_mixhash715
+    indirect: tbl_tna_lb_mixhash503$tind
+  ternary_indirect tbl_tna_lb_mixhash503$tind:
+    row: 0
     bus: 0
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash411$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash503$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash411(1, 5):
+      tna_lb_mixhash503(1, 5):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
       - handle: 0x20000003
       - next_table: 0
       - set ig_intr_md_for_tm.mcast_grp_a, 1
-    default_action: tna_lb_mixhash411
+    default_action: tna_lb_mixhash503
 stage 1 ingress:
   dependency: match
-  ternary_match tbl_tna_lb_mixhash437 0:
-    p4: { name: tbl_tna_lb_mixhash437, hidden: true }
+  ternary_match tbl_tna_lb_mixhash529 0:
+    p4: { name: tbl_tna_lb_mixhash529, hidden: true }
     gateway:
-      name: cond-23
+      name: cond-25
       input_xbar:
         exact group 0: { 5: ig_md.reorder_enabled }
       row: 0
@@ -635,31 +685,31 @@ stage 1 ingress:
       0x1:
         run_table: true
       miss:
-        next:  tbl_tna_lb_mixhash418
+        next:  tbl_tna_lb_mixhash510
       condition: 
         expression: "(ig_md.reorder_enabled == 1)"
-        true:  tbl_tna_lb_mixhash437
-        false:  tbl_tna_lb_mixhash418
-    hit: [  tbl_tna_lb_mixhash418 ]
-    miss:  tbl_tna_lb_mixhash418
-    indirect: tbl_tna_lb_mixhash437$tind
-  ternary_indirect tbl_tna_lb_mixhash437$tind:
+        true:  tbl_tna_lb_mixhash529
+        false:  tbl_tna_lb_mixhash510
+    hit: [  tbl_tna_lb_mixhash510 ]
+    miss:  tbl_tna_lb_mixhash510
+    indirect: tbl_tna_lb_mixhash529$tind
+  ternary_indirect tbl_tna_lb_mixhash529$tind:
     row: 0
     bus: 1
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash437$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash529$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash437(1, 1):
+      tna_lb_mixhash529(1, 1):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
       - handle: 0x2000000c
       - next_table: 0
       - set do_reorder_0, 1
-    default_action: tna_lb_mixhash437
-  ternary_match tbl_tna_lb_mixhash418 1:
-    p4: { name: tbl_tna_lb_mixhash418, hidden: true }
+    default_action: tna_lb_mixhash529
+  ternary_match tbl_tna_lb_mixhash510 1:
+    p4: { name: tbl_tna_lb_mixhash510, hidden: true }
     gateway:
-      name: cond-20
+      name: cond-22
       input_xbar:
         exact group 0: { 11: hdr.tcp.$valid }
       row: 0
@@ -669,31 +719,31 @@ stage 1 ingress:
       0x1:
         run_table: true
       miss:
-        next:  tbl_tna_lb_mixhash421
+        next:  tbl_tna_lb_mixhash513
       condition: 
         expression: "(hdr.tcp.$valid == 1)"
-        true:  tbl_tna_lb_mixhash418
-        false:  tbl_tna_lb_mixhash421
-    hit: [  tbl_tna_lb_mixhash526 ]
-    miss:  tbl_tna_lb_mixhash526
-    indirect: tbl_tna_lb_mixhash418$tind
-  ternary_indirect tbl_tna_lb_mixhash418$tind:
+        true:  tbl_tna_lb_mixhash510
+        false:  tbl_tna_lb_mixhash513
+    hit: [  lb_vip_table_0 ]
+    miss:  lb_vip_table_0
+    indirect: tbl_tna_lb_mixhash510$tind
+  ternary_indirect tbl_tna_lb_mixhash510$tind:
     row: 0
     bus: 0
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash418$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash510$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash418(1, 2):
+      tna_lb_mixhash510(1, 2):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
       - handle: 0x20000007
       - next_table: 0
       - set W3(0..31), W2
-    default_action: tna_lb_mixhash418
-  ternary_match tbl_tna_lb_mixhash421 2:
-    p4: { name: tbl_tna_lb_mixhash421, hidden: true }
+    default_action: tna_lb_mixhash510
+  ternary_match tbl_tna_lb_mixhash513 2:
+    p4: { name: tbl_tna_lb_mixhash513, hidden: true }
     gateway:
-      name: cond-21
+      name: cond-23
       input_xbar:
         exact group 0: { 12: hdr.udp.$valid }
       row: 1
@@ -703,119 +753,124 @@ stage 1 ingress:
       0x1:
         run_table: true
       miss:
-        next:  tbl_tna_lb_mixhash526
+        next:  lb_vip_table_0
       condition: 
         expression: "(hdr.udp.$valid == 1)"
-        true:  tbl_tna_lb_mixhash421
-        false:  tbl_tna_lb_mixhash526
-    hit: [  tbl_tna_lb_mixhash526 ]
-    miss:  tbl_tna_lb_mixhash526
-    indirect: tbl_tna_lb_mixhash421$tind
-  ternary_indirect tbl_tna_lb_mixhash421$tind:
+        true:  tbl_tna_lb_mixhash513
+        false:  lb_vip_table_0
+    hit: [  lb_vip_table_0 ]
+    miss:  lb_vip_table_0
+    indirect: tbl_tna_lb_mixhash513$tind
+  ternary_indirect tbl_tna_lb_mixhash513$tind:
     row: 1
     bus: 0
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash421$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash513$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash421(1, 4):
+      tna_lb_mixhash513(1, 4):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
       - handle: 0x20000008
       - next_table: 0
       - set W3(0..31), W2
-    default_action: tna_lb_mixhash421
+    default_action: tna_lb_mixhash513
 stage 2 ingress:
   dependency: match
-  hash_action tbl_tna_lb_mixhash526 0:
-    p4: { name: tbl_tna_lb_mixhash526, hidden: true }
-    row: 0
-    result_bus: 0
-    hash_dist:
-      0: { hash: 0, mask: 0x7fffff, shift: 4, expand: 0 }
+  exact_match lb_vip_table_0 0:
+    p4: { name: SwitchIngress.lb_vip_table, size: 256 }
+    p4_param_order: 
+      hdr.ipv4.dst_addr: { type: exact, size: 32, full_size: 32 }
+    row: 7
+    bus: 0
+    column: [ 2, 3, 4, 5 ]
+    stash: 
+      row: [ 7 ]
+      col: [ 2 ]
+      unit: [ 0 ]
+    ways:
+      - { group: 0, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
+      - { group: 0, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
+      - { group: 0, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
+      - { group: 0, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
     input_xbar:
-      exact group 0: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr }
+      exact group 0: { 0: hdr.ipv4.dst_addr }
       hash 0:
-        0..15: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 96, { 0: ig_md.l4_dst_port, 16: ig_md.l4_src_port, 64: hdr.ipv4.src_addr }, { })), 0..15)
-        32..38: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 96, { 0: ig_md.l4_dst_port, 16: ig_md.l4_src_port, 64: hdr.ipv4.src_addr }, { })), 16..22)
-      hash 1:
-        0..15: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 96, { 32: hdr.ipv4.dst_addr }, { })), 0..15)
-        32..38: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 96, { 32: hdr.ipv4.dst_addr }, { })), 16..22)
+        0..7: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(0..7)
+        8..9: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(8..9)
+        11..18: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(0..7)
+        19: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(8)
+        10: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(9)
+        22..29: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(0..7)
+        20..21: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(8..9)
+        33..39: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(0..6)
+        30: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(7)
+        31..32: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(8..9)
       hash group 0:
-        table: [0, 1]
-        seed: 0x550000c66f
+        table: [0]
+        seed: 0x2487c4eb12
+    format: { action(0): 0..0, version(0): 112..115, match(0): [ 50..55, 32..47 ], action(1): 1..1, version(1): 116..119, match(1): [ 74..79, 56..71 ], action(2): 2..2, version(2): 120..123, match(2): [ 98..103, 80..95 ], action(3): 3..3, version(3): 124..127, match(3): [ 18..23, 104..111, 8..15 ] }
+    match: [ hdr.ipv4.dst_addr(10..15), hdr.ipv4.dst_addr(16..23), hdr.ipv4.dst_addr(24..31) ]
+    match_group_map: [ [ 0, 1, 2, 3 ] ]
     gateway:
-      name: cond-24
+      name: cond-26
       input_xbar:
-        exact group 1: { 0: do_reorder_0 }
-      row: 0
+        exact group 0: { 32: do_reorder_0 }
+      row: 1
       bus: 0
       unit: 0
-      payload_row: 0
-      payload_unit: 0
-      payload: 0x18001
-      format: { action: 0..0, meter_addr: 1..14, meter_pfe: 15..15, meter_type: 16..18 }
       match: { 0: do_reorder_0 }
       0x1:
-        run_table : true
+        next:  tbl_tna_lb_mixhash540
       miss:
-        next:  lb_vip_table_0
+        run_table: true
       condition: 
         expression: "(do_reorder_0)"
-        true:  tbl_tna_lb_mixhash448
+        true:  tbl_tna_lb_mixhash540
         false:  lb_vip_table_0
-    next:  tbl_tna_lb_mixhash448
-    action_bus: { 32..33 : tbl_tna_lb_mixhash526$salu.SwitchIngress.flow_counter_reg(0..15) }
-    stateful: tbl_tna_lb_mixhash526$salu.SwitchIngress.flow_counter_reg(hash_dist 0, meter_pfe, meter_type)
-    instruction: tbl_tna_lb_mixhash526(action, $DEFAULT)
+    hit: [  tbl_tna_lb_mixhash643 ]
+    miss:  tbl_tna_lb_mixhash643
+    instruction: lb_vip_table_0(action, $DEFAULT)
     actions:
-      tna_lb_mixhash526(1, 1):
+      SwitchIngress.lb_set_group(1, 1):
       - hit_allowed: { allowed: true }
-      - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000019
+      - default_action: { allowed: false, reason: has_const_default_action }
+      - handle: 0x2000001e
       - next_table: 0
-      - set H4(0..15), tbl_tna_lb_mixhash526$salu.SwitchIngress.flow_counter_reg
-      - tbl_tna_lb_mixhash526$salu.SwitchIngress.flow_counter_reg(counter_action_0, $hash_dist)
-    default_action: tna_lb_mixhash526
-  stateful tbl_tna_lb_mixhash526$salu.SwitchIngress.flow_counter_reg:
-    p4: { name: SwitchIngress.flow_counter_reg, size: 16384 }
-    row: 15
-    logical_bus: S
-    column: [ 3, 4, 5 ]
-    maprams: [ 3, 4, 5 ]
-    home_row: 15
-    format: { lo: 16 }
-    actions:
-      counter_action_0:
-      - add lo, lo, 1
-      - output mem_lo
-  ternary_match tbl_tna_lb_mixhash448 2:
-    p4: { name: tbl_tna_lb_mixhash448, hidden: true }
+      - set ig_md.lb_hit, 1
+      SwitchIngress.nop(-1, 0):
+      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
+      - default_only_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001f
+      - next_table: 0
+    default_only_action: SwitchIngress.nop
+  ternary_match tbl_tna_lb_mixhash540 1:
+    p4: { name: tbl_tna_lb_mixhash540, hidden: true }
     gateway:
-      name: cond-25
+      name: cond-27
       input_xbar:
-        exact group 1: { 40: hdr.reorder_digest.$valid }
-      row: 0
-      bus: 1
-      unit: 1
+        exact group 0: { 40: hdr.reorder_digest.$valid }
+      row: 7
+      bus: 0
+      unit: 0
       match: { 0: hdr.reorder_digest.$valid }
       0x1:
         run_table: true
       miss:
-        next:  tbl_tna_lb_mixhash452
+        next:  tbl_tna_lb_mixhash557
       condition: 
         expression: "(hdr.reorder_digest.$valid == 1)"
-        true:  tbl_tna_lb_mixhash448
-        false:  tbl_tna_lb_mixhash452
-    hit: [  tbl_tna_lb_mixhash474 ]
-    miss:  tbl_tna_lb_mixhash474
-    indirect: tbl_tna_lb_mixhash448$tind
-  ternary_indirect tbl_tna_lb_mixhash448$tind:
-    row: 0
-    bus: 1
+        true:  tbl_tna_lb_mixhash540
+        false:  tbl_tna_lb_mixhash557
+    hit: [  tbl_tna_lb_mixhash600 ]
+    miss:  tbl_tna_lb_mixhash600
+    indirect: tbl_tna_lb_mixhash540$tind
+  ternary_indirect tbl_tna_lb_mixhash540$tind:
+    row: 2
+    bus: 0
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash448$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash540$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash448(1, 4):
+      tna_lb_mixhash540(1, 2):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
       - handle: 0x2000000d
@@ -823,49 +878,120 @@ stage 2 ingress:
       - set seq_0, hdr.reorder_digest.seq
       - set rhash_0, hdr.reorder_digest.flow_hash
       - set recirc_count_0, hdr.reorder_digest.recirc_count
-    default_action: tna_lb_mixhash448
-  hash_action tbl_tna_lb_mixhash452 3:
-    p4: { name: tbl_tna_lb_mixhash452, hidden: true }
+    default_action: tna_lb_mixhash540
+  hash_action tbl_tna_lb_mixhash557 2:
+    p4: { name: tbl_tna_lb_mixhash557, hidden: true }
     row: 0
     result_bus: 1
     hash_dist:
-      1: { hash: 0, mask: 0xffff, shift: 0 }
+      0: { hash: 1, mask: 0xffff, shift: 0 }
     input_xbar:
-      exact group 0: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr }
-      hash 0:
-        16..31: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 96, { 0: ig_md.l4_dst_port, 16: ig_md.l4_src_port, 64: hdr.ipv4.src_addr }, { })), 0..15)
-      hash 1:
-        16..31: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 96, { 32: hdr.ipv4.dst_addr }, { })), 0..15)
-      hash group 0:
-        table: [0, 1]
+      exact group 1: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr }
+      hash 2:
+        0..15: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 96, { 0: ig_md.l4_dst_port, 16: ig_md.l4_src_port, 64: hdr.ipv4.src_addr }, { })), 0..15)
+      hash 3:
+        0..15: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 96, { 32: hdr.ipv4.dst_addr }, { })), 0..15)
+      hash group 1:
+        table: [2, 3]
         seed: 0x0
     gateway:
-      name: tbl_tna_lb_mixhash452-gateway
+      name: tbl_tna_lb_mixhash557-gateway
       row: 1
       bus: 0
-      unit: 0
-      0x0:  tbl_tna_lb_mixhash474
-      miss:  tbl_tna_lb_mixhash474
+      unit: 1
+      0x0:  tbl_tna_lb_mixhash553
+      miss:  tbl_tna_lb_mixhash553
       condition: 
         expression: "true(always hit)"
-        true:  tbl_tna_lb_mixhash474
-        false:  tbl_tna_lb_mixhash474
+        true:  tbl_tna_lb_mixhash553
+        false:  tbl_tna_lb_mixhash553
     next: []
-    action_bus: { 36..37 : hash_dist(1, lo) }
-    instruction: tbl_tna_lb_mixhash452($DEFAULT, $DEFAULT)
+    action_bus: { 32..33 : hash_dist(0, lo) }
+    instruction: tbl_tna_lb_mixhash557($DEFAULT, $DEFAULT)
     actions:
-      tna_lb_mixhash452(0, 6):
+      tna_lb_mixhash557(0, 4):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000010
+      - next_table: 0
+      - set H2(0..15), hash_dist(0, 0..15)
+    default_action: tna_lb_mixhash557
+  ternary_match tbl_tna_lb_mixhash553 6:
+    p4: { name: tbl_tna_lb_mixhash553, hidden: true }
+    gateway:
+      name: cond-28
+      input_xbar:
+        exact group 0: { 44: hdr.udp.$valid, 64: hdr.udp.dst_port }
+      row: 0
+      bus: 1
+      unit: 1
+      match: { 20: hdr.udp.$valid, 0: hdr.udp.dst_port(0..7), 8: hdr.udp.dst_port(8..15) }
+      0x1*12b7:
+        run_table: true
+      miss:
+        next:  tbl_tna_lb_mixhash555
+      condition: 
+        expression: "(hdr.udp.$valid == 1 && hdr.udp.dst_port == 4791)"
+        true:  tbl_tna_lb_mixhash553
+        false:  tbl_tna_lb_mixhash555
+    hit: [  tbl_tna_lb_mixhash600 ]
+    miss:  tbl_tna_lb_mixhash600
+    indirect: tbl_tna_lb_mixhash553$tind
+  ternary_indirect tbl_tna_lb_mixhash553$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_tna_lb_mixhash553$tind(action, $DEFAULT)
+    actions:
+      tna_lb_mixhash553(1, 7):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
       - handle: 0x2000000e
       - next_table: 0
+      - set seq_0, hdr.roce_bth.psn.0-15
+    default_action: tna_lb_mixhash553
+  ternary_match tbl_tna_lb_mixhash555 7:
+    p4: { name: tbl_tna_lb_mixhash555, hidden: true }
+    hit: [  tbl_tna_lb_mixhash600 ]
+    miss:  tbl_tna_lb_mixhash600
+    indirect: tbl_tna_lb_mixhash555$tind
+  ternary_indirect tbl_tna_lb_mixhash555$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_tna_lb_mixhash555$tind(action, $DEFAULT)
+    actions:
+      tna_lb_mixhash555(0, 8):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000f
+      - next_table: 0
       - set seq_0, hdr.ipv4.identification
-      - set H2(0..15), hash_dist(1, 0..15)
-    default_action: tna_lb_mixhash452
-  exact_match lb_vip_table_0 1:
-    p4: { name: SwitchIngress.lb_vip_table, size: 256 }
+    default_action: tna_lb_mixhash555
+  ternary_match tbl_tna_lb_mixhash643 3:
+    p4: { name: tbl_tna_lb_mixhash643, hidden: true }
+    hit: [  smac_table_0 ]
+    miss:  smac_table_0
+    indirect: tbl_tna_lb_mixhash643$tind
+  ternary_indirect tbl_tna_lb_mixhash643$tind:
+    row: 1
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_tna_lb_mixhash643$tind(action, $DEFAULT)
+    actions:
+      tna_lb_mixhash643(0, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000019
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.digest_type, 1
+      - set ig_md.learn_src_ip, hdr.ipv4.src_addr
+    default_action: tna_lb_mixhash643
+  exact_match smac_table_0 4:
+    p4: { name: SwitchIngress.smac_table, size: 1024 }
     p4_param_order: 
-      hdr.ipv4.dst_addr: { type: exact, size: 32, full_size: 32 }
+      hdr.ethernet.src_addr: { type: exact, size: 48, full_size: 48 }
+      hdr.ipv4.src_addr: { type: exact, size: 32, full_size: 32 }
     row: [ 7, 6 ]
     bus: [ 1, 0 ]
     column:
@@ -876,63 +1002,10 @@ stage 2 ingress:
       col: [ 6 ]
       unit: [ 1 ]
     ways:
-      - { group: 1, index: 0..9, select: 40..51 & 0x0, rams: [[7, 6]] }
-      - { group: 1, index: 10..19, select: 40..51 & 0x0, rams: [[7, 7]] }
-      - { group: 1, index: 20..29, select: 40..51 & 0x0, rams: [[7, 8]] }
-      - { group: 1, index: 30..39, select: 40..51 & 0x0, rams: [[6, 2]] }
-    input_xbar:
-      exact group 1: { 8: hdr.ipv4.dst_addr(8..31), 32: hdr.ipv4.dst_addr(0..7) }
-      hash 2:
-        0..1: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(8..9)
-        2..9: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(0..7)
-        11..12: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(8..9)
-        13..19: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(0..6)
-        10: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(7)
-        22..23: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(8..9)
-        24..29: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(0..5)
-        20..21: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(6..7)
-        33..34: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(8..9)
-        35..39: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(0..4)
-        30..32: random(hdr.ipv4.dst_addr(10..31)) ^ hdr.ipv4.dst_addr(5..7)
-      hash group 1:
-        table: [2]
-        seed: 0x86094d34e5
-    format: { version(0): 112..115, match(0): [ 50..55, 32..47 ], version(1): 116..119, match(1): [ 74..79, 56..71 ], version(2): 120..123, match(2): [ 98..103, 80..95 ], version(3): 124..127, match(3): [ 10..15, 104..111, 0..7 ] }
-    match: [ hdr.ipv4.dst_addr(10..15), hdr.ipv4.dst_addr(16..23), hdr.ipv4.dst_addr(24..31) ]
-    match_group_map: [ [ 0, 1, 2, 3 ] ]
-    hit: [  smac_table_0 ]
-    miss:  smac_table_0
-    instruction: lb_vip_table_0($DEFAULT, $DEFAULT)
-    actions:
-      SwitchIngress.lb_set_group(0, 2):
-      - hit_allowed: { allowed: true }
-      - default_action: { allowed: false, reason: has_const_default_action }
-      - handle: 0x2000001c
-      - next_table: 0
-      - set ig_md.lb_hit, 1
-      SwitchIngress.nop(-1, 0):
-      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
-      - default_only_action: { allowed: true, is_constant: true }
-      - handle: 0x2000001d
-      - next_table: 0
-    default_only_action: SwitchIngress.nop
-  exact_match smac_table_0 4:
-    p4: { name: SwitchIngress.smac_table, size: 1024 }
-    p4_param_order: 
-      hdr.ethernet.src_addr: { type: exact, size: 48, full_size: 48 }
-      hdr.ipv4.src_addr: { type: exact, size: 32, full_size: 32 }
-    row: 7
-    bus: 0
-    column: [ 2, 3, 4, 5 ]
-    stash: 
-      row: [ 7 ]
-      col: [ 2 ]
-      unit: [ 0 ]
-    ways:
-      - { group: 2, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
-      - { group: 2, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
-      - { group: 2, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
-      - { group: 2, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
+      - { group: 2, index: 0..9, select: 40..51 & 0x0, rams: [[7, 6]] }
+      - { group: 2, index: 10..19, select: 40..51 & 0x0, rams: [[7, 7]] }
+      - { group: 2, index: 20..29, select: 40..51 & 0x0, rams: [[7, 8]] }
+      - { group: 2, index: 30..39, select: 40..51 & 0x0, rams: [[6, 2]] }
     input_xbar:
       exact group 2: { 0: hdr.ipv4.src_addr, 32: hdr.ethernet.src_addr.0-31, 64: hdr.ethernet.src_addr.32-47 }
       hash 4:
@@ -953,81 +1026,164 @@ stage 2 ingress:
         31..32: random(hdr.ethernet.src_addr.32-47(10..15)) ^ hdr.ethernet.src_addr.32-47(8..9)
       hash group 2:
         table: [4, 5]
-        seed: 0x561c4e2439
+        seed: 0x98bf0d936f
     format: { version(0): 112..115, match(0): [ 98..103, 32..95 ] }
     match: [ hdr.ethernet.src_addr.32-47(10..15), hdr.ipv4.src_addr(0..7), hdr.ipv4.src_addr(8..15), hdr.ipv4.src_addr(16..23), hdr.ipv4.src_addr(24..31), hdr.ethernet.src_addr.0-31(0..7), hdr.ethernet.src_addr.0-31(8..15), hdr.ethernet.src_addr.0-31(16..23), hdr.ethernet.src_addr.0-31(24..31) ]
     match_group_map: [ [ 0 ] ]
-    hit: [  tbl_tna_lb_mixhash522 ]
-    miss:  tbl_tna_lb_mixhash522
+    hit: [  tbl_tna_lb_mixhash664 ]
+    miss:  tbl_tna_lb_mixhash664
     instruction: smac_table_0($DEFAULT, $DEFAULT)
     actions:
       SwitchIngress.learn(0, 0):
       - p4_param_order: { port: 9 }
       - hit_allowed: { allowed: true }
       - default_action: { allowed: false, reason: has_const_default_action }
-      - handle: 0x20000017
+      - handle: 0x2000001a
       - next_table: 0
-      SwitchIngress.nop(-1, 3):
+      SwitchIngress.nop(-1, 5):
       - hit_allowed: { allowed: false, reason: user_indicated_default_only }
       - default_only_action: { allowed: true, is_constant: true }
-      - handle: 0x20000018
+      - handle: 0x2000001b
       - next_table: 0
     default_only_action: SwitchIngress.nop
-  ternary_match tbl_tna_lb_mixhash522 5:
-    p4: { name: tbl_tna_lb_mixhash522, hidden: true }
-    hit: [  tbl_tna_lb_mixhash533 ]
-    miss:  tbl_tna_lb_mixhash533
-    indirect: tbl_tna_lb_mixhash522$tind
-  ternary_indirect tbl_tna_lb_mixhash522$tind:
-    row: 1
-    bus: 0
-    format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash522$tind(action, $DEFAULT)
+  hash_action tbl_tna_lb_mixhash664 5:
+    p4: { name: tbl_tna_lb_mixhash664, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      1: { hash: 1, mask: 0x3fff, shift: 4 }
+    input_xbar:
+      exact group 1: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr }
+      hash 2:
+        16..29: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 96, { 0: ig_md.l4_dst_port, 16: ig_md.l4_src_port, 64: hdr.ipv4.src_addr }, { })), 0..13)
+      hash 3:
+        16..29: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 96, { 32: hdr.ipv4.dst_addr }, { })), 0..13)
+      hash group 1:
+        table: [2, 3]
+        seed: 0x66f0000
+    gateway:
+      name: cond-33
+      input_xbar:
+        exact group 0: { 44: hdr.udp.$valid, 64: hdr.udp.dst_port }
+      row: 0
+      bus: 0
+      unit: 0
+      payload_row: 0
+      payload_unit: 0
+      payload: 0x18001
+      format: { action: 0..0, meter_addr: 1..14, meter_pfe: 15..15, meter_type: 16..18 }
+      match: { 20: hdr.udp.$valid, 0: hdr.udp.dst_port(0..7), 8: hdr.udp.dst_port(8..15) }
+      0x1*12b7:
+        run_table : true
+      miss:
+        next:  tbl_tna_lb_mixhash677
+      condition: 
+        expression: "(hdr.udp.$valid == 1 && hdr.udp.dst_port == 4791)"
+        true:  ipv4_route_0
+        false:  tbl_tna_lb_mixhash677
+    next:  ipv4_route_0
+    action_bus: { 36..37 : tbl_tna_lb_mixhash664$salu.SwitchIngress.flow_counter_reg(0..15) }
+    stateful: tbl_tna_lb_mixhash664$salu.SwitchIngress.flow_counter_reg(hash_dist 1, meter_pfe, meter_type)
+    instruction: tbl_tna_lb_mixhash664(action, $DEFAULT)
     actions:
-      tna_lb_mixhash522(0, 5):
+      tna_lb_mixhash664(1, 6):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000016
+      - handle: 0x2000001c
       - next_table: 0
-      - set ig_intr_md_for_dprsr.digest_type, 1
-      - set ig_md.learn_src_ip, hdr.ipv4.src_addr
-    default_action: tna_lb_mixhash522
+      - set H5(0..15), tbl_tna_lb_mixhash664$salu.SwitchIngress.flow_counter_reg
+      - tbl_tna_lb_mixhash664$salu.SwitchIngress.flow_counter_reg(counter_action_0, $hash_dist)
+    default_action: tna_lb_mixhash664
+  stateful tbl_tna_lb_mixhash664$salu.SwitchIngress.flow_counter_reg:
+    p4: { name: SwitchIngress.flow_counter_reg, size: 16384 }
+    row: 15
+    logical_bus: S
+    column: [ 3, 4, 5 ]
+    maprams: [ 3, 4, 5 ]
+    home_row: 15
+    format: { lo: 16 }
+    actions:
+      counter_action_0:
+      - add lo, lo, 1
+      - output mem_lo
 stage 3 ingress:
   dependency: match
-  ternary_match tbl_tna_lb_mixhash474 3:
-    p4: { name: tbl_tna_lb_mixhash474, hidden: true }
+  hash_action tbl_tna_lb_mixhash600 1:
+    p4: { name: tbl_tna_lb_mixhash600, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0xfff, shift: 4 }
+    input_xbar:
+      exact group 0: { 0: rhash_0(0..11) }
+      hash 0:
+        0..11: rhash_0(0..11)
+      hash group 0:
+        table: [0]
+        seed: 0x0
     gateway:
-      name: cond-26
+      name: cond-29
       input_xbar:
-        exact group 1: { 8: ig_intr_md.ingress_port(8), 23: ig_intr_md.ingress_port(7), 24: hdr.reorder_digest.$valid }
+        exact group 0: { 71: ig_intr_md.ingress_port(7..8), 80: hdr.reorder_digest.$valid }
       row: 0
-      bus: 1
-      unit: 1
+      bus: 0
+      unit: 0
+      payload_row: 0
+      payload_unit: 0
+      payload: 0x6001
+      format: { action: 0..0, meter_addr: 1..12, meter_pfe: 13..13, meter_type: 14..16 }
       match: { 16: hdr.reorder_digest.$valid, 7: ig_intr_md.ingress_port(7), 8: ig_intr_md.ingress_port(8) }
       0o1***:
-        next:  tbl_tna_lb_mixhash484
+        next:  tbl_tna_lb_mixhash612
       0b********00:
-        next:  tbl_tna_lb_mixhash484
+        next:  tbl_tna_lb_mixhash612
       miss:
-        run_table: true
+        run_table : true
       condition: 
         expression: "(!(hdr.reorder_digest.$valid == 1) && ig_intr_md.ingress_port[8:7] != 0)"
-        true:  tbl_tna_lb_mixhash474
-        false:  tbl_tna_lb_mixhash484
-    hit: [  cond-32 ]
-    miss:  cond-32
-    indirect: tbl_tna_lb_mixhash474$tind
-  ternary_indirect tbl_tna_lb_mixhash474$tind:
-    row: 1
-    bus: 1
-    format: { action: 0..0, immediate: 1..9 }
-    action_bus: { 32..33 : immediate(0..8) }
-    instruction: tbl_tna_lb_mixhash474$tind(action, $DEFAULT)
+        true:  tbl_tna_lb_mixhash583
+        false:  tbl_tna_lb_mixhash612
+    next:  tbl_tna_lb_mixhash583
+    action_bus: { 32..33 : tbl_tna_lb_mixhash600$salu.SwitchIngress.reorder_seen_reg(0..15) }
+    stateful: tbl_tna_lb_mixhash600$salu.SwitchIngress.reorder_seen_reg(hash_dist 0, meter_pfe, meter_type)
+    instruction: tbl_tna_lb_mixhash600(action, $DEFAULT)
     actions:
-      tna_lb_mixhash474(1, 4):
+      tna_lb_mixhash600(1, 2):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000015
+      - handle: 0x20000011
+      - next_table: 0
+      - set H14(0..15), tbl_tna_lb_mixhash600$salu.SwitchIngress.reorder_seen_reg
+      - tbl_tna_lb_mixhash600$salu.SwitchIngress.reorder_seen_reg(seen_inc_0, $hash_dist)
+    default_action: tna_lb_mixhash600
+  stateful tbl_tna_lb_mixhash600$salu.SwitchIngress.reorder_seen_reg:
+    p4: { name: SwitchIngress.reorder_seen_reg, size: 4096 }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 15
+    format: { lo: 16 }
+    actions:
+      seen_inc_0:
+      - add lo, lo, 1
+      - output mem_lo
+  ternary_match tbl_tna_lb_mixhash583 3:
+    p4: { name: tbl_tna_lb_mixhash583, hidden: true }
+    hit: [  cond-36 ]
+    miss:  cond-36
+    indirect: tbl_tna_lb_mixhash583$tind
+  ternary_indirect tbl_tna_lb_mixhash583$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0, immediate: 1..9 }
+    action_bus: { 36..37 : immediate(0..8) }
+    instruction: tbl_tna_lb_mixhash583$tind(action, $DEFAULT)
+    actions:
+      tna_lb_mixhash583(0, 5):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000018
       - next_table: 0
       - { $constant0: immediate(0..8), $constant0: 68 }
       - set ig_md.routed, 1
@@ -1038,110 +1194,26 @@ stage 3 ingress:
       - set hdr.reorder_digest.recirc_count, 0
       - set hdr.reorder_digest.reserved, 0
       - set ig_intr_md_for_tm.ucast_egress_port, $constant0
-    default_action: tna_lb_mixhash474
-  ternary_match tbl_tna_lb_mixhash533 0:
-    p4: { name: tbl_tna_lb_mixhash533, hidden: true }
-    hit: [  tbl_tna_lb_mixhash534 ]
-    miss:  tbl_tna_lb_mixhash534
-    indirect: tbl_tna_lb_mixhash533$tind
-  ternary_indirect tbl_tna_lb_mixhash533$tind:
-    row: 1
-    bus: 0
-    format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash533$tind(action, $DEFAULT)
-    actions:
-      tna_lb_mixhash533(0, 1):
-      - hit_allowed: { allowed: true }
-      - default_action: { allowed: true, is_constant: true }
-      - handle: 0x2000001a
-      - next_table: 0
-      - set hdr.ipv4.identification, pkt_counter_0
-    default_action: tna_lb_mixhash533
-  ternary_match tbl_tna_lb_mixhash534 1:
-    p4: { name: tbl_tna_lb_mixhash534, hidden: true }
-    hit: [  tbl_tna_lb_mixhash539 ]
-    miss:  tbl_tna_lb_mixhash539
-    indirect: tbl_tna_lb_mixhash534$tind
-  ternary_indirect tbl_tna_lb_mixhash534$tind:
+    default_action: tna_lb_mixhash583
+  ternary_match tbl_tna_lb_mixhash677 0:
+    p4: { name: tbl_tna_lb_mixhash677, hidden: true }
+    hit: [  ipv4_route_0 ]
+    miss:  ipv4_route_0
+    indirect: tbl_tna_lb_mixhash677$tind
+  ternary_indirect tbl_tna_lb_mixhash677$tind:
     row: 0
     bus: 1
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash534$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash677$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash534(0, 2):
+      tna_lb_mixhash677(0, 1):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x2000001b
+      - handle: 0x2000001d
       - next_table: 0
-      - set ig_md.ecmp_counter.0-2, pkt_counter_0(0..2)
-    default_action: tna_lb_mixhash534
-  hash_action tbl_tna_lb_mixhash539 2:
-    p4: { name: tbl_tna_lb_mixhash539, hidden: true }
-    row: 0
-    result_bus: 0
-    hash_dist:
-      0: { hash: 0, mask: 0xffff, shift: 0 }
-      1: { hash: 0, mask: 0xffff, shift: 0 }
-    input_xbar:
-      exact group 0: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr, 96: pkt_counter_0 }
-      hash 0:
-        0..15: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 112, { 16: ig_md.l4_dst_port, 32: ig_md.l4_src_port, 80: hdr.ipv4.src_addr }, { })), 8..23)
-      hash 1:
-        0..15: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 112, { 0: pkt_counter_0, 48: hdr.ipv4.dst_addr }, { })), 8..23)
-      hash group 0:
-        table: [0, 1]
-        seed: 0xbb79
-      exact group 0: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr, 96: pkt_counter_0 }
-      hash 0:
-        16..23: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 112, { 16: ig_md.l4_dst_port, 32: ig_md.l4_src_port, 80: hdr.ipv4.src_addr }, { })), 24..31)
-      hash 1:
-        16..23: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 112, { 0: pkt_counter_0, 48: hdr.ipv4.dst_addr }, { })), 24..31)
-      hash group 0:
-        table: [0, 1]
-        seed: 0xd10000
-      exact group 0: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr, 96: pkt_counter_0 }
-      hash 0:
-        24..31: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 112, { 16: ig_md.l4_dst_port, 32: ig_md.l4_src_port, 80: hdr.ipv4.src_addr }, { })), 0..7)
-      hash 1:
-        24..31: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 112, { 0: pkt_counter_0, 48: hdr.ipv4.dst_addr }, { })), 0..7)
-      hash group 0:
-        table: [0, 1]
-        seed: 0xc7000000
-    gateway:
-      name: cond-30
-      input_xbar:
-        exact group 1: { 4: ig_md.lb_hit }
-      row: 0
-      bus: 0
-      unit: 0
-      payload_row: 0
-      payload_unit: 0
-      payload: 0x1
-      format: { action: 0..0 }
-      match: { 4: ig_md.lb_hit }
-      0x1:
-        next:  lb_backend_table_0
-      miss:
-        run_table : true
-      condition: 
-        expression: "(ig_md.lb_hit == 1)"
-        true:  lb_backend_table_0
-        false:  ipv4_route_0
-    next:  ipv4_route_0
-    action_bus: { 3 : hash_dist(1, 8..15, hi), 96..99 : hash_dist(0, 1) }
-    instruction: tbl_tna_lb_mixhash539(action, $DEFAULT)
-    actions:
-      tna_lb_mixhash539(1, 3):
-      - hit_allowed: { allowed: true }
-      - default_action: { allowed: true, is_constant: true }
-      - handle: 0x2000001e
-      - next_table: 0
-      - set B0(0..7), hash_dist(1, 8..15)
-      - set W7(0..23), hash_dist(0, 1, 0..23)
-    default_action: tna_lb_mixhash539
-stage 4 ingress:
-  dependency: match
-  ternary_match ipv4_route_0 1:
+      - set hdr.ipv4.identification, pkt_counter_0
+    default_action: tna_lb_mixhash677
+  ternary_match ipv4_route_0 2:
     p4: { name: SwitchIngress.ipv4_route, size: 1024 }
     p4_param_order: 
       hdr.ipv4.dst_addr: { type: lpm, size: 32, full_size: 32 }
@@ -1154,6 +1226,22 @@ stage 4 ingress:
       ternary group 0: { 0: hdr.ipv4.dst_addr }
     match:
     - { group: 0, byte_config: 3, dirtcam: 0x55 }
+    gateway:
+      name: cond-34
+      input_xbar:
+        exact group 0: { 89: ig_md.lb_hit }
+      row: 0
+      bus: 1
+      unit: 1
+      match: { 1: ig_md.lb_hit }
+      0x1:
+        next:  tbl_tna_lb_mixhash687
+      miss:
+        run_table: true
+      condition: 
+        expression: "(ig_md.lb_hit == 1)"
+        true:  tbl_tna_lb_mixhash687
+        false:  ipv4_route_0
     hit: [  ecmp_group_table_0 ]
     miss:  ecmp_group_table_0
     indirect: ipv4_route_0$tind
@@ -1163,15 +1251,15 @@ stage 4 ingress:
     column: 2
     input_xbar:
       ternary group 0: { 0: hdr.ipv4.dst_addr }
-    format: { action: 0..0 }
+    format: { action: 0..1 }
     action: ipv4_route_0$action_data($DIRECT, $DEFAULT)
     instruction: ipv4_route_0$tind(action, $DEFAULT)
     actions:
-      SwitchIngress.route(0, 2):
+      SwitchIngress.route(1, 3):
       - p4_param_order: { src_mac: 48, dst_mac: 48, port: 9 }
       - hit_allowed: { allowed: true }
       - default_action: { allowed: false, reason: has_const_default_action }
-      - handle: 0x20000021
+      - handle: 0x20000023
       - next_table: 0
       - { port_4: $adf_h0(0..8), port: port_4, dst_mac.32-47: $adf_h1(0..15), src_mac_1.32-47: $adf_h2(0..15), src_mac.32-47: src_mac_1.32-47, dst_mac.0-31: $adf_f2(0..31), src_mac_1.0-31: $adf_f3(0..31), src_mac.0-31: src_mac_1.0-31 }
       - set hdr.ethernet.src_addr.0-31, src_mac.0-31
@@ -1181,20 +1269,19 @@ stage 4 ingress:
       - set ig_intr_md_for_tm.ucast_egress_port, port
       - set ig_md.routed, 1
       - add B2, 255, B2
-      SwitchIngress.set_ecmp_group(1, 3):
+      SwitchIngress.set_ecmp_group(2, 4):
       - p4_param_order: { group_id: 16 }
       - hit_allowed: { allowed: true }
       - default_action: { allowed: false, reason: has_const_default_action }
-      - handle: 0x20000022
+      - handle: 0x20000024
       - next_table: 0
-      - { group_id.8-15: $adf_h0(0..7), group_id.0-7: $adf_b1(0..7) }
-      - set ig_md.ecmp_group_id.0-7, group_id.0-7
-      - set ig_md.ecmp_group_id.8-15, group_id.8-15
+      - { group_id: $adf_h0(0..15) }
+      - set ig_md.ecmp_group_id, group_id
       - set ig_md.ecmp_select, 1
       SwitchIngress.nop(-1, 0):
       - hit_allowed: { allowed: false, reason: user_indicated_default_only }
       - default_only_action: { allowed: true, is_constant: true }
-      - handle: 0x20000023
+      - handle: 0x20000025
       - next_table: 0
       - {  }
     default_only_action: SwitchIngress.nop
@@ -1202,88 +1289,63 @@ stage 4 ingress:
     p4: { name: SwitchIngress.ipv4_route$action }
     row: 14
     logical_bus: A
-    column: 5
+    column: 2
     vpns: [ 0 ]
     home_row:
     - 14
     format SwitchIngress.route: { $adf_h0: 0..15, $adf_h1: 16..31, $adf_h2: 32..47, $adf_f2: 64..95, $adf_f3: 96..127 }
-    format SwitchIngress.set_ecmp_group: { $adf_h0: 0..15, $adf_b1: 8..15 }
-    action_bus: { 1 : $adf_b1, 72..73 : $adf_h0, 74..75 : $adf_h1, 76..77 : $adf_h2, 104..107 : $adf_f2, 108..111 : $adf_f3 }
-  exact_match lb_backend_table_0 0:
-    p4: { name: SwitchIngress.lb_backend_table, size: 4096 }
-    p4_param_order: 
-      mhash_0: { type: exact, size: 16, full_size: 32, key_name: "ig_md.lb_backend_index" }
-    row: 7
-    bus: 0
-    column: [ 2, 3, 4, 6 ]
-    stash: 
-      row: [ 7 ]
-      col: [ 2 ]
-      unit: [ 0 ]
-    ways:
-      - { group: 0, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
-      - { group: 0, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
-      - { group: 0, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
-      - { group: 0, index: 30..39, select: 40..51 & 0x0, rams: [[7, 6]] }
+    format SwitchIngress.set_ecmp_group: { $adf_h0: 0..15 }
+    action_bus: { 64..65 : $adf_h0, 66..67 : $adf_h1, 68..69 : $adf_h2, 96..99 : $adf_f2, 100..103 : $adf_f3 }
+stage 4 ingress:
+  dependency: match
+  hash_action tbl_tna_lb_mixhash687 0:
+    p4: { name: tbl_tna_lb_mixhash687, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0xffff, shift: 0 }
+      1: { hash: 0, mask: 0xffff, shift: 0 }
     input_xbar:
-      exact group 0: { 0: mhash_0.8-31(0..7), 8: mhash_0.0-7 }
+      exact group 0: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr, 96: hdr.roce_bth.psn.0-15, 112: hdr.ipv4.identification }
       hash 0:
-        0..1: random(mhash_0.8-31(2..7)) ^ mhash_0.8-31(0..1)
-        2..9: random(mhash_0.8-31(2..7)) ^ mhash_0.0-7
-        11..12: random(mhash_0.8-31(2..7)) ^ mhash_0.8-31(0..1)
-        13..19: random(mhash_0.8-31(2..7)) ^ mhash_0.0-7(0..6)
-        10: random(mhash_0.8-31(2..7)) ^ mhash_0.0-7(7)
-        22..23: random(mhash_0.8-31(2..7)) ^ mhash_0.8-31(0..1)
-        24..29: random(mhash_0.8-31(2..7)) ^ mhash_0.0-7(0..5)
-        20..21: random(mhash_0.8-31(2..7)) ^ mhash_0.0-7(6..7)
-        33..34: random(mhash_0.8-31(2..7)) ^ mhash_0.8-31(0..1)
-        35..39: random(mhash_0.8-31(2..7)) ^ mhash_0.0-7(0..4)
-        30..32: random(mhash_0.8-31(2..7)) ^ mhash_0.0-7(5..7)
+        0..15: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 128, { 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 96: hdr.ipv4.src_addr }, { })), 0..15)
+      hash 1:
+        0..15: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 128, { 0: hdr.ipv4.identification, 16: hdr.roce_bth.psn.0-15, 64: hdr.ipv4.dst_addr }, { })), 0..15)
       hash group 0:
-        table: [0]
-        seed: 0xf1fe54aef6
-    format: { immediate(0): 0..31, version(0): 112..115, match(0): 34..39 }
-    match: [ mhash_0.8-31(2..7) ]
-    match_group_map: [ [ 0 ] ]
-    hit: [  cond-32 ]
-    miss:  cond-32
-    action_bus: { 64..65 : immediate(0..15), 66..67 : immediate(16..31) }
-    action: lb_backend_table_0$action_data($DIRECT, $DEFAULT)
-    instruction: lb_backend_table_0($DEFAULT, $DEFAULT)
+        table: [0, 1]
+        seed: 0x4b55
+      exact group 0: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr, 96: hdr.roce_bth.psn.0-15, 112: hdr.ipv4.identification }
+      hash 0:
+        16..31: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 128, { 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 96: hdr.ipv4.src_addr }, { })), 16..31)
+      hash 1:
+        16..31: slice(stripe(crc_rev(0x82608edb, 0xffffffff, 0xffffffff, 128, { 0: hdr.ipv4.identification, 16: hdr.roce_bth.psn.0-15, 64: hdr.ipv4.dst_addr }, { })), 16..31)
+      hash group 0:
+        table: [0, 1]
+        seed: 0xecbb0000
+    gateway:
+      name: tbl_tna_lb_mixhash687-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  lb_backend_table_0
+      miss:  lb_backend_table_0
+      condition: 
+        expression: "true(always hit)"
+        true:  lb_backend_table_0
+        false:  lb_backend_table_0
+    next: []
+    action_bus: { 64..65 : hash_dist(0, lo), 66..67 : hash_dist(1, hi) }
+    instruction: tbl_tna_lb_mixhash687($DEFAULT, $DEFAULT)
     actions:
-      SwitchIngress.lb_dnat(0, 1):
-      - p4_param_order: { be_ip: 32, be_mac: 48, be_port: 9 }
+      tna_lb_mixhash687(0, 1):
       - hit_allowed: { allowed: true }
-      - default_action: { allowed: true }
-      - handle: 0x2000001f
-      - next_table: 0
-      - { be_mac.0-31: $adf_f0(0..31), be_ip: $adf_f1(0..31), be_port: immediate(0..8), be_mac.32-47: immediate(16..31) }
-      - set hdr.ipv4.dst_addr, be_ip
-      - set hdr.ethernet.dst_addr.0-31, be_mac.0-31
-      - set hdr.ethernet.dst_addr.32-47, be_mac.32-47
-      - set ig_intr_md_for_tm.ucast_egress_port, be_port
-      - set ig_md.routed, 1
-      - add B2, 255, B2
-      NoAction(-1, 0):
-      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
-      - default_only_action: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
       - handle: 0x20000020
       - next_table: 0
-      - {  }
-    default_only_action: NoAction
-  action lb_backend_table_0$action_data:
-    p4: { name: SwitchIngress.lb_backend_table$action }
-    row: 15
-    logical_bus: A
-    column: [ 1, 2 ]
-    vpns: [ 0, 1 ]
-    home_row:
-    - 15
-    format SwitchIngress.lb_dnat: { $adf_f0: 0..31, $adf_f1: 32..63 }
-    action_bus: { 96..99 : $adf_f0, 100..103 : $adf_f1 }
-stage 5 ingress:
-  dependency: match
-  exact_match ecmp_group_table_0 0:
+      - set H8(0..15), hash_dist(0, 0..15)
+      - set H14(0..15), hash_dist(1, 0..15)
+    default_action: tna_lb_mixhash687
+  exact_match ecmp_group_table_0 1:
     p4: { name: SwitchIngress.ecmp_group_table, size: 64, action_profile: SwitchIngress.ecmp_ap }
     p4_param_order: 
       ig_md.ecmp_group_id: { type: exact, size: 16, full_size: 16 }
@@ -1295,66 +1357,65 @@ stage 5 ingress:
       col: [ 2 ]
       unit: [ 0 ]
     ways:
-      - { group: 0, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
-      - { group: 0, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
-      - { group: 0, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
-      - { group: 0, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
+      - { group: 1, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
+      - { group: 1, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
+      - { group: 1, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
+      - { group: 1, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
     input_xbar:
-      exact group 0: { 0: ig_md.ecmp_group_id.8-15, 8: ig_md.ecmp_group_id.0-7 }
+      exact group 1: { 0: ig_md.ecmp_group_id }
+      hash 2:
+        0..7: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(0..7)
+        8..9: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(8..9)
+        11..18: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(0..7)
+        19: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(8)
+        10: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(9)
+        22..29: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(0..7)
+        20..21: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(8..9)
+        33..39: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(0..6)
+        30: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(7)
+        31..32: random(ig_md.ecmp_group_id(10..15)) ^ ig_md.ecmp_group_id(8..9)
+      hash group 1:
+        table: [2]
+        seed: 0x561c4e2439
+      exact group 0: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr, 96: hdr.roce_bth.psn.0-15, 112: hdr.ipv4.identification }
       hash 0:
-        0..1: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.8-15(0..1)
-        2..9: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.0-7
-        11..12: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.8-15(0..1)
-        13..19: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.0-7(0..6)
-        10: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.0-7(7)
-        22..23: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.8-15(0..1)
-        24..29: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.0-7(0..5)
-        20..21: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.0-7(6..7)
-        33..34: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.8-15(0..1)
-        35..39: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.0-7(0..4)
-        30..32: random(ig_md.ecmp_group_id.8-15(2..7)) ^ ig_md.ecmp_group_id.0-7(5..7)
+        32..41: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 128, { 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 96: hdr.ipv4.src_addr }, { })), 0..9)
+      hash 1:
+        32..41: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 128, { 0: hdr.ipv4.identification, 16: hdr.roce_bth.psn.0-15, 64: hdr.ipv4.dst_addr }, { })), 0..9)
       hash group 0:
-        table: [0]
-        seed: 0xdda7aeffc
-      exact group 2: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr, 96: ig_md.ecmp_counter.0-2, 104: ig_md.ecmp_counter.3-15(8..12), 112: ig_md.ecmp_counter.3-15(0..7) }
-      hash 4:
-        0..9: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 112, { 16: ig_md.l4_dst_port, 32: ig_md.l4_src_port, 80: hdr.ipv4.src_addr }, { })), 0..9)
-      hash 5:
-        0..9: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 112, { 0: ig_md.ecmp_counter.0-2, 3: ig_md.ecmp_counter.3-15(0..7), 11: ig_md.ecmp_counter.3-15(8..12), 48: hdr.ipv4.dst_addr }, { })), 0..9)
-      hash group 2:
-        table: [4, 5]
+        table: [0, 1]
         seed: 0x0
     format: { action(0): 2..2, version(0): 112..115, meter_addr(0): 3..12, meter_pfe(0): 13..13, action_addr(0): 14..24, sel_len_mod(0): 0..1, match(0): 34..39 }
-    match: [ ig_md.ecmp_group_id.8-15(2..7) ]
+    match: [ ig_md.ecmp_group_id(10..15) ]
     match_group_map: [ [ 0 ] ]
     gateway:
-      name: cond-31
+      name: cond-35
       input_xbar:
-        exact group 1: { 99: ig_md.ecmp_select }
-      row: 0
+        exact group 1: { 16: ig_md.ecmp_select }
+      row: 7
       bus: 0
       unit: 0
-      match: { 3: ig_md.ecmp_select }
+      match: { 0: ig_md.ecmp_select }
       0x1:
         run_table: true
       miss:
-        next:  cond-32
+        next:  cond-36
       condition: 
         expression: "(ig_md.ecmp_select == 1)"
         true:  ecmp_group_table_0
-        false:  cond-32
-    hit: [  cond-32 ]
-    miss:  cond-32
+        false:  cond-36
+    hit: [  cond-36 ]
+    miss:  cond-36
     selector: ecmp_group_table_0$selector.SwitchIngress.ecmp_selector(meter_addr, meter_pfe, $DEFAULT)
     selector_length: ecmp_group_table_0$selector.SwitchIngress.ecmp_selector(sel_len_mod, $DEFAULT)
     action: ecmp_group_table_0$action_data.SwitchIngress.ecmp_ap(action_addr, $DEFAULT)
     instruction: ecmp_group_table_0(action, $DEFAULT)
     actions:
-      SwitchIngress.set_nhop(1, 1):
+      SwitchIngress.set_nhop(1, 2):
       - p4_param_order: { nhop_src_mac: 48, nhop_dst_mac: 48, nhop_port: 9 }
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true }
-      - handle: 0x20000024
+      - handle: 0x20000026
       - next_table: 0
       - { nhop_port: $adf_h0(0..8), nhop_dst_mac.32-47: $adf_h1(0..15), nhop_src_mac.32-47: $adf_h2(0..15), nhop_dst_mac.0-31: $adf_f2(0..31), nhop_src_mac.0-31: $adf_f3(0..31) }
       - set hdr.ethernet.src_addr.0-31, nhop_src_mac.0-31
@@ -1367,7 +1428,7 @@ stage 5 ingress:
       NoAction(-1, 0):
       - hit_allowed: { allowed: false, reason: user_indicated_default_only }
       - default_only_action: { allowed: true }
-      - handle: 0x20000025
+      - handle: 0x20000027
       - next_table: 0
       - {  }
     default_only_action: NoAction
@@ -1379,19 +1440,19 @@ stage 5 ingress:
     maprams: [ 0, 1 ]
     home_row: 15
     input_xbar:
-      exact group 1: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr, 96: ig_md.ecmp_counter.0-2, 104: ig_md.ecmp_counter.3-15(8..12), 112: ig_md.ecmp_counter.3-15(0..7) }
-      hash 2:
-        0..13: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 112, { 16: ig_md.l4_dst_port, 32: ig_md.l4_src_port, 80: hdr.ipv4.src_addr })), 0..13)
-      hash 3:
-        0..13: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 112, { 0: ig_md.ecmp_counter.0-2, 3: ig_md.ecmp_counter.3-15(0..7), 11: ig_md.ecmp_counter.3-15(8..12), 48: hdr.ipv4.dst_addr })), 0..13)
-      hash group 1:
-        table: [2, 3]
+      exact group 2: { 0: hdr.ipv4.src_addr, 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 64: hdr.ipv4.dst_addr, 96: hdr.roce_bth.psn.0-15, 112: hdr.ipv4.identification }
+      hash 4:
+        0..13: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 128, { 32: ig_md.l4_dst_port, 48: ig_md.l4_src_port, 96: hdr.ipv4.src_addr })), 0..13)
+      hash 5:
+        0..13: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 128, { 0: hdr.ipv4.identification, 16: hdr.roce_bth.psn.0-15, 64: hdr.ipv4.dst_addr })), 0..13)
+      hash group 2:
+        table: [4, 5]
         seed: 0x0
     mode: fair 0
     non_linear: true
     pool_sizes: [128]
     hash_dist:
-      0: { hash: 2, mask: 0x3ff, shift: 0 }
+      2: { hash: 0, mask: 0x3ff, shift: 0 }
   action ecmp_group_table_0$action_data.SwitchIngress.ecmp_ap:
     p4: { name: SwitchIngress.ecmp_ap, size: 1024 }
     row: 15
@@ -1401,7 +1462,7 @@ stage 5 ingress:
     home_row:
     - 15
     format SwitchIngress.set_nhop: { $adf_h0: 0..15, $adf_h1: 16..31, $adf_h2: 32..47, $adf_f2: 64..95, $adf_f3: 96..127 }
-    action_bus: { 64..65 : $adf_h0, 66..67 : $adf_h1, 68..69 : $adf_h2, 96..99 : $adf_f2, 100..103 : $adf_f3 }
+    action_bus: { 72..73 : $adf_h0, 74..75 : $adf_h1, 76..77 : $adf_h2, 96..99 : $adf_f2, 100..103 : $adf_f3 }
   stateful ecmp_group_table_0$salu.SwitchIngress.ecmp_selector$salu:
     p4: { name: SwitchIngress.ecmp_selector$salu, size: 131072, hidden: true }
     selection_table: ecmp_group_table_0$selector.SwitchIngress.ecmp_selector
@@ -1416,185 +1477,272 @@ stage 5 ingress:
       - set_bit_at
       clr_bit_at_alu$0:
       - clr_bit_at
+stage 5 ingress:
+  dependency: match
+  exact_match lb_backend_table_0 0:
+    p4: { name: SwitchIngress.lb_backend_table, size: 4096 }
+    p4_param_order: 
+      mhash_0: { type: exact, size: 16, full_size: 32, key_name: "ig_md.lb_backend_index" }
+    row: 7
+    bus: 0
+    column: [ 2, 3, 4, 5 ]
+    stash: 
+      row: [ 7 ]
+      col: [ 2 ]
+      unit: [ 0 ]
+    ways:
+      - { group: 0, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
+      - { group: 0, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
+      - { group: 0, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
+      - { group: 0, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
+    input_xbar:
+      exact group 0: { 0: mhash_0.0-15 }
+      hash 0:
+        0..7: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(0..7)
+        8..9: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(8..9)
+        11..18: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(0..7)
+        19: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(8)
+        10: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(9)
+        22..29: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(0..7)
+        20..21: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(8..9)
+        33..39: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(0..6)
+        30: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(7)
+        31..32: random(mhash_0.0-15(10..15)) ^ mhash_0.0-15(8..9)
+      hash group 0:
+        table: [0]
+        seed: 0x7093ae7201
+    format: { immediate(0): 0..31, version(0): 112..115, match(0): 34..39 }
+    match: [ mhash_0.0-15(10..15) ]
+    match_group_map: [ [ 0 ] ]
+    hit: [  cond-36 ]
+    miss:  cond-36
+    action_bus: { 64..65 : immediate(0..15), 66..67 : immediate(16..31) }
+    action: lb_backend_table_0$action_data($DIRECT, $DEFAULT)
+    instruction: lb_backend_table_0($DEFAULT, $DEFAULT)
+    actions:
+      SwitchIngress.lb_dnat(0, 1):
+      - p4_param_order: { be_ip: 32, be_mac: 48, be_port: 9 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000021
+      - next_table: 0
+      - { be_mac.0-31: $adf_f0(0..31), be_ip: $adf_f1(0..31), be_port: immediate(0..8), be_mac.32-47: immediate(16..31) }
+      - set hdr.ipv4.dst_addr, be_ip
+      - set hdr.ethernet.dst_addr.0-31, be_mac.0-31
+      - set hdr.ethernet.dst_addr.32-47, be_mac.32-47
+      - set ig_intr_md_for_tm.ucast_egress_port, be_port
+      - set ig_md.routed, 1
+      - add B2, 255, B2
+      NoAction(-1, 0):
+      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
+      - default_only_action: { allowed: true }
+      - handle: 0x20000022
+      - next_table: 0
+      - {  }
+    default_only_action: NoAction
+  action lb_backend_table_0$action_data:
+    p4: { name: SwitchIngress.lb_backend_table$action }
+    row: 15
+    logical_bus: A
+    column: [ 0, 1 ]
+    vpns: [ 0, 1 ]
+    home_row:
+    - 15
+    format SwitchIngress.lb_dnat: { $adf_f0: 0..31, $adf_f1: 32..63 }
+    action_bus: { 96..99 : $adf_f0, 100..103 : $adf_f1 }
 stage 6 ingress:
   dependency: match
-  hash_action tbl_tna_lb_mixhash484 0:
-    p4: { name: tbl_tna_lb_mixhash484, hidden: true }
+  hash_action tbl_tna_lb_mixhash612 0:
+    p4: { name: tbl_tna_lb_mixhash612, hidden: true }
     row: 0
     result_bus: 0
     hash_dist:
-      0: { hash: 0, mask: 0xffff, shift: 5 }
+      0: { hash: 0, mask: 0xfff, shift: 4 }
     input_xbar:
-      exact group 0: { 0: rhash_0 }
+      exact group 0: { 0: rhash_0(0..11) }
       hash 0:
-        0..15: rhash_0
+        0..11: rhash_0(0..11)
       hash group 0:
         table: [0]
         seed: 0x0
     gateway:
-      name: tbl_tna_lb_mixhash484-gateway
+      name: cond-30
+      input_xbar:
+        exact group 0: { 64: seen_0 }
       row: 0
       bus: 0
       unit: 0
-      0x0:  tbl_tna_lb_mixhash492
-      miss:  tbl_tna_lb_mixhash492
+      payload_row: 0
+      payload_unit: 0
+      payload: 0xe001
+      format: { action: 0..0, meter_addr: 1..12, meter_pfe: 13..13, meter_type: 14..16 }
+      match: { 0: seen_0(0..7), 8: seen_0(8..15) }
+      0x0000:
+        run_table : true
+      miss:
+        next:  tbl_tna_lb_mixhash616
       condition: 
-        expression: "true(always hit)"
-        true:  tbl_tna_lb_mixhash492
-        false:  tbl_tna_lb_mixhash492
-    next: []
-    action_bus: { 32..33 : tbl_tna_lb_mixhash484$salu.SwitchIngress.reorder_ctrl_reg(0..15), 34..35 : tbl_tna_lb_mixhash484$salu.SwitchIngress.reorder_ctrl_reg(16..31) }
-    stateful: tbl_tna_lb_mixhash484$salu.SwitchIngress.reorder_ctrl_reg(hash_dist 0, $DEFAULT, $DEFAULT)
-    instruction: tbl_tna_lb_mixhash484($DEFAULT, $DEFAULT)
+        expression: "(seen_0 == 0)"
+        true:  tbl_tna_lb_mixhash609
+        false:  tbl_tna_lb_mixhash616
+    next:  tbl_tna_lb_mixhash609
+    action_bus: { 32..33 : tbl_tna_lb_mixhash612$salu.SwitchIngress.reorder_expected_reg(0..15) }
+    stateful: tbl_tna_lb_mixhash612$salu.SwitchIngress.reorder_expected_reg(hash_dist 0, meter_pfe, meter_type)
+    instruction: tbl_tna_lb_mixhash612(action, $DEFAULT)
     actions:
-      tna_lb_mixhash484(0, 1):
+      tna_lb_mixhash612(1, 1):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x2000000f
+      - handle: 0x20000013
       - next_table: 0
-      - set H4(0..15), tbl_tna_lb_mixhash484$salu.SwitchIngress.reorder_ctrl_reg(0..15)
-      - set H8(0..15), tbl_tna_lb_mixhash484$salu.SwitchIngress.reorder_ctrl_reg(16..31)
-      - tbl_tna_lb_mixhash484$salu.SwitchIngress.reorder_ctrl_reg(ctrl_inc_0, $hash_dist)
-    default_action: tna_lb_mixhash484
-  stateful tbl_tna_lb_mixhash484$salu.SwitchIngress.reorder_ctrl_reg:
-    p4: { name: SwitchIngress.reorder_ctrl_reg, size: 4096 }
+      - set H5(0..15), tbl_tna_lb_mixhash612$salu.SwitchIngress.reorder_expected_reg
+      - tbl_tna_lb_mixhash612$salu.SwitchIngress.reorder_expected_reg(expected_inc_0, $hash_dist)
+    default_action: tna_lb_mixhash612
+  stateful tbl_tna_lb_mixhash612$salu.SwitchIngress.reorder_expected_reg:
+    p4: { name: SwitchIngress.reorder_expected_reg, size: 4096 }
     row: 15
     logical_bus: S
     column: [ 0, 1 ]
     maprams: [ 0, 1 ]
     home_row: 15
-    format: { lo: 32 }
+    format: { lo: 16 }
     actions:
-      ctrl_inc_0:
-      - add lo, lo, 65537
+      seed_expected_0:
+      - add lo, lo, 1
       - output mem_lo
-      ctrl_dec_0:
-      - add lo, lo, 4294901759
+      expected_inc_0:
+      - add lo, lo, 1
+      - output mem_lo
+      expected_dec_0:
+      - add lo, lo, 65535
       - output mem_lo
 stage 7 ingress:
   dependency: match
-  ternary_match tbl_tna_lb_mixhash492 0:
-    p4: { name: tbl_tna_lb_mixhash492, hidden: true }
+  hash_action tbl_tna_lb_mixhash609 4:
+    p4: { name: tbl_tna_lb_mixhash609, hidden: true }
+    row: 0
+    result_bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0xfff, shift: 4 }
+    input_xbar:
+      exact group 0: { 40: rhash_0(8..11), 48: rhash_0(0..7) }
+      hash 0:
+        0..7: rhash_0(0..7)
+        8..11: rhash_0(8..11)
+      hash group 0:
+        table: [0]
+        seed: 0x0
     gateway:
-      name: cond-27
-      input_xbar:
-        exact group 0: { 0: old_ctrl_0.16-31(0..7) }
+      name: tbl_tna_lb_mixhash609-gateway
       row: 1
       bus: 0
-      unit: 0
-      match: { 0: old_ctrl_0.16-31(0..7) }
-      0x00:
-        run_table: true
-      miss:
-        next:  tbl_tna_lb_mixhash495
+      unit: 1
+      0x0:  cond-36
+      miss:  cond-36
       condition: 
-        expression: "(old_ctrl_0[23:16] != 0)"
-        true:  tbl_tna_lb_mixhash495
-        false:  tbl_tna_lb_mixhash492
-    hit: [  cond-32 ]
-    miss:  cond-32
-    indirect: tbl_tna_lb_mixhash492$tind
-  ternary_indirect tbl_tna_lb_mixhash492$tind:
-    row: 1
-    bus: 1
-    format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash492$tind(action, $DEFAULT)
+        expression: "true(always hit)"
+        true:  cond-36
+        false:  cond-36
+    next: []
+    stateful: tbl_tna_lb_mixhash619$salu.SwitchIngress.reorder_expected_reg(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash609($DEFAULT, $DEFAULT)
     actions:
-      tna_lb_mixhash492(1, 1):
+      tna_lb_mixhash609(0, 6):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000010
+      - handle: 0x20000012
       - next_table: 0
       - set hdr.reorder_digest.$valid, 0
-    default_action: tna_lb_mixhash492
-  ternary_match tbl_tna_lb_mixhash495 1:
-    p4: { name: tbl_tna_lb_mixhash495, hidden: true }
+      - tbl_tna_lb_mixhash619$salu.SwitchIngress.reorder_expected_reg(seed_expected_0, $hash_dist)
+    default_action: tna_lb_mixhash609
+  ternary_match tbl_tna_lb_mixhash616 0:
+    p4: { name: tbl_tna_lb_mixhash616, hidden: true }
     gateway:
-      name: cond-28
+      name: cond-31
       input_xbar:
-        exact group 0: { 8: old_ctrl_0.0-15(8..15), 16: old_ctrl_0.0-15(0..7), 24: seq_0(8..15), 32: seq_0(0..7) }
+        exact group 0: { 0: old_expected_0, 16: seq_0 }
       row: 0
       bus: 1
       unit: 1
       match: { 0: seq_0(0..7), 8: seq_0(8..15) }
-      xor: { 0: old_ctrl_0.0-15(0..7), 8: old_ctrl_0.0-15(8..15) }
+      xor: { 0: old_expected_0(0..7), 8: old_expected_0(8..15) }
       0x0000:
         run_table: true
       miss:
-        next:  tbl_tna_lb_mixhash502
+        next:  tbl_tna_lb_mixhash622
       condition: 
-        expression: "(seq_0 == old_ctrl_0[15:0])"
-        true:  tbl_tna_lb_mixhash495
-        false:  tbl_tna_lb_mixhash502
-    hit: [  cond-32 ]
-    miss:  cond-32
-    indirect: tbl_tna_lb_mixhash495$tind
-  ternary_indirect tbl_tna_lb_mixhash495$tind:
+        expression: "(seq_0 == old_expected_0)"
+        true:  tbl_tna_lb_mixhash616
+        false:  tbl_tna_lb_mixhash622
+    hit: [  cond-36 ]
+    miss:  cond-36
+    indirect: tbl_tna_lb_mixhash616$tind
+  ternary_indirect tbl_tna_lb_mixhash616$tind:
     row: 1
     bus: 0
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash495$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash616$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash495(1, 2):
+      tna_lb_mixhash616(1, 1):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000011
+      - handle: 0x20000014
       - next_table: 0
       - set hdr.reorder_digest.$valid, 0
-    default_action: tna_lb_mixhash495
-  ternary_match tbl_tna_lb_mixhash502 2:
-    p4: { name: tbl_tna_lb_mixhash502, hidden: true }
+    default_action: tna_lb_mixhash616
+  ternary_match tbl_tna_lb_mixhash622 1:
+    p4: { name: tbl_tna_lb_mixhash622, hidden: true }
     gateway:
-      name: cond-29
+      name: cond-32
       input_xbar:
-        exact group 0: { 44: recirc_count_0(4..7) }
+        exact group 0: { 36: recirc_count_0(4..7) }
       row: 0
       bus: 0
       unit: 0
       match: { 4: recirc_count_0(4..7) }
       0x0:
-        next:  tbl_tna_lb_mixhash507
+        next:  tbl_tna_lb_mixhash627
       miss:
         run_table: true
       condition: 
         expression: "(recirc_count_0 >= 16)"
-        true:  tbl_tna_lb_mixhash502
-        false:  tbl_tna_lb_mixhash507
-    hit: [  tbl_tna_lb_mixhash498 ]
-    miss:  tbl_tna_lb_mixhash498
-    indirect: tbl_tna_lb_mixhash502$tind
-  ternary_indirect tbl_tna_lb_mixhash502$tind:
+        true:  tbl_tna_lb_mixhash622
+        false:  tbl_tna_lb_mixhash627
+    hit: [  tbl_tna_lb_mixhash619 ]
+    miss:  tbl_tna_lb_mixhash619
+    indirect: tbl_tna_lb_mixhash622$tind
+  ternary_indirect tbl_tna_lb_mixhash622$tind:
     row: 0
     bus: 1
     format: { action: 0..0, immediate: 1..13 }
     action_bus: { 16 : immediate(0..7), 17 : immediate(8..12) }
-    instruction: tbl_tna_lb_mixhash502$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash622$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash502(1, 4):
+      tna_lb_mixhash622(1, 2):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000014
+      - handle: 0x20000017
       - next_table: 0
       - { $data0: immediate(0..4), $constant1: $data0(0..2), $constant1: 1, $constant0: $data0(4..4), $constant0: 1, $mask0: immediate(8..12), $constant2: $mask0(0..2), $constant2: 7, $constant3: $mask0(4..4), $constant3: 1 }
       - set hdr.reorder_digest.$valid, 0
       - bitmasked-set B5, $data0, B5
-    default_action: tna_lb_mixhash502
-  ternary_match tbl_tna_lb_mixhash507 3:
-    p4: { name: tbl_tna_lb_mixhash507, hidden: true }
-    hit: [  tbl_tna_lb_mixhash498 ]
-    miss:  tbl_tna_lb_mixhash498
-    indirect: tbl_tna_lb_mixhash507$tind
-  ternary_indirect tbl_tna_lb_mixhash507$tind:
+    default_action: tna_lb_mixhash622
+  ternary_match tbl_tna_lb_mixhash627 2:
+    p4: { name: tbl_tna_lb_mixhash627, hidden: true }
+    hit: [  tbl_tna_lb_mixhash619 ]
+    miss:  tbl_tna_lb_mixhash619
+    indirect: tbl_tna_lb_mixhash627$tind
+  ternary_indirect tbl_tna_lb_mixhash627$tind:
     row: 0
     bus: 0
     format: { action: 0..0, immediate: 1..9 }
     action_bus: { 32..33 : immediate(0..8) }
-    instruction: tbl_tna_lb_mixhash507$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash627$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash507(0, 6):
+      tna_lb_mixhash627(0, 4):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000013
+      - handle: 0x20000016
       - next_table: 0
       - { $constant0: immediate(0..8), $constant0: 68 }
       - set ig_md.routed, 1
@@ -1605,61 +1753,65 @@ stage 7 ingress:
       - set hdr.reorder_digest.reserved, 0
       - set ig_intr_md_for_tm.ucast_egress_port, $constant0
       - add B1, 1, B0
-    default_action: tna_lb_mixhash507
-  hash_action tbl_tna_lb_mixhash498 4:
-    p4: { name: tbl_tna_lb_mixhash498, hidden: true }
+    default_action: tna_lb_mixhash627
+  hash_action tbl_tna_lb_mixhash619 3:
+    p4: { name: tbl_tna_lb_mixhash619, hidden: true }
     row: 0
     result_bus: 0
     hash_dist:
-      0: { hash: 0, mask: 0xffff, shift: 5 }
+      0: { hash: 0, mask: 0xfff, shift: 4 }
     input_xbar:
-      exact group 0: { 48: rhash_0 }
+      exact group 0: { 40: rhash_0(8..11), 48: rhash_0(0..7) }
       hash 0:
-        0..15: rhash_0
+        0..7: rhash_0(0..7)
+        8..11: rhash_0(8..11)
       hash group 0:
         table: [0]
         seed: 0x0
     gateway:
-      name: tbl_tna_lb_mixhash498-gateway
+      name: tbl_tna_lb_mixhash619-gateway
       row: 1
       bus: 0
-      unit: 1
-      0x0:  cond-32
-      miss:  cond-32
+      unit: 0
+      0x0:  cond-36
+      miss:  cond-36
       condition: 
         expression: "true(always hit)"
-        true:  cond-32
-        false:  cond-32
+        true:  cond-36
+        false:  cond-36
     next: []
-    stateful: tbl_tna_lb_mixhash498$salu.SwitchIngress.reorder_ctrl_reg(hash_dist 0, $DEFAULT, $DEFAULT)
-    instruction: tbl_tna_lb_mixhash498($DEFAULT, $DEFAULT)
+    stateful: tbl_tna_lb_mixhash619$salu.SwitchIngress.reorder_expected_reg(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash619($DEFAULT, $DEFAULT)
     actions:
-      tna_lb_mixhash498(0, 0):
+      tna_lb_mixhash619(0, 0):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000012
+      - handle: 0x20000015
       - next_table: 0
-      - tbl_tna_lb_mixhash498$salu.SwitchIngress.reorder_ctrl_reg(ctrl_dec_0, $hash_dist)
-    default_action: tna_lb_mixhash498
-  stateful tbl_tna_lb_mixhash498$salu.SwitchIngress.reorder_ctrl_reg:
-    p4: { name: SwitchIngress.reorder_ctrl_reg, size: 4096 }
+      - tbl_tna_lb_mixhash619$salu.SwitchIngress.reorder_expected_reg(expected_dec_0, $hash_dist)
+    default_action: tna_lb_mixhash619
+  stateful tbl_tna_lb_mixhash619$salu.SwitchIngress.reorder_expected_reg:
+    p4: { name: SwitchIngress.reorder_expected_reg, size: 4096 }
     row: 15
     logical_bus: S
     column: [ 0, 1 ]
     maprams: [ 0, 1 ]
     home_row: 15
-    format: { lo: 32 }
+    format: { lo: 16 }
     actions:
-      ctrl_inc_0:
-      - add lo, lo, 65537
+      seed_expected_0:
+      - add lo, lo, 1
       - output mem_lo
-      ctrl_dec_0:
-      - add lo, lo, 4294901759
+      expected_inc_0:
+      - add lo, lo, 1
+      - output mem_lo
+      expected_dec_0:
+      - add lo, lo, 65535
       - output mem_lo
 stage 8 ingress:
   dependency: match
-  gateway cond-32 0:
-    name: cond-32
+  gateway cond-36 0:
+    name: cond-36
     input_xbar:
       exact group 0: { 4: ig_md.routed }
     row: 7
@@ -1669,11 +1821,11 @@ stage 8 ingress:
     0x0:
       next:  dmac_table_0
     miss:
-      next:  tbl_tna_lb_mixhash564
+      next:  tbl_tna_lb_mixhash715
     condition: 
       expression: "(ig_md.routed == 0)"
       true:  dmac_table_0
-      false:  tbl_tna_lb_mixhash564
+      false:  tbl_tna_lb_mixhash715
   exact_match dmac_table_0 1:
     p4: { name: SwitchIngress.dmac_table, size: 1024 }
     p4_param_order: 
@@ -1706,12 +1858,12 @@ stage 8 ingress:
         30..32: random(hdr.ethernet.dst_addr.0-31(8..31), hdr.ethernet.dst_addr.0-31(0..7), hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(5..7)
       hash group 0:
         table: [0]
-        seed: 0xa7a60bf426
+        seed: 0x5051e64352
     format: { action(0): 0..0, immediate(0): 2..17, version(0): 112..115, match(0): 34..71, action(1): 1..1, immediate(1): 18..33, version(1): 116..119, match(1): [ 106..111, 72..103 ] }
     match: [ hdr.ethernet.dst_addr.32-47(10..15), hdr.ethernet.dst_addr.0-31(0..7), hdr.ethernet.dst_addr.0-31(8..15), hdr.ethernet.dst_addr.0-31(16..23), hdr.ethernet.dst_addr.0-31(24..31) ]
     match_group_map: [ [ 0, 1 ] ]
-    hit: [  tbl_tna_lb_mixhash564 ]
-    miss:  tbl_tna_lb_mixhash564
+    hit: [  tbl_tna_lb_mixhash715 ]
+    miss:  tbl_tna_lb_mixhash715
     action_bus: { 32..33 : immediate(0..15) }
     instruction: dmac_table_0(action, $DEFAULT)
     actions:
@@ -1741,25 +1893,25 @@ stage 8 ingress:
     default_only_action: SwitchIngress.drop
 stage 9 ingress:
   dependency: action
-  ternary_match tbl_tna_lb_mixhash564 0:
-    p4: { name: tbl_tna_lb_mixhash564, hidden: true }
+  ternary_match tbl_tna_lb_mixhash715 0:
+    p4: { name: tbl_tna_lb_mixhash715, hidden: true }
     hit: [  END ]
     miss:  END
-    indirect: tbl_tna_lb_mixhash564$tind
-  ternary_indirect tbl_tna_lb_mixhash564$tind:
+    indirect: tbl_tna_lb_mixhash715$tind
+  ternary_indirect tbl_tna_lb_mixhash715$tind:
     row: 0
     bus: 0
     format: { action: 0..0 }
-    instruction: tbl_tna_lb_mixhash564$tind(action, $DEFAULT)
+    instruction: tbl_tna_lb_mixhash715$tind(action, $DEFAULT)
     actions:
-      tna_lb_mixhash564(0, 1):
+      tna_lb_mixhash715(0, 1):
       - hit_allowed: { allowed: true }
       - default_action: { allowed: true, is_constant: true }
-      - handle: 0x20000027
+      - handle: 0x20000029
       - next_table: 0
       - set ig_intr_md_for_tm.bypass_egress, 1
       - set ig_intr_md_for_dprsr.mirror_type, 0
-    default_action: tna_lb_mixhash564
+    default_action: tna_lb_mixhash715
 
 
 primitives: "tna_lb_mixhash.prim.json"

@@ -1,24 +1,24 @@
 digraph ingress {
-tbl_tna_lb_mixhash401 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash401\l\l
+tbl_tna_lb_mixhash493 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash493\l\l
 R:\l
  ig_intr_md.ingress_port\l
 \lW:\l
  ig_md.ingress_port\l
  "];
-cond_17 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.arp.$valid == 1\l\l
+cond_19 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.arp.$valid == 1\l\l
  "];
-tbl_tna_lb_mixhash408 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash408\l\l
+tbl_tna_lb_mixhash500 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash500\l\l
 R:\l
  hdr.arp_ipv4.sender_proto_addr\l
 \lW:\l
  ig_intr_md_for_dprsr.digest_type\l
  ig_md.learn_src_ip\l
  "];
-cond_19 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.ipv4.$valid == 1\l\l
+cond_21 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.ipv4.$valid == 1\l\l
  "];
-cond_18 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.arp.opcode == 1\l\l
+cond_20 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.arp.opcode == 1\l\l
  "];
-tbl_tna_lb_mixhash411 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash411\l\l
+tbl_tna_lb_mixhash503 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash503\l\l
 W:\l
  ig_intr_md_for_tm.mcast_grp_a\l
  "];
@@ -30,17 +30,17 @@ M:\l
  ig_intr_md_for_tm.mcast_grp_a\l
  ig_intr_md_for_dprsr.drop_ctl\l
  "];
-tbl_tna_lb_mixhash564 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash564\l\l
+tbl_tna_lb_mixhash715 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash715\l\l
 W:\l
  ig_intr_md_for_tm.bypass_egress\l
  "];
-cond_20 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.tcp.$valid == 1\l\l
+cond_22 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.tcp.$valid == 1\l\l
  "];
-tbl_tna_lb_mixhash561 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash561\l\l
+tbl_tna_lb_mixhash712 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash712\l\l
 W:\l
  ig_intr_md_for_dprsr.drop_ctl\l
  "];
-tbl_tna_lb_mixhash418 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash418\l\l
+tbl_tna_lb_mixhash510 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash510\l\l
 R:\l
  hdr.tcp.src_port\l
  hdr.tcp.dst_port\l
@@ -48,15 +48,15 @@ R:\l
  ig_md.l4_src_port\l
  ig_md.l4_dst_port\l
  "];
-cond_21 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.udp.$valid == 1\l\l
+cond_23 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.udp.$valid == 1\l\l
  "];
-tbl_tna_lb_mixhash432 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash432\l\l
+tbl_tna_lb_mixhash524 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash524\l\l
 R:\l
  hdr.reorder_digest.$valid\l
 \lW:\l
  do_reorder_0\l
  "];
-tbl_tna_lb_mixhash421 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash421\l\l
+tbl_tna_lb_mixhash513 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash513\l\l
 R:\l
  hdr.udp.src_port\l
  hdr.udp.dst_port\l
@@ -64,7 +64,7 @@ R:\l
  ig_md.l4_src_port\l
  ig_md.l4_dst_port\l
  "];
-cond_22 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.reorder_digest.$valid == 1\l\l
+cond_24 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.reorder_digest.$valid == 1\l\l
  "];
 reorder_enable_table_0 [ shape=record, style="filled", fillcolor=cornsilk, label="reorder_enable_table_0\l\l
 M:\l
@@ -72,24 +72,24 @@ M:\l
 \lW:\l
  ig_md.reorder_enabled\l
  "];
-cond_24 [ shape=record, style="filled", fillcolor=cornsilk, label="do_reorder_0\l\l
+cond_26 [ shape=record, style="filled", fillcolor=cornsilk, label="do_reorder_0\l\l
  "];
-cond_23 [ shape=record, style="filled", fillcolor=cornsilk, label="ig_md.reorder_enabled == 1\l\l
+cond_25 [ shape=record, style="filled", fillcolor=cornsilk, label="ig_md.reorder_enabled == 1\l\l
  "];
-tbl_tna_lb_mixhash437 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash437\l\l
+tbl_tna_lb_mixhash529 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash529\l\l
 W:\l
  do_reorder_0\l
  "];
-cond_25 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.reorder_digest.$valid == 1\l\l
+cond_27 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.reorder_digest.$valid == 1\l\l
  "];
-tbl_tna_lb_mixhash522 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash522\l\l
+tbl_tna_lb_mixhash643 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash643\l\l
 R:\l
  hdr.ipv4.src_addr\l
 \lW:\l
  ig_intr_md_for_dprsr.digest_type\l
  ig_md.learn_src_ip\l
  "];
-tbl_tna_lb_mixhash448 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash448\l\l
+tbl_tna_lb_mixhash540 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash540\l\l
 R:\l
  hdr.reorder_digest.seq\l
  hdr.reorder_digest.flow_hash\l
@@ -99,16 +99,27 @@ R:\l
  rhash_0\l
  recirc_count_0\l
  "];
-tbl_tna_lb_mixhash452 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash452\l\l
+cond_28 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.udp.$valid == 1 && hdr.udp.dst_port == 4791\l\l
+ "];
+cond_29 [ shape=record, style="filled", fillcolor=cornsilk, label="!(hdr.reorder_digest.$valid == 1) && ig_intr_md.ingress_port[8:7] != 0\l\l
+ "];
+tbl_tna_lb_mixhash553 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash553\l\l
+R:\l
+ hdr.roce_bth.psn\l
+\lW:\l
+ seq_0\l
+ "];
+tbl_tna_lb_mixhash555 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash555\l\l
 R:\l
  hdr.ipv4.identification\l
 \lW:\l
  seq_0\l
+ "];
+tbl_tna_lb_mixhash557 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash557\l\l
+W:\l
  rhash_0\l
  "];
-cond_26 [ shape=record, style="filled", fillcolor=cornsilk, label="!(hdr.reorder_digest.$valid == 1) && ig_intr_md.ingress_port[8:7] != 0\l\l
- "];
-tbl_tna_lb_mixhash474 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash474\l\l
+tbl_tna_lb_mixhash583 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash583\l\l
 R:\l
  rhash_0\l
  seq_0\l
@@ -122,35 +133,39 @@ R:\l
  hdr.reorder_digest.reserved\l
  ig_intr_md_for_tm.ucast_egress_port\l
  "];
-tbl_tna_lb_mixhash484 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash484\l\l
+tbl_tna_lb_mixhash600 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash600\l\l
 W:\l
- old_ctrl_0\l
+ seen_0\l
  "];
-cond_27 [ shape=record, style="filled", fillcolor=cornsilk, label="old_ctrl_0[23:16] != 0\l\l
+cond_30 [ shape=record, style="filled", fillcolor=cornsilk, label="seen_0 == 0\l\l
  "];
-cond_28 [ shape=record, style="filled", fillcolor=cornsilk, label="seq_0 == old_ctrl_0[15:0]\l\l
- "];
-tbl_tna_lb_mixhash492 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash492\l\l
+tbl_tna_lb_mixhash609 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash609\l\l
 W:\l
  hdr.reorder_digest.$valid\l
  "];
-cond_32 [ shape=record, style="filled", fillcolor=cornsilk, label="ig_md.routed == 0\l\l
+tbl_tna_lb_mixhash612 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash612\l\l
+W:\l
+ old_expected_0\l
  "];
-tbl_tna_lb_mixhash495 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash495\l\l
+cond_36 [ shape=record, style="filled", fillcolor=cornsilk, label="ig_md.routed == 0\l\l
+ "];
+cond_31 [ shape=record, style="filled", fillcolor=cornsilk, label="seq_0 == old_expected_0\l\l
+ "];
+tbl_tna_lb_mixhash616 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash616\l\l
 W:\l
  hdr.reorder_digest.$valid\l
  "];
-tbl_tna_lb_mixhash498 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash498\l\l
+tbl_tna_lb_mixhash619 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash619\l\l
  "];
-cond_29 [ shape=record, style="filled", fillcolor=cornsilk, label="recirc_count_0 >= 16\l\l
+cond_32 [ shape=record, style="filled", fillcolor=cornsilk, label="recirc_count_0 >= 16\l\l
  "];
-tbl_tna_lb_mixhash502 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash502\l\l
+tbl_tna_lb_mixhash622 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash622\l\l
 W:\l
  ig_md.routed\l
  hdr.reorder_digest.$valid\l
  ig_intr_md_for_dprsr.drop_ctl\l
  "];
-tbl_tna_lb_mixhash507 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash507\l\l
+tbl_tna_lb_mixhash627 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash627\l\l
 R:\l
  rhash_0\l
  seq_0\l
@@ -170,21 +185,7 @@ M:\l
  hdr.ethernet.src_addr\l
  hdr.ipv4.src_addr\l
 \l "];
-tbl_tna_lb_mixhash526 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash526\l\l
-W:\l
- pkt_counter_0\l
- "];
-tbl_tna_lb_mixhash533 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash533\l\l
-R:\l
- pkt_counter_0\l
-\lW:\l
- hdr.ipv4.identification\l
- "];
-tbl_tna_lb_mixhash534 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash534\l\l
-R:\l
- pkt_counter_0\l
-\lW:\l
- ig_md.ecmp_counter\l
+cond_33 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.udp.$valid == 1 && hdr.udp.dst_port == 4791\l\l
  "];
 lb_vip_table_0 [ shape=record, style="filled", fillcolor=cornsilk, label="lb_vip_table_0\l\l
 M:\l
@@ -192,9 +193,19 @@ M:\l
 \lW:\l
  ig_md.lb_hit\l
  "];
-cond_30 [ shape=record, style="filled", fillcolor=cornsilk, label="ig_md.lb_hit == 1\l\l
+tbl_tna_lb_mixhash664 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash664\l\l
+W:\l
+ pkt_counter_0\l
  "];
-tbl_tna_lb_mixhash539 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash539\l\l
+tbl_tna_lb_mixhash677 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash677\l\l
+R:\l
+ pkt_counter_0\l
+\lW:\l
+ hdr.ipv4.identification\l
+ "];
+cond_34 [ shape=record, style="filled", fillcolor=cornsilk, label="ig_md.lb_hit == 1\l\l
+ "];
+tbl_tna_lb_mixhash687 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_tna_lb_mixhash687\l\l
 W:\l
  mhash_0\l
  "];
@@ -224,7 +235,7 @@ M:\l
  ig_intr_md_for_tm.ucast_egress_port\l
  ig_md.routed\l
  "];
-cond_31 [ shape=record, style="filled", fillcolor=cornsilk, label="ig_md.ecmp_select == 1\l\l
+cond_35 [ shape=record, style="filled", fillcolor=cornsilk, label="ig_md.ecmp_select == 1\l\l
  "];
 ecmp_group_table_0 [ shape=record, style="filled", fillcolor=cornsilk, label="ecmp_group_table_0\l\l
 M:\l
@@ -233,7 +244,8 @@ M:\l
  hdr.ipv4.dst_addr\l
  ig_md.l4_src_port\l
  ig_md.l4_dst_port\l
- ig_md.ecmp_counter\l
+ hdr.roce_bth.psn\l
+ hdr.ipv4.identification\l
 \lR:\l
  hdr.ipv4.ttl\l
 \lW:\l
@@ -243,67 +255,73 @@ M:\l
  ig_intr_md_for_tm.ucast_egress_port\l
  ig_md.routed\l
  "];
-    PARSER -> tbl_tna_lb_mixhash401
-    tbl_tna_lb_mixhash401 -> cond_17
-    cond_17 -> tbl_tna_lb_mixhash408
-    cond_17 -> cond_19
-    tbl_tna_lb_mixhash408 -> cond_18
-    cond_18 -> tbl_tna_lb_mixhash411
-    cond_18 -> dmac_table_0
-    tbl_tna_lb_mixhash411 -> tbl_tna_lb_mixhash564
-    dmac_table_0 -> tbl_tna_lb_mixhash564
-    cond_19 -> cond_20
-    cond_19 -> tbl_tna_lb_mixhash561
-    cond_20 -> tbl_tna_lb_mixhash418
-    cond_20 -> cond_21
-    tbl_tna_lb_mixhash418 -> tbl_tna_lb_mixhash432
-    cond_21 -> tbl_tna_lb_mixhash421
-    cond_21 -> tbl_tna_lb_mixhash432
-    tbl_tna_lb_mixhash421 -> tbl_tna_lb_mixhash432
-    tbl_tna_lb_mixhash432 -> cond_22
-    cond_22 -> reorder_enable_table_0
-    cond_22 -> cond_24
-    reorder_enable_table_0 -> cond_23
-    cond_23 -> tbl_tna_lb_mixhash437
-    cond_23 -> cond_24
-    tbl_tna_lb_mixhash437 -> cond_24
-    cond_24 -> cond_25
-    cond_24 -> tbl_tna_lb_mixhash522
-    cond_25 -> tbl_tna_lb_mixhash448
-    cond_25 -> tbl_tna_lb_mixhash452
-    tbl_tna_lb_mixhash448 -> cond_26
-    tbl_tna_lb_mixhash452 -> cond_26
-    cond_26 -> tbl_tna_lb_mixhash474
-    cond_26 -> tbl_tna_lb_mixhash484
-    tbl_tna_lb_mixhash484 -> cond_27
+    PARSER -> tbl_tna_lb_mixhash493
+    tbl_tna_lb_mixhash493 -> cond_19
+    cond_19 -> tbl_tna_lb_mixhash500
+    cond_19 -> cond_21
+    tbl_tna_lb_mixhash500 -> cond_20
+    cond_20 -> tbl_tna_lb_mixhash503
+    cond_20 -> dmac_table_0
+    tbl_tna_lb_mixhash503 -> tbl_tna_lb_mixhash715
+    dmac_table_0 -> tbl_tna_lb_mixhash715
+    cond_21 -> cond_22
+    cond_21 -> tbl_tna_lb_mixhash712
+    cond_22 -> tbl_tna_lb_mixhash510
+    cond_22 -> cond_23
+    tbl_tna_lb_mixhash510 -> tbl_tna_lb_mixhash524
+    cond_23 -> tbl_tna_lb_mixhash513
+    cond_23 -> tbl_tna_lb_mixhash524
+    tbl_tna_lb_mixhash513 -> tbl_tna_lb_mixhash524
+    tbl_tna_lb_mixhash524 -> cond_24
+    cond_24 -> reorder_enable_table_0
+    cond_24 -> cond_26
+    reorder_enable_table_0 -> cond_25
+    cond_25 -> tbl_tna_lb_mixhash529
+    cond_25 -> cond_26
+    tbl_tna_lb_mixhash529 -> cond_26
+    cond_26 -> cond_27
+    cond_26 -> tbl_tna_lb_mixhash643
+    cond_27 -> tbl_tna_lb_mixhash540
     cond_27 -> cond_28
-    cond_27 -> tbl_tna_lb_mixhash492
-    tbl_tna_lb_mixhash492 -> cond_32
-    cond_28 -> tbl_tna_lb_mixhash495
-    cond_28 -> tbl_tna_lb_mixhash498
-    tbl_tna_lb_mixhash495 -> cond_32
-    tbl_tna_lb_mixhash498 -> cond_29
-    cond_29 -> tbl_tna_lb_mixhash502
-    cond_29 -> tbl_tna_lb_mixhash507
-    tbl_tna_lb_mixhash507 -> cond_32
-    tbl_tna_lb_mixhash502 -> cond_32
-    tbl_tna_lb_mixhash474 -> cond_32
-    tbl_tna_lb_mixhash522 -> smac_table_0
-    smac_table_0 -> tbl_tna_lb_mixhash526
-    tbl_tna_lb_mixhash526 -> tbl_tna_lb_mixhash533
-    tbl_tna_lb_mixhash533 -> tbl_tna_lb_mixhash534
-    tbl_tna_lb_mixhash534 -> lb_vip_table_0
-    lb_vip_table_0 -> cond_30
-    cond_30 -> tbl_tna_lb_mixhash539
-    cond_30 -> ipv4_route_0
-    tbl_tna_lb_mixhash539 -> lb_backend_table_0
-    lb_backend_table_0 -> cond_32
-    ipv4_route_0 -> cond_31
-    cond_31 -> ecmp_group_table_0
-    cond_31 -> cond_32
-    ecmp_group_table_0 -> cond_32
-    cond_32 -> dmac_table_0
-    cond_32 -> tbl_tna_lb_mixhash564
-    tbl_tna_lb_mixhash561 -> tbl_tna_lb_mixhash564
-    tbl_tna_lb_mixhash564 -> DEPARSER
+    tbl_tna_lb_mixhash540 -> cond_29
+    cond_28 -> tbl_tna_lb_mixhash553
+    cond_28 -> tbl_tna_lb_mixhash555
+    tbl_tna_lb_mixhash553 -> tbl_tna_lb_mixhash557
+    tbl_tna_lb_mixhash555 -> tbl_tna_lb_mixhash557
+    tbl_tna_lb_mixhash557 -> cond_29
+    cond_29 -> tbl_tna_lb_mixhash583
+    cond_29 -> tbl_tna_lb_mixhash600
+    tbl_tna_lb_mixhash600 -> cond_30
+    cond_30 -> tbl_tna_lb_mixhash609
+    cond_30 -> tbl_tna_lb_mixhash612
+    tbl_tna_lb_mixhash609 -> cond_36
+    tbl_tna_lb_mixhash612 -> cond_31
+    cond_31 -> tbl_tna_lb_mixhash616
+    cond_31 -> tbl_tna_lb_mixhash619
+    tbl_tna_lb_mixhash616 -> cond_36
+    tbl_tna_lb_mixhash619 -> cond_32
+    cond_32 -> tbl_tna_lb_mixhash622
+    cond_32 -> tbl_tna_lb_mixhash627
+    tbl_tna_lb_mixhash627 -> cond_36
+    tbl_tna_lb_mixhash622 -> cond_36
+    tbl_tna_lb_mixhash583 -> cond_36
+    tbl_tna_lb_mixhash643 -> smac_table_0
+    smac_table_0 -> cond_33
+    cond_33 -> lb_vip_table_0
+    cond_33 -> tbl_tna_lb_mixhash664
+    tbl_tna_lb_mixhash664 -> tbl_tna_lb_mixhash677
+    tbl_tna_lb_mixhash677 -> lb_vip_table_0
+    lb_vip_table_0 -> cond_34
+    cond_34 -> tbl_tna_lb_mixhash687
+    cond_34 -> ipv4_route_0
+    tbl_tna_lb_mixhash687 -> lb_backend_table_0
+    lb_backend_table_0 -> cond_36
+    ipv4_route_0 -> cond_35
+    cond_35 -> ecmp_group_table_0
+    cond_35 -> cond_36
+    ecmp_group_table_0 -> cond_36
+    cond_36 -> dmac_table_0
+    cond_36 -> tbl_tna_lb_mixhash715
+    tbl_tna_lb_mixhash712 -> tbl_tna_lb_mixhash715
+    tbl_tna_lb_mixhash715 -> DEPARSER
 }
