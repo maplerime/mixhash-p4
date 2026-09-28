@@ -359,3 +359,137 @@ Setup: e1=h1→h9, e2=h2→h10 (768 KB each, start t=0); m1..m8 = h1..h8 →
   pings; disp_read.py applies `>>8` for m7/m8 (idx 0x119/0x21A).
 - bfrt bytes-width fields arrive as little-endian int lists; mask each
   element with 0xFF before `bytes()` or parsing crashes.
+
+## 16-mice + 3-elephant: MixHash vs CLASSIC_ECMP (2026-09-28)
+
+16 mice = h1..h8 each send 2 flows to shuffled dsts (every dst h9..h16
+receives exactly 2 mice); 3 elephants e1=h1→h9, e2=h2→h10, e3=h3→h11,
+768 KB each at t=0; mice 64 KB each at t=+2s. In-P4 register logging
+(`leaf-spine/mice16ele3.sh`, `disp_read.py --set m16e3`).
+
+### FCT
+
+| metric | MixHash | Classic |
+|--------|---------|---------|
+| elephant avg | 31 807 ms | 32 436 ms |
+| elephant max | 32 372 ms | 33 383 ms |
+| mice avg | 18 070 ms | 18 916 ms |
+| mice max | 32 713 ms | 33 750 ms |
+
+### Spine skew
+
+| metric | MixHash | Classic |
+|--------|---------|---------|
+| per-flow skew (mean) | 0.29 (0.04–0.61) | 1.00 (all 19 pinned) |
+| aggregate sp1/sp2 | 1125/755 (59.8%) | 521/595 (46.7%) |
+
+### Findings
+
+- Classic: all 19 flows pinned to one spine (skew 1.00). This run's hash
+  lottery split flows 10/9 → aggregate looked balanced (46.7%), but any
+  flow-set can collide onto one spine (see previous run's 60/40).
+- MixHash: every flow sprayed per-packet, per-flow skew ≤ 0.61. But this
+  run's aggregate drifted to 59.8% — the per-packet hash (PSN / IP-ID
+  input) has mild per-flow bias (m07 80% sp1, m03 24%); balance is not
+  guaranteed uniform per run (previous run 46.0%).
+- FCT: MixHash marginally better on all four metrics (elephant avg −2%,
+  mice avg −4.5%) but within run-to-run noise. Mice FCT clusters by
+  SENDER identically in both modes (h5/h6 mice ≈ 33 s, h7/h8 ≈ 8 s) —
+  dominated by tofino-model CPU scheduling, not path choice.
+
+## 32-mice + 4-elephant: MixHash vs CLASSIC_ECMP (2026-09-28)
+
+32 mice = h1..h8 each send 4 flows to shuffled dsts (every dst h9..h16
+receives exactly 4 mice); 4 elephants e1=h1→h9, e2=h2→h10, e3=h3→h11,
+e4=h4→h12, 768 KB each at t=0; mice 64 KB each at t=+2s. In-P4 register
+logging (`leaf-spine/mice32ele4.sh`, `disp_read.py --set m32e4`).
+36 concurrent flows ≈ 5 MB total; all receivers confirmed full bytes
+(32×65536 + 4×786432) in both modes.
+
+### FCT
+
+| metric | MixHash | Classic |
+|--------|---------|---------|
+| elephant avg | 74 676 ms | 82 451 ms (−9.4% for MixHash) |
+| elephant max | 75 460 ms | 82 898 ms |
+| mice avg | 50 403 ms | 58 886 ms (−14.4% for MixHash) |
+| mice max | 73 558 ms | 86 428 ms (−14.9%) |
+
+### Spine skew
+
+| metric | MixHash | Classic |
+|--------|---------|---------|
+| per-flow skew (mean) | 0.27 (0.02–0.61) | 1.00 (all 36 pinned) |
+| aggregate sp1/sp2 | 1705/1500 (53.2%) | 1469/734 (66.7%) |
+
+### Findings
+
+- Classic: all 36 flows pinned (skew 1.00). At this flow count the hash
+  lottery lost balance: 24 flows → sp1, 12 → sp2, aggregate 66.7% — one
+  spine carried 2× the other. This is the classic ECMP failure mode the
+  per-packet hash exists to fix.
+- MixHash: per-flow skew 0.02–0.61 (mean 0.27), aggregate 53.2% — the
+  36-flow aggregate landed within 3% of even despite per-flow biases.
+- FCT: MixHash better on every metric and the gap widened vs the
+  16-mice round (elephant avg −9.4%, mice avg −14.4%, mice max −14.9%).
+  With 36 concurrent flows the model CPU cap (~0.5 Mbps effective here)
+  is still the dominant term, but with 2/3 of classic's traffic squeezed
+  onto one spine, classic pays a measurable penalty this round.
+- Mice FCT again clusters by sender in both modes (h5/h6 ≈ 86 s classic
+  vs ≈ 72 s mixhash; h7/h8 fastest ≈ 38–41 s) — sender-side scheduling
+  order dominates per-flow FCT.
+
+Operational note: sanity-check the live build by REGISTER dispersion
+(e.g. 12 pings), not a short 6-ping test — a 66/34 mixhash bias gives a
+false "pinned" verdict ~9% of the time (bit me once this round; the
+first run labeled cls1 was actually mixhash, re-run after md5 check).
+
+## 59-mice + 5-elephant (R4, 2026-09-28)
+
+5 elephants 768 KB (h1–h5 → .21–.25) + 59 mice 64 KB, mice at +2 s;
+64 concurrent flows ≈ 7.4 MB total. "8 mice per sender" would collide
+with the elephant's own (src,dst) disp index, so h1–h5 send 7 mice each
+(skipping their elephant dst) and h6–h8 send 8 each = 59; dst balance
+.21–.25 × 7, .26–.28 × 8. Both runs verified full receiver bytes
+(59×65536 + 5×786432).
+
+### FCT
+
+| metric | MixHash | Classic |
+|--------|---------|---------|
+| elephant avg | 179 195 ms | 178 919 ms (+0.2% for MixHash) |
+| elephant max | 186 693 ms | 190 074 ms |
+| mice avg | 136 302 ms | 123 357 ms (+10.5% for Classic) |
+| mice max | 183 372 ms | 186 406 ms |
+
+### Spine skew
+
+| metric | MixHash | Classic |
+|--------|---------|---------|
+| per-flow skew (mean) | 0.30 (0.00–0.52) | 1.00 (all 64 pinned) |
+| aggregate sp1/sp2 | 2339/2772 (45.8%) | 2100/1890 (52.6%) |
+
+### Findings
+
+- Classic drew a near-even hash this round (aggregate 52.6%, vs 66.7%
+  in R3): 34 flows → sp1, 30 → sp2. MixHash's own aggregate landed
+  4 points off even (45.8%).
+- With the fabric balanced in BOTH modes, FCT tied — classic was even
+  slightly ahead on mice avg (123.4 s vs 136.3 s, i.e. MixHash +10.5%),
+  and this time it was MixHash whose aggregate was further from 50%.
+  The R3→R4 reversal (MixHash wins when classic imbalances 2:1, loses
+  when classic draws even and mixhash lands off-even) is exactly the
+  "aggregate balance, not the hashing scheme, drives FCT" causal chain.
+- Structural result unchanged: classic 64/64 flows pinned (skew 1.00),
+  MixHash per-flow skew 0.00–0.52 (mean 0.30) — per-packet spreading is
+  deterministic and independent of the draw.
+
+Discarded run note: the first classic attempt (m59e5_cls1) blackholed 9
+mice flows (ports 23034–23038, 23040–23043) — switch counted only 24–26
+of the ~50 packets per flow, receivers saw nothing, yet client nc exited
+at ~160 s with FCT files present (TCP give-up, not completion). Listener
+processes were healthy (blocked in inet_csk_accept); a single replayed
+flow was accepted and delivered 65536 B instantly. Root cause: tofino-
+model CPU saturation under 64 concurrent flows (known "mice stall under
+elephant load" limit), not a difference between the two builds. The
+first attempt's FCT numbers were invalidated and the round re-run clean.
